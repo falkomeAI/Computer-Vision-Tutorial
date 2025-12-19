@@ -407,7 +407,7 @@ Standard: sRGB uses γ ≈ 2.2
 <br/>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/falkomeAI/computer_vision_complete/blob/main/03_Image_Formation/colab_tutorial.ipynb">
+  <a href="https://colab.research.google.com/github/falkomeAI/Computer-Vision-Tutorial/blob/main/03_Image_Formation/colab_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
   </a>
 </p>

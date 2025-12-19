@@ -973,11 +973,11 @@
 <br/>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA&labelColor=0f172a" alt="GitHub stars"/>
+  <img src="https://img.shields.io/github/stars/falkomeAI/Computer-Vision-Tutorial?style=for-the-badge&logo=github&color=60A5FA&labelColor=0f172a" alt="GitHub stars"/>
   &nbsp;
-  <img src="https://img.shields.io/github/forks/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=34D399&labelColor=0f172a" alt="GitHub forks"/>
+  <img src="https://img.shields.io/github/forks/falkomeAI/Computer-Vision-Tutorial?style=for-the-badge&logo=github&color=34D399&labelColor=0f172a" alt="GitHub forks"/>
   &nbsp;
-  <img src="https://img.shields.io/github/issues/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=FBBF24&labelColor=0f172a" alt="GitHub issues"/>
+  <img src="https://img.shields.io/github/issues/falkomeAI/Computer-Vision-Tutorial?style=for-the-badge&logo=github&color=FBBF24&labelColor=0f172a" alt="GitHub issues"/>
 </p>
 
 <br/>
@@ -995,8 +995,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA" alt="GitHub stars"/>
-  <img src="https://img.shields.io/github/forks/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=34D399" alt="GitHub forks"/>
+  <img src="https://img.shields.io/github/stars/falkomeAI/Computer-Vision-Tutorial?style=for-the-badge&logo=github&color=60A5FA" alt="GitHub stars"/>
+  <img src="https://img.shields.io/github/forks/falkomeAI/Computer-Vision-Tutorial?style=for-the-badge&logo=github&color=34D399" alt="GitHub forks"/>
 </p>
 
 <br/>

@@ -365,7 +365,7 @@ Two 3×3 = One 5×5 receptive field, but fewer params!
 <br/>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/falkomeAI/computer_vision_complete/blob/main/09_CNN_Architectures/colab_tutorial.ipynb">
+  <a href="https://colab.research.google.com/github/falkomeAI/Computer-Vision-Tutorial/blob/main/09_CNN_Architectures/colab_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
   </a>
 </p>

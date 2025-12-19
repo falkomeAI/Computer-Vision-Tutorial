@@ -448,7 +448,7 @@ L = -log[exp(sim(I,T)/τ) / Σⱼexp(sim(I,Tⱼ)/τ)]
 <br/>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/falkomeAI/computer_vision_complete/blob/main/16_Vision_Language/colab_tutorial.ipynb">
+  <a href="https://colab.research.google.com/github/falkomeAI/Computer-Vision-Tutorial/blob/main/16_Vision_Language/colab_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
   </a>
 </p>
