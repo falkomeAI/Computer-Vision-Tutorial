@@ -3,9 +3,9 @@
 <br/>
 
 <img src="https://img.shields.io/badge/◀__START-1e293b?style=for-the-badge" height="35"/>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-60A5FA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../02_Transform_Methods/README.md"><img src="https://img.shields.io/badge/Transform Methods__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
 <br/><br/>
@@ -44,7 +44,7 @@
 
 ## 🎯 What You'll Learn
 
-<table>
+<table align="center" width="100%">
 <tr>
 <td width="50%">
 
@@ -107,7 +107,7 @@
 
 ## 🔢 Essential Formulas
 
-<table>
+<table align="center" width="100%">
 <tr>
 <td>
 
@@ -383,27 +383,36 @@ OR: SVD on X directly: `X = UΣVᵀ`
 
 <br/>
 
-### 🚀 Click to Open Directly in Google Colab
+### 🚀 Open in Google Colab
 
 <br/>
 
-<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/01_Mathematical_Foundations/colab_tutorial.ipynb">
+**Option 1: Direct Link (After pushing to GitHub)**
+```
+Replace YOUR_USERNAME with your GitHub username:
+https://colab.research.google.com/github/YOUR_USERNAME/computer_vision_complete/blob/main/01_Mathematical_Foundations/colab_tutorial.ipynb
+```
+
+**Option 2: Manual Upload (Works Immediately!)**
+1. [📥 Download this notebook](./colab_tutorial.ipynb)
+2. Go to [Google Colab](https://colab.research.google.com)
+3. Click "Upload" → Select the downloaded `.ipynb` file
+4. Run all cells!
+
+**Option 3: Open from GitHub (if already pushed)**
+- Click the notebook file on GitHub
+- Click "Open in Colab" button (if available)
+- Or copy the GitHub URL and paste it into Colab's "File → Open notebook → GitHub" option
+
+<br/>
+
+<a href="https://colab.research.google.com/">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
 </a>
-
-<br/><br/>
-
-> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
-
-<br/>
-
-**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
-
-
 
 
 ---
@@ -413,7 +422,7 @@ OR: SVD on X directly: `X = UΣVᵀ`
 <div align="center">
 
 | | | |
-|:---|:---:|---:|
+| :--- |:---:|---:|
 |  | **[🏠 HOME](../README.md)** | **[Transform Methods ▶](../02_Transform_Methods/README.md)** |
 
 <br/>

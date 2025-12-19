@@ -3,9 +3,9 @@
 <br/>
 
 <a href="../19_Ethics_Safety/README.md"><img src="https://img.shields.io/badge/◀__Ethics-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-A78BFA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/✓__COMPLETE-34D399?style=for-the-badge&labelColor=0f172a" height="35"/>
 
 <br/><br/>
@@ -529,27 +529,36 @@ Image3: ? → [model predicts]
 
 <br/>
 
-### 🚀 Click to Open Directly in Google Colab
+### 🚀 Open in Google Colab
 
 <br/>
 
-<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/20_Research_Frontiers/colab_tutorial.ipynb">
+**Option 1: Direct Link (After pushing to GitHub)**
+```
+Replace YOUR_USERNAME with your GitHub username:
+https://colab.research.google.com/github/YOUR_USERNAME/computer_vision_complete/blob/main/20_Research_Frontiers/colab_tutorial.ipynb
+```
+
+**Option 2: Manual Upload (Works Immediately!)**
+1. [📥 Download this notebook](./colab_tutorial.ipynb)
+2. Go to [Google Colab](https://colab.research.google.com)
+3. Click "Upload" → Select the downloaded `.ipynb` file
+4. Run all cells!
+
+**Option 3: Open from GitHub (if already pushed)**
+- Click the notebook file on GitHub
+- Click "Open in Colab" button (if available)
+- Or copy the GitHub URL and paste it into Colab's "File → Open notebook → GitHub" option
+
+<br/>
+
+<a href="https://colab.research.google.com/">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
 </a>
-
-<br/><br/>
-
-> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
-
-<br/>
-
-**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
-
-
 
 
 ---
@@ -559,7 +568,7 @@ Image3: ? → [model predicts]
 <div align="center">
 
 | | | |
-|:---|:---:|---:|
+| :--- |:---:|---:|
 | **[◀ Ethics](../19_Ethics_Safety/README.md)** | **[🏠 HOME](../README.md)** |  |
 
 <br/>
