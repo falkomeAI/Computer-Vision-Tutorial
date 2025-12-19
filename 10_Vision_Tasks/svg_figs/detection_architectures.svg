@@ -1,81 +1,161 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 420">
-  <rect width="850" height="420" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
+  <defs>
+    <linearGradient id="twoStageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="oneStageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="transformerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Object Detection Architectures</text>
+  <rect width="850" height="380" fill="#0f172a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Object Detection Architectures</text>
   
-  <!-- Two-Stage Section -->
-  <rect x="30" y="60" width="380" height="160" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="220" y="90" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Two-Stage (R-CNN Family)</text>
+  <!-- Two-Stage Detectors -->
+  <g transform="translate(30, 60)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">Two-Stage</text>
+    
+    <!-- Pipeline -->
+    <g transform="translate(15, 40)">
+      <rect width="60" height="35" rx="4" fill="url(#twoStageGrad)"/>
+      <text x="30" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Backbone</text>
+      <text x="30" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#dbeafe">ResNet</text>
+    </g>
+    <text x="85" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b">→</text>
+    <g transform="translate(95, 40)">
+      <rect width="60" height="35" rx="4" fill="#ef4444"/>
+      <text x="30" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">RPN</text>
+      <text x="30" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#fecaca">Proposals</text>
+    </g>
+    <text x="165" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b">→</text>
+    <g transform="translate(175, 40)">
+      <rect width="60" height="35" rx="4" fill="#22c55e"/>
+      <text x="30" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Head</text>
+      <text x="30" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#d1fae5">Classify</text>
+    </g>
+    
+    <!-- Examples -->
+    <g transform="translate(15, 95)">
+      <rect width="100" height="25" rx="3" fill="#3b82f6" opacity="0.3"/>
+      <text x="50" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">Faster R-CNN</text>
+    </g>
+    <g transform="translate(125, 95)">
+      <rect width="100" height="25" rx="3" fill="#3b82f6" opacity="0.3"/>
+      <text x="50" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">Mask R-CNN</text>
+    </g>
+    
+    <text x="125" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">High accuracy, slower</text>
+  </g>
   
-  <rect x="50" y="110" width="70" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="85" y="138" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Image</text>
+  <!-- One-Stage Detectors -->
+  <g transform="translate(300, 60)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399">One-Stage</text>
+    
+    <!-- Pipeline -->
+    <g transform="translate(15, 40)">
+      <rect width="70" height="35" rx="4" fill="url(#oneStageGrad)"/>
+      <text x="35" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Backbone</text>
+      <text x="35" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#d1fae5">DarkNet</text>
+    </g>
+    <text x="100" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b">→</text>
+    <g transform="translate(115, 40)">
+      <rect width="60" height="35" rx="4" fill="#f59e0b"/>
+      <text x="30" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Neck</text>
+      <text x="30" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#fef3c7">FPN</text>
+    </g>
+    <text x="185" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b">→</text>
+    <g transform="translate(195, 40)">
+      <rect width="40" height="35" rx="4" fill="#ef4444"/>
+      <text x="20" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Det</text>
+    </g>
+    
+    <!-- Examples -->
+    <g transform="translate(15, 95)">
+      <rect width="70" height="25" rx="3" fill="#22c55e" opacity="0.3"/>
+      <text x="35" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">YOLO</text>
+    </g>
+    <g transform="translate(95, 95)">
+      <rect width="70" height="25" rx="3" fill="#22c55e" opacity="0.3"/>
+      <text x="35" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">SSD</text>
+    </g>
+    <g transform="translate(175, 95)">
+      <rect width="60" height="25" rx="3" fill="#22c55e" opacity="0.3"/>
+      <text x="30" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">RetinaNet</text>
+    </g>
+    
+    <text x="125" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Real-time, fast</text>
+  </g>
   
-  <path d="M 125 132 L 155 132" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#1e293b"/></marker></defs>
+  <!-- Transformer-based -->
+  <g transform="translate(570, 60)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">Transformer</text>
+    
+    <!-- Pipeline -->
+    <g transform="translate(15, 40)">
+      <rect width="70" height="35" rx="4" fill="url(#transformerGrad)"/>
+      <text x="35" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Backbone</text>
+      <text x="35" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#fef3c7">Swin</text>
+    </g>
+    <text x="100" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b">→</text>
+    <g transform="translate(115, 40)">
+      <rect width="65" height="35" rx="4" fill="#7c3aed"/>
+      <text x="32" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Encoder</text>
+      <text x="32" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#ddd6fe">MHSA</text>
+    </g>
+    <text x="190" y="60" font-family="Arial, sans-serif" font-size="12" fill="#64748b">→</text>
+    <g transform="translate(200, 40)">
+      <rect width="40" height="35" rx="4" fill="#ec4899"/>
+      <text x="20" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Det</text>
+    </g>
+    
+    <!-- Examples -->
+    <g transform="translate(15, 95)">
+      <rect width="70" height="25" rx="3" fill="#f59e0b" opacity="0.3"/>
+      <text x="35" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">DETR</text>
+    </g>
+    <g transform="translate(95, 95)">
+      <rect width="90" height="25" rx="3" fill="#f59e0b" opacity="0.3"/>
+      <text x="45" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">Deformable</text>
+    </g>
+    <g transform="translate(195, 95)">
+      <rect width="45" height="25" rx="3" fill="#f59e0b" opacity="0.3"/>
+      <text x="22" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">DINO</text>
+    </g>
+    
+    <text x="125" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">End-to-end, no NMS</text>
+  </g>
   
-  <rect x="160" y="110" width="80" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="200" y="138" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Backbone</text>
-  
-  <path d="M 245 132 L 275 132" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="280" y="110" width="60" height="45" fill="#2563eb" rx="4"/>
-  <text x="310" y="138" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">RPN</text>
-  
-  <path d="M 345 132 L 375 132" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="50" y="165" width="160" height="40" fill="#f1f5f9" stroke="#1e293b" rx="4"/>
-  <text x="130" y="190" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Stage 1: Proposals</text>
-  
-  <rect x="230" y="165" width="160" height="40" fill="#f1f5f9" stroke="#1e293b" rx="4"/>
-  <text x="310" y="190" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Stage 2: Refine + Classify</text>
-  
-  <!-- One-Stage Section -->
-  <rect x="440" y="60" width="380" height="160" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="630" y="90" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">One-Stage (YOLO, SSD)</text>
-  
-  <rect x="460" y="110" width="70" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="495" y="138" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Image</text>
-  
-  <path d="M 535 132 L 565 132" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="570" y="110" width="80" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="610" y="138" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Backbone</text>
-  
-  <path d="M 655 132 L 685 132" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="690" y="100" width="110" height="65" fill="#2563eb" rx="4"/>
-  <text x="745" y="128" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Dense</text>
-  <text x="745" y="145" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Predictions</text>
-  
-  <rect x="460" y="165" width="340" height="40" fill="#f1f5f9" stroke="#1e293b" rx="4"/>
-  <text x="630" y="190" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Single pass: Class + Box for each grid cell/anchor</text>
-  
-  <!-- Comparison Table -->
-  <rect x="30" y="240" width="790" height="160" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="425" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Comparison</text>
-  
-  <!-- Headers -->
-  <text x="150" y="300" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Model</text>
-  <text x="320" y="300" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Speed</text>
-  <text x="490" y="300" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Accuracy</text>
-  <text x="680" y="300" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Use Case</text>
-  
-  <!-- Row 1 -->
-  <text x="150" y="330" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Faster R-CNN</text>
-  <text x="320" y="330" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">~5 FPS</text>
-  <text x="490" y="330" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">High (42+ mAP)</text>
-  <text x="680" y="330" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Accuracy-critical</text>
-  
-  <!-- Row 2 -->
-  <text x="150" y="360" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">YOLOv8</text>
-  <text x="320" y="360" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">~100+ FPS</text>
-  <text x="490" y="360" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">High (53+ mAP)</text>
-  <text x="680" y="360" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Real-time</text>
-  
-  <!-- Row 3 -->
-  <text x="150" y="390" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">DETR</text>
-  <text x="320" y="390" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">~25 FPS</text>
-  <text x="490" y="390" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">High (44+ mAP)</text>
-  <text x="680" y="390" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">End-to-end, no NMS</text>
+  <!-- Speed vs Accuracy comparison -->
+  <g transform="translate(50, 230)">
+    <rect width="750" height="130" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="375" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f8fafc">Speed vs Accuracy Trade-off</text>
+    
+    <!-- Axes -->
+    <line x1="100" y1="110" x2="700" y2="110" stroke="#475569" stroke-width="1"/>
+    <line x1="100" y1="110" x2="100" y2="45" stroke="#475569" stroke-width="1"/>
+    <text x="400" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Speed (FPS) →</text>
+    <text x="70" y="77" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b" transform="rotate(-90, 70, 77)">mAP →</text>
+    
+    <!-- Data points -->
+    <circle cx="200" cy="55" r="12" fill="#3b82f6"/>
+    <text x="200" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#60a5fa">Faster R-CNN</text>
+    
+    <circle cx="400" cy="70" r="12" fill="#f59e0b"/>
+    <text x="400" y="57" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fbbf24">DETR</text>
+    
+    <circle cx="550" cy="65" r="12" fill="#22c55e"/>
+    <text x="550" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#34d399">YOLOv8</text>
+    
+    <circle cx="650" cy="85" r="12" fill="#ef4444"/>
+    <text x="650" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f87171">YOLOv8n</text>
+  </g>
 </svg>

@@ -1,448 +1,340 @@
-# 🔮 Vision Transformers
-
-> **Level:** 🟠 Advanced | **Prerequisites:** CNNs, Attention Mechanisms
-
----
-
-**Navigation:** [← Vision Tasks](../10_Vision_Tasks/) | [🏠 Home](../README.md) | [Self-Supervised Learning →](../12_Self_Supervised/)
-
----
-
-
-## 📋 Summary
-
-Vision Transformers (ViT) apply the Transformer architecture—originally designed for NLP—to images by treating image patches as tokens. This module covers **ViT fundamentals** (patch embedding, position encoding, [CLS] token), **hierarchical variants** (Swin Transformer with window attention), **efficient designs** (DeiT, PVT), and **self-supervised approaches** (DINO, MAE). ViTs have achieved state-of-the-art results across vision tasks when trained with sufficient data.
-
----
-
-## 📊 Key Concepts Table
-
-| Model | Year | Key Innovation | ImageNet Acc | Speed |
-|-------|------|----------------|--------------|-------|
-| **ViT-B/16** | 2020 | Patch tokens + Transformer | 77.9% | Medium |
-| **DeiT-S** | 2021 | Knowledge distillation | 79.8% | Fast |
-| **Swin-T** | 2021 | Window attention + shift | 81.3% | Fast |
-| **PVT** | 2021 | Pyramid + spatial reduction | 79.8% | Fast |
-| **BEiT** | 2021 | BERT-style pretraining | 83.2% | Medium |
-| **MAE** | 2022 | Masked autoencoder | 83.6% | Slow train |
-| **DINOv2** | 2023 | Self-supervised foundation | 86.5% | Medium |
-
----
-
-## 🔢 Math / Formulas
-
-### Patch Embedding
-$$
-\mathbf{z}_0 = [\mathbf{x}_\text{class}; \mathbf{x}_p^1\mathbf{E}; \mathbf{x}_p^2\mathbf{E}; \cdots; \mathbf{x}_p^N\mathbf{E}] + \mathbf{E}_\text{pos}
-$$
-where $\mathbf{E} \in \mathbb{R}^{(P^2 \cdot C) \times D}$ is patch projection, $N = HW/P^2$ patches
-
-### Multi-Head Self-Attention
-$$
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-$$
-
-$$
-\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O
-$$
-
-### Transformer Block
-$$
-\mathbf{z}'_\ell = \text{MSA}(\text{LN}(\mathbf{z}_{\ell-1})) + \mathbf{z}_{\ell-1}
-$$
-$$
-\mathbf{z}_\ell = \text{MLP}(\text{LN}(\mathbf{z}'_\ell)) + \mathbf{z}'_\ell
-$$
-
-### Window Attention (Swin)
-$$
-\text{Attention}(Q, K, V) = \text{SoftMax}(QK^T/\sqrt{d} + B)V
-$$
-where $B$ is relative position bias
-
----
-
-## 🎨 Visual / Diagram
-
 <div align="center">
-<img src="./svg_figs/vit_architecture.svg" alt="ViT Architecture" width="100%"/>
+
+# ⚡ Vision Transformers
+
+### *Attention Is All You Need (for Images)*
+
+<br/>
+
+<p>
+<img src="https://img.shields.io/badge/Level-Advanced-orange?style=for-the-badge" alt="Level"/>
+<img src="https://img.shields.io/badge/Time-2_weeks-blue?style=for-the-badge" alt="Time"/>
+</p>
+
+**📓 [Download Notebook](./colab_tutorial.ipynb) → Upload to Colab → Run!**
+
 </div>
 
 ---
 
-## 💻 Code Practice
+[← Vision Tasks](../10_Vision_Tasks/) · [🏠 Home](../README.md) · [Self-Supervised →](../12_Self_Supervised/)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vit)
+---
 
-```python
-#@title 🔮 Vision Transformers - Complete Implementation
-#@markdown Build ViT from scratch + Attention visualization!
+<br/>
 
-!pip install torch torchvision matplotlib einops timm transformers -q
+## 📖 Overview
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torchvision import transforms
-from PIL import Image
-import matplotlib.pyplot as plt
-import numpy as np
-import urllib.request
+> **Vision Transformers treat images as sequences of patches.** No convolutions—just attention! This module covers ViT fundamentals, Swin Transformer's window attention, and self-supervised methods like DINO and MAE.
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print(f"✅ Using device: {device}")
+<br/>
 
-# Download sample image
-url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cute_dog.jpg/320px-Cute_dog.jpg"
-urllib.request.urlretrieve(url, "test.jpg")
-image = Image.open("test.jpg")
-print("📷 Image loaded!")
+---
 
-#@title 1️⃣ Patch Embedding
-class PatchEmbedding(nn.Module):
-    """Split image into patches and project to embedding dimension"""
-    def __init__(self, img_size=224, patch_size=16, in_channels=3, embed_dim=768):
-        super().__init__()
-        self.img_size = img_size
-        self.patch_size = patch_size
-        self.n_patches = (img_size // patch_size) ** 2
-        
-        # Equivalent to: split into patches + linear projection
-        self.proj = nn.Conv2d(in_channels, embed_dim, 
-                              kernel_size=patch_size, stride=patch_size)
-    
-    def forward(self, x):
-        # x: (B, C, H, W)
-        x = self.proj(x)           # (B, embed_dim, H/P, W/P)
-        x = x.flatten(2)           # (B, embed_dim, N)
-        x = x.transpose(1, 2)      # (B, N, embed_dim)
-        return x
+## 🎯 Key Concepts
 
-# Demo
-patch_embed = PatchEmbedding(img_size=224, patch_size=16, embed_dim=768)
-dummy_img = torch.randn(1, 3, 224, 224)
-patches = patch_embed(dummy_img)
-print(f"Input: {dummy_img.shape}")
-print(f"Patches: {patches.shape}  # {224//16}×{224//16} = 196 patches")
+| Concept | Description | Used In |
+|:--------|:------------|:--------|
+| **Patch Embedding** | Split image into patches, project to tokens | ViT, DeiT, Swin |
+| **Self-Attention** | Compute pairwise relationships between tokens | All Transformers |
+| **Position Embedding** | Add spatial information (learned or sinusoidal) | All ViTs |
+| **CLS Token** | Learnable token for classification | ViT, DeiT |
+| **Window Attention** | Attention within local windows | Swin Transformer |
+| **Shifted Windows** | Cross-window connections | Swin Transformer |
 
-#@title 2️⃣ Multi-Head Self-Attention
-class Attention(nn.Module):
-    """Multi-Head Self-Attention"""
-    def __init__(self, dim, n_heads=12, qkv_bias=True, attn_drop=0., proj_drop=0.):
-        super().__init__()
-        self.n_heads = n_heads
-        self.head_dim = dim // n_heads
-        self.scale = self.head_dim ** -0.5
-        
-        self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
-        self.attn_drop = nn.Dropout(attn_drop)
-        self.proj = nn.Linear(dim, dim)
-        self.proj_drop = nn.Dropout(proj_drop)
-    
-    def forward(self, x):
-        B, N, C = x.shape
-        
-        # Generate Q, K, V
-        qkv = self.qkv(x).reshape(B, N, 3, self.n_heads, self.head_dim)
-        qkv = qkv.permute(2, 0, 3, 1, 4)  # (3, B, heads, N, head_dim)
-        q, k, v = qkv[0], qkv[1], qkv[2]
-        
-        # Scaled dot-product attention
-        attn = (q @ k.transpose(-2, -1)) * self.scale  # (B, heads, N, N)
-        attn = attn.softmax(dim=-1)
-        attn = self.attn_drop(attn)
-        
-        # Apply to values
-        x = (attn @ v).transpose(1, 2).reshape(B, N, C)
-        x = self.proj(x)
-        x = self.proj_drop(x)
-        
-        return x, attn
+<br/>
 
-# Demo
-attn = Attention(dim=768, n_heads=12)
-x = torch.randn(1, 197, 768)  # 196 patches + 1 CLS token
-out, attn_weights = attn(x)
-print(f"Attention input: {x.shape}")
-print(f"Attention output: {out.shape}")
-print(f"Attention weights: {attn_weights.shape}  # (B, heads, N, N)")
+---
 
-#@title 3️⃣ Transformer Block
-class TransformerBlock(nn.Module):
-    """Transformer Encoder Block"""
-    def __init__(self, dim, n_heads, mlp_ratio=4., drop=0.):
-        super().__init__()
-        self.norm1 = nn.LayerNorm(dim)
-        self.attn = Attention(dim, n_heads=n_heads, attn_drop=drop, proj_drop=drop)
-        self.norm2 = nn.LayerNorm(dim)
-        self.mlp = nn.Sequential(
-            nn.Linear(dim, int(dim * mlp_ratio)),
-            nn.GELU(),
-            nn.Dropout(drop),
-            nn.Linear(int(dim * mlp_ratio), dim),
-            nn.Dropout(drop)
-        )
-    
-    def forward(self, x):
-        # Pre-norm architecture
-        attn_out, attn_weights = self.attn(self.norm1(x))
-        x = x + attn_out  # Residual
-        x = x + self.mlp(self.norm2(x))  # Residual
-        return x, attn_weights
+## 🏗️ ViT Architecture
 
-#@title 4️⃣ Complete ViT
-class ViT(nn.Module):
-    """Vision Transformer"""
-    def __init__(self, img_size=224, patch_size=16, in_channels=3,
-                 n_classes=1000, embed_dim=768, depth=12, n_heads=12):
-        super().__init__()
-        
-        self.patch_embed = PatchEmbedding(img_size, patch_size, in_channels, embed_dim)
-        n_patches = self.patch_embed.n_patches
-        
-        # Learnable tokens
-        self.cls_token = nn.Parameter(torch.zeros(1, 1, embed_dim))
-        self.pos_embed = nn.Parameter(torch.zeros(1, n_patches + 1, embed_dim))
-        
-        # Transformer encoder
-        self.blocks = nn.ModuleList([
-            TransformerBlock(embed_dim, n_heads) for _ in range(depth)
-        ])
-        
-        self.norm = nn.LayerNorm(embed_dim)
-        self.head = nn.Linear(embed_dim, n_classes)
-        
-        # Initialize
-        nn.init.trunc_normal_(self.cls_token, std=0.02)
-        nn.init.trunc_normal_(self.pos_embed, std=0.02)
-    
-    def forward(self, x):
-        B = x.shape[0]
-        
-        # Patch embedding
-        x = self.patch_embed(x)  # (B, N, D)
-        
-        # Add CLS token
-        cls_tokens = self.cls_token.expand(B, -1, -1)
-        x = torch.cat([cls_tokens, x], dim=1)  # (B, N+1, D)
-        
-        # Add position embedding
-        x = x + self.pos_embed
-        
-        # Transformer blocks
-        attn_weights_list = []
-        for block in self.blocks:
-            x, attn = block(x)
-            attn_weights_list.append(attn)
-        
-        # Classification head
-        x = self.norm(x)
-        cls_out = x[:, 0]  # CLS token output
-        return self.head(cls_out), attn_weights_list
-
-# Create model
-vit = ViT(img_size=224, patch_size=16, n_classes=1000, 
-          embed_dim=384, depth=6, n_heads=6).to(device)
-
-print(f"\n📊 ViT Model Summary:")
-print(f"   Parameters: {sum(p.numel() for p in vit.parameters()):,}")
-print(f"   Patch size: 16×16")
-print(f"   Number of patches: {(224//16)**2} = 196")
-print(f"   Embedding dim: 384")
-print(f"   Transformer blocks: 6")
-
-#@title 5️⃣ Attention Visualization
-def visualize_attention(image, model):
-    """Visualize attention from CLS token to patches"""
-    # Prepare image
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-    ])
-    img_tensor = transform(image).unsqueeze(0).to(device)
-    
-    # Forward pass
-    model.eval()
-    with torch.no_grad():
-        _, attn_list = model(img_tensor)
-    
-    # Get attention from last layer, average over heads
-    attn = attn_list[-1][0]  # (heads, N+1, N+1)
-    cls_attn = attn[:, 0, 1:].mean(0)  # CLS to patches, avg heads
-    
-    # Reshape to 2D
-    n_patches = int(cls_attn.shape[0] ** 0.5)
-    cls_attn = cls_attn.reshape(n_patches, n_patches).cpu()
-    
-    # Visualize
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    
-    axes[0].imshow(image)
-    axes[0].set_title('Input Image')
-    axes[0].axis('off')
-    
-    axes[1].imshow(cls_attn, cmap='viridis')
-    axes[1].set_title('CLS Attention Map')
-    axes[1].axis('off')
-    
-    # Overlay
-    attn_resized = torch.nn.functional.interpolate(
-        cls_attn.unsqueeze(0).unsqueeze(0), 
-        size=image.size[::-1], 
-        mode='bilinear'
-    ).squeeze().numpy()
-    
-    axes[2].imshow(image)
-    axes[2].imshow(attn_resized, cmap='jet', alpha=0.5)
-    axes[2].set_title('Attention Overlay')
-    axes[2].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-
-visualize_attention(image, vit)
-print("✅ Attention visualization complete!")
-
-#@title 6️⃣ Pretrained ViT (HuggingFace)
-from transformers import ViTImageProcessor, ViTForImageClassification
-
-print("\n🤗 Loading pretrained ViT from HuggingFace...")
-processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
-pretrained_vit = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
-pretrained_vit.eval()
-
-# Inference
-inputs = processor(images=image, return_tensors="pt")
-with torch.no_grad():
-    outputs = pretrained_vit(**inputs)
-    logits = outputs.logits
-
-predicted_class = logits.argmax(-1).item()
-confidence = F.softmax(logits, dim=-1).max().item()
-
-print(f"   Predicted: {pretrained_vit.config.id2label[predicted_class]}")
-print(f"   Confidence: {confidence:.2%}")
-
-#@title 7️⃣ Model Comparison
-print("\n📊 ViT Model Variants:")
-print("-" * 60)
-print(f"{'Model':<15} {'Layers':<10} {'Dim':<10} {'Heads':<10} {'Params':<12}")
-print("-" * 60)
-variants = [
-    ("ViT-Tiny", 12, 192, 3, "5.7M"),
-    ("ViT-Small", 12, 384, 6, "22M"),
-    ("ViT-Base", 12, 768, 12, "86M"),
-    ("ViT-Large", 24, 1024, 16, "307M"),
-    ("Swin-Tiny", "[2,2,6,2]", 96, "[3,6,12,24]", "28M"),
-    ("DeiT-Small", 12, 384, 6, "22M"),
-]
-for name, layers, dim, heads, params in variants:
-    print(f"{name:<15} {str(layers):<10} {str(dim):<10} {str(heads):<10} {params:<12}")
-
-print("\n" + "="*50)
-print("✅ Vision Transformers Complete!")
-print("="*50)
+```
+Image → Patch Split → Linear Projection → + Position → Transformer → Class Token
+224×224    14×14×196      196×768          Embedding    12 blocks      → MLP Head
 ```
 
----
-
-## ⚠️ Common Pitfalls / Tips
-
-| Pitfall | Solution |
-|---------|----------|
-| ViT needs huge data | Use pretrained models or DeiT distillation |
-| Position embedding size mismatch | Interpolate when using different resolutions |
-| Memory issues with global attention | Use Swin's window attention or PVT |
-| CLS vs average pooling | CLS works well for classification, GAP for dense tasks |
-| Slow training | Use mixed precision, gradient checkpointing |
+<br/>
 
 ---
 
-## 🛠️ Mini-Project Ideas
+## 📊 Model Comparison
 
-### Project 1: ViT from Scratch (Advanced)
-- Implement full ViT architecture
-- Train on CIFAR-10/100
-- Compare with CNN baseline
+| Model | Year | Key Innovation | ImageNet | Speed |
+|:------|:----:|:---------------|:--------:|:-----:|
+| **ViT-B/16** | 2020 | Patch tokens + Transformer | 77.9% | Medium |
+| **DeiT-S** | 2021 | Knowledge distillation | 79.8% | Fast |
+| **Swin-T** | 2021 | Window + shifted attention | 81.3% | Fast |
+| **BEiT** | 2021 | BERT-style pretraining | 83.2% | Medium |
+| **MAE** | 2022 | Masked autoencoder | 83.6% | Slow |
+| **DINOv2** | 2023 | Self-supervised foundation | 86.5% | Medium |
 
-### Project 2: Attention Visualization Tool (Advanced)
-- Extract attention maps from different layers/heads
-- Build interactive visualization
-- Analyze what ViT "sees" vs CNN
-
-### Project 3: Fine-tune for Custom Task (Advanced)
-- Fine-tune pretrained ViT on your dataset
-- Compare different fine-tuning strategies
-- Measure transfer learning effectiveness
+<br/>
 
 ---
 
-## ❓ Interview Questions & Answers
+## 🔢 Key Formulas
 
-### Q1: ViT vs CNN - key differences?
+<table>
+<tr>
+<td>
 
-| ViT | CNN |
-|-----|-----|
-| Global attention (all tokens interact) | Local receptive field |
-| Learned position encoding | Inherent spatial inductive bias |
-| Needs more data/compute | Data efficient |
-| O(N²) attention complexity | O(N) conv complexity |
-| Better scaling with data | Saturates earlier |
+### Patch Embedding
+```
+patches = split(image, P×P)  # N = H×W / P²
+tokens = Linear(flatten(patches))
+z₀ = [CLS] + tokens + pos_embed
+```
 
-### Q2: What is the [CLS] token and why use it?
+</td>
+<td>
 
-**Answer:**
-- Learnable token prepended to patch sequence
-- Aggregates global information through self-attention
-- Final [CLS] representation used for classification
-- Alternative: Global average pooling of all patch tokens
+### Self-Attention
+```
+Q, K, V = Linear(x)
+Attn = softmax(QKᵀ / √d) × V
+```
 
-### Q3: How does Swin Transformer reduce complexity?
+</td>
+</tr>
+<tr>
+<td>
 
-**Answer:**
-1. **Window attention**: Compute attention only within M×M windows → O(M²N) vs O(N²)
-2. **Shifted windows**: Alternate between regular and shifted partitions for cross-window connections
-3. **Hierarchical**: Patch merging creates multi-scale features like CNN
+### Multi-Head Attention
+```
+MultiHead = Concat(head₁...headₕ)Wᴼ
+headᵢ = Attention(QWᵢQ, KWᵢK, VWᵢV)
+```
 
-### Q4: Why does ViT need more data than CNN?
+</td>
+<td>
 
-**Answer:**
-- No inductive bias for locality or translation equivariance
-- Must learn spatial relationships from scratch
-- CNNs have built-in local processing via convolution
-- With enough data (JFT-300M), ViT outperforms CNNs
+### Transformer Block
+```
+x' = x + MSA(LayerNorm(x))
+x'' = x' + MLP(LayerNorm(x'))
+```
 
-### Q5: Explain MAE (Masked Autoencoder) pretraining.
+</td>
+</tr>
+</table>
 
-**Answer:**
-1. **Mask 75%** of image patches randomly
-2. **Encode only visible patches** (efficient!)
-3. Add mask tokens and **decode to reconstruct pixels**
-4. **MSE loss** on masked patches only
-
-Key insight: High masking ratio forces learning semantic representations, not just local patterns.
+<br/>
 
 ---
 
-## 📚 References / Further Reading
+## ⚙️ Algorithms
 
-### Original Papers
-- ViT: "An Image is Worth 16×16 Words" (Dosovitskiy 2020)
-- DeiT: "Training Data-Efficient Image Transformers" (Touvron 2021)
-- Swin: "Swin Transformer: Hierarchical Vision Transformer" (Liu 2021)
-- MAE: "Masked Autoencoders Are Scalable Vision Learners" (He 2022)
-- DINO: "Emerging Properties in Self-Supervised Vision Transformers" (Caron 2021)
+### Algorithm 1: ViT Forward Pass
 
-### Online Resources
-- [HuggingFace ViT](https://huggingface.co/docs/transformers/model_doc/vit)
-- [timm Vision Models](https://github.com/huggingface/pytorch-image-models)
-- [Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/)
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image x (H×W×3)                            │
+│  OUTPUT: Class probabilities                        │
+│                                                     │
+│  1. PATCH EMBEDDING:                               │
+│     patches = split(x, 16×16) → N patches          │
+│     tokens = Linear(flatten(patches)) → (N, D)     │
+│                                                     │
+│  2. ADD CLS TOKEN + POSITION:                      │
+│     z₀ = [CLS; tokens] + pos_embed → (N+1, D)     │
+│                                                     │
+│  3. TRANSFORMER ENCODER (L layers):                │
+│     FOR l = 1 to L:                               │
+│       z' = z + MSA(LayerNorm(z))                  │
+│       z = z' + MLP(LayerNorm(z'))                 │
+│                                                     │
+│  4. CLASSIFICATION:                                │
+│     output = MLP_head(z[0])  # CLS token only     │
+│     probs = softmax(output)                       │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 2: Multi-Head Self-Attention
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Tokens z (N×D)                             │
+│  OUTPUT: Attended tokens (N×D)                     │
+│                                                     │
+│  1. PROJECT to Q, K, V:                            │
+│     Q = z @ Wq  (N × d_k)                         │
+│     K = z @ Wk  (N × d_k)                         │
+│     V = z @ Wv  (N × d_v)                         │
+│                                                     │
+│  2. COMPUTE ATTENTION:                             │
+│     scores = Q @ K.T / √d_k   (N × N)             │
+│     attn = softmax(scores)                        │
+│     output = attn @ V          (N × d_v)          │
+│                                                     │
+│  3. MULTI-HEAD (h heads):                          │
+│     Split Q,K,V into h heads                      │
+│     Compute attention per head                    │
+│     Concat and project: out @ Wo                  │
+│                                                     │
+│  Complexity: O(N²·D)                              │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 3: Swin Window Attention
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Feature map (H×W×C)                        │
+│  OUTPUT: Transformed features                       │
+│                                                     │
+│  1. PARTITION into windows:                        │
+│     windows = split_into_windows(x, M×M)          │
+│     # Each window: M×M tokens                     │
+│                                                     │
+│  2. WINDOW ATTENTION (per window):                 │
+│     Q, K, V = project(window)                     │
+│     attn = softmax(Q @ K.T / √d + bias)          │
+│     out = attn @ V                               │
+│                                                     │
+│  3. MERGE windows back                            │
+│                                                     │
+│  4. SHIFT (alternate layers):                      │
+│     Shift by (M/2, M/2) before windowing         │
+│     Allows cross-window information               │
+│                                                     │
+│  Complexity: O(N·M²) instead of O(N²)             │
+└─────────────────────────────────────────────────────┘
+```
+
+<br/>
+
+---
+
+## 🏗️ Architecture Diagrams
+
+<div align="center">
+<img src="./svg_figs/vit_architecture.svg" alt="ViT Architecture" width="90%"/>
+</div>
+
+<br/>
+
+<div align="center">
+<img src="./svg_figs/attention_mechanism.svg" alt="Attention" width="80%"/>
+</div>
+
+<br/>
+
+<div align="center">
+<img src="./svg_figs/swin_transformer.svg" alt="Swin Transformer" width="80%"/>
+</div>
+
+<br/>
+
+---
+
+## 💻 Complete Code
+
+> **Copy this entire code block and paste into Google Colab!**
+
+*See Colab notebook for implementation*
+
+<br/>
+
+---
+
+## ⚠️ Common Pitfalls
+
+| ❌ Pitfall | ✅ Solution |
+|-----------|------------|
+| ViT needs huge data | Use pretrained or DeiT distillation |
+| Wrong image size | ViT-B/16 expects 224×224 |
+| Forgetting CLS token | Classification uses CLS, not avg |
+| Position embedding size | Must match number of patches |
+| Slow attention | Use window attention (Swin) |
+
+<br/>
+
+---
+
+## ❓ Interview Q&A
+
+<details>
+<summary><b>Q1: Why does ViT need more data than CNN?</b></summary>
+
+CNNs have **inductive biases**:
+- **Locality**: Conv kernels look at local regions
+- **Translation equivariance**: Same kernel everywhere
+
+ViT has **no such biases**—must learn everything from data!
+
+**Solutions:**
+- Pretrain on large datasets (JFT-300M)
+- Knowledge distillation (DeiT)
+- Self-supervised pretraining (MAE, DINO)
+</details>
+
+<details>
+<summary><b>Q2: What is the CLS token?</b></summary>
+
+A **learnable embedding** prepended to patch tokens:
+```
+[CLS, patch1, patch2, ..., patch196]
+```
+
+- Attends to all patches through transformer layers
+- Aggregates global information
+- Used for final classification
+- Similar to BERT's [CLS] token
+</details>
+
+<details>
+<summary><b>Q3: How does Swin Transformer reduce complexity?</b></summary>
+
+| Standard ViT | Swin Transformer |
+|--------------|------------------|
+| Global attention | Window attention |
+| O(N²) | O(N) per window |
+| All patches | 7×7 windows |
+| No hierarchy | Hierarchical (merge patches) |
+
+**Shifted windows** allow cross-window information flow.
+</details>
+
+<details>
+<summary><b>Q4: ViT vs CNN - when to use which?</b></summary>
+
+| Use CNN | Use ViT |
+|---------|---------|
+| Small datasets | Large datasets |
+| Need locality | Global context matters |
+| Edge deployment | Server inference |
+| Real-time | Accuracy priority |
+</details>
+
+<br/>
+
+---
+
+## 📚 Resources
+
+**Papers:**
+- [ViT (2020)](https://arxiv.org/abs/2010.11929) - Original Vision Transformer
+- [DeiT (2021)](https://arxiv.org/abs/2012.12877) - Data-efficient training
+- [Swin (2021)](https://arxiv.org/abs/2103.14030) - Hierarchical ViT
+- [MAE (2022)](https://arxiv.org/abs/2111.06377) - Masked Autoencoder
+
+**Videos:**
+- [Yannic Kilcher - ViT](https://www.youtube.com/watch?v=TrdevFK_am4)
+
+<br/>
 
 ---
 
 <div align="center">
 
-**[← Vision Tasks](../10_Vision_Tasks/) | [🏠 Home](../README.md) | [Self-Supervised Learning →](../12_Self_Supervised/)**
+### Next Up
+
+# [Self-Supervised Learning →](../12_Self_Supervised/)
+
+*SimCLR, DINO, MAE*
+
+<br/>
+
+[🏠 Back to Home](../README.md)
 
 </div>

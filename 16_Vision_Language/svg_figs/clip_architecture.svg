@@ -1,65 +1,167 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  <rect width="800" height="400" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="imgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="txtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   
-  <!-- Title -->
-  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">CLIP: Contrastive Language-Image Pre-training</text>
+  <rect width="800" height="400" fill="#0f172a"/>
+  
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">CLIP: Contrastive Language-Image Pre-training</text>
   
   <!-- Image Encoder Side -->
-  <rect x="40" y="70" width="200" height="200" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="140" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Image Encoder</text>
-  
-  <rect x="70" y="120" width="140" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="140" y="145" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Image</text>
-  
-  <path d="M 140 165 L 140 195" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#1e293b"/></marker></defs>
-  
-  <rect x="70" y="200" width="140" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="140" y="225" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">ViT / ResNet</text>
-  
-  <text x="140" y="260" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">→ I_embed</text>
+  <g transform="translate(50, 70)">
+    <text x="100" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">Image Encoder</text>
+    
+    <!-- Images -->
+    <g transform="translate(0, 20)">
+      <rect width="60" height="60" rx="4" fill="#334155" stroke="#60a5fa" stroke-width="2"/>
+      <text x="30" y="40" text-anchor="middle" font-size="24">🐱</text>
+      <text x="30" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">I₁</text>
+    </g>
+    <g transform="translate(0, 100)">
+      <rect width="60" height="60" rx="4" fill="#334155" stroke="#60a5fa" stroke-width="2"/>
+      <text x="30" y="40" text-anchor="middle" font-size="24">🐕</text>
+      <text x="30" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">I₂</text>
+    </g>
+    <g transform="translate(0, 180)">
+      <rect width="60" height="60" rx="4" fill="#334155" stroke="#60a5fa" stroke-width="2"/>
+      <text x="30" y="40" text-anchor="middle" font-size="24">🚗</text>
+      <text x="30" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">I₃</text>
+    </g>
+    
+    <!-- Arrow -->
+    <path d="M70 130 L105 130" stroke="#60a5fa" stroke-width="2"/>
+    <polygon points="105,125 120,130 105,135" fill="#60a5fa"/>
+    
+    <!-- ViT/ResNet -->
+    <g transform="translate(125, 50)">
+      <rect width="80" height="160" rx="8" fill="url(#imgGrad)" filter="url(#glow)"/>
+      <text x="40" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">ViT</text>
+      <text x="40" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">or</text>
+      <text x="40" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">ResNet</text>
+      <text x="40" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">Image</text>
+      <text x="40" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">Encoder</text>
+      <text x="40" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#93c5fd">f_image</text>
+    </g>
+  </g>
   
   <!-- Text Encoder Side -->
-  <rect x="560" y="70" width="200" height="200" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="660" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Text Encoder</text>
+  <g transform="translate(550, 70)">
+    <text x="100" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">Text Encoder</text>
+    
+    <!-- Text inputs -->
+    <g transform="translate(140, 20)">
+      <rect width="100" height="40" rx="4" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+      <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">"a photo of cat"</text>
+      <text x="50" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">T₁</text>
+    </g>
+    <g transform="translate(140, 100)">
+      <rect width="100" height="40" rx="4" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+      <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">"a photo of dog"</text>
+      <text x="50" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">T₂</text>
+    </g>
+    <g transform="translate(140, 180)">
+      <rect width="100" height="40" rx="4" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+      <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">"a photo of car"</text>
+      <text x="50" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">T₃</text>
+    </g>
+    
+    <!-- Arrow -->
+    <path d="M130 130 L95 130" stroke="#22c55e" stroke-width="2"/>
+    <polygon points="95,125 80,130 95,135" fill="#22c55e"/>
+    
+    <!-- Transformer -->
+    <g transform="translate(0, 50)">
+      <rect width="80" height="160" rx="8" fill="url(#txtGrad)" filter="url(#glow)"/>
+      <text x="40" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">Trans-</text>
+      <text x="40" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">former</text>
+      <text x="40" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">Text</text>
+      <text x="40" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">Encoder</text>
+      <text x="40" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#86efac">f_text</text>
+    </g>
+  </g>
   
-  <rect x="590" y="120" width="140" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="660" y="145" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">"a photo of a dog"</text>
+  <!-- Similarity Matrix -->
+  <g transform="translate(300, 90)">
+    <rect width="200" height="180" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Cosine Similarity</text>
+    
+    <!-- Matrix grid -->
+    <g transform="translate(40, 45)">
+      <text x="20" y="-5" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">T₁</text>
+      <text x="60" y="-5" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">T₂</text>
+      <text x="100" y="-5" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">T₃</text>
+      
+      <text x="-10" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">I₁</text>
+      <text x="-10" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">I₂</text>
+      <text x="-10" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">I₃</text>
+      
+      <!-- Diagonal (matching pairs) -->
+      <rect x="0" y="5" width="35" height="30" rx="3" fill="#22c55e" opacity="0.8"/>
+      <text x="17" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.92</text>
+      
+      <rect x="40" y="40" width="35" height="30" rx="3" fill="#22c55e" opacity="0.8"/>
+      <text x="57" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.89</text>
+      
+      <rect x="80" y="75" width="35" height="30" rx="3" fill="#22c55e" opacity="0.8"/>
+      <text x="97" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.95</text>
+      
+      <!-- Off-diagonal -->
+      <rect x="40" y="5" width="35" height="30" rx="3" fill="#ef4444" opacity="0.3"/>
+      <text x="57" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">0.15</text>
+      
+      <rect x="80" y="5" width="35" height="30" rx="3" fill="#ef4444" opacity="0.3"/>
+      <text x="97" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">0.08</text>
+      
+      <rect x="0" y="40" width="35" height="30" rx="3" fill="#ef4444" opacity="0.3"/>
+      <text x="17" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">0.12</text>
+      
+      <rect x="80" y="40" width="35" height="30" rx="3" fill="#ef4444" opacity="0.3"/>
+      <text x="97" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">0.05</text>
+      
+      <rect x="0" y="75" width="35" height="30" rx="3" fill="#ef4444" opacity="0.3"/>
+      <text x="17" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">0.03</text>
+      
+      <rect x="40" y="75" width="35" height="30" rx="3" fill="#ef4444" opacity="0.3"/>
+      <text x="57" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">0.07</text>
+    </g>
+    
+    <text x="100" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Maximize diagonal, minimize off-diagonal</text>
+  </g>
   
-  <path d="M 660 165 L 660 195" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Arrows to matrix -->
+  <path d="M255 180 L300 180" stroke="#60a5fa" stroke-width="2"/>
+  <path d="M545 180 L500 180" stroke="#22c55e" stroke-width="2"/>
   
-  <rect x="590" y="200" width="140" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="660" y="225" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Transformer</text>
+  <!-- Bottom info -->
+  <g transform="translate(50, 310)">
+    <rect width="200" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Contrastive Loss</text>
+    <text x="100" y="50" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#fbbf24">L = -log(exp(sim)/Σexp)</text>
+    <text x="100" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">InfoNCE / NT-Xent</text>
+  </g>
   
-  <text x="660" y="260" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">→ T_embed</text>
+  <g transform="translate(280, 310)">
+    <rect width="240" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="120" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Zero-Shot Classification</text>
+    <text x="120" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Image → Text similarity</text>
+    <text x="120" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">No training on downstream task!</text>
+  </g>
   
-  <!-- Center: Similarity Matrix -->
-  <rect x="280" y="100" width="240" height="170" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="400" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Contrastive Learning</text>
-  
-  <!-- Grid visualization -->
-  <rect x="320" y="150" width="160" height="100" fill="#ffffff" stroke="#1e293b" rx="4"/>
-  
-  <!-- Diagonal (positive pairs) -->
-  <rect x="325" y="155" width="35" height="20" fill="#2563eb" rx="2"/>
-  <rect x="365" y="180" width="35" height="20" fill="#2563eb" rx="2"/>
-  <rect x="405" y="205" width="35" height="20" fill="#2563eb" rx="2"/>
-  <rect x="445" y="230" width="30" height="15" fill="#2563eb" rx="2"/>
-  
-  <text x="400" y="270" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Blue = matched pairs</text>
-  
-  <!-- Arrows -->
-  <path d="M 245 185 L 275 185" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <path d="M 525 185 L 555 185" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- Bottom: Loss and Usage -->
-  <rect x="40" y="290" width="720" height="95" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  
-  <text x="400" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">L = -Σ log( exp(I·T⁺/τ) / Σ exp(I·Tⱼ/τ) )</text>
-  
-  <text x="200" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Zero-shot classification</text>
-  <text x="400" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Image-text retrieval</text>
-  <text x="600" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Open vocabulary detection</text>
-  
-  <text x="400" y="375" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Trained on 400M image-text pairs from the web</text>
+  <g transform="translate(550, 310)">
+    <rect width="200" height="80" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Training Data</text>
+    <text x="100" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fbbf24">400M</text>
+    <text x="100" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Image-Text pairs</text>
+  </g>
 </svg>

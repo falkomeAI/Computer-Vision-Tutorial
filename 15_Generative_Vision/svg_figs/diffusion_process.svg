@@ -1,80 +1,174 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
-  <rect width="850" height="380" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="noiseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+    <linearGradient id="denoiseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="1"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="blur3">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Diffusion Models: Forward and Reverse Process</text>
+  <rect width="850" height="380" fill="#0f172a"/>
   
-  <!-- Forward Process -->
-  <text x="425" y="70" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">Forward Process: Add Noise (q)</text>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">Diffusion Models: Forward and Reverse Process</text>
   
-  <!-- Image boxes - Forward -->
-  <rect x="50" y="90" width="80" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="90" y="135" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x₀</text>
-  <text x="90" y="152" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Clean</text>
+  <!-- Forward Process (Adding Noise) -->
+  <g transform="translate(50, 60)">
+    <text x="350" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f87171">Forward Process: q(x_t | x_{t-1}) - Add Noise</text>
+    
+    <!-- x0 - Clean -->
+    <g transform="translate(0, 20)">
+      <rect width="70" height="70" rx="6" fill="#334155"/>
+      <rect x="20" y="15" width="30" height="40" rx="2" fill="#60a5fa"/>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x₀</text>
+      <text x="35" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Clean</text>
+    </g>
+    
+    <path d="M80 55 L115 55" stroke="#ef4444" stroke-width="2"/>
+    <polygon points="115,50 130,55 115,60" fill="#ef4444"/>
+    <text x="100" y="45" font-family="Arial, sans-serif" font-size="8" fill="#f87171">+ε</text>
+    
+    <!-- x1 -->
+    <g transform="translate(140, 20)">
+      <rect width="70" height="70" rx="6" fill="#334155" filter="url(#blur1)"/>
+      <rect x="20" y="15" width="30" height="40" rx="2" fill="#60a5fa" filter="url(#blur1)"/>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x₁</text>
+    </g>
+    
+    <path d="M220 55 L255 55" stroke="#ef4444" stroke-width="2"/>
+    <polygon points="255,50 270,55 255,60" fill="#ef4444"/>
+    <text x="240" y="45" font-family="Arial, sans-serif" font-size="8" fill="#f87171">+ε</text>
+    
+    <!-- x_t/2 -->
+    <g transform="translate(280, 20)">
+      <rect width="70" height="70" rx="6" fill="#475569" filter="url(#blur2)"/>
+      <text x="35" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8">~</text>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x_t/2</text>
+    </g>
+    
+    <text x="385" y="55" font-family="Arial, sans-serif" font-size="16" fill="#64748b">···</text>
+    
+    <path d="M420 55 L455 55" stroke="#ef4444" stroke-width="2"/>
+    <polygon points="455,50 470,55 455,60" fill="#ef4444"/>
+    <text x="440" y="45" font-family="Arial, sans-serif" font-size="8" fill="#f87171">+ε</text>
+    
+    <!-- x_{T-1} -->
+    <g transform="translate(480, 20)">
+      <rect width="70" height="70" rx="6" fill="#64748b" filter="url(#blur3)"/>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x_{T-1}</text>
+    </g>
+    
+    <path d="M560 55 L595 55" stroke="#ef4444" stroke-width="2"/>
+    <polygon points="595,50 610,55 595,60" fill="#ef4444"/>
+    <text x="580" y="45" font-family="Arial, sans-serif" font-size="8" fill="#f87171">+ε</text>
+    
+    <!-- xT - Pure Noise -->
+    <g transform="translate(620, 20)">
+      <rect width="70" height="70" rx="6" fill="#64748b"/>
+      <!-- Noise pattern -->
+      <g fill="#94a3b8" opacity="0.8">
+        <circle cx="15" cy="20" r="3"/><circle cx="35" cy="15" r="2"/><circle cx="55" cy="25" r="3"/>
+        <circle cx="20" cy="40" r="2"/><circle cx="40" cy="35" r="3"/><circle cx="60" cy="45" r="2"/>
+        <circle cx="10" cy="55" r="2"/><circle cx="30" cy="60" r="3"/><circle cx="50" cy="50" r="2"/>
+      </g>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x_T</text>
+      <text x="35" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Noise</text>
+    </g>
+  </g>
   
-  <path d="M 135 130 L 175 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  <!-- Reverse Process (Denoising) -->
+  <g transform="translate(50, 210)">
+    <text x="350" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">Reverse Process: p_θ(x_{t-1} | x_t) - Denoise</text>
+    
+    <!-- xT - Pure Noise -->
+    <g transform="translate(620, 20)">
+      <rect width="70" height="70" rx="6" fill="#64748b"/>
+      <g fill="#94a3b8" opacity="0.8">
+        <circle cx="15" cy="20" r="3"/><circle cx="35" cy="15" r="2"/><circle cx="55" cy="25" r="3"/>
+        <circle cx="20" cy="40" r="2"/><circle cx="40" cy="35" r="3"/><circle cx="60" cy="45" r="2"/>
+        <circle cx="10" cy="55" r="2"/><circle cx="30" cy="60" r="3"/><circle cx="50" cy="50" r="2"/>
+      </g>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x_T</text>
+    </g>
+    
+    <path d="M610 55 L575 55" stroke="#22c55e" stroke-width="2"/>
+    <polygon points="575,50 560,55 575,60" fill="#22c55e"/>
+    <text x="590" y="45" font-family="Arial, sans-serif" font-size="8" fill="#34d399">-ε_θ</text>
+    
+    <!-- x_{T-1} -->
+    <g transform="translate(480, 20)">
+      <rect width="70" height="70" rx="6" fill="#64748b" filter="url(#blur3)"/>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x_{T-1}</text>
+    </g>
+    
+    <path d="M470 55 L435 55" stroke="#22c55e" stroke-width="2"/>
+    <polygon points="435,50 420,55 435,60" fill="#22c55e"/>
+    <text x="450" y="45" font-family="Arial, sans-serif" font-size="8" fill="#34d399">-ε_θ</text>
+    
+    <text x="385" y="55" font-family="Arial, sans-serif" font-size="16" fill="#64748b">···</text>
+    
+    <path d="M340 55 L305 55" stroke="#22c55e" stroke-width="2"/>
+    <polygon points="305,50 290,55 305,60" fill="#22c55e"/>
+    
+    <!-- x_t/2 -->
+    <g transform="translate(280, 20)">
+      <rect width="70" height="70" rx="6" fill="#475569" filter="url(#blur2)"/>
+      <text x="35" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8">~</text>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x_t/2</text>
+    </g>
+    
+    <path d="M270 55 L235 55" stroke="#22c55e" stroke-width="2"/>
+    <polygon points="235,50 220,55 235,60" fill="#22c55e"/>
+    <text x="250" y="45" font-family="Arial, sans-serif" font-size="8" fill="#34d399">-ε_θ</text>
+    
+    <!-- x1 -->
+    <g transform="translate(140, 20)">
+      <rect width="70" height="70" rx="6" fill="#334155" filter="url(#blur1)"/>
+      <rect x="20" y="15" width="30" height="40" rx="2" fill="#60a5fa" filter="url(#blur1)"/>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">x₁</text>
+    </g>
+    
+    <path d="M130 55 L95 55" stroke="#22c55e" stroke-width="2"/>
+    <polygon points="95,50 80,55 95,60" fill="#22c55e"/>
+    <text x="110" y="45" font-family="Arial, sans-serif" font-size="8" fill="#34d399">-ε_θ</text>
+    
+    <!-- x0 - Generated -->
+    <g transform="translate(0, 20)">
+      <rect width="70" height="70" rx="6" fill="#334155" stroke="#22c55e" stroke-width="2"/>
+      <rect x="20" y="15" width="30" height="40" rx="2" fill="#60a5fa"/>
+      <text x="35" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">x̂₀</text>
+      <text x="35" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">Generated!</text>
+    </g>
+  </g>
   
-  <rect x="180" y="90" width="80" height="80" fill="#e0e7ff" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="220" y="135" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x₁</text>
+  <!-- U-Net Box -->
+  <g transform="translate(740, 110)">
+    <rect width="90" height="160" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+    <text x="45" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">U-Net</text>
+    <text x="45" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">ε_θ(x_t, t)</text>
+    
+    <text x="45" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Predicts</text>
+    <text x="45" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">noise at</text>
+    <text x="45" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">timestep t</text>
+    
+    <rect x="15" y="115" width="60" height="30" rx="4" fill="#7c3aed" opacity="0.5"/>
+    <text x="45" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">Attention</text>
+  </g>
   
-  <path d="M 265 130 L 305 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="310" y="90" width="80" height="80" fill="#c7d2fe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="350" y="135" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x₂</text>
-  
-  <text x="420" y="135" font-family="Arial, sans-serif" font-size="16" fill="#64748b" text-anchor="middle">...</text>
-  
-  <path d="M 450 130 L 490 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="495" y="90" width="80" height="80" fill="#a5b4fc" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="535" y="135" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x_{T-1}</text>
-  
-  <path d="M 580 130 L 620 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="625" y="90" width="80" height="80" fill="#818cf8" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="665" y="135" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">x_T</text>
-  <text x="665" y="152" font-family="Arial, sans-serif" font-size="10" fill="#e0e7ff" text-anchor="middle">Noise</text>
-  
-  <!-- Reverse Process -->
-  <text x="425" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">Reverse Process: Denoise (p_θ) — Learned by Neural Network</text>
-  
-  <!-- Image boxes - Reverse -->
-  <rect x="625" y="220" width="80" height="80" fill="#818cf8" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="665" y="265" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">x_T</text>
-  
-  <path d="M 620 260 L 580 260" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="495" y="220" width="80" height="80" fill="#a5b4fc" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="535" y="265" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x_{T-1}</text>
-  
-  <text x="450" y="265" font-family="Arial, sans-serif" font-size="16" fill="#64748b" text-anchor="middle">...</text>
-  
-  <path d="M 390 260 L 350 260" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="265" y="220" width="80" height="80" fill="#c7d2fe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="305" y="265" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x₁</text>
-  
-  <path d="M 260 260 L 220 260" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="135" y="220" width="80" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="175" y="260" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">x₀</text>
-  <text x="175" y="277" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Generated!</text>
-  
-  <!-- Formulas -->
-  <rect x="730" y="90" width="100" height="210" fill="#f1f5f9" stroke="#1e293b" stroke-width="1" rx="6"/>
-  <text x="780" y="115" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">Formulas</text>
-  
-  <text x="780" y="145" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Forward:</text>
-  <text x="780" y="165" font-family="Georgia, serif" font-size="10" fill="#1e293b" text-anchor="middle">q(xₜ|x₀)</text>
-  
-  <text x="780" y="200" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Reverse:</text>
-  <text x="780" y="220" font-family="Georgia, serif" font-size="10" fill="#1e293b" text-anchor="middle">p_θ(x_{t-1}|xₜ)</text>
-  
-  <text x="780" y="255" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Loss:</text>
-  <text x="780" y="275" font-family="Georgia, serif" font-size="9" fill="#1e293b" text-anchor="middle">‖ε - ε_θ(xₜ,t)‖²</text>
-  
-  <!-- Bottom note -->
-  <text x="425" y="340" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Network learns to predict noise ε at each timestep t</text>
-  <text x="425" y="360" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">T = 1000 steps typical | U-Net architecture common</text>
+  <!-- Loss Formula -->
+  <g transform="translate(50, 345)">
+    <rect width="750" height="30" rx="6" fill="#1e293b" stroke="#334155"/>
+    <text x="375" y="20" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#fbbf24">L = E[||ε - ε_θ(√α̅_t x₀ + √(1-α̅_t)ε, t)||²]</text>
+  </g>
 </svg>

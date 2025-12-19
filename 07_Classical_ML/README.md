@@ -2,9 +2,11 @@
 
 # 🤖 Classical Machine Learning for Vision
 
-### *PCA, SVM, k-means, Random Forests*
+### *PCA, SVM, K-Means, Decision Trees, Boosting*
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ageron/handson-ml2/blob/master/08_dimensionality_reduction.ipynb)
+| Level | Time | Prerequisites |
+|:-----:|:----:|:-------------:|
+| 🟢 Beginner-Intermediate | 2.5 hours | Linear Algebra, Statistics |
 
 </div>
 
@@ -14,169 +16,388 @@
 
 ---
 
-## 📖 Topics Covered
-- Dimensionality Reduction (PCA, LDA)
-- Clustering (k-means, GMM)
-- Classification (SVM, Random Forest)
-- Graphical Models (HMM, CRF)
+## 📖 Table of Contents
+- [Key Concepts](#-key-concepts)
+- [Mathematical Foundations](#-mathematical-foundations)
+- [Algorithms](#-algorithms)
+- [Visual Overview](#-visual-overview)
+- [Interview Q&A](#-interview-questions--answers)
+
+---
+
+## 🎯 Key Concepts
+
+| Method | Type | Objective | Use Case |
+|:-------|:-----|:----------|:---------|
+| **PCA** | Unsupervised | max Var(Xw), \|\|w\|\|=1 | Dimensionality reduction |
+| **SVM** | Supervised | min \|\|w\|\|² + CΣξ | Classification |
+| **K-Means** | Unsupervised | min Σ\|\|x-μₖ\|\|² | Clustering |
+| **KNN** | Supervised | Majority vote of k neighbors | Classification |
+| **Random Forest** | Supervised | Ensemble of trees | Classification/Regression |
 
 ---
 
 ## 🎨 Visual Overview
 
 <div align="center">
-<img src="./svg_figs/svm_kernel.svg" alt="SVM and Kernel Methods" width="100%"/>
+<img src="./svg_figs/svm_kernel.svg" alt="SVM Kernel" width="100%"/>
 </div>
 
 ---
 
-## 📉 Dimensionality Reduction
+## 🔢 Mathematical Foundations
 
-### PCA
+### 1. Principal Component Analysis (PCA)
 
-```python
-from sklearn.decomposition import PCA
-
-# Fit PCA
-pca = PCA(n_components=50)
-X_reduced = pca.fit_transform(X)
-
-# Explained variance
-print(f"Variance explained: {pca.explained_variance_ratio_.sum():.2%}")
-
-# Eigenfaces
-pca = PCA(n_components=100)
-eigenfaces = pca.fit_transform(face_data)
+```
+┌─────────────────────────────────────────────────────┐
+│  GOAL: Find directions of maximum variance          │
+│                                                     │
+│  1. Center data: X̄ = X - mean(X)                   │
+│                                                     │
+│  2. Covariance matrix: C = (1/n)X̄ᵀX̄               │
+│                                                     │
+│  3. Eigendecomposition: C = VΛVᵀ                   │
+│     - V: eigenvectors (principal components)        │
+│     - Λ: eigenvalues (variance explained)          │
+│                                                     │
+│  4. Project: X_pca = X̄V[:,:k]                      │
+│                                                     │
+│  Variance explained: λᵢ / Σλⱼ                       │
+└─────────────────────────────────────────────────────┘
 ```
 
-### LDA (Linear Discriminant Analysis)
+**Properties:**
+- Principal components are orthogonal
+- First PC captures maximum variance
+- Used for visualization, denoising, compression
 
-```python
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+### 2. Support Vector Machine (SVM)
 
-lda = LDA(n_components=min(n_classes-1, n_features))
-X_lda = lda.fit_transform(X, y)
 ```
+┌─────────────────────────────────────────────────────┐
+│  HARD MARGIN (linearly separable)                   │
+│                                                     │
+│  min  (1/2)||w||²                                   │
+│  s.t. yᵢ(wᵀxᵢ + b) ≥ 1  ∀i                         │
+│                                                     │
+│  SOFT MARGIN (with slack variables)                 │
+│                                                     │
+│  min  (1/2)||w||² + C Σξᵢ                          │
+│  s.t. yᵢ(wᵀxᵢ + b) ≥ 1 - ξᵢ                        │
+│       ξᵢ ≥ 0                                        │
+│                                                     │
+│  Margin = 2 / ||w||                                 │
+└─────────────────────────────────────────────────────┘
+```
+
+**Kernel Trick:**
+| Kernel | Formula | Use Case |
+|:-------|:--------|:---------|
+| Linear | K(x,y) = xᵀy | Linearly separable |
+| RBF | K(x,y) = exp(-γ\|\|x-y\|\|²) | Non-linear, default |
+| Polynomial | K(x,y) = (γxᵀy + r)^d | Polynomial boundary |
+
+### 3. K-Means Clustering
+
+```
+┌─────────────────────────────────────────────────────┐
+│  OBJECTIVE: min Σₖ Σₓ∈Cₖ ||x - μₖ||²               │
+│                                                     │
+│  Where:                                             │
+│    Cₖ = cluster k                                   │
+│    μₖ = centroid of cluster k                       │
+│                                                     │
+│  Update rules:                                      │
+│    Assignment: cᵢ = argmin_k ||xᵢ - μₖ||²          │
+│    Centroid:   μₖ = (1/|Cₖ|) Σₓ∈Cₖ x               │
+└─────────────────────────────────────────────────────┘
+```
+
+### 4. K-Nearest Neighbors (KNN)
+
+```
+┌─────────────────────────────────────────────────────┐
+│  CLASSIFICATION:                                    │
+│    ŷ = mode({yⱼ : xⱼ ∈ Nₖ(x)})                     │
+│                                                     │
+│  REGRESSION:                                        │
+│    ŷ = (1/k) Σⱼ∈Nₖ(x) yⱼ                           │
+│                                                     │
+│  Distance metrics:                                  │
+│    Euclidean: d(x,y) = √(Σ(xᵢ-yᵢ)²)                │
+│    Manhattan: d(x,y) = Σ|xᵢ-yᵢ|                    │
+│    Cosine:    d(x,y) = 1 - (xᵀy)/(||x||||y||)      │
+└─────────────────────────────────────────────────────┘
+```
+
+### 5. Decision Trees
+
+```
+┌─────────────────────────────────────────────────────┐
+│  SPLITTING CRITERIA                                 │
+│                                                     │
+│  Entropy: H(S) = -Σpᵢlog₂(pᵢ)                      │
+│                                                     │
+│  Information Gain: IG = H(S) - Σ(|Sᵥ|/|S|)H(Sᵥ)   │
+│                                                     │
+│  Gini Impurity: G = 1 - Σpᵢ²                       │
+│                                                     │
+│  Choose split that maximizes IG or minimizes Gini   │
+└─────────────────────────────────────────────────────┘
+```
+
+### 6. Ensemble Methods
+
+| Method | Technique | Formula |
+|:-------|:----------|:--------|
+| **Bagging** | Bootstrap + Aggregate | ŷ = (1/B)Σfᵦ(x) |
+| **Random Forest** | Bagging + random features | ŷ = mode(tree predictions) |
+| **Boosting** | Sequential weighted | ŷ = Σαₘhₘ(x) |
+| **AdaBoost** | Exponential loss | αₘ = (1/2)ln((1-εₘ)/εₘ) |
 
 ---
 
-## 🎯 Clustering
+## ⚙️ Algorithms
 
-### k-Means
+### Algorithm 1: K-Means
 
-```python
-from sklearn.cluster import KMeans
-
-# Cluster image colors
-pixels = img.reshape(-1, 3)
-kmeans = KMeans(n_clusters=8, random_state=42)
-labels = kmeans.fit_predict(pixels)
-quantized = kmeans.cluster_centers_[labels].reshape(img.shape)
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Data X, number of clusters K                │
+│  OUTPUT: Cluster assignments, centroids             │
+│                                                     │
+│  1. Initialize centroids μ₁,...,μₖ randomly        │
+│  2. REPEAT until convergence:                       │
+│     3. Assignment step:                             │
+│        FOR each xᵢ:                                 │
+│          cᵢ = argmin_k ||xᵢ - μₖ||²                │
+│     4. Update step:                                 │
+│        FOR each k:                                  │
+│          μₖ = mean({xᵢ : cᵢ = k})                  │
+│  5. RETURN clusters, centroids                      │
+│                                                     │
+│  Convergence: centroids don't change                │
+│  Complexity: O(nKd) per iteration                   │
+└─────────────────────────────────────────────────────┘
 ```
 
-### Gaussian Mixture Models
+### Algorithm 2: PCA
 
-```python
-from sklearn.mixture import GaussianMixture
-
-gmm = GaussianMixture(n_components=3, covariance_type='full')
-gmm.fit(X)
-labels = gmm.predict(X)
-probabilities = gmm.predict_proba(X)
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Data X ∈ ℝⁿˣᵈ, target dimensions k         │
+│  OUTPUT: Projected data X_pca ∈ ℝⁿˣᵏ               │
+│                                                     │
+│  1. Center: X̄ = X - mean(X, axis=0)                │
+│  2. Covariance: C = (1/n)X̄ᵀX̄                      │
+│  3. Eigendecomposition: C = VΛVᵀ                   │
+│  4. Sort eigenvectors by eigenvalue (descending)    │
+│  5. Select top k eigenvectors: Vₖ                   │
+│  6. Project: X_pca = X̄Vₖ                           │
+│  7. RETURN X_pca                                    │
+│                                                     │
+│  Alternative: SVD - X̄ = UΣVᵀ, use V                │
+└─────────────────────────────────────────────────────┘
 ```
 
----
+### Algorithm 3: SVM (SMO sketch)
 
-## 📊 Classification
-
-### SVM
-
-```python
-from sklearn.svm import SVC
-
-# RBF kernel SVM
-svm = SVC(kernel='rbf', C=1.0, gamma='scale')
-svm.fit(X_train, y_train)
-predictions = svm.predict(X_test)
-
-# HOG + SVM for pedestrian detection
-hog_features = compute_hog(images)
-svm.fit(hog_features, labels)
 ```
-
-### Random Forest
-
-```python
-from sklearn.ensemble import RandomForestClassifier
-
-rf = RandomForestClassifier(n_estimators=100, max_depth=10)
-rf.fit(X_train, y_train)
-importances = rf.feature_importances_
-```
-
----
-
-## 🔗 Graphical Models
-
-### Hidden Markov Models
-
-```python
-from hmmlearn import hmm
-
-model = hmm.GaussianHMM(n_components=3, covariance_type="full")
-model.fit(observations)
-hidden_states = model.predict(observations)
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Data (xᵢ, yᵢ), kernel K, C                 │
+│  OUTPUT: Support vectors, weights                   │
+│                                                     │
+│  Dual problem:                                      │
+│  max Σαᵢ - (1/2)ΣΣαᵢαⱼyᵢyⱼK(xᵢ,xⱼ)                │
+│  s.t. 0 ≤ αᵢ ≤ C, Σαᵢyᵢ = 0                       │
+│                                                     │
+│  Decision function:                                 │
+│  f(x) = sign(Σαᵢyᵢ K(xᵢ,x) + b)                   │
+│                                                     │
+│  Support vectors: points where 0 < αᵢ ≤ C          │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## ❓ Interview Questions & Answers
 
-### Q1: PCA vs LDA?
-| PCA | LDA |
-|-----|-----|
-| Unsupervised | Supervised |
-| Max variance | Max class separation |
-| No label info | Uses labels |
-| Up to d components | Up to c-1 components |
+<details>
+<summary><b>Q1: How does PCA work? What are its limitations?</b></summary>
 
-### Q2: How does SVM work for image classification?
 **Answer:**
-1. Extract features (HOG, SIFT, CNN)
-2. Flatten to vectors
-3. Find hyperplane maximizing margin
-4. Kernel trick for non-linear (RBF, polynomial)
 
-### Q3: When to use k-means vs GMM?
-| k-means | GMM |
-|---------|-----|
-| Hard assignment | Soft (probabilistic) |
-| Spherical clusters | Elliptical clusters |
-| Faster | More flexible |
-| Sensitive to outliers | More robust |
+**How it works:**
+1. Find directions of maximum variance
+2. Project data onto these directions
+3. Keeps most information with fewer dimensions
 
-### Q4: What is the kernel trick?
-**Answer:** Map data to higher dimensions without explicit computation:
-- K(x, y) = φ(x)·φ(y)
-- RBF: K(x,y) = exp(-γ||x-y||²)
-- Polynomial: K(x,y) = (x·y + c)^d
+**Limitations:**
+- Only linear transformations
+- Sensitive to scaling (standardize first!)
+- May not capture class-discriminative features
+- Outliers affect results significantly
 
-### Q5: How does AdaBoost work?
+**Alternative:** LDA (Linear Discriminant Analysis) - maximizes class separation
+
+</details>
+
+<details>
+<summary><b>Q2: Explain the kernel trick in SVM.</b></summary>
+
 **Answer:**
-1. Train weak classifier on weighted data
-2. Increase weights for misclassified samples
-3. Combine weak classifiers with weights
-4. Final: H(x) = sign(Σ α_t h_t(x))
+
+**Problem:** Data not linearly separable in original space
+
+**Solution:** Map to higher dimension where it becomes separable
+
+**Kernel trick:** Never explicitly compute φ(x), only K(x,y) = φ(x)ᵀφ(y)
+
+**Example - RBF kernel:**
+- Implicitly maps to infinite dimensions
+- K(x,y) = exp(-γ||x-y||²)
+- γ controls decision boundary complexity
+
+**Key insight:** Dual formulation only uses dot products → can kernelize
+
+</details>
+
+<details>
+<summary><b>Q3: How to choose K in K-Means?</b></summary>
+
+**Answer:**
+
+**Methods:**
+1. **Elbow method:** Plot inertia vs K, find "elbow"
+2. **Silhouette score:** Measures cluster separation, maximize
+3. **Gap statistic:** Compare to null reference distribution
+4. **Domain knowledge:** Sometimes K is known
+
+**Inertia formula:** Σₖ Σₓ∈Cₖ ||x - μₖ||²
+
+**Silhouette:** s = (b-a) / max(a,b)
+- a = mean intra-cluster distance
+- b = mean nearest-cluster distance
+
+</details>
+
+<details>
+<summary><b>Q4: Random Forest vs single Decision Tree?</b></summary>
+
+**Answer:**
+
+| Aspect | Single Tree | Random Forest |
+|:-------|:------------|:--------------|
+| Variance | High (overfit) | Low (averaged) |
+| Bias | Low | Low |
+| Interpretability | High | Low |
+| Training time | Fast | Slower |
+| Feature importance | Yes | Yes (averaged) |
+
+**Why RF works:**
+- Bagging reduces variance
+- Random feature selection decorrelates trees
+- Ensemble averages out individual errors
+
+</details>
+
+<details>
+<summary><b>Q5: What is the bias-variance tradeoff?</b></summary>
+
+**Answer:**
+
+```
+Total Error = Bias² + Variance + Noise
+```
+
+| Model | Bias | Variance | Example |
+|:------|:-----|:---------|:--------|
+| Simple | High | Low | Linear regression |
+| Complex | Low | High | Deep tree |
+
+**Goal:** Find sweet spot
+
+**Solutions:**
+- Cross-validation to tune complexity
+- Regularization (increase bias, decrease variance)
+- Ensemble methods (decrease variance)
+
+</details>
+
+<details>
+<summary><b>Q6: KNN - how to choose K?</b></summary>
+
+**Answer:**
+
+**Guidelines:**
+- Small K: Low bias, high variance (noisy)
+- Large K: High bias, low variance (smooth)
+- Odd K for binary classification (avoid ties)
+- Rule of thumb: K = √n
+
+**Cross-validation:** Try different K, pick best
+
+**Distance weighting:** Give closer neighbors more weight
+
+</details>
+
+<details>
+<summary><b>Q7: How does AdaBoost work?</b></summary>
+
+**Answer:**
+
+1. **Initialize** weights wᵢ = 1/n
+2. **For each round m:**
+   - Train weak learner hₘ on weighted data
+   - Compute error: εₘ = Σwᵢ𝟙[hₘ(xᵢ)≠yᵢ]
+   - Compute weight: αₘ = (1/2)ln((1-εₘ)/εₘ)
+   - Update weights: wᵢ ← wᵢ exp(-αₘyᵢhₘ(xᵢ))
+   - Normalize weights
+3. **Final prediction:** H(x) = sign(Σαₘhₘ(x))
+
+**Key:** Focuses on misclassified samples each round
+
+</details>
+
+<details>
+<summary><b>Q8: LDA vs PCA?</b></summary>
+
+**Answer:**
+
+| Aspect | PCA | LDA |
+|:-------|:----|:----|
+| Type | Unsupervised | Supervised |
+| Goal | Max variance | Max class separation |
+| Uses labels | No | Yes |
+| Max components | min(n,d) | C-1 (C=classes) |
+
+**LDA objective:** Maximize between-class / within-class variance
+
+**When to use:**
+- PCA: General dimensionality reduction
+- LDA: When you have labels and want classification
+
+</details>
 
 ---
 
-## 📓 Colab Notebooks
+## 📚 Key Formulas Reference
 
-| Topic | Link |
-|-------|------|
-| PCA | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ageron/handson-ml2/blob/master/08_dimensionality_reduction.ipynb) |
-| SVM | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ageron/handson-ml2/blob/master/05_support_vector_machines.ipynb) |
-| Clustering | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ageron/handson-ml2/blob/master/09_unsupervised_learning.ipynb) |
+| Formula | Description |
+|:--------|:------------|
+| C = (1/n)XᵀX | Covariance matrix |
+| K(x,y) = exp(-γ\|\|x-y\|\|²) | RBF kernel |
+| J = Σₖ Σₓ∈Cₖ \|\|x - μₖ\|\|² | K-means objective |
+| H(S) = -Σpᵢlog₂(pᵢ) | Entropy |
+| G = 1 - Σpᵢ² | Gini impurity |
+| s = (b-a) / max(a,b) | Silhouette score |
+
+---
+
+## 📓 Practice
+
+See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 

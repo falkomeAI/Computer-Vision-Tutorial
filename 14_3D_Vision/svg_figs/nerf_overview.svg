@@ -1,66 +1,96 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
-  <rect width="850" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 350">
+  <defs>
+    <linearGradient id="nerfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#5b21b6"/>
+    </linearGradient>
+    <linearGradient id="gaussGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">NeRF: Neural Radiance Fields</text>
+  <rect width="850" height="350" fill="#0f172a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">3D Representation: NeRF vs 3D Gaussian Splatting</text>
   
-  <!-- Input Section -->
-  <rect x="30" y="70" width="150" height="120" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="105" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Input</text>
+  <!-- NeRF -->
+  <g transform="translate(50, 60)">
+    <rect width="360" height="180" rx="10" fill="#1e293b" stroke="#7c3aed" stroke-width="2"/>
+    <text x="180" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#a78bfa">Neural Radiance Fields (NeRF)</text>
+    
+    <!-- Input -->
+    <g transform="translate(20, 45)">
+      <rect width="70" height="50" rx="4" fill="#334155"/>
+      <text x="35" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">(x,y,z)</text>
+      <text x="35" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">(θ,φ)</text>
+    </g>
+    
+    <text x="105" y="70" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">→</text>
+    
+    <!-- MLP -->
+    <g transform="translate(120, 45)">
+      <rect width="80" height="50" rx="4" fill="url(#nerfGrad)"/>
+      <text x="40" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">MLP</text>
+      <text x="40" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#ddd6fe">F_θ</text>
+    </g>
+    
+    <text x="215" y="70" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">→</text>
+    
+    <!-- Output -->
+    <g transform="translate(230, 45)">
+      <rect width="70" height="50" rx="4" fill="#334155"/>
+      <text x="35" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">σ (density)</text>
+      <text x="35" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#3b82f6">c (RGB)</text>
+    </g>
+    
+    <!-- Properties -->
+    <text x="20" y="120" font-family="Arial, sans-serif" font-size="9" fill="#ef4444">✗ Slow rendering (per-ray MLP)</text>
+    <text x="20" y="140" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">✓ High quality</text>
+    <text x="20" y="160" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">✓ Compact representation</text>
+    <text x="20" y="175" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Implicit (continuous)</text>
+  </g>
   
-  <text x="105" y="130" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">(x, y, z)</text>
-  <text x="105" y="150" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">3D position</text>
+  <!-- 3D Gaussian Splatting -->
+  <g transform="translate(440, 60)">
+    <rect width="360" height="180" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="180" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">3D Gaussian Splatting</text>
+    
+    <!-- Gaussians visualization -->
+    <g transform="translate(30, 45)">
+      <ellipse cx="30" cy="25" rx="20" ry="12" fill="#22c55e" opacity="0.5"/>
+      <ellipse cx="60" cy="30" rx="15" ry="18" fill="#3b82f6" opacity="0.5"/>
+      <ellipse cx="90" cy="22" rx="18" ry="10" fill="#f59e0b" opacity="0.5"/>
+      <ellipse cx="50" cy="40" rx="12" ry="15" fill="#ec4899" opacity="0.5"/>
+    </g>
+    
+    <text x="180" y="65" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">→</text>
+    
+    <!-- Rasterize -->
+    <g transform="translate(200, 45)">
+      <rect width="100" height="50" rx="4" fill="url(#gaussGrad)"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">Rasterize</text>
+      <text x="50" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#d1fae5">α-blend</text>
+    </g>
+    
+    <!-- Properties -->
+    <text x="20" y="120" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">✓ Real-time rendering (100+ FPS)</text>
+    <text x="20" y="140" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">✓ High quality</text>
+    <text x="20" y="160" font-family="Arial, sans-serif" font-size="9" fill="#ef4444">✗ Larger storage</text>
+    <text x="20" y="175" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Explicit (point-based)</text>
+  </g>
   
-  <text x="105" y="175" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">(θ, φ)</text>
-  <text x="105" y="195" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">view direction</text>
-  
-  <!-- Arrow -->
-  <path d="M 185 130 L 230 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
-  
-  <!-- Positional Encoding -->
-  <rect x="240" y="70" width="130" height="120" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="305" y="100" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Positional</text>
-  <text x="305" y="118" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Encoding</text>
-  
-  <text x="305" y="150" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">γ(p) = [sin, cos]</text>
-  <text x="305" y="168" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">at multiple</text>
-  <text x="305" y="183" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">frequencies</text>
-  
-  <!-- Arrow -->
-  <path d="M 375 130 L 420 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- MLP -->
-  <rect x="430" y="70" width="140" height="120" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="500" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">MLP</text>
-  
-  <text x="500" y="130" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">8 layers</text>
-  <text x="500" y="150" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">256 hidden units</text>
-  <text x="500" y="170" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">ReLU activation</text>
-  
-  <!-- Arrow -->
-  <path d="M 575 130 L 620 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- Output Section -->
-  <rect x="630" y="70" width="180" height="120" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="720" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Output</text>
-  
-  <rect x="650" y="115" width="60" height="30" fill="#2563eb" rx="4"/>
-  <text x="680" y="135" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">RGB</text>
-  
-  <rect x="730" y="115" width="60" height="30" fill="#2563eb" rx="4"/>
-  <text x="760" y="135" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">σ</text>
-  
-  <text x="680" y="170" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Color</text>
-  <text x="760" y="170" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Density</text>
-  
-  <!-- Volume Rendering Section -->
-  <rect x="30" y="210" width="780" height="80" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="425" y="240" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Volume Rendering</text>
-  <text x="425" y="270" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">C(r) = ∫ T(t) · σ(r(t)) · c(r(t), d) dt     where T(t) = exp(-∫σ(s)ds)</text>
-  
-  <!-- Training Section -->
-  <rect x="30" y="310" width="780" height="75" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="425" y="340" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Training: Photometric Loss</text>
-  <text x="425" y="365" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">L = Σ ‖C(r) - C_gt(r)‖²   |   Input: sparse multi-view images → Output: novel view synthesis</text>
+  <!-- Comparison table -->
+  <g transform="translate(50, 260)">
+    <rect width="750" height="75" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="375" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Quick Comparison</text>
+    
+    <text x="120" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a78bfa">NeRF: Quality first</text>
+    <text x="120" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Research, VFX</text>
+    
+    <text x="375" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Both: Novel view synthesis</text>
+    <text x="375" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">From multi-view images</text>
+    
+    <text x="630" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">3DGS: Speed first</text>
+    <text x="630" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Real-time apps, games</text>
+  </g>
 </svg>

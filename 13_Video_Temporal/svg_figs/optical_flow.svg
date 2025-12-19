@@ -1,79 +1,114 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  <rect width="800" height="400" fill="#fafafa"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   
-  <text x="400" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Optical Flow: Motion Estimation</text>
-  
-  <!-- Frame 1 and Frame 2 -->
-  <rect x="30" y="55" width="350" height="165" fill="white" stroke="#1a1a2e" stroke-width="2" rx="6"/>
-  <text x="205" y="80" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Optical Flow Concept</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Optical Flow: Motion Estimation</text>
   
   <!-- Frame t -->
-  <rect x="50" y="95" width="100" height="80" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="4"/>
-  <text x="100" y="185" font-family="Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">Frame t</text>
-  <circle cx="80" cy="130" r="8" fill="#f44336"/>
+  <g transform="translate(50, 60)">
+    <rect width="120" height="100" rx="6" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+    <circle cx="40" cy="50" r="20" fill="#3b82f6"/>
+    <text x="60" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">Frame t</text>
+  </g>
   
   <!-- Frame t+1 -->
-  <rect x="200" y="95" width="100" height="80" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="4"/>
-  <text x="250" y="185" font-family="Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">Frame t+1</text>
-  <circle cx="260" cy="120" r="8" fill="#f44336"/>
+  <g transform="translate(200, 60)">
+    <rect width="120" height="100" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="70" cy="50" r="20" fill="#22c55e"/>
+    <text x="60" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Frame t+1</text>
+  </g>
   
   <!-- Motion arrow -->
-  <path d="M 90 128 L 248 118" stroke="#4caf50" stroke-width="3" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#4caf50"/></marker></defs>
-  <text x="170" y="110" font-family="Arial, sans-serif" font-size="9" fill="#4caf50" text-anchor="middle">(u, v)</text>
+  <g transform="translate(90, 110)">
+    <line x1="0" y1="0" x2="110" y2="0" stroke="#fbbf24" stroke-width="3"/>
+    <polygon points="110,-6 125,0 110,6" fill="#fbbf24"/>
+    <text x="55" y="-10" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">Motion (u,v)</text>
+  </g>
   
-  <!-- Flow field visualization -->
-  <rect x="320" y="95" width="50" height="80" fill="#fff3e0" stroke="#ff9800" rx="4"/>
-  <!-- Arrows representing flow -->
-  <path d="M 330 110 L 345 105" stroke="#ff9800" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <path d="M 350 115 L 365 108" stroke="#ff9800" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <path d="M 330 140 L 350 135" stroke="#ff9800" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <path d="M 350 145 L 365 140" stroke="#ff9800" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <path d="M 330 165 L 340 162" stroke="#ff9800" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#ff9800"/></marker></defs>
-  <text x="345" y="200" font-family="Arial, sans-serif" font-size="8" fill="#ff9800" text-anchor="middle">Flow Field</text>
+  <!-- Flow Field -->
+  <g transform="translate(360, 60)">
+    <rect width="150" height="100" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="75" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Flow Field</text>
+    
+    <!-- Flow arrows -->
+    <g stroke="#22c55e" stroke-width="1.5" fill="none">
+      <line x1="20" y1="30" x2="40" y2="30"/><polygon points="40,28 45,30 40,32" fill="#22c55e"/>
+      <line x1="60" y1="30" x2="80" y2="35"/><polygon points="80,33 85,35 80,37" fill="#22c55e"/>
+      <line x1="100" y1="35" x2="120" y2="40"/><polygon points="120,38 125,40 120,42" fill="#22c55e"/>
+      <line x1="20" y1="55" x2="40" y2="55"/><polygon points="40,53 45,55 40,57" fill="#22c55e"/>
+      <line x1="60" y1="55" x2="85" y2="55"/><polygon points="85,53 90,55 85,57" fill="#22c55e"/>
+      <line x1="100" y1="55" x2="125" y2="60"/><polygon points="125,58 130,60 125,62" fill="#22c55e"/>
+      <line x1="20" y1="80" x2="35" y2="80"/><polygon points="35,78 40,80 35,82" fill="#22c55e"/>
+      <line x1="60" y1="80" x2="80" y2="75"/><polygon points="80,73 85,75 80,77" fill="#22c55e"/>
+      <line x1="100" y1="80" x2="120" y2="80"/><polygon points="120,78 125,80 120,82" fill="#22c55e"/>
+    </g>
+    
+    <text x="75" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">(u,v) per pixel</text>
+  </g>
   
   <!-- Methods -->
-  <rect x="420" y="55" width="350" height="165" fill="white" stroke="#1a1a2e" stroke-width="2" rx="6"/>
-  <text x="595" y="80" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Optical Flow Methods</text>
-  
-  <rect x="440" y="95" width="150" height="45" fill="#e8f5e9" stroke="#4caf50" rx="4"/>
-  <text x="515" y="115" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Classical</text>
-  <text x="515" y="132" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">Lucas-Kanade, Horn-Schunck</text>
-  
-  <rect x="600" y="95" width="150" height="45" fill="#e3f2fd" stroke="#2196f3" rx="4"/>
-  <text x="675" y="115" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Deep Learning</text>
-  <text x="675" y="132" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">FlowNet, RAFT, PWC-Net</text>
-  
-  <text x="595" y="165" font-family="Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">Brightness Constancy Assumption:</text>
-  <text x="595" y="185" font-family="Arial, sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">I(x,y,t) = I(x+u, y+v, t+1)</text>
-  <text x="595" y="205" font-family="Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">Iₓu + Iᵧv + Iₜ = 0</text>
+  <g transform="translate(550, 60)">
+    <rect width="220" height="180" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="110" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Methods</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="85" height="40" rx="4" fill="#3b82f6" opacity="0.3"/>
+      <text x="42" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">Lucas-Kanade</text>
+      <text x="42" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Sparse, local</text>
+    </g>
+    <g transform="translate(110, 40)">
+      <rect width="85" height="40" rx="4" fill="#22c55e" opacity="0.3"/>
+      <text x="42" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">Horn-Schunck</text>
+      <text x="42" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Dense, global</text>
+    </g>
+    <g transform="translate(15, 90)">
+      <rect width="85" height="40" rx="4" fill="#f59e0b" opacity="0.3"/>
+      <text x="42" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">FlowNet</text>
+      <text x="42" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">CNN-based</text>
+    </g>
+    <g transform="translate(110, 90)">
+      <rect width="85" height="40" rx="4" fill="#a78bfa" opacity="0.3"/>
+      <text x="42" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#a78bfa">RAFT</text>
+      <text x="42" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Iterative</text>
+    </g>
+    
+    <text x="110" y="155" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#fbbf24">Iₜ + Iₓu + Iᵧv = 0</text>
+    <text x="110" y="172" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Brightness Constancy</text>
+  </g>
   
   <!-- Applications -->
-  <rect x="30" y="240" width="740" height="140" fill="white" stroke="#1a1a2e" stroke-width="2" rx="6"/>
-  <text x="400" y="265" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Applications &amp; Methods</text>
-  
-  <rect x="50" y="285" width="170" height="80" fill="#fff3e0" stroke="#ff9800" rx="4"/>
-  <text x="135" y="305" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Video Analysis</text>
-  <text x="135" y="325" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Action recognition</text>
-  <text x="135" y="342" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Video segmentation</text>
-  <text x="135" y="359" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Frame interpolation</text>
-  
-  <rect x="240" y="285" width="170" height="80" fill="#e3f2fd" stroke="#2196f3" rx="4"/>
-  <text x="325" y="305" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Autonomous Driving</text>
-  <text x="325" y="325" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Motion planning</text>
-  <text x="325" y="342" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Ego-motion estimation</text>
-  <text x="325" y="359" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Scene flow (3D)</text>
-  
-  <rect x="430" y="285" width="170" height="80" fill="#e8f5e9" stroke="#4caf50" rx="4"/>
-  <text x="515" y="305" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e" text-anchor="middle">RAFT Architecture</text>
-  <text x="515" y="325" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Feature encoder</text>
-  <text x="515" y="342" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• Correlation volume</text>
-  <text x="515" y="359" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">• GRU updates</text>
-  
-  <rect x="620" y="285" width="130" height="80" fill="#fce4ec" stroke="#e91e63" rx="4"/>
-  <text x="685" y="305" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Metrics</text>
-  <text x="685" y="330" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">EPE (End Point Error)</text>
-  <text x="685" y="350" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">Fl-all (outliers %)</text>
+  <g transform="translate(50, 200)">
+    <rect width="470" height="100" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="235" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Applications</text>
+    
+    <g transform="translate(25, 40)">
+      <rect width="100" height="45" rx="4" fill="#3b82f6" opacity="0.2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">Video Stabilization</text>
+      <text x="50" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Remove shake</text>
+    </g>
+    <g transform="translate(140, 40)">
+      <rect width="100" height="45" rx="4" fill="#22c55e" opacity="0.2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Action Recognition</text>
+      <text x="50" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Two-stream</text>
+    </g>
+    <g transform="translate(255, 40)">
+      <rect width="100" height="45" rx="4" fill="#f59e0b" opacity="0.2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Object Tracking</text>
+      <text x="50" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Follow motion</text>
+    </g>
+    <g transform="translate(370, 40)">
+      <rect width="85" height="45" rx="4" fill="#a78bfa" opacity="0.2"/>
+      <text x="42" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a78bfa">Frame Interp</text>
+      <text x="42" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Slow motion</text>
+    </g>
+  </g>
 </svg>
-

@@ -1,163 +1,183 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
   <defs>
     <linearGradient id="vaeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3498db"/>
-      <stop offset="100%" style="stop-color:#2980b9"/>
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
     </linearGradient>
     <linearGradient id="ganGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#e74c3c"/>
-      <stop offset="100%" style="stop-color:#c0392b"/>
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
     </linearGradient>
     <linearGradient id="diffGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#9b59b6"/>
-      <stop offset="100%" style="stop-color:#8e44ad"/>
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
     </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
   
-  <text x="450" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Generative Models Comparison</text>
+  <rect width="850" height="380" fill="#0f172a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Generative Models: VAE, GAN, Diffusion</text>
   
   <!-- VAE -->
-  <g>
-    <rect x="30" y="60" width="270" height="200" fill="url(#vaeGrad)" rx="10"/>
-    <text x="165" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">VAE (Variational Autoencoder)</text>
+  <g transform="translate(30, 60)">
+    <rect width="250" height="140" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">VAE</text>
     
-    <!-- Architecture -->
-    <rect x="45" y="105" width="60" height="40" fill="white" opacity="0.95" rx="5"/>
-    <text x="75" y="130" font-family="Arial, sans-serif" font-size="9" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Encoder</text>
+    <!-- Encoder -->
+    <g transform="translate(15, 40)">
+      <rect width="50" height="40" rx="4" fill="url(#vaeGrad)"/>
+      <text x="25" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Enc</text>
+      <text x="25" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#dbeafe">q(z|x)</text>
+    </g>
     
-    <path d="M 110 125 L 130 125" stroke="white" stroke-width="2" marker-end="url(#arrVAE)"/>
-    <defs><marker id="arrVAE" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L5,3 z" fill="white"/></marker></defs>
+    <!-- Latent z -->
+    <g transform="translate(85, 45)">
+      <circle cx="15" cy="15" r="15" fill="#7c3aed"/>
+      <text x="15" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">z</text>
+      <text x="15" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#a78bfa">μ, σ</text>
+    </g>
     
-    <rect x="135" y="105" width="60" height="40" fill="#f39c12" opacity="0.9" rx="5"/>
-    <text x="165" y="122" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle" dominant-baseline="middle">μ, σ</text>
-    <text x="165" y="137" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle" dominant-baseline="middle">Latent z</text>
+    <!-- Decoder -->
+    <g transform="translate(140, 40)">
+      <rect width="50" height="40" rx="4" fill="url(#vaeGrad)"/>
+      <text x="25" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">Dec</text>
+      <text x="25" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#dbeafe">p(x|z)</text>
+    </g>
     
-    <path d="M 200 125 L 220 125" stroke="white" stroke-width="2" marker-end="url(#arrVAE)"/>
+    <!-- Output -->
+    <g transform="translate(200, 45)">
+      <rect width="35" height="30" rx="3" fill="#334155"/>
+      <text x="17" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">x̂</text>
+    </g>
     
-    <rect x="225" y="105" width="60" height="40" fill="white" opacity="0.95" rx="5"/>
-    <text x="255" y="130" font-family="Arial, sans-serif" font-size="9" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Decoder</text>
+    <!-- Arrows -->
+    <line x1="65" y1="60" x2="85" y2="60" stroke="#60a5fa" stroke-width="1"/>
+    <line x1="115" y1="60" x2="140" y2="60" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="190" y1="60" x2="200" y2="60" stroke="#60a5fa" stroke-width="1"/>
     
-    <!-- Properties -->
-    <rect x="45" y="155" width="240" height="90" fill="white" opacity="0.95" rx="5"/>
-    <text x="165" y="175" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Properties:</text>
-    <text x="165" y="195" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Loss = Recon + KL divergence</text>
-    <text x="165" y="210" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Smooth latent space</text>
-    <text x="165" y="225" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Often blurry outputs</text>
-    <text x="165" y="240" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Stable training</text>
+    <!-- Loss -->
+    <text x="125" y="110" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#fbbf24">L = Recon + KL(q||p)</text>
+    <text x="125" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Smooth latent, blurry output</text>
   </g>
   
   <!-- GAN -->
-  <g>
-    <rect x="315" y="60" width="270" height="200" fill="url(#ganGrad)" rx="10"/>
-    <text x="450" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">GAN (Generative Adversarial)</text>
+  <g transform="translate(300, 60)">
+    <rect width="250" height="140" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399">GAN</text>
     
-    <!-- Architecture -->
-    <rect x="330" y="105" width="50" height="40" fill="white" opacity="0.95" rx="5"/>
-    <text x="355" y="122" font-family="Arial, sans-serif" font-size="8" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Noise</text>
-    <text x="355" y="137" font-family="Arial, sans-serif" font-size="8" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">z</text>
+    <!-- Noise z -->
+    <g transform="translate(15, 50)">
+      <circle cx="15" cy="15" r="12" fill="#64748b"/>
+      <text x="15" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">z</text>
+      <text x="15" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#94a3b8">noise</text>
+    </g>
     
-    <path d="M 385 125 L 405 125" stroke="white" stroke-width="2" marker-end="url(#arrVAE)"/>
+    <!-- Generator -->
+    <g transform="translate(55, 40)">
+      <rect width="55" height="45" rx="4" fill="url(#ganGrad)"/>
+      <text x="27" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">Gen</text>
+      <text x="27" y="33" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#d1fae5">G(z)</text>
+    </g>
     
-    <rect x="410" y="105" width="55" height="40" fill="#27ae60" opacity="0.9" rx="5"/>
-    <text x="437" y="130" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle" dominant-baseline="middle">G</text>
+    <!-- Fake image -->
+    <g transform="translate(125, 45)">
+      <rect width="30" height="35" rx="3" fill="#334155" stroke="#22c55e"/>
+      <text x="15" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#34d399">fake</text>
+    </g>
     
-    <path d="M 470 125 L 490 125" stroke="white" stroke-width="2" marker-end="url(#arrVAE)"/>
+    <!-- Discriminator -->
+    <g transform="translate(170, 40)">
+      <rect width="55" height="45" rx="4" fill="#ef4444"/>
+      <text x="27" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">Disc</text>
+      <text x="27" y="33" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fecaca">D(x)</text>
+    </g>
     
-    <rect x="495" y="105" width="50" height="40" fill="white" opacity="0.95" rx="5"/>
-    <text x="520" y="130" font-family="Arial, sans-serif" font-size="9" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Image</text>
+    <!-- Arrows -->
+    <line x1="42" y1="65" x2="55" y2="62" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="110" y1="62" x2="125" y2="62" stroke="#22c55e" stroke-width="1"/>
+    <line x1="155" y1="62" x2="170" y2="62" stroke="#f87171" stroke-width="1"/>
     
-    <path d="M 520 150 L 520 170" stroke="white" stroke-width="2"/>
-    
-    <rect x="495" y="175" width="50" height="30" fill="#e74c3c" opacity="0.9" rx="5"/>
-    <text x="520" y="195" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle" dominant-baseline="middle">D</text>
-    
-    <text x="570" y="195" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle" dominant-baseline="middle">Real/Fake?</text>
-    
-    <!-- Properties -->
-    <rect x="330" y="155" width="115" height="90" fill="white" opacity="0.95" rx="5"/>
-    <text x="387" y="175" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Properties:</text>
-    <text x="387" y="195" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Adversarial loss</text>
-    <text x="387" y="210" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Sharp images</text>
-    <text x="387" y="225" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Mode collapse</text>
-    <text x="387" y="240" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Hard to train</text>
+    <!-- Loss -->
+    <text x="125" y="108" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#fbbf24">min_G max_D V(D,G)</text>
+    <text x="125" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Adversarial game, sharp output</text>
   </g>
   
   <!-- Diffusion -->
-  <g>
-    <rect x="600" y="60" width="270" height="200" fill="url(#diffGrad)" rx="10"/>
-    <text x="735" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Diffusion Models</text>
+  <g transform="translate(570, 60)">
+    <rect width="250" height="140" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">Diffusion</text>
     
-    <!-- Architecture -->
-    <rect x="615" y="105" width="45" height="40" fill="white" opacity="0.95" rx="5"/>
-    <text x="637" y="130" font-family="Arial, sans-serif" font-size="9" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">x₀</text>
+    <!-- Forward process -->
+    <g transform="translate(15, 45)">
+      <rect width="35" height="35" rx="3" fill="#334155"/>
+      <text x="17" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">x₀</text>
+    </g>
+    <text x="65" y="62" font-family="Arial, sans-serif" font-size="12" fill="#ef4444">→</text>
+    <text x="65" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ef4444">+noise</text>
     
-    <path d="M 665 115 L 720 115" stroke="white" stroke-width="2" marker-end="url(#arrVAE)"/>
-    <text x="692" y="108" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle" dominant-baseline="middle">+ noise</text>
+    <!-- Noisy -->
+    <g transform="translate(80, 45)">
+      <rect width="35" height="35" rx="3" fill="#64748b"/>
+      <text x="17" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">x_t</text>
+    </g>
+    <text x="130" y="62" font-family="Arial, sans-serif" font-size="12" fill="#ef4444">→</text>
     
-    <rect x="725" y="105" width="45" height="40" fill="#f39c12" opacity="0.9" rx="5"/>
-    <text x="747" y="130" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle" dominant-baseline="middle">xₜ</text>
+    <!-- Pure noise -->
+    <g transform="translate(145, 45)">
+      <rect width="35" height="35" rx="3" fill="#94a3b8"/>
+      <text x="17" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e293b">x_T</text>
+    </g>
     
-    <path d="M 775 115 L 830 115" stroke="white" stroke-width="2" marker-end="url(#arrVAE)"/>
-    <text x="802" y="108" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle" dominant-baseline="middle">T steps</text>
+    <!-- U-Net -->
+    <g transform="translate(195, 40)">
+      <rect width="45" height="45" rx="4" fill="url(#diffGrad)"/>
+      <text x="22" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">U-Net</text>
+      <text x="22" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#fef3c7">ε_θ</text>
+    </g>
     
-    <rect x="835" y="105" width="30" height="40" fill="white" opacity="0.95" rx="5"/>
-    <text x="850" y="130" font-family="Arial, sans-serif" font-size="9" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">N</text>
+    <!-- Reverse arrow -->
+    <path d="M220 90 Q125 110 30 90" stroke="#22c55e" stroke-width="2" fill="none" stroke-dasharray="4,2"/>
+    <text x="125" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#22c55e">denoise (T steps)</text>
     
-    <path d="M 850 150 L 850 165 L 640 165 L 640 150" stroke="white" stroke-width="2" stroke-dasharray="5,3"/>
-    <text x="745" y="185" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle" dominant-baseline="middle">Denoise (reverse)</text>
-    
-    <!-- Properties -->
-    <rect x="615" y="200" width="240" height="45" fill="white" opacity="0.95" rx="5"/>
-    <text x="735" y="218" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">High quality + diversity</text>
-    <text x="735" y="235" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Slow sampling (1000 steps)</text>
+    <!-- Loss -->
+    <text x="125" y="135" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#fbbf24">L = E[||ε - ε_θ||²]</text>
   </g>
   
   <!-- Comparison Table -->
-  <rect x="30" y="290" width="840" height="240" fill="#f8f9fa" stroke="#dee2e6" rx="10"/>
-  <text x="450" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Model Comparison</text>
-  
-  <!-- Table Header -->
-  <rect x="50" y="345" width="120" height="25" fill="#ecf0f1"/>
-  <rect x="170" y="345" width="180" height="25" fill="#3498db" opacity="0.2"/>
-  <rect x="350" y="345" width="180" height="25" fill="#e74c3c" opacity="0.2"/>
-  <rect x="530" y="345" width="180" height="25" fill="#9b59b6" opacity="0.2"/>
-  <rect x="710" y="345" width="140" height="25" fill="#27ae60" opacity="0.2"/>
-  
-  <text x="110" y="362" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Metric</text>
-  <text x="260" y="362" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">VAE</text>
-  <text x="440" y="362" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">GAN</text>
-  <text x="620" y="362" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">Diffusion</text>
-  <text x="780" y="362" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#229954" text-anchor="middle" dominant-baseline="middle">Winner</text>
-  
-  <!-- Rows -->
-  <text x="110" y="395" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Image Quality</text>
-  <text x="260" y="395" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Blurry</text>
-  <text x="440" y="395" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Sharp</text>
-  <text x="620" y="395" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Best</text>
-  <text x="780" y="395" font-family="Arial, sans-serif" font-size="10" fill="#9b59b6" text-anchor="middle" dominant-baseline="middle">Diffusion</text>
-  
-  <text x="110" y="425" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Diversity</text>
-  <text x="260" y="425" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Good</text>
-  <text x="440" y="425" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Mode collapse</text>
-  <text x="620" y="425" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Excellent</text>
-  <text x="780" y="425" font-family="Arial, sans-serif" font-size="10" fill="#9b59b6" text-anchor="middle" dominant-baseline="middle">Diffusion</text>
-  
-  <text x="110" y="455" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Training</text>
-  <text x="260" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Stable</text>
-  <text x="440" y="455" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Unstable</text>
-  <text x="620" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Stable</text>
-  <text x="780" y="455" font-family="Arial, sans-serif" font-size="10" fill="#3498db" text-anchor="middle" dominant-baseline="middle">VAE/Diff</text>
-  
-  <text x="110" y="485" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Speed</text>
-  <text x="260" y="485" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Fast</text>
-  <text x="440" y="485" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Fast</text>
-  <text x="620" y="485" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Slow (1000 steps)</text>
-  <text x="780" y="485" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">GAN</text>
-  
-  <text x="110" y="515" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Latent Space</text>
-  <text x="260" y="515" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Continuous</text>
-  <text x="440" y="515" font-family="Arial, sans-serif" font-size="10" fill="#f39c12" text-anchor="middle" dominant-baseline="middle">Entangled</text>
-  <text x="620" y="515" font-family="Arial, sans-serif" font-size="10" fill="#f39c12" text-anchor="middle" dominant-baseline="middle">Implicit</text>
-  <text x="780" y="515" font-family="Arial, sans-serif" font-size="10" fill="#3498db" text-anchor="middle" dominant-baseline="middle">VAE</text>
+  <g transform="translate(50, 220)">
+    <rect width="750" height="140" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="375" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f8fafc">Comparison</text>
+    
+    <!-- Headers -->
+    <text x="200" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#60a5fa">VAE</text>
+    <text x="375" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">GAN</text>
+    <text x="550" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24">Diffusion</text>
+    
+    <!-- Quality -->
+    <text x="70" y="75" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Quality</text>
+    <text x="200" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Blurry</text>
+    <text x="375" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Sharp</text>
+    <text x="550" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Best</text>
+    
+    <!-- Training -->
+    <text x="70" y="95" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Training</text>
+    <text x="200" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Stable</text>
+    <text x="375" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Unstable</text>
+    <text x="550" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Stable</text>
+    
+    <!-- Speed -->
+    <text x="70" y="115" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Speed</text>
+    <text x="200" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Fast</text>
+    <text x="375" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Fast</text>
+    <text x="550" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Slow (T steps)</text>
+    
+    <!-- Use case -->
+    <text x="70" y="135" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Best for</text>
+    <text x="200" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Latent space</text>
+    <text x="375" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Real-time gen</text>
+    <text x="550" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">SOTA quality</text>
+  </g>
 </svg>
-

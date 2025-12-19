@@ -1,76 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
-  <rect width="850" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="lossyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <linearGradient id="losslessGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Image Compression Pipeline</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Image Compression Methods</text>
   
-  <!-- JPEG Pipeline -->
-  <text x="425" y="65" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">JPEG Compression (Lossy)</text>
+  <!-- Lossy Compression -->
+  <g transform="translate(50, 60)">
+    <rect width="320" height="230" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="160" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fbbf24">Lossy Compression</text>
+    
+    <!-- JPEG -->
+    <g transform="translate(20, 50)">
+      <rect width="130" height="70" rx="6" fill="url(#lossyGrad)"/>
+      <text x="65" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">JPEG</text>
+      <text x="65" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fef3c7">DCT + Quantize</text>
+      <text x="65" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fde68a">10-20× smaller</text>
+    </g>
+    
+    <!-- JPEG 2000 -->
+    <g transform="translate(165, 50)">
+      <rect width="130" height="70" rx="6" fill="url(#lossyGrad)" opacity="0.8"/>
+      <text x="65" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">JPEG 2000</text>
+      <text x="65" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fef3c7">Wavelet-based</text>
+      <text x="65" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fde68a">Better quality</text>
+    </g>
+    
+    <!-- WebP -->
+    <g transform="translate(20, 135)">
+      <rect width="130" height="70" rx="6" fill="url(#lossyGrad)" opacity="0.9"/>
+      <text x="65" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">WebP</text>
+      <text x="65" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fef3c7">VP8 prediction</text>
+      <text x="65" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fde68a">25-34% smaller</text>
+    </g>
+    
+    <!-- HEIC -->
+    <g transform="translate(165, 135)">
+      <rect width="130" height="70" rx="6" fill="url(#lossyGrad)" opacity="0.7"/>
+      <text x="65" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">HEIC/AVIF</text>
+      <text x="65" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fef3c7">HEVC/AV1</text>
+      <text x="65" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fde68a">50% smaller</text>
+    </g>
+  </g>
   
-  <!-- Input -->
-  <rect x="40" y="90" width="90" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="85" y="125" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Image</text>
-  
-  <!-- Arrow -->
-  <path d="M 135 120 L 165 120" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
-  
-  <!-- Color Transform -->
-  <rect x="170" y="90" width="100" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
-  <text x="220" y="115" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">RGB→YCbCr</text>
-  <text x="220" y="135" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">4:2:0 subsample</text>
-  
-  <path d="M 275 120 L 305 120" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- Block Split -->
-  <rect x="310" y="90" width="90" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
-  <text x="355" y="115" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">8×8 Blocks</text>
-  <text x="355" y="135" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Split image</text>
-  
-  <path d="M 405 120 L 435 120" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- DCT -->
-  <rect x="440" y="90" width="90" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="485" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">DCT</text>
-  <text x="485" y="135" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">To frequency</text>
-  
-  <path d="M 535 120 L 565 120" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- Quantization -->
-  <rect x="570" y="90" width="100" height="60" fill="#2563eb" rx="6"/>
-  <text x="620" y="115" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Quantize</text>
-  <text x="620" y="135" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">Lossy step!</text>
-  
-  <path d="M 675 120 L 705 120" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- Entropy Coding -->
-  <rect x="710" y="90" width="100" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
-  <text x="760" y="115" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Huffman</text>
-  <text x="760" y="135" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Lossless</text>
-  
-  <!-- DCT Details -->
-  <rect x="40" y="170" width="380" height="110" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="230" y="195" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">DCT (Discrete Cosine Transform)</text>
-  
-  <text x="230" y="225" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">F(u,v) = Σₓ Σᵧ f(x,y) cos[π(2x+1)u/2N] cos[π(2y+1)v/2N]</text>
-  
-  <text x="230" y="260" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Low freq (DC) → top-left | High freq (AC) → bottom-right</text>
-  
-  <!-- Quantization Details -->
-  <rect x="440" y="170" width="370" height="110" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="625" y="195" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Quantization</text>
-  
-  <text x="625" y="225" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">F_q(u,v) = round(F(u,v) / Q(u,v))</text>
-  
-  <text x="625" y="260" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Q matrix has larger values for high freq → more loss</text>
-  
-  <!-- Comparison -->
-  <rect x="40" y="300" width="770" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="425" y="325" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Compression Formats Comparison</text>
-  
-  <text x="150" y="355" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">JPEG: DCT, lossy, 10:1</text>
-  <text x="350" y="355" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">PNG: LZW, lossless</text>
-  <text x="550" y="355" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">WebP: hybrid, modern</text>
-  <text x="720" y="355" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">HEIC: HEVC, 2× JPEG</text>
+  <!-- Lossless Compression -->
+  <g transform="translate(410, 60)">
+    <rect width="340" height="230" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="170" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">Lossless Compression</text>
+    
+    <!-- PNG -->
+    <g transform="translate(20, 50)">
+      <rect width="140" height="70" rx="6" fill="url(#losslessGrad)"/>
+      <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">PNG</text>
+      <text x="70" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">DEFLATE</text>
+      <text x="70" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#bbf7d0">2-3× smaller</text>
+    </g>
+    
+    <!-- GIF -->
+    <g transform="translate(175, 50)">
+      <rect width="140" height="70" rx="6" fill="url(#losslessGrad)" opacity="0.8"/>
+      <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">GIF</text>
+      <text x="70" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">LZW</text>
+      <text x="70" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#bbf7d0">256 colors</text>
+    </g>
+    
+    <!-- TIFF -->
+    <g transform="translate(20, 135)">
+      <rect width="140" height="70" rx="6" fill="url(#losslessGrad)" opacity="0.9"/>
+      <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">TIFF</text>
+      <text x="70" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">LZW/ZIP</text>
+      <text x="70" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#bbf7d0">Professional</text>
+    </g>
+    
+    <!-- BMP -->
+    <g transform="translate(175, 135)">
+      <rect width="140" height="70" rx="6" fill="#64748b"/>
+      <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">BMP/RAW</text>
+      <text x="70" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Uncompressed</text>
+      <text x="70" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#cbd5e1">Large files</text>
+    </g>
+  </g>
 </svg>
-

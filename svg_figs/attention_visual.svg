@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="qGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+    <linearGradient id="kGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="vGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">Self-Attention Mechanism</text>
+  
+  <!-- Input -->
+  <rect x="50" y="140" width="80" height="120" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <text x="90" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f8fafc">Input</text>
+  <text x="90" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">X</text>
+  
+  <!-- Linear Projections -->
+  <g transform="translate(170, 90)">
+    <rect width="60" height="40" rx="6" fill="url(#qGrad)" filter="url(#shadow)"/>
+    <text x="30" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">Q</text>
+  </g>
+  
+  <g transform="translate(170, 160)">
+    <rect width="60" height="40" rx="6" fill="url(#kGrad)" filter="url(#shadow)"/>
+    <text x="30" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">K</text>
+  </g>
+  
+  <g transform="translate(170, 230)">
+    <rect width="60" height="40" rx="6" fill="url(#vGrad)" filter="url(#shadow)"/>
+    <text x="30" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">V</text>
+  </g>
+  
+  <!-- Arrows from input to Q,K,V -->
+  <path d="M130 180 L170 110" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <path d="M130 200 L170 180" stroke="#64748b" stroke-width="2"/>
+  <path d="M130 220 L170 250" stroke="#64748b" stroke-width="2"/>
+  
+  <!-- MatMul Q·K^T -->
+  <rect x="280" y="110" width="100" height="50" rx="8" fill="#7c3aed" filter="url(#shadow)"/>
+  <text x="330" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">Q · K^T</text>
+  
+  <!-- Arrows -->
+  <path d="M230 110 L280 130" stroke="#ef4444" stroke-width="2"/>
+  <path d="M230 180 L280 145" stroke="#22c55e" stroke-width="2"/>
+  
+  <!-- Scale -->
+  <rect x="280" y="180" width="100" height="35" rx="6" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <text x="330" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#f8fafc">÷ √d_k</text>
+  
+  <!-- Arrow -->
+  <path d="M330 160 L330 180" stroke="#a78bfa" stroke-width="2"/>
+  
+  <!-- Softmax -->
+  <rect x="420" y="130" width="90" height="50" rx="8" fill="#f59e0b" filter="url(#shadow)"/>
+  <text x="465" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">Softmax</text>
+  
+  <!-- Arrow -->
+  <path d="M380 155 L420 155" stroke="#fbbf24" stroke-width="2"/>
+  
+  <!-- Attention Weights Visualization -->
+  <g transform="translate(420, 200)">
+    <rect width="90" height="90" rx="4" fill="#1e293b" stroke="#475569"/>
+    <rect x="5" y="5" width="20" height="20" fill="#f59e0b" opacity="0.9"/>
+    <rect x="27" y="5" width="20" height="20" fill="#f59e0b" opacity="0.4"/>
+    <rect x="49" y="5" width="20" height="20" fill="#f59e0b" opacity="0.2"/>
+    <rect x="5" y="27" width="20" height="20" fill="#f59e0b" opacity="0.3"/>
+    <rect x="27" y="27" width="20" height="20" fill="#f59e0b" opacity="0.8"/>
+    <rect x="49" y="27" width="20" height="20" fill="#f59e0b" opacity="0.5"/>
+    <rect x="5" y="49" width="20" height="20" fill="#f59e0b" opacity="0.2"/>
+    <rect x="27" y="49" width="20" height="20" fill="#f59e0b" opacity="0.4"/>
+    <rect x="49" y="49" width="20" height="20" fill="#f59e0b" opacity="0.7"/>
+    <text x="45" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Attn Weights</text>
+  </g>
+  
+  <!-- MatMul with V -->
+  <rect x="550" y="170" width="90" height="50" rx="8" fill="#7c3aed" filter="url(#shadow)"/>
+  <text x="595" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">× V</text>
+  
+  <!-- Arrows -->
+  <path d="M510 155 L550 185" stroke="#fbbf24" stroke-width="2"/>
+  <path d="M230 250 L550 210" stroke="#3b82f6" stroke-width="2"/>
+  
+  <!-- Output -->
+  <rect x="680" y="155" width="80" height="80" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="3"/>
+  <text x="720" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">Output</text>
+  <text x="720" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Attn(Q,K,V)</text>
+  
+  <!-- Arrow -->
+  <path d="M640 195 L680 195" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Formula Box -->
+  <rect x="150" y="330" width="500" height="45" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="400" y="358" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#f8fafc">Attention(Q, K, V) = softmax(QK^T / √d_k) × V</text>
+  
+  <!-- Legend -->
+  <g transform="translate(50, 330)">
+    <rect width="15" height="15" rx="2" fill="#ef4444"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Query</text>
+  </g>
+  <g transform="translate(50, 350)">
+    <rect width="15" height="15" rx="2" fill="#22c55e"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Key</text>
+  </g>
+  <g transform="translate(50, 370)">
+    <rect width="15" height="15" rx="2" fill="#3b82f6"/>
+    <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Value</text>
+  </g>
+</svg>

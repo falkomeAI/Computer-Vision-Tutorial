@@ -4,7 +4,9 @@
 
 ### *SIFT, ORB, HOG & Feature Matching*
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1features)
+| Level | Time | Prerequisites |
+|:-----:|:----:|:-------------:|
+| 🟡 Intermediate | 2 hours | Image Processing, Linear Algebra |
 
 </div>
 
@@ -15,11 +17,24 @@
 ---
 
 ## 📖 Table of Contents
+- [Key Concepts](#-key-concepts)
+- [Mathematical Foundations](#-mathematical-foundations)
+- [Algorithms](#-algorithms)
 - [Visual Overview](#-visual-overview)
-- [Complete Colab Code](#-complete-colab-code)
-- [Corner Detection](#-corner-detection)
-- [Feature Matching](#-feature-matching)
+- [Practice](#-practice)
 - [Interview Q&A](#-interview-questions--answers)
+
+---
+
+## 🎯 Key Concepts
+
+| Concept | Description | Use Case |
+|:--------|:------------|:---------|
+| **Corner** | Point with strong gradients in 2 directions | Tracking, matching |
+| **Blob** | Region different from surroundings | Object detection |
+| **Keypoint** | Interesting point with location, scale, orientation | Feature matching |
+| **Descriptor** | Vector describing local patch around keypoint | Matching across images |
+| **Feature Matching** | Finding corresponding keypoints between images | Panorama, 3D reconstruction |
 
 ---
 
@@ -31,443 +46,342 @@
 
 ---
 
-## 📓 Complete Colab Code
+## 🔢 Mathematical Foundations
 
-```python
-#@title 🎯 Feature Detection - Complete Tutorial
-#@markdown SIFT, ORB, Harris, HOG, Feature Matching!
+### 1. Harris Corner Detection
 
-!pip install opencv-python-headless opencv-contrib-python numpy matplotlib scikit-image -q
-
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-from skimage.feature import hog
-from skimage import data, exposure
-import urllib.request
-
-# Download sample images
-url1 = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
-url2 = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cute_dog.jpg/280px-Cute_dog.jpg"
-urllib.request.urlretrieve(url1, "img1.png")
-urllib.request.urlretrieve(url2, "img2.jpg")
-
-img1 = cv2.imread("img1.png")
-img2 = cv2.imread("img2.jpg")
-if img1 is None: img1 = np.random.randint(0, 255, (300, 300, 3), dtype=np.uint8)
-if img2 is None: img2 = cv2.rotate(img1, cv2.ROTATE_90_CLOCKWISE)
-
-gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-print("✅ Setup complete!")
-
-#@title 1️⃣ Harris Corner Detection
-
-def harris_corners(img, gray):
-    """Detect corners using Harris"""
-    # Harris corner detection
-    harris = cv2.cornerHarris(gray.astype(np.float32), blockSize=2, ksize=3, k=0.04)
-    
-    # Dilate for marking
-    harris_dilated = cv2.dilate(harris, None)
-    
-    # Threshold
-    threshold = 0.01 * harris.max()
-    corners = harris > threshold
-    
-    # Visualize
-    fig, axes = plt.subplots(1, 4, figsize=(16, 4))
-    
-    axes[0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    axes[0].set_title('Original')
-    axes[0].axis('off')
-    
-    axes[1].imshow(harris, cmap='hot')
-    axes[1].set_title('Harris Response')
-    axes[1].axis('off')
-    
-    # Mark corners
-    img_corners = img.copy()
-    img_corners[corners] = [0, 255, 0]
-    axes[2].imshow(cv2.cvtColor(img_corners, cv2.COLOR_BGR2RGB))
-    axes[2].set_title(f'Corners ({np.sum(corners)} detected)')
-    axes[2].axis('off')
-    
-    # Shi-Tomasi corners
-    corners_st = cv2.goodFeaturesToTrack(gray, maxCorners=100, qualityLevel=0.01, minDistance=10)
-    img_st = img.copy()
-    if corners_st is not None:
-        for corner in corners_st:
-            x, y = corner.ravel()
-            cv2.circle(img_st, (int(x), int(y)), 5, (0, 255, 0), -1)
-    
-    axes[3].imshow(cv2.cvtColor(img_st, cv2.COLOR_BGR2RGB))
-    axes[3].set_title('Shi-Tomasi Corners')
-    axes[3].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-
-harris_corners(img1, gray1)
-print("📍 Harris corners detected!")
-
-#@title 2️⃣ SIFT Features
-
-def sift_features(img, gray):
-    """SIFT keypoint detection and description"""
-    # Create SIFT
-    sift = cv2.SIFT_create()
-    
-    # Detect and compute
-    keypoints, descriptors = sift.detectAndCompute(gray, None)
-    
-    # Draw keypoints
-    img_kp = cv2.drawKeypoints(img, keypoints, None, 
-                               flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
-    
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    
-    axes[0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    axes[0].set_title('Original')
-    axes[0].axis('off')
-    
-    axes[1].imshow(cv2.cvtColor(img_kp, cv2.COLOR_BGR2RGB))
-    axes[1].set_title(f'SIFT Keypoints ({len(keypoints)})')
-    axes[1].axis('off')
-    
-    # Keypoint properties
-    if len(keypoints) > 0:
-        sizes = [kp.size for kp in keypoints]
-        angles = [kp.angle for kp in keypoints]
-        
-        axes[2].hist(sizes, bins=30, alpha=0.7, label='Size')
-        axes[2].hist(angles, bins=30, alpha=0.7, label='Angle')
-        axes[2].legend()
-        axes[2].set_title('Keypoint Distribution')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    print(f"  Descriptor shape: {descriptors.shape if descriptors is not None else 'None'}")
-    return keypoints, descriptors
-
-kp1, desc1 = sift_features(img1, gray1)
-print("🔍 SIFT features extracted!")
-
-#@title 3️⃣ ORB Features (Fast Alternative)
-
-def orb_features(img, gray):
-    """ORB: Oriented FAST and Rotated BRIEF"""
-    # Create ORB
-    orb = cv2.ORB_create(nfeatures=500)
-    
-    # Detect and compute
-    keypoints, descriptors = orb.detectAndCompute(gray, None)
-    
-    # Draw
-    img_kp = cv2.drawKeypoints(img, keypoints, None, color=(0, 255, 0),
-                               flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
-    
-    # Compare with FAST
-    fast = cv2.FastFeatureDetector_create(threshold=25)
-    fast_kp = fast.detect(gray, None)
-    img_fast = cv2.drawKeypoints(img, fast_kp, None, color=(255, 0, 0))
-    
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    
-    axes[0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    axes[0].set_title('Original')
-    axes[0].axis('off')
-    
-    axes[1].imshow(cv2.cvtColor(img_fast, cv2.COLOR_BGR2RGB))
-    axes[1].set_title(f'FAST Corners ({len(fast_kp)})')
-    axes[1].axis('off')
-    
-    axes[2].imshow(cv2.cvtColor(img_kp, cv2.COLOR_BGR2RGB))
-    axes[2].set_title(f'ORB Features ({len(keypoints)})')
-    axes[2].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    print(f"  ORB descriptor: {descriptors.shape if descriptors is not None else 'None'} (binary)")
-    return keypoints, descriptors
-
-kp_orb, desc_orb = orb_features(img1, gray1)
-print("⚡ ORB features extracted!")
-
-#@title 4️⃣ HOG Features (Histogram of Oriented Gradients)
-
-def hog_features(img, gray):
-    """HOG descriptor for object detection"""
-    # Resize for consistent size
-    resized = cv2.resize(gray, (128, 128))
-    
-    # Compute HOG
-    fd, hog_image = hog(resized, orientations=9, pixels_per_cell=(8, 8),
-                       cells_per_block=(2, 2), visualize=True, 
-                       block_norm='L2-Hys')
-    
-    # Rescale for better visualization
-    hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 10))
-    
-    fig, axes = plt.subplots(1, 4, figsize=(16, 4))
-    
-    axes[0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    axes[0].set_title('Original')
-    axes[0].axis('off')
-    
-    axes[1].imshow(resized, cmap='gray')
-    axes[1].set_title('Resized (128x128)')
-    axes[1].axis('off')
-    
-    axes[2].imshow(hog_image_rescaled, cmap='gray')
-    axes[2].set_title('HOG Visualization')
-    axes[2].axis('off')
-    
-    # Show gradient magnitudes
-    gx = cv2.Sobel(resized, cv2.CV_64F, 1, 0, ksize=3)
-    gy = cv2.Sobel(resized, cv2.CV_64F, 0, 1, ksize=3)
-    magnitude = np.sqrt(gx**2 + gy**2)
-    
-    axes[3].imshow(magnitude, cmap='hot')
-    axes[3].set_title('Gradient Magnitude')
-    axes[3].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    print(f"  HOG descriptor length: {len(fd)}")
-    return fd
-
-hog_desc = hog_features(img1, gray1)
-print("📊 HOG features computed!")
-
-#@title 5️⃣ Feature Matching
-
-def feature_matching(img1, img2, gray1, gray2):
-    """Match features between two images"""
-    # Detect features
-    sift = cv2.SIFT_create()
-    kp1, desc1 = sift.detectAndCompute(gray1, None)
-    kp2, desc2 = sift.detectAndCompute(gray2, None)
-    
-    if desc1 is None or desc2 is None:
-        print("No features found!")
-        return
-    
-    # BFMatcher
-    bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
-    matches = bf.match(desc1, desc2)
-    matches = sorted(matches, key=lambda x: x.distance)[:50]
-    
-    # FLANN matcher
-    FLANN_INDEX_KDTREE = 1
-    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
-    search_params = dict(checks=50)
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
-    matches_flann = flann.knnMatch(desc1, desc2, k=2)
-    
-    # Ratio test
-    good_matches = []
-    for m, n in matches_flann:
-        if m.distance < 0.75 * n.distance:
-            good_matches.append(m)
-    
-    # Visualize
-    fig, axes = plt.subplots(2, 2, figsize=(16, 12))
-    
-    # BF matches
-    img_bf = cv2.drawMatches(img1, kp1, img2, kp2, matches[:30], None,
-                            flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-    axes[0, 0].imshow(cv2.cvtColor(img_bf, cv2.COLOR_BGR2RGB))
-    axes[0, 0].set_title(f'BFMatcher ({len(matches)} matches)')
-    axes[0, 0].axis('off')
-    
-    # FLANN + ratio test
-    img_flann = cv2.drawMatches(img1, kp1, img2, kp2, good_matches[:30], None,
-                               flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-    axes[0, 1].imshow(cv2.cvtColor(img_flann, cv2.COLOR_BGR2RGB))
-    axes[0, 1].set_title(f'FLANN + Ratio Test ({len(good_matches)} good)')
-    axes[0, 1].axis('off')
-    
-    # Distance histogram
-    distances = [m.distance for m in matches]
-    axes[1, 0].hist(distances, bins=30, color='blue', alpha=0.7)
-    axes[1, 0].set_xlabel('Match Distance')
-    axes[1, 0].set_ylabel('Count')
-    axes[1, 0].set_title('Match Distance Distribution')
-    
-    # Keypoint comparison
-    axes[1, 1].bar(['Image 1', 'Image 2'], [len(kp1), len(kp2)], color=['blue', 'orange'])
-    axes[1, 1].set_ylabel('Keypoints')
-    axes[1, 1].set_title('Keypoint Count')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    return matches, good_matches
-
-matches, good = feature_matching(img1, img2, gray1, gray2)
-print("🔗 Feature matching complete!")
-
-#@title 6️⃣ Homography with RANSAC
-
-def ransac_homography(img1, img2, gray1, gray2):
-    """Find homography using RANSAC"""
-    # Detect features
-    sift = cv2.SIFT_create()
-    kp1, desc1 = sift.detectAndCompute(gray1, None)
-    kp2, desc2 = sift.detectAndCompute(gray2, None)
-    
-    if desc1 is None or desc2 is None:
-        print("No features!")
-        return
-    
-    # Match
-    bf = cv2.BFMatcher()
-    matches = bf.knnMatch(desc1, desc2, k=2)
-    
-    # Ratio test
-    good = [m for m, n in matches if m.distance < 0.75 * n.distance]
-    
-    if len(good) < 4:
-        print("Not enough matches for homography")
-        return
-    
-    # Get points
-    src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
-    dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
-    
-    # RANSAC
-    H, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
-    
-    if H is None:
-        print("Homography failed")
-        return
-    
-    # Warp image
-    h, w = img1.shape[:2]
-    warped = cv2.warpPerspective(img1, H, (w, h))
-    
-    # Draw inliers
-    inliers = mask.ravel().tolist()
-    inlier_matches = [good[i] for i in range(len(good)) if inliers[i]]
-    
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    
-    axes[0].imshow(cv2.cvtColor(img1, cv2.COLOR_BGR2RGB))
-    axes[0].set_title('Source Image')
-    axes[0].axis('off')
-    
-    axes[1].imshow(cv2.cvtColor(warped, cv2.COLOR_BGR2RGB))
-    axes[1].set_title(f'Warped (H found with {sum(inliers)} inliers)')
-    axes[1].axis('off')
-    
-    axes[2].imshow(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB))
-    axes[2].set_title('Target Image')
-    axes[2].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    print(f"  Homography matrix:\n{H}")
-    print(f"  RANSAC inliers: {sum(inliers)}/{len(good)}")
-
-ransac_homography(img1, img2, gray1, gray2)
-print("🎯 Homography computed!")
-
-#@title 7️⃣ Compare All Detectors
-
-def compare_detectors(img, gray):
-    """Compare detection speed and count"""
-    import time
-    
-    detectors = {
-        'Harris': lambda: cv2.cornerHarris(gray.astype(np.float32), 2, 3, 0.04),
-        'FAST': lambda: cv2.FastFeatureDetector_create().detect(gray),
-        'ORB': lambda: cv2.ORB_create().detectAndCompute(gray, None),
-        'SIFT': lambda: cv2.SIFT_create().detectAndCompute(gray, None),
-        'AKAZE': lambda: cv2.AKAZE_create().detectAndCompute(gray, None),
-    }
-    
-    results = {}
-    for name, detector in detectors.items():
-        start = time.time()
-        result = detector()
-        elapsed = time.time() - start
-        
-        if name == 'Harris':
-            count = np.sum(result > 0.01 * result.max())
-        elif name == 'FAST':
-            count = len(result)
-        else:
-            count = len(result[0]) if result[0] is not None else 0
-        
-        results[name] = {'time': elapsed * 1000, 'count': count}
-    
-    # Visualize
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    
-    names = list(results.keys())
-    times = [results[n]['time'] for n in names]
-    counts = [results[n]['count'] for n in names]
-    
-    axes[0].bar(names, times, color='steelblue')
-    axes[0].set_ylabel('Time (ms)')
-    axes[0].set_title('Detection Speed')
-    axes[0].tick_params(axis='x', rotation=45)
-    
-    axes[1].bar(names, counts, color='coral')
-    axes[1].set_ylabel('Keypoints')
-    axes[1].set_title('Keypoint Count')
-    axes[1].tick_params(axis='x', rotation=45)
-    
-    plt.tight_layout()
-    plt.show()
-    
-    print("\n📊 Detector Comparison:")
-    for name, data in results.items():
-        print(f"  {name}: {data['count']} keypoints in {data['time']:.1f}ms")
-
-compare_detectors(img1, gray1)
-
-print("\n" + "="*50)
-print("✅ ALL FEATURE DETECTION COMPLETE!")
-print("="*50)
 ```
+┌─────────────────────────────────────────────────────┐
+│  STRUCTURE TENSOR (Second Moment Matrix)           │
+│                                                     │
+│       ┌                    ┐                        │
+│  M =  │  Σ Ix²    Σ IxIy  │  weighted by Gaussian  │
+│       │  Σ IxIy   Σ Iy²   │                        │
+│       └                    ┘                        │
+│                                                     │
+│  CORNER RESPONSE                                    │
+│                                                     │
+│  R = det(M) - k·trace(M)²                          │
+│  R = λ₁λ₂ - k(λ₁ + λ₂)²                            │
+│                                                     │
+│  k ≈ 0.04 - 0.06 (empirical)                       │
+│                                                     │
+│  R > threshold → CORNER                            │
+│  R < 0 → EDGE                                      │
+│  |R| small → FLAT                                  │
+└─────────────────────────────────────────────────────┘
+```
+
+### 2. Scale-Space for Blob Detection
+
+```
+┌─────────────────────────────────────────────────────┐
+│  LAPLACIAN OF GAUSSIAN (LoG)                        │
+│                                                     │
+│  LoG(x,y,σ) = ∂²G/∂x² + ∂²G/∂y²                   │
+│                                                     │
+│  Scale-normalized: σ² · LoG                        │
+│                                                     │
+│  DIFFERENCE OF GAUSSIAN (DoG) - Approximation      │
+│                                                     │
+│  DoG ≈ (k-1)σ² ∇²G                                 │
+│  DoG(x,y,σ) = G(x,y,kσ) - G(x,y,σ)                │
+│                                                     │
+│  Used in SIFT: k = √2                              │
+└─────────────────────────────────────────────────────┘
+```
+
+### 3. SIFT Descriptor
+
+```
+┌─────────────────────────────────────────────────────┐
+│  SIFT DESCRIPTOR (128-D)                            │
+│                                                     │
+│  1. Take 16×16 patch around keypoint               │
+│  2. Divide into 4×4 grid of cells                  │
+│  3. Compute 8-bin gradient histogram per cell      │
+│  4. Concatenate: 4×4×8 = 128 dimensions           │
+│  5. Normalize to unit length                       │
+│                                                     │
+│  Gradient magnitude: m = √(Lx² + Ly²)              │
+│  Gradient orientation: θ = atan2(Ly, Lx)           │
+│                                                     │
+│  Properties:                                        │
+│  - Scale invariant (normalized to keypoint scale)  │
+│  - Rotation invariant (aligned to dominant orient) │
+│  - Illumination robust (normalized descriptor)     │
+└─────────────────────────────────────────────────────┘
+```
+
+### 4. ORB (Oriented FAST and Rotated BRIEF)
+
+```
+┌─────────────────────────────────────────────────────┐
+│  FAST Keypoint Detection                            │
+│                                                     │
+│  - Check 16 pixels on circle of radius 3           │
+│  - If N contiguous pixels brighter/darker than     │
+│    center by threshold → corner                    │
+│  - Very fast: uses decision tree                   │
+│                                                     │
+│  BRIEF Descriptor (Binary)                          │
+│                                                     │
+│  - 256 pairs of pixel locations                    │
+│  - Compare intensities: τ(p,q) = 1 if I(p) < I(q) │
+│  - Result: 256-bit binary string                   │
+│                                                     │
+│  ORB adds:                                          │
+│  - Orientation from intensity centroid             │
+│  - Steered BRIEF for rotation invariance           │
+│                                                     │
+│  Matching: Hamming distance (XOR + popcount)       │
+└─────────────────────────────────────────────────────┘
+```
+
+### 5. HOG (Histogram of Oriented Gradients)
+
+```
+┌─────────────────────────────────────────────────────┐
+│  HOG FEATURE COMPUTATION                            │
+│                                                     │
+│  1. Divide image into cells (8×8 pixels)           │
+│  2. Compute gradient magnitude & orientation       │
+│  3. Create 9-bin histogram per cell                │
+│  4. Group cells into blocks (2×2 cells)            │
+│  5. L2-normalize each block                        │
+│                                                     │
+│  For 64×128 detection window:                      │
+│  - 8×16 cells                                      │
+│  - 7×15 blocks (overlapping)                       │
+│  - 7×15×4×9 = 3780 dimensions                      │
+│                                                     │
+│  Bin interpolation:                                 │
+│  - Trilinear: spatial (x,y) + orientation (θ)     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## ⚙️ Algorithms
+
+### Algorithm 1: Harris Corner Detection
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image I, k, threshold                       │
+│  OUTPUT: Corner locations                           │
+│                                                     │
+│  1. Compute gradients: Ix = ∂I/∂x, Iy = ∂I/∂y     │
+│  2. Compute products: Ix², Iy², IxIy               │
+│  3. Apply Gaussian window w to each product        │
+│  4. For each pixel (x,y):                          │
+│     a. M = [Σw·Ix²  Σw·IxIy]                       │
+│            [Σw·IxIy Σw·Iy² ]                       │
+│     b. R = det(M) - k·trace(M)²                    │
+│  5. Non-maximum suppression on R                   │
+│  6. Return pixels where R > threshold              │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 2: SIFT Keypoint Detection
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image I                                     │
+│  OUTPUT: Keypoints with (x, y, scale, orientation) │
+│                                                     │
+│  1. BUILD SCALE SPACE:                             │
+│     - Multiple octaves (each half resolution)      │
+│     - 5 scales per octave (σ, kσ, k²σ, ...)       │
+│                                                     │
+│  2. COMPUTE DoG:                                    │
+│     - DoG = G(kσ) - G(σ) between adjacent scales  │
+│                                                     │
+│  3. FIND EXTREMA:                                   │
+│     - Compare each pixel to 26 neighbors           │
+│       (8 spatial + 9 above + 9 below)              │
+│                                                     │
+│  4. REFINE LOCATION:                               │
+│     - Sub-pixel via Taylor expansion               │
+│     - Reject low contrast & edge responses         │
+│                                                     │
+│  5. ASSIGN ORIENTATION:                             │
+│     - 36-bin histogram in local region             │
+│     - Dominant peak(s) → keypoint orientation(s)   │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 3: Feature Matching with Ratio Test
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Descriptors D1, D2                          │
+│  OUTPUT: Matched pairs                              │
+│                                                     │
+│  FOR each descriptor d1 in D1:                     │
+│    1. Compute distance to all d2 in D2             │
+│    2. Find nearest (dist1) and 2nd nearest (dist2) │
+│    3. IF dist1/dist2 < ratio (0.75):              │
+│         Accept match (d1, nearest d2)              │
+│       ELSE:                                         │
+│         Reject as ambiguous                        │
+│                                                     │
+│  For binary descriptors (ORB):                     │
+│    - Distance = Hamming = popcount(d1 XOR d2)      │
+│                                                     │
+│  For float descriptors (SIFT):                     │
+│    - Distance = L2 = ||d1 - d2||                   │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 4: RANSAC for Geometric Verification
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Matched points, threshold, iterations      │
+│  OUTPUT: Homography H, inlier mask                 │
+│                                                     │
+│  best_H = None                                      │
+│  best_inliers = 0                                   │
+│                                                     │
+│  FOR i = 1 to iterations:                          │
+│    1. Random sample 4 point pairs                  │
+│    2. Compute H from 4 correspondences (DLT)       │
+│    3. FOR each match:                              │
+│         error = ||p2 - H·p1||                      │
+│         IF error < threshold: count as inlier     │
+│    4. IF inliers > best_inliers:                   │
+│         best_H = H                                  │
+│         best_inliers = inliers                     │
+│                                                     │
+│  Refine best_H using all inliers                   │
+│  RETURN best_H, inlier_mask                        │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📓 Practice
+
+See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
 ## ❓ Interview Questions & Answers
 
-### Q1: SIFT vs ORB - when to use which?
+<details>
+<summary><b>Q1: SIFT vs ORB - when to use which?</b></summary>
+
 | SIFT | ORB |
-|------|-----|
+|:-----|:----|
 | 128D float descriptor | 256-bit binary |
-| Scale + rotation invariant | Rotation invariant |
-| Slower | ~100x faster |
-| More accurate | Good enough for real-time |
+| Scale + rotation invariant | Rotation invariant only |
+| Slower (~10 ms/image) | ~100x faster (~0.1 ms) |
+| More accurate matching | Good enough for real-time |
+| Patented (was, now free) | Free from start |
 
-### Q2: How does Harris corner detection work?
-**Answer:**
-1. Compute gradients Ix, Iy
-2. Build structure tensor M
-3. R = det(M) - k·trace(M)²
-4. Large R = corner
+**Use SIFT:** When accuracy matters (3D reconstruction)
+**Use ORB:** Real-time applications (AR, SLAM)
 
-### Q3: What is the ratio test in matching?
-**Answer:** Lowe's ratio test: if best/2nd_best < 0.75 → good match
+</details>
 
-### Q4: How does RANSAC work?
-**Answer:**
-1. Sample minimal set (4 for homography)
-2. Fit model
-3. Count inliers
-4. Repeat, keep best
+<details>
+<summary><b>Q2: How does Harris corner detection work?</b></summary>
 
-### Q5: Why is HOG good for pedestrian detection?
-**Answer:** Captures edge orientations in local cells, robust to illumination, proven effective for human shape detection.
+**Steps:**
+1. Compute image gradients Ix, Iy (Sobel)
+2. Build structure tensor M (second moment matrix)
+3. Compute corner response R = det(M) - k·trace(M)²
+4. Non-maximum suppression
+5. Threshold to get corners
+
+**Intuition:**
+- **R > 0 (large):** Corner (λ₁, λ₂ both large)
+- **R < 0:** Edge (one λ large, one small)
+- **R ≈ 0:** Flat region (both λ small)
+
+</details>
+
+<details>
+<summary><b>Q3: What is the ratio test in feature matching?</b></summary>
+
+**Lowe's Ratio Test:**
+- Find best match (distance d1) and second-best match (d2)
+- Accept match if d1/d2 < 0.75
+- Rejects ambiguous matches where multiple features are similar
+
+**Why it works:** Good matches have unique nearest neighbor; bad matches have multiple similar candidates.
+
+</details>
+
+<details>
+<summary><b>Q4: How does RANSAC work?</b></summary>
+
+**Algorithm:**
+1. **Sample:** Pick minimal set (4 for homography)
+2. **Fit:** Compute model from sample
+3. **Score:** Count inliers (points fitting model within threshold)
+4. **Repeat:** N iterations, keep best model
+5. **Refine:** Re-estimate using all inliers
+
+**Key parameters:**
+- N iterations: `log(1-p) / log(1-wⁿ)` where p=success prob, w=inlier ratio, n=sample size
+- Threshold: typically 3-5 pixels for geometric models
+
+</details>
+
+<details>
+<summary><b>Q5: Why is HOG good for pedestrian detection?</b></summary>
+
+**Reasons:**
+1. **Captures shape:** Gradients encode edges and contours
+2. **Robust to illumination:** Gradient-based, block normalization
+3. **Local + global:** Cells capture local, blocks capture spatial arrangement
+4. **Proven:** Dalal & Triggs showed state-of-art results on INRIA dataset
+
+**Limitations:** Fixed window size, sensitive to occlusion, replaced by CNNs
+
+</details>
+
+<details>
+<summary><b>Q6: What is scale-space and why is it important?</b></summary>
+
+**Scale-space:** Family of smoothed images at multiple scales (Gaussian pyramid)
+
+**Importance:**
+- Objects appear at different sizes
+- Features should be detected at their natural scale
+- SIFT finds keypoints as extrema across scale
+
+**Mathematical basis:** Gaussian is the only kernel satisfying scale-space axioms (no spurious details at coarser scales)
+
+</details>
+
+<details>
+<summary><b>Q7: How is rotation invariance achieved in SIFT?</b></summary>
+
+**Steps:**
+1. Compute gradient orientations in region around keypoint
+2. Build 36-bin orientation histogram
+3. Find dominant orientation (peak)
+4. Assign orientation to keypoint
+5. Rotate descriptor coordinate system to canonical orientation
+
+**Result:** Same feature produces same descriptor regardless of image rotation
+
+</details>
+
+---
+
+## 📚 Key Formulas Reference
+
+| Formula | Description |
+|:--------|:------------|
+| R = det(M) - k·trace(M)² | Harris corner response |
+| DoG ≈ G(kσ) - G(σ) | Difference of Gaussian |
+| m = √(Ix² + Iy²) | Gradient magnitude |
+| θ = atan2(Iy, Ix) | Gradient orientation |
+| d = popcount(d1 XOR d2) | Hamming distance |
 
 ---
 

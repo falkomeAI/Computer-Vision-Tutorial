@@ -1,10 +1,12 @@
 <div align="center">
 
-# 🔧 Low-Level Image Processing
+# 🖼️ Low-Level Image Processing
 
-### *Filtering, Enhancement, Restoration*
+### *Filtering, Enhancement & Restoration*
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1dZ0RnPnLxPHzZCq0V8lJHdVl0lJEzxHa)
+| Level | Time | Prerequisites |
+|:-----:|:----:|:-------------:|
+| 🟢 Beginner | 2 hours | Signal Processing basics |
 
 </div>
 
@@ -15,12 +17,24 @@
 ---
 
 ## 📖 Table of Contents
+- [Key Concepts](#-key-concepts)
+- [Mathematical Foundations](#-mathematical-foundations)
+- [Algorithms](#-algorithms)
 - [Visual Overview](#-visual-overview)
-- [Complete Colab Code](#-complete-colab-code)
-- [Histogram Processing](#-histogram-processing)
-- [Spatial Filtering](#-spatial-filtering)
-- [Edge Detection](#-edge-detection)
+- [Practice](#-practice)
 - [Interview Q&A](#-interview-questions--answers)
+
+---
+
+## 🎯 Key Concepts
+
+| Concept | Description | Use Case |
+|:--------|:------------|:---------|
+| **Convolution** | Sliding kernel operation | Filtering, blur, edge |
+| **Histogram** | Intensity distribution | Contrast, exposure analysis |
+| **Noise** | Unwanted signal variations | Denoising required |
+| **Edge** | Intensity discontinuity | Object boundaries |
+| **Morphology** | Shape-based operations | Binary image processing |
 
 ---
 
@@ -32,392 +46,318 @@
 
 ---
 
-## 📓 Complete Colab Code
+## 🔢 Mathematical Foundations
 
-### Copy this entire block to run in Google Colab:
+### 1. 2D Convolution
 
-```python
-#@title 🔧 Low-Level Image Processing - Complete Tutorial
-#@markdown Run this cell to install dependencies and set up
+```
+┌─────────────────────────────────────────────────────┐
+│  DISCRETE CONVOLUTION                               │
+│                                                     │
+│  (f * k)[i,j] = ΣΣ f[i-m, j-n] · k[m,n]           │
+│                 m  n                                │
+│                                                     │
+│  Properties:                                        │
+│  - Commutative: f * k = k * f                      │
+│  - Associative: (f * k₁) * k₂ = f * (k₁ * k₂)     │
+│  - Distributive: f * (k₁ + k₂) = f*k₁ + f*k₂      │
+│                                                     │
+│  Boundary handling:                                 │
+│  - Zero padding, replicate, reflect, wrap          │
+└─────────────────────────────────────────────────────┘
+```
 
-!pip install opencv-python-headless matplotlib numpy scipy scikit-image -q
+### 2. Common Kernels
 
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import ndimage
-from skimage import data, filters, exposure
-from google.colab import files
-from io import BytesIO
-from PIL import Image
-import urllib.request
+```
+┌─────────────────────────────────────────────────────┐
+│  BOX BLUR (3×3)         GAUSSIAN (3×3, σ≈0.85)     │
+│                                                     │
+│  1/9 [1 1 1]            1/16 [1 2 1]               │
+│      [1 1 1]                 [2 4 2]               │
+│      [1 1 1]                 [1 2 1]               │
+│                                                     │
+│  SOBEL Gx               SOBEL Gy                   │
+│                                                     │
+│  [-1 0 1]               [-1 -2 -1]                 │
+│  [-2 0 2]               [ 0  0  0]                 │
+│  [-1 0 1]               [ 1  2  1]                 │
+│                                                     │
+│  LAPLACIAN              SHARPEN                    │
+│                                                     │
+│  [0  1  0]              [ 0 -1  0]                 │
+│  [1 -4  1]              [-1  5 -1]                 │
+│  [0  1  0]              [ 0 -1  0]                 │
+└─────────────────────────────────────────────────────┘
+```
 
-# Download sample image
-url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/300px-PNG_transparency_demonstration_1.png"
-urllib.request.urlretrieve(url, "sample.png")
-image = cv2.imread("sample.png")
-if image is None:
-    # Fallback: create synthetic image
-    image = np.random.randint(0, 255, (300, 300, 3), dtype=np.uint8)
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+### 3. Histogram Operations
 
-print("✅ Setup complete! Image shape:", image.shape)
+```
+┌─────────────────────────────────────────────────────┐
+│  HISTOGRAM h(r):                                    │
+│  h(rₖ) = nₖ  (number of pixels with value rₖ)      │
+│                                                     │
+│  HISTOGRAM EQUALIZATION                             │
+│  s = T(r) = (L-1) · Σⱼ₌₀ʳ p(rⱼ)                    │
+│                                                     │
+│  where p(r) = h(r) / (M×N)  (normalized histogram) │
+│                                                     │
+│  CLAHE (Contrast Limited AHE):                     │
+│  1. Divide image into tiles                        │
+│  2. Equalize each tile separately                  │
+│  3. Clip histogram at limit, redistribute          │
+│  4. Bilinear interpolate at tile boundaries        │
+└─────────────────────────────────────────────────────┘
+```
 
-#@title 1️⃣ Histogram Equalization
-def histogram_demo(img):
-    """Demonstrate histogram equalization"""
-    fig, axes = plt.subplots(2, 3, figsize=(15, 10))
-    
-    # Original
-    axes[0, 0].imshow(img, cmap='gray')
-    axes[0, 0].set_title('Original Image')
-    axes[0, 0].axis('off')
-    
-    # Original histogram
-    axes[1, 0].hist(img.ravel(), bins=256, range=(0, 256), color='blue', alpha=0.7)
-    axes[1, 0].set_title('Original Histogram')
-    axes[1, 0].set_xlabel('Pixel Value')
-    axes[1, 0].set_ylabel('Frequency')
-    
-    # Standard equalization
-    equalized = cv2.equalizeHist(img)
-    axes[0, 1].imshow(equalized, cmap='gray')
-    axes[0, 1].set_title('Histogram Equalized')
-    axes[0, 1].axis('off')
-    
-    axes[1, 1].hist(equalized.ravel(), bins=256, range=(0, 256), color='green', alpha=0.7)
-    axes[1, 1].set_title('Equalized Histogram')
-    
-    # CLAHE
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-    clahe_img = clahe.apply(img)
-    axes[0, 2].imshow(clahe_img, cmap='gray')
-    axes[0, 2].set_title('CLAHE (Adaptive)')
-    axes[0, 2].axis('off')
-    
-    axes[1, 2].hist(clahe_img.ravel(), bins=256, range=(0, 256), color='red', alpha=0.7)
-    axes[1, 2].set_title('CLAHE Histogram')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    return equalized, clahe_img
+### 4. Noise Models
 
-eq_img, clahe_img = histogram_demo(gray)
-print("📊 Histogram equalization complete!")
+```
+┌─────────────────────────────────────────────────────┐
+│  GAUSSIAN NOISE                                     │
+│  p(z) = (1/√2πσ) exp(-(z-μ)²/2σ²)                 │
+│                                                     │
+│  SALT & PEPPER NOISE                               │
+│  p(z) = Pₐ if z=a (pepper), Pᵦ if z=b (salt)      │
+│                                                     │
+│  POISSON (SHOT) NOISE                              │
+│  p(k) = λᵏe⁻λ / k!                                 │
+│  Signal-dependent (common in low light)            │
+│                                                     │
+│  SNR = 10 log₁₀(signal_power / noise_power) dB    │
+└─────────────────────────────────────────────────────┘
+```
 
-#@title 2️⃣ Spatial Filtering (Blur, Sharpen, Denoise)
-def filtering_demo(img):
-    """Demonstrate different filtering operations"""
-    fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-    
-    # Original
-    axes[0, 0].imshow(img, cmap='gray')
-    axes[0, 0].set_title('Original')
-    axes[0, 0].axis('off')
-    
-    # Box blur
-    box_blur = cv2.blur(img, (5, 5))
-    axes[0, 1].imshow(box_blur, cmap='gray')
-    axes[0, 1].set_title('Box Blur (5×5)')
-    axes[0, 1].axis('off')
-    
-    # Gaussian blur
-    gaussian_blur = cv2.GaussianBlur(img, (5, 5), sigmaX=1.5)
-    axes[0, 2].imshow(gaussian_blur, cmap='gray')
-    axes[0, 2].set_title('Gaussian Blur (σ=1.5)')
-    axes[0, 2].axis('off')
-    
-    # Median filter
-    median_blur = cv2.medianBlur(img, 5)
-    axes[0, 3].imshow(median_blur, cmap='gray')
-    axes[0, 3].set_title('Median Filter (5×5)')
-    axes[0, 3].axis('off')
-    
-    # Bilateral filter
-    bilateral = cv2.bilateralFilter(img, d=9, sigmaColor=75, sigmaSpace=75)
-    axes[1, 0].imshow(bilateral, cmap='gray')
-    axes[1, 0].set_title('Bilateral Filter')
-    axes[1, 0].axis('off')
-    
-    # Sharpening
-    kernel_sharpen = np.array([[-1, -1, -1],
-                               [-1,  9, -1],
-                               [-1, -1, -1]])
-    sharpened = cv2.filter2D(img, -1, kernel_sharpen)
-    axes[1, 1].imshow(sharpened, cmap='gray')
-    axes[1, 1].set_title('Sharpening')
-    axes[1, 1].axis('off')
-    
-    # Unsharp masking
-    blurred = cv2.GaussianBlur(img, (0, 0), 3)
-    unsharp = cv2.addWeighted(img, 1.5, blurred, -0.5, 0)
-    axes[1, 2].imshow(unsharp, cmap='gray')
-    axes[1, 2].set_title('Unsharp Mask')
-    axes[1, 2].axis('off')
-    
-    # Non-local means denoising
-    denoised = cv2.fastNlMeansDenoising(img, h=10, templateWindowSize=7, searchWindowSize=21)
-    axes[1, 3].imshow(denoised, cmap='gray')
-    axes[1, 3].set_title('Non-Local Means')
-    axes[1, 3].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-    
-filtering_demo(gray)
-print("🎛️ Spatial filtering complete!")
+### 5. Edge Detection
 
-#@title 3️⃣ Edge Detection
-def edge_detection_demo(img):
-    """Demonstrate edge detection methods"""
-    fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-    
-    # Original
-    axes[0, 0].imshow(img, cmap='gray')
-    axes[0, 0].set_title('Original')
-    axes[0, 0].axis('off')
-    
-    # Sobel X
-    sobel_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
-    axes[0, 1].imshow(np.abs(sobel_x), cmap='gray')
-    axes[0, 1].set_title('Sobel X (Vertical edges)')
-    axes[0, 1].axis('off')
-    
-    # Sobel Y
-    sobel_y = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
-    axes[0, 2].imshow(np.abs(sobel_y), cmap='gray')
-    axes[0, 2].set_title('Sobel Y (Horizontal edges)')
-    axes[0, 2].axis('off')
-    
-    # Sobel magnitude
-    magnitude = np.sqrt(sobel_x**2 + sobel_y**2)
-    axes[0, 3].imshow(magnitude, cmap='gray')
-    axes[0, 3].set_title('Sobel Magnitude')
-    axes[0, 3].axis('off')
-    
-    # Laplacian
-    laplacian = cv2.Laplacian(img, cv2.CV_64F)
-    axes[1, 0].imshow(np.abs(laplacian), cmap='gray')
-    axes[1, 0].set_title('Laplacian')
-    axes[1, 0].axis('off')
-    
-    # Canny
-    canny = cv2.Canny(img, 50, 150)
-    axes[1, 1].imshow(canny, cmap='gray')
-    axes[1, 1].set_title('Canny (50-150)')
-    axes[1, 1].axis('off')
-    
-    # Canny with different thresholds
-    canny2 = cv2.Canny(img, 100, 200)
-    axes[1, 2].imshow(canny2, cmap='gray')
-    axes[1, 2].set_title('Canny (100-200)')
-    axes[1, 2].axis('off')
-    
-    # Gradient direction
-    direction = np.arctan2(sobel_y, sobel_x)
-    axes[1, 3].imshow(direction, cmap='hsv')
-    axes[1, 3].set_title('Gradient Direction')
-    axes[1, 3].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-    
-edge_detection_demo(gray)
-print("🔍 Edge detection complete!")
+```
+┌─────────────────────────────────────────────────────┐
+│  GRADIENT MAGNITUDE & DIRECTION                     │
+│                                                     │
+│  G = √(Gx² + Gy²)                                  │
+│  θ = atan2(Gy, Gx)                                 │
+│                                                     │
+│  CANNY EDGE DETECTION:                             │
+│  1. Gaussian smoothing                             │
+│  2. Compute gradient (Sobel)                       │
+│  3. Non-maximum suppression                        │
+│  4. Double thresholding + hysteresis               │
+│                                                     │
+│  LAPLACIAN (2nd derivative):                       │
+│  ∇²f = ∂²f/∂x² + ∂²f/∂y²                          │
+│  Zero-crossings indicate edges                     │
+└─────────────────────────────────────────────────────┘
+```
 
-#@title 4️⃣ Morphological Operations
-def morphology_demo(img):
-    """Demonstrate morphological operations"""
-    # Create binary image
-    _, binary = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-    
-    # Structuring element
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-    
-    fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-    
-    axes[0, 0].imshow(binary, cmap='gray')
-    axes[0, 0].set_title('Binary Image')
-    axes[0, 0].axis('off')
-    
-    # Erosion
-    erosion = cv2.erode(binary, kernel, iterations=1)
-    axes[0, 1].imshow(erosion, cmap='gray')
-    axes[0, 1].set_title('Erosion')
-    axes[0, 1].axis('off')
-    
-    # Dilation
-    dilation = cv2.dilate(binary, kernel, iterations=1)
-    axes[0, 2].imshow(dilation, cmap='gray')
-    axes[0, 2].set_title('Dilation')
-    axes[0, 2].axis('off')
-    
-    # Opening
-    opening = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
-    axes[0, 3].imshow(opening, cmap='gray')
-    axes[0, 3].set_title('Opening (Erode→Dilate)')
-    axes[0, 3].axis('off')
-    
-    # Closing
-    closing = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
-    axes[1, 0].imshow(closing, cmap='gray')
-    axes[1, 0].set_title('Closing (Dilate→Erode)')
-    axes[1, 0].axis('off')
-    
-    # Gradient
-    gradient = cv2.morphologyEx(binary, cv2.MORPH_GRADIENT, kernel)
-    axes[1, 1].imshow(gradient, cmap='gray')
-    axes[1, 1].set_title('Morphological Gradient')
-    axes[1, 1].axis('off')
-    
-    # Top Hat
-    tophat = cv2.morphologyEx(binary, cv2.MORPH_TOPHAT, kernel)
-    axes[1, 2].imshow(tophat, cmap='gray')
-    axes[1, 2].set_title('Top Hat')
-    axes[1, 2].axis('off')
-    
-    # Black Hat
-    blackhat = cv2.morphologyEx(binary, cv2.MORPH_BLACKHAT, kernel)
-    axes[1, 3].imshow(blackhat, cmap='gray')
-    axes[1, 3].set_title('Black Hat')
-    axes[1, 3].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
+### 6. Morphological Operations
 
-morphology_demo(gray)
-print("🔲 Morphological operations complete!")
-
-#@title 5️⃣ Custom Convolution Kernels
-def custom_kernels_demo(img):
-    """Demonstrate custom convolution kernels"""
-    
-    # Define various kernels
-    kernels = {
-        'Identity': np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]]),
-        'Edge Detect': np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]]),
-        'Emboss': np.array([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]]),
-        'Box Blur': np.ones((3, 3)) / 9,
-        'Gaussian 3x3': np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]]) / 16,
-        'Sharpen': np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]]),
-        'Prewitt X': np.array([[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]]),
-        'Prewitt Y': np.array([[-1, -1, -1], [0, 0, 0], [1, 1, 1]])
-    }
-    
-    fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-    axes = axes.flatten()
-    
-    for idx, (name, kernel) in enumerate(kernels.items()):
-        result = cv2.filter2D(img, -1, kernel)
-        axes[idx].imshow(result, cmap='gray')
-        axes[idx].set_title(f'{name}\n{kernel.shape[0]}×{kernel.shape[1]}')
-        axes[idx].axis('off')
-    
-    plt.tight_layout()
-    plt.show()
-    
-    # Print kernels
-    print("\n📋 Kernel Values:")
-    for name, kernel in kernels.items():
-        print(f"\n{name}:")
-        print(kernel)
-
-custom_kernels_demo(gray)
-print("🎯 Custom kernels complete!")
-
-print("\n" + "="*50)
-print("✅ ALL DEMOS COMPLETE!")
-print("="*50)
+```
+┌─────────────────────────────────────────────────────┐
+│  DILATION:  (A ⊕ B) = {z | (B̂)ᵤ ∩ A ≠ ∅}          │
+│  Expands foreground                                │
+│                                                     │
+│  EROSION:   (A ⊖ B) = {z | (B)ᵤ ⊆ A}               │
+│  Shrinks foreground                                │
+│                                                     │
+│  OPENING:   A ∘ B = (A ⊖ B) ⊕ B                    │
+│  Removes small bright regions                      │
+│                                                     │
+│  CLOSING:   A • B = (A ⊕ B) ⊖ B                    │
+│  Fills small dark regions                          │
+│                                                     │
+│  GRADIENT:  (A ⊕ B) - (A ⊖ B)                      │
+│  Edge detection for binary images                  │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📊 Histogram Processing
+## ⚙️ Algorithms
 
-### Theory
-- **Histogram**: Distribution of pixel intensities (0-255)
-- **Equalization**: Spread values to use full range
-- **CLAHE**: Adaptive equalization for local contrast
+### Algorithm 1: Gaussian Blur
 
-```python
-# Manual histogram equalization
-def manual_equalize(img):
-    hist, bins = np.histogram(img.flatten(), 256, [0, 256])
-    cdf = hist.cumsum()
-    cdf_normalized = cdf * 255 / cdf.max()
-    equalized = cdf_normalized[img]
-    return equalized.astype(np.uint8)
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image I, sigma σ                           │
+│  OUTPUT: Blurred image                              │
+│                                                     │
+│  1. Compute kernel size: k = ceil(6σ) | 1         │
+│  2. Create 2D Gaussian kernel:                     │
+│     G[x,y] = exp(-(x²+y²)/(2σ²)) / (2πσ²)         │
+│  3. Normalize kernel: K = G / sum(G)               │
+│  4. Convolve: output = I * K                       │
+│                                                     │
+│  SEPARABLE (faster):                               │
+│  1. Create 1D kernel: g[x] = exp(-x²/(2σ²))       │
+│  2. Convolve rows: temp = convolve_1d(I, g)       │
+│  3. Convolve cols: output = convolve_1d(temp.T, g)│
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 2: Bilateral Filter
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image I, spatial σₛ, range σᵣ              │
+│  OUTPUT: Edge-preserving smoothed image            │
+│                                                     │
+│  FOR each pixel p:                                 │
+│    Wₚ = 0                                          │
+│    Iₚ' = 0                                         │
+│    FOR each neighbor q in window:                  │
+│      spatial = exp(-||p-q||² / (2σₛ²))            │
+│      range = exp(-(I[p]-I[q])² / (2σᵣ²))          │
+│      w = spatial × range                           │
+│      Wₚ += w                                       │
+│      Iₚ' += w × I[q]                               │
+│    output[p] = Iₚ' / Wₚ                            │
+│                                                     │
+│  Key: Range term preserves edges                   │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 3: Canny Edge Detection
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image I, σ, low_thresh, high_thresh        │
+│  OUTPUT: Edge map (binary)                         │
+│                                                     │
+│  1. SMOOTH: G = GaussianBlur(I, σ)                │
+│                                                     │
+│  2. GRADIENT:                                       │
+│     Gx = Sobel_x(G)                               │
+│     Gy = Sobel_y(G)                               │
+│     mag = √(Gx² + Gy²)                            │
+│     dir = atan2(Gy, Gx)                           │
+│                                                     │
+│  3. NON-MAX SUPPRESSION:                           │
+│     Thin edges by keeping only local maxima       │
+│     along gradient direction                       │
+│                                                     │
+│  4. DOUBLE THRESHOLD:                              │
+│     strong = mag > high_thresh                    │
+│     weak = low_thresh < mag < high_thresh         │
+│                                                     │
+│  5. HYSTERESIS:                                    │
+│     Keep weak edges connected to strong edges     │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🎛️ Spatial Filtering
+## 📓 Practice
 
-### Common Kernels Reference
-
-| Filter | Kernel | Effect |
-|--------|--------|--------|
-| **Box** | all 1/9 | Simple blur |
-| **Gaussian** | weighted | Smooth blur |
-| **Median** | sort + middle | Salt-pepper noise |
-| **Bilateral** | space + range | Edge-preserving |
-
----
-
-## 🔍 Edge Detection
-
-### Canny Algorithm Steps
-1. **Gaussian blur** - reduce noise
-2. **Gradient calculation** - Sobel operators
-3. **Non-maximum suppression** - thin edges
-4. **Double thresholding** - strong/weak edges
-5. **Hysteresis** - connect weak to strong
+See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
 ## ❓ Interview Questions & Answers
 
-### Q1: Gaussian vs Median filter?
-| Gaussian | Median |
-|----------|--------|
-| Linear | Non-linear |
-| Blurs edges | Preserves edges |
-| Gaussian noise | Salt-pepper noise |
-| Fast (FFT) | Slower (sorting) |
+<details>
+<summary><b>Q1: What's the difference between correlation and convolution?</b></summary>
 
-### Q2: How does bilateral filtering work?
-**Answer:** Uses TWO Gaussians:
-- **Spatial**: weights by distance
-- **Range**: weights by intensity difference
-- Only averages similar nearby pixels → preserves edges
+**Convolution:** Kernel is flipped (180° rotation)
+**Correlation:** Kernel is NOT flipped
 
-### Q3: Why does Canny use double thresholding?
-**Answer:**
-- **High threshold**: Find strong edges (confident)
-- **Low threshold**: Find weak edges (candidates)
-- **Hysteresis**: Keep weak edges connected to strong ones
-- Removes noise while keeping complete edges
+For symmetric kernels (Gaussian), they're identical.
 
-### Q4: Opening vs Closing?
-| Opening | Closing |
-|---------|---------|
-| Erode → Dilate | Dilate → Erode |
-| Removes small bright spots | Fills small dark holes |
-| Smooths contours outward | Smooths contours inward |
+**Formula:**
+- Convolution: f * k = Σ f[i-m] · k[m]
+- Correlation: f ⊗ k = Σ f[i+m] · k[m]
 
-### Q5: What is morphological gradient?
-**Answer:** `Dilation - Erosion` = edge outline of objects. Shows boundaries without direction information.
+</details>
+
+<details>
+<summary><b>Q2: Why is Gaussian blur separable?</b></summary>
+
+**Answer:** 2D Gaussian = product of two 1D Gaussians
+
+G(x,y) = G(x) × G(y)
+
+**Benefit:** O(n²k²) → O(n²k) where k = kernel size
+
+**Example:** 9×9 kernel: 81 ops → 18 ops per pixel
+
+</details>
+
+<details>
+<summary><b>Q3: How does histogram equalization work?</b></summary>
+
+**Steps:**
+1. Compute histogram h(r)
+2. Compute CDF: T(r) = Σ p(rⱼ) for j=0 to r
+3. Map: s = (L-1) × T(r)
+
+**Result:** Output has approximately uniform histogram
+
+**Limitation:** Global method, may over-enhance
+
+**Solution:** CLAHE - adaptive, with clip limit
+
+</details>
+
+<details>
+<summary><b>Q4: What is bilateral filtering?</b></summary>
+
+**Edge-preserving smoothing** that uses:
+- Spatial proximity (like Gaussian)
+- Intensity similarity (range filter)
+
+**Formula:** w = exp(-spatial²/2σₛ²) × exp(-intensity_diff²/2σᵣ²)
+
+**Properties:**
+- Smooths flat regions
+- Preserves edges (large intensity differences get low weight)
+- Non-linear, expensive
+
+</details>
+
+<details>
+<summary><b>Q5: Explain morphological opening vs closing.</b></summary>
+
+**Opening (erosion then dilation):**
+- Removes small bright spots (noise)
+- Smooths object boundaries
+- Disconnects thin bridges
+
+**Closing (dilation then erosion):**
+- Fills small dark holes
+- Connects nearby objects
+- Smooths inner boundaries
+
+**Property:** Both are idempotent (f∘f = f)
+
+</details>
+
+<details>
+<summary><b>Q6: Why does Canny use double thresholding?</b></summary>
+
+**Single threshold problem:**
+- Too high: breaks edges
+- Too low: keeps noise
+
+**Double threshold solution:**
+- Strong edges (> high) definitely kept
+- Weak edges (between) kept IF connected to strong
+- Below low: definitely noise
+
+**Hysteresis:** Follows weak edges connected to strong
+
+</details>
 
 ---
 
-## 📓 More Colab Notebooks
+## 📚 Key Formulas Reference
 
-| Topic | Direct Code |
-|-------|-------------|
-| scikit-image Filters | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/scikit-image/skimage-tutorials/blob/main/lectures/1_image_filters.ipynb) |
-| OpenCV Morphology | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/opencv/opencv/blob/master/samples/python/morphology.py) |
-| Image Restoration | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/scikit-image/skimage-tutorials/blob/main/lectures/4_restoration.ipynb) |
+| Formula | Description |
+|:--------|:------------|
+| (f * k)[i,j] = ΣΣ f[i-m,j-n]·k[m,n] | 2D Convolution |
+| G = √(Gx² + Gy²) | Gradient magnitude |
+| s = (L-1)·Σp(rⱼ) | Histogram equalization |
+| (A ∘ B) = (A ⊖ B) ⊕ B | Morphological opening |
+| w = spatial × range | Bilateral filter weight |
 
 ---
 

@@ -1,89 +1,155 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
-  <rect width="850" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
+  <defs>
+    <linearGradient id="quantGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="pruneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="distillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Model Optimization Techniques</text>
+  <rect width="850" height="380" fill="#0f172a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Model Optimization for Deployment</text>
   
   <!-- Quantization -->
-  <rect x="40" y="70" width="190" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="135" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Quantization</text>
-  
-  <rect x="60" y="115" width="70" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="95" y="135" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">FP32</text>
-  
-  <text x="143" y="135" font-family="Arial, sans-serif" font-size="14" fill="#1e293b">→</text>
-  
-  <rect x="155" y="115" width="60" height="30" fill="#2563eb" rx="4"/>
-  <text x="185" y="135" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">INT8</text>
-  
-  <text x="135" y="170" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">4× smaller</text>
-  <text x="135" y="190" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2-4× faster</text>
+  <g transform="translate(30, 60)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">Quantization</text>
+    
+    <!-- FP32 to INT8 -->
+    <g transform="translate(20, 45)">
+      <rect width="80" height="35" rx="4" fill="url(#quantGrad)" opacity="0.6"/>
+      <text x="40" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">FP32</text>
+      <text x="40" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#dbeafe">32 bits</text>
+    </g>
+    
+    <text x="115" y="65" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">→</text>
+    
+    <g transform="translate(130, 45)">
+      <rect width="80" height="35" rx="4" fill="url(#quantGrad)"/>
+      <text x="40" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">INT8</text>
+      <text x="40" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#dbeafe">8 bits</text>
+    </g>
+    
+    <text x="125" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">4× smaller</text>
+    <text x="125" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">2-4× faster</text>
+    <text x="125" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">PTQ / QAT</text>
+  </g>
   
   <!-- Pruning -->
-  <rect x="250" y="70" width="190" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="345" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Pruning</text>
-  
-  <!-- Neural network visualization -->
-  <circle cx="290" cy="135" r="6" fill="#2563eb"/>
-  <circle cx="290" cy="160" r="6" fill="#2563eb"/>
-  <circle cx="320" cy="140" r="6" fill="#e5e7eb"/>
-  <circle cx="320" cy="165" r="6" fill="#2563eb"/>
-  <circle cx="350" cy="135" r="6" fill="#2563eb"/>
-  <circle cx="350" cy="160" r="6" fill="#e5e7eb"/>
-  <circle cx="380" cy="150" r="6" fill="#2563eb"/>
-  
-  <line x1="296" y1="135" x2="314" y2="140" stroke="#2563eb" stroke-width="1"/>
-  <line x1="296" y1="160" x2="314" y2="165" stroke="#2563eb" stroke-width="1"/>
-  <line x1="326" y1="165" x2="344" y2="135" stroke="#2563eb" stroke-width="1"/>
-  <line x1="356" y1="135" x2="374" y2="150" stroke="#2563eb" stroke-width="1"/>
-  
-  <text x="345" y="190" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Remove ~90% weights</text>
+  <g transform="translate(300, 60)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">Pruning</text>
+    
+    <!-- Dense network -->
+    <g transform="translate(20, 45)">
+      <circle cx="20" cy="15" r="8" fill="#22c55e"/>
+      <circle cx="20" cy="40" r="8" fill="#22c55e"/>
+      <circle cx="60" cy="15" r="8" fill="#22c55e"/>
+      <circle cx="60" cy="40" r="8" fill="#22c55e"/>
+      <line x1="28" y1="15" x2="52" y2="15" stroke="#22c55e" stroke-width="2"/>
+      <line x1="28" y1="15" x2="52" y2="40" stroke="#22c55e" stroke-width="2"/>
+      <line x1="28" y1="40" x2="52" y2="15" stroke="#22c55e" stroke-width="2"/>
+      <line x1="28" y1="40" x2="52" y2="40" stroke="#22c55e" stroke-width="2"/>
+      <text x="40" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Dense</text>
+    </g>
+    
+    <text x="115" y="65" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">→</text>
+    
+    <!-- Sparse network -->
+    <g transform="translate(130, 45)">
+      <circle cx="20" cy="15" r="8" fill="#22c55e"/>
+      <circle cx="20" cy="40" r="8" fill="#64748b" opacity="0.3"/>
+      <circle cx="60" cy="15" r="8" fill="#22c55e"/>
+      <circle cx="60" cy="40" r="8" fill="#22c55e"/>
+      <line x1="28" y1="15" x2="52" y2="15" stroke="#22c55e" stroke-width="2"/>
+      <line x1="28" y1="15" x2="52" y2="40" stroke="#22c55e" stroke-width="2"/>
+      <text x="40" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Sparse</text>
+    </g>
+    
+    <text x="125" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">50-90% smaller</text>
+    <text x="125" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Remove zero weights</text>
+    <text x="125" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Structured / Unstructured</text>
+  </g>
   
   <!-- Distillation -->
-  <rect x="460" y="70" width="190" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="555" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Distillation</text>
+  <g transform="translate(570, 60)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="125" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fbbf24">Knowledge Distillation</text>
+    
+    <!-- Teacher -->
+    <g transform="translate(20, 45)">
+      <rect width="60" height="50" rx="4" fill="url(#distillGrad)"/>
+      <text x="30" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">Teacher</text>
+      <text x="30" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fef3c7">Large</text>
+    </g>
+    
+    <path d="M85 70 L140 70" stroke="#fbbf24" stroke-width="2"/>
+    <text x="112" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fbbf24">soft labels</text>
+    
+    <!-- Student -->
+    <g transform="translate(145, 55)">
+      <rect width="45" height="35" rx="4" fill="#ef4444"/>
+      <text x="22" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fff">Student</text>
+      <text x="22" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fecaca">Small</text>
+    </g>
+    
+    <text x="125" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">Smaller + faster</text>
+    <text x="125" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">KL(student||teacher)</text>
+  </g>
   
-  <rect x="480" y="120" width="60" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="510" y="150" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Teacher</text>
-  
-  <text x="555" y="150" font-family="Arial, sans-serif" font-size="14" fill="#1e293b">→</text>
-  
-  <rect x="575" y="130" width="55" height="35" fill="#2563eb" rx="4"/>
-  <text x="602" y="152" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Student</text>
-  
-  <text x="555" y="190" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Soft labels transfer</text>
-  
-  <!-- Mixed Precision -->
-  <rect x="670" y="70" width="150" height="140" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="745" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Mixed Precision</text>
-  
-  <text x="745" y="130" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">FP16 compute</text>
-  <text x="745" y="150" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">FP32 accumulate</text>
-  
-  <text x="745" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2× speedup</text>
-  <text x="745" y="200" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Same accuracy</text>
-  
-  <!-- Deployment Formats -->
-  <rect x="40" y="230" width="780" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="430" y="260" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Deployment Formats</text>
-  
-  <rect x="70" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="135" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">ONNX</text>
-  <text x="135" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Cross-framework</text>
-  
-  <rect x="230" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="295" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">TensorRT</text>
-  <text x="295" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">NVIDIA optimized</text>
-  
-  <rect x="390" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="455" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">TFLite</text>
-  <text x="455" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Mobile/Edge</text>
-  
-  <rect x="550" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="615" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">CoreML</text>
-  <text x="615" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Apple devices</text>
-  
-  <rect x="710" y="285" width="90" height="70" fill="#2563eb" rx="6"/>
-  <text x="755" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Triton</text>
-  <text x="755" y="340" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">Server</text>
+  <!-- Pipeline -->
+  <g transform="translate(50, 230)">
+    <rect width="750" height="130" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="375" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f8fafc">Deployment Pipeline</text>
+    
+    <!-- Steps -->
+    <g transform="translate(30, 50)">
+      <rect width="100" height="55" rx="6" fill="#7c3aed"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Train</text>
+      <text x="50" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#ddd6fe">Full model</text>
+    </g>
+    
+    <text x="145" y="80" font-family="Arial, sans-serif" font-size="16" fill="#64748b">→</text>
+    
+    <g transform="translate(165, 50)">
+      <rect width="100" height="55" rx="6" fill="url(#quantGrad)"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Quantize</text>
+      <text x="50" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">INT8/FP16</text>
+    </g>
+    
+    <text x="280" y="80" font-family="Arial, sans-serif" font-size="16" fill="#64748b">→</text>
+    
+    <g transform="translate(300, 50)">
+      <rect width="100" height="55" rx="6" fill="#ec4899"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Export</text>
+      <text x="50" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fce7f3">ONNX/TRT</text>
+    </g>
+    
+    <text x="415" y="80" font-family="Arial, sans-serif" font-size="16" fill="#64748b">→</text>
+    
+    <g transform="translate(435, 50)">
+      <rect width="100" height="55" rx="6" fill="#ef4444"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Optimize</text>
+      <text x="50" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fecaca">Fuse layers</text>
+    </g>
+    
+    <text x="550" y="80" font-family="Arial, sans-serif" font-size="16" fill="#64748b">→</text>
+    
+    <g transform="translate(570, 50)">
+      <rect width="130" height="55" rx="6" fill="#22c55e"/>
+      <text x="65" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Deploy</text>
+      <text x="65" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">GPU/Edge/Mobile</text>
+    </g>
+  </g>
 </svg>

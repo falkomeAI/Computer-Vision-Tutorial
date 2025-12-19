@@ -1,76 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  <rect width="800" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="histGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#60a5fa"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Histogram Processing</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Histogram Processing</text>
   
-  <!-- Original Histogram -->
-  <rect x="40" y="70" width="220" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="150" y="95" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Original Histogram</text>
-  
-  <!-- Histogram bars (low contrast) -->
-  <rect x="80" y="180" width="15" height="10" fill="#2563eb"/>
-  <rect x="100" y="165" width="15" height="25" fill="#2563eb"/>
-  <rect x="120" y="140" width="15" height="50" fill="#2563eb"/>
-  <rect x="140" y="120" width="15" height="70" fill="#2563eb"/>
-  <rect x="160" y="130" width="15" height="60" fill="#2563eb"/>
-  <rect x="180" y="150" width="15" height="40" fill="#2563eb"/>
-  <rect x="200" y="175" width="15" height="15" fill="#2563eb"/>
-  
-  <line x1="60" y1="190" x2="230" y2="190" stroke="#1e293b" stroke-width="1"/>
-  <text x="70" y="210" font-family="Arial, sans-serif" font-size="9" fill="#64748b">0</text>
-  <text x="210" y="210" font-family="Arial, sans-serif" font-size="9" fill="#64748b">255</text>
+  <!-- Original Image + Histogram -->
+  <g transform="translate(50, 60)">
+    <rect width="160" height="110" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Low Contrast</text>
+    
+    <!-- Dark image representation -->
+    <rect x="10" y="30" width="60" height="50" rx="3" fill="#334155"/>
+    
+    <!-- Narrow histogram -->
+    <g transform="translate(80, 30)">
+      <rect width="70" height="50" fill="#0f172a" rx="2"/>
+      <rect x="25" y="40" width="8" height="10" fill="url(#histGrad)"/>
+      <rect x="33" y="30" width="8" height="20" fill="url(#histGrad)"/>
+      <rect x="41" y="20" width="8" height="30" fill="url(#histGrad)"/>
+      <rect x="49" y="35" width="8" height="15" fill="url(#histGrad)"/>
+    </g>
+    
+    <text x="80" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Narrow histogram</text>
+  </g>
   
   <!-- Arrow -->
-  <path d="M 265 145 L 310 145" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <text x="287" y="135" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Equalize</text>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  <g transform="translate(220, 110)">
+    <rect width="80" height="30" rx="4" fill="#22c55e"/>
+    <text x="40" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Equalize</text>
+  </g>
   
-  <!-- Equalized Histogram -->
-  <rect x="320" y="70" width="220" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="430" y="95" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Equalized Histogram</text>
+  <!-- Equalized Image + Histogram -->
+  <g transform="translate(320, 60)">
+    <rect width="160" height="110" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="80" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#34d399">High Contrast</text>
+    
+    <!-- Enhanced image -->
+    <rect x="10" y="30" width="60" height="50" rx="3" fill="#475569"/>
+    
+    <!-- Spread histogram -->
+    <g transform="translate(80, 30)">
+      <rect width="70" height="50" fill="#0f172a" rx="2"/>
+      <rect x="5" y="35" width="6" height="15" fill="url(#histGrad)"/>
+      <rect x="13" y="30" width="6" height="20" fill="url(#histGrad)"/>
+      <rect x="21" y="25" width="6" height="25" fill="url(#histGrad)"/>
+      <rect x="29" y="20" width="6" height="30" fill="url(#histGrad)"/>
+      <rect x="37" y="25" width="6" height="25" fill="url(#histGrad)"/>
+      <rect x="45" y="30" width="6" height="20" fill="url(#histGrad)"/>
+      <rect x="53" y="35" width="6" height="15" fill="url(#histGrad)"/>
+      <rect x="61" y="40" width="6" height="10" fill="url(#histGrad)"/>
+    </g>
+    
+    <text x="80" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">Uniform histogram</text>
+  </g>
   
-  <!-- Histogram bars (spread out) -->
-  <rect x="340" y="170" width="15" height="20" fill="#2563eb"/>
-  <rect x="365" y="155" width="15" height="35" fill="#2563eb"/>
-  <rect x="390" y="145" width="15" height="45" fill="#2563eb"/>
-  <rect x="415" y="140" width="15" height="50" fill="#2563eb"/>
-  <rect x="440" y="145" width="15" height="45" fill="#2563eb"/>
-  <rect x="465" y="155" width="15" height="35" fill="#2563eb"/>
-  <rect x="490" y="170" width="15" height="20" fill="#2563eb"/>
-  
-  <line x1="340" y1="190" x2="510" y2="190" stroke="#1e293b" stroke-width="1"/>
-  <text x="345" y="210" font-family="Arial, sans-serif" font-size="9" fill="#64748b">0</text>
-  <text x="495" y="210" font-family="Arial, sans-serif" font-size="9" fill="#64748b">255</text>
+  <!-- CLAHE -->
+  <g transform="translate(510, 60)">
+    <rect width="260" height="110" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="130" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">CLAHE</text>
+    <text x="130" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fef3c7">Contrast Limited Adaptive Histogram Eq.</text>
+    
+    <!-- Grid representation -->
+    <g transform="translate(30, 55)">
+      <rect width="40" height="40" fill="#334155" stroke="#f59e0b" stroke-width="1"/>
+      <rect x="40" width="40" height="40" fill="#3f4f5f" stroke="#f59e0b" stroke-width="1"/>
+      <rect y="40" width="40" height="40" fill="#4f5f6f" stroke="#f59e0b" stroke-width="1"/>
+      <rect x="40" y="40" width="40" height="40" fill="#5f6f7f" stroke="#f59e0b" stroke-width="1"/>
+      <text x="40" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Local tiles</text>
+    </g>
+    
+    <g transform="translate(140, 55)">
+      <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">• Local equalization</text>
+      <text x="50" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">• Clip limit prevents</text>
+      <text x="50" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">  noise amplification</text>
+    </g>
+  </g>
   
   <!-- Formulas -->
-  <rect x="560" y="70" width="200" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="660" y="95" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Formulas</text>
-  
-  <text x="660" y="125" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">CDF Transform:</text>
-  <text x="660" y="150" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">s = T(r) = (L-1)∑p(rⱼ)</text>
-  
-  <text x="660" y="185" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">L = intensity levels</text>
-  <text x="660" y="205" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">p(r) = histogram PDF</text>
-  
-  <!-- Operations Box -->
-  <rect x="40" y="240" width="720" height="140" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="400" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Histogram Operations</text>
-  
-  <rect x="70" y="290" width="150" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="145" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Equalization</text>
-  <text x="145" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Enhance contrast</text>
-  
-  <rect x="250" y="290" width="150" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="325" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Matching</text>
-  <text x="325" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Match target histogram</text>
-  
-  <rect x="430" y="290" width="150" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="505" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Stretching</text>
-  <text x="505" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Linear normalization</text>
-  
-  <rect x="610" y="290" width="130" height="70" fill="#2563eb" rx="6"/>
-  <text x="675" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">CLAHE</text>
-  <text x="675" y="345" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">Adaptive local</text>
+  <g transform="translate(50, 195)">
+    <rect width="700" height="105" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="350" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Histogram Equalization Formula</text>
+    
+    <text x="350" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#fbbf24">s = T(r) = (L-1) × Σ p(rⱼ) for j=0 to k</text>
+    
+    <text x="180" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">r: input intensity</text>
+    <text x="350" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">s: output intensity</text>
+    <text x="520" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">p(r): probability</text>
+  </g>
 </svg>
-

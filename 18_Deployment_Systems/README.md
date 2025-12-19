@@ -1,10 +1,12 @@
 <div align="center">
 
-# 🚀 Deployment & Systems
+# ⚡ Deployment & Optimization
 
-### *Quantization, Pruning, ONNX, TensorRT*
+### *Quantization, Pruning, Distillation, Edge AI*
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pytorch/tutorials/blob/main/advanced_source/dynamic_quantization_tutorial.ipynb)
+| Level | Time | Prerequisites |
+|:-----:|:----:|:-------------:|
+| 🟠 Intermediate-Advanced | 2.5 hours | Deep Learning, PyTorch |
 
 </div>
 
@@ -14,13 +16,23 @@
 
 ---
 
-## 📖 Topics Covered
-- Model Quantization
-- Pruning
-- Knowledge Distillation
-- ONNX Export
-- TensorRT Optimization
-- Edge Deployment
+## 📖 Table of Contents
+- [Key Concepts](#-key-concepts)
+- [Mathematical Foundations](#-mathematical-foundations)
+- [Algorithms](#-algorithms)
+- [Visual Overview](#-visual-overview)
+- [Interview Q&A](#-interview-questions--answers)
+
+---
+
+## 🎯 Key Concepts
+
+| Technique | Size Reduction | Speed | Accuracy |
+|:----------|:---------------|:------|:---------|
+| **Quantization** | 4× (FP32→INT8) | 2-4× | ~1% drop |
+| **Pruning** | 2-10× | 1.5-3× | 1-3% drop |
+| **Distillation** | Student smaller | Varies | 1-2% drop |
+| **Architecture** | Design efficient | Native | Varies |
 
 ---
 
@@ -32,197 +44,362 @@
 
 ---
 
-## 📊 Quantization
+## 🔢 Mathematical Foundations
 
-```python
-import torch.quantization as quant
+### 1. Quantization
 
-# Post-training static quantization
-model.eval()
-model.qconfig = quant.get_default_qconfig('fbgemm')
-quant.prepare(model, inplace=True)
-
-# Calibrate with representative data
-for data in calibration_loader:
-    model(data)
-
-quant.convert(model, inplace=True)
-
-# Dynamic quantization
-quantized_model = torch.quantization.quantize_dynamic(
-    model, {nn.Linear, nn.LSTM}, dtype=torch.qint8
-)
+```
+┌─────────────────────────────────────────────────────┐
+│  LINEAR QUANTIZATION                                │
+│                                                     │
+│  Quantize: q = round(x / scale) + zero_point       │
+│  Dequantize: x' = (q - zero_point) × scale         │
+│                                                     │
+│  SYMMETRIC (signed)                                 │
+│  scale = max(|x|) / 127                            │
+│  zero_point = 0                                     │
+│                                                     │
+│  ASYMMETRIC (unsigned)                              │
+│  scale = (max - min) / 255                         │
+│  zero_point = round(-min / scale)                  │
+│                                                     │
+│  INT8 GEMM:                                         │
+│  Y = scale_a × scale_b × (Qₐ × Qᵦ) + bias          │
+└─────────────────────────────────────────────────────┘
 ```
 
-### Quantization-Aware Training
+### 2. Quantization-Aware Training (QAT)
 
-```python
-model.train()
-model.qconfig = quant.get_default_qat_qconfig('fbgemm')
-quant.prepare_qat(model, inplace=True)
+```
+┌─────────────────────────────────────────────────────┐
+│  FAKE QUANTIZATION (differentiable)                 │
+│                                                     │
+│  Forward: x̂ = dequant(quant(x))                    │
+│  Backward: ∂L/∂x = ∂L/∂x̂ (straight-through)        │
+│                                                     │
+│  Simulates quantization during training             │
+│  Allows network to adapt to quantization noise      │
+│                                                     │
+│  POST-TRAINING vs QAT                               │
+│  PTQ: Faster, slight accuracy drop                  │
+│  QAT: Requires retraining, better accuracy         │
+└─────────────────────────────────────────────────────┘
+```
 
-# Train with fake quantization
-for epoch in range(epochs):
-    for data, target in train_loader:
-        output = model(data)
-        loss = criterion(output, target)
-        loss.backward()
-        optimizer.step()
+### 3. Pruning
 
-quant.convert(model.eval(), inplace=True)
+```
+┌─────────────────────────────────────────────────────┐
+│  UNSTRUCTURED PRUNING                               │
+│                                                     │
+│  Remove individual weights: W' = W ⊙ M             │
+│  M[i,j] = 1 if |W[i,j]| > threshold, else 0        │
+│                                                     │
+│  STRUCTURED PRUNING                                 │
+│                                                     │
+│  Remove entire filters/channels/layers              │
+│  More hardware-friendly                             │
+│                                                     │
+│  MAGNITUDE PRUNING                                  │
+│  Score = |weight|                                   │
+│  Prune lowest k% by magnitude                      │
+│                                                     │
+│  LOTTERY TICKET HYPOTHESIS                          │
+│  Sparse subnetworks exist that train well alone     │
+└─────────────────────────────────────────────────────┘
+```
+
+### 4. Knowledge Distillation
+
+```
+┌─────────────────────────────────────────────────────┐
+│  HINTON'S DISTILLATION                              │
+│                                                     │
+│  L = α × L_hard + (1-α) × L_soft                   │
+│                                                     │
+│  L_hard = CE(student, labels)                       │
+│  L_soft = KL(softmax(student/T), softmax(teacher/T))│
+│                                                     │
+│  Temperature T softens distributions                │
+│  Higher T → more information from teacher           │
+│                                                     │
+│  FEATURE DISTILLATION                               │
+│                                                     │
+│  L_feat = ||f_student - f_teacher||²               │
+│  Match intermediate feature maps                    │
+└─────────────────────────────────────────────────────┘
+```
+
+### 5. Efficient Architectures
+
+| Model | Key Innovation | MAdds | Top-1 |
+|:------|:---------------|:------|:------|
+| **MobileNetV1** | Depthwise separable conv | 569M | 70.6% |
+| **MobileNetV2** | Inverted residual | 300M | 72.0% |
+| **EfficientNet** | Compound scaling | 390M | 77.1% |
+| **ShuffleNet** | Channel shuffle | 140M | 69.4% |
+
+```
+┌─────────────────────────────────────────────────────┐
+│  DEPTHWISE SEPARABLE CONVOLUTION                    │
+│                                                     │
+│  Standard: K×K×Cᵢₙ×Cₒᵤₜ                            │
+│                                                     │
+│  Depthwise: K×K×1×Cᵢₙ (spatial)                    │
+│  Pointwise: 1×1×Cᵢₙ×Cₒᵤₜ (channel mixing)          │
+│                                                     │
+│  Reduction: (K² + Cₒᵤₜ) / (K² × Cₒᵤₜ)              │
+│  For 3×3, Cₒᵤₜ=256: ~9× fewer params               │
+└─────────────────────────────────────────────────────┘
+```
+
+### 6. Mixed Precision Training
+
+```
+┌─────────────────────────────────────────────────────┐
+│  FP16 + FP32 MIXED PRECISION                        │
+│                                                     │
+│  Forward: FP16 (faster, less memory)                │
+│  Backward: FP16                                     │
+│  Master weights: FP32 (for updates)                 │
+│  Loss scaling: scale loss to avoid underflow        │
+│                                                     │
+│  LOSS SCALING                                       │
+│  scaled_loss = loss × scale_factor                  │
+│  Update in FP32, then convert back                  │
+│                                                     │
+│  Speedup: ~2× on modern GPUs (Tensor Cores)        │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ✂️ Pruning
+## ⚙️ Algorithms
 
-```python
-import torch.nn.utils.prune as prune
+### Algorithm 1: Post-Training Quantization
 
-# Unstructured pruning (individual weights)
-prune.l1_unstructured(module, name='weight', amount=0.3)
-
-# Structured pruning (entire filters)
-prune.ln_structured(module, name='weight', amount=0.3, n=2, dim=0)
-
-# Global pruning
-parameters_to_prune = [(m, 'weight') for m in model.modules() if hasattr(m, 'weight')]
-prune.global_unstructured(parameters_to_prune, pruning_method=prune.L1Unstructured, amount=0.2)
-
-# Remove pruning reparametrization
-prune.remove(module, 'weight')
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Trained FP32 model, calibration data        │
+│  OUTPUT: INT8 model                                 │
+│                                                     │
+│  1. Run calibration data through model              │
+│  2. FOR each layer:                                 │
+│     3. Collect activation statistics (min, max)     │
+│     4. Compute scale = (max - min) / 255           │
+│     5. Compute zero_point = round(-min / scale)    │
+│  6. Quantize weights:                               │
+│     q_w = round(w / scale_w)                       │
+│  7. Replace FP32 ops with INT8 ops                 │
+│                                                     │
+│  Calibration methods:                               │
+│  - MinMax: use observed min/max                    │
+│  - Histogram: percentile clipping                  │
+│  - Entropy: minimize KL divergence                 │
+└─────────────────────────────────────────────────────┘
 ```
 
----
+### Algorithm 2: Iterative Pruning
 
-## 📚 Knowledge Distillation
-
-```python
-class DistillationLoss(nn.Module):
-    def __init__(self, temperature=4.0, alpha=0.5):
-        super().__init__()
-        self.temperature = temperature
-        self.alpha = alpha
-        self.ce = nn.CrossEntropyLoss()
-        self.kl = nn.KLDivLoss(reduction='batchmean')
-    
-    def forward(self, student_logits, teacher_logits, labels):
-        # Hard label loss
-        hard_loss = self.ce(student_logits, labels)
-        
-        # Soft label loss (distillation)
-        soft_student = F.log_softmax(student_logits / self.temperature, dim=1)
-        soft_teacher = F.softmax(teacher_logits / self.temperature, dim=1)
-        soft_loss = self.kl(soft_student, soft_teacher) * (self.temperature ** 2)
-        
-        return self.alpha * hard_loss + (1 - self.alpha) * soft_loss
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Trained model, target sparsity s           │
+│  OUTPUT: Pruned model                               │
+│                                                     │
+│  1. Train to convergence                            │
+│  2. FOR each pruning step:                          │
+│     3. Compute importance scores (magnitude)        │
+│     4. Prune lowest p% of weights                  │
+│     5. Fine-tune for k epochs                       │
+│     6. IF sparsity >= s: break                     │
+│                                                     │
+│  GRADUAL PRUNING SCHEDULE                           │
+│  sₜ = sₓ + (s - sₓ)(1 - (t-t₀)/(T-t₀))³           │
+│                                                     │
+│  Start sparse at t₀, reach target at T              │
+└─────────────────────────────────────────────────────┘
 ```
 
----
+### Algorithm 3: Knowledge Distillation
 
-## 📦 ONNX Export
-
-```python
-import torch.onnx
-
-# Export to ONNX
-dummy_input = torch.randn(1, 3, 224, 224)
-torch.onnx.export(
-    model,
-    dummy_input,
-    "model.onnx",
-    input_names=['input'],
-    output_names=['output'],
-    dynamic_axes={'input': {0: 'batch'}, 'output': {0: 'batch'}},
-    opset_version=11
-)
-
-# Run with ONNX Runtime
-import onnxruntime as ort
-session = ort.InferenceSession("model.onnx")
-output = session.run(None, {'input': input_data})
 ```
-
----
-
-## ⚡ TensorRT
-
-```python
-import tensorrt as trt
-
-# Build engine from ONNX
-logger = trt.Logger(trt.Logger.WARNING)
-builder = trt.Builder(logger)
-network = builder.create_network(1 << int(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH))
-parser = trt.OnnxParser(network, logger)
-
-with open("model.onnx", "rb") as f:
-    parser.parse(f.read())
-
-config = builder.create_builder_config()
-config.max_workspace_size = 1 << 30  # 1GB
-engine = builder.build_engine(network, config)
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Teacher model T, student architecture S     │
+│  OUTPUT: Trained student                            │
+│                                                     │
+│  1. Train or load teacher T                         │
+│  2. Initialize student S randomly                   │
+│  3. FOR each batch (x, y):                          │
+│     4. z_t = T(x), z_s = S(x)                      │
+│     5. p_t = softmax(z_t / T)                      │
+│     6. p_s = softmax(z_s / T)                      │
+│     7. L_hard = CE(z_s, y)                         │
+│     8. L_soft = KL(p_s, p_t) × T²                  │
+│     9. L = α × L_hard + (1-α) × L_soft             │
+│    10. Update S using L                             │
+│                                                     │
+│  Temperature T typically 2-20                       │
+│  α typically 0.5-0.9                               │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## ❓ Interview Questions & Answers
 
-### Q1: INT8 vs FP16 vs FP32?
-| Type | Bits | Range | Speed | Accuracy |
-|------|------|-------|-------|----------|
-| FP32 | 32 | Full | 1x | Best |
-| FP16 | 16 | Reduced | 2-4x | Good |
-| INT8 | 8 | ±127 | 4-8x | Needs calibration |
+<details>
+<summary><b>Q1: What is the difference between PTQ and QAT?</b></summary>
 
-### Q2: Structured vs Unstructured pruning?
-| Structured | Unstructured |
-|------------|--------------|
-| Remove filters/channels | Remove individual weights |
-| Hardware friendly | Sparse matrices |
-| Actual speedup | Needs sparse support |
-| Coarser | Fine-grained |
-
-### Q3: Why knowledge distillation works?
 **Answer:**
-- Soft labels carry more information than hard labels
-- "Dark knowledge": teacher's uncertainty
-- Relative probabilities between classes
-- Smoother gradients for training
 
-### Q4: ONNX vs TensorRT?
-| ONNX | TensorRT |
-|------|----------|
-| Format/interop | Runtime/optimizer |
-| Cross-platform | NVIDIA only |
-| No optimization | Heavy optimization |
-| Portable | Maximum performance |
+| Aspect | Post-Training (PTQ) | Quantization-Aware (QAT) |
+|:-------|:--------------------|:-------------------------|
+| Training | No retraining | Retraining required |
+| Time | Fast (minutes) | Slow (hours/days) |
+| Accuracy | Lower | Higher |
+| Use case | Quick deployment | Production quality |
 
-### Q5: How to measure inference speed?
+**QAT** simulates quantization during training, allowing the model to adapt.
+
+</details>
+
+<details>
+<summary><b>Q2: Why is structured pruning more practical than unstructured?</b></summary>
+
 **Answer:**
-```python
-# Warmup
-for _ in range(10):
-    model(dummy_input)
 
-# Time
-torch.cuda.synchronize()
-start = time.time()
-for _ in range(100):
-    model(dummy_input)
-torch.cuda.synchronize()
-latency = (time.time() - start) / 100 * 1000  # ms
-```
+**Unstructured:** Random zeros → need sparse matrix libraries
+
+**Structured:** Remove entire channels/filters → standard dense ops
+
+| Aspect | Unstructured | Structured |
+|:-------|:-------------|:-----------|
+| Granularity | Individual weights | Channels, filters |
+| Sparsity | Very high (90%+) | Moderate (50-80%) |
+| Speedup | Limited (sparse libs) | Direct (smaller matrix) |
+| Hardware | Specialized | Standard |
+
+</details>
+
+<details>
+<summary><b>Q3: How does knowledge distillation work?</b></summary>
+
+**Answer:**
+
+**Teacher:** Large, accurate model
+**Student:** Small, efficient model
+
+**Key insight:** Soft labels (teacher probabilities) contain more information than hard labels
+
+**Temperature:** Higher T → softer distribution → more "dark knowledge"
+
+**Loss:** α × Hard_loss + (1-α) × KL(student, teacher)
+
+**Why it works:** Student learns class relationships, not just correct answer
+
+</details>
+
+<details>
+<summary><b>Q4: Explain depthwise separable convolution.</b></summary>
+
+**Answer:**
+
+**Standard conv:** K×K×Cᵢₙ×Cₒᵤₜ operations
+
+**Depthwise separable:**
+1. **Depthwise:** K×K conv per channel (K×K×Cᵢₙ)
+2. **Pointwise:** 1×1 conv to mix channels (Cᵢₙ×Cₒᵤₜ)
+
+**Savings:** (K² + Cₒᵤₜ)/(K²×Cₒᵤₜ) ≈ 1/Cₒᵤₜ + 1/K²
+
+For 3×3, 256 channels: ~9× reduction
+
+</details>
+
+<details>
+<summary><b>Q5: What is loss scaling in mixed precision?</b></summary>
+
+**Answer:**
+
+**Problem:** FP16 has limited range → small gradients underflow to 0
+
+**Solution:** Scale loss before backward, unscale gradients after
+
+1. loss_scaled = loss × scale (e.g., 1024)
+2. Compute gradients in FP16
+3. Unscale: grad = grad_fp16 / scale
+4. Update in FP32
+
+**Dynamic scaling:** Increase scale until overflow, then reduce
+
+</details>
+
+<details>
+<summary><b>Q6: How does TensorRT optimize inference?</b></summary>
+
+**Answer:**
+
+**Optimizations:**
+1. **Layer fusion:** Conv+BN+ReLU → single kernel
+2. **Precision:** FP16/INT8 with calibration
+3. **Kernel auto-tuning:** Select best CUDA kernels
+4. **Memory:** Optimize tensor memory layout
+5. **Batching:** Dynamic batching for throughput
+
+**Speedup:** Typically 2-10× over PyTorch
+
+</details>
+
+<details>
+<summary><b>Q7: What is the lottery ticket hypothesis?</b></summary>
+
+**Answer:**
+
+**Claim:** Dense networks contain sparse subnetworks (winning tickets) that can train to same accuracy alone.
+
+**Finding:** 
+- Prune + reinitialize to original weights
+- These sparse networks train as well as dense
+
+**Implication:** Dense networks may be overparameterized for training, not just inference
+
+**Limitation:** Finding tickets requires training dense network first
+
+</details>
+
+<details>
+<summary><b>Q8: Compare ONNX, TensorRT, and CoreML.</b></summary>
+
+**Answer:**
+
+| Aspect | ONNX | TensorRT | CoreML |
+|:-------|:-----|:---------|:-------|
+| Purpose | Interchange format | NVIDIA inference | Apple inference |
+| Hardware | Generic | NVIDIA GPU | Apple Neural Engine |
+| Optimization | Minimal | Heavy | Heavy |
+| Platform | Cross-platform | Linux, Windows | macOS, iOS |
+
+**Typical pipeline:** PyTorch → ONNX → TensorRT/CoreML
+
+</details>
 
 ---
 
-## 📓 Colab Notebooks
+## 📚 Key Formulas Reference
 
-| Topic | Link |
-|-------|------|
-| Quantization | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pytorch/tutorials/blob/main/advanced_source/dynamic_quantization_tutorial.ipynb) |
-| Pruning | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pytorch/tutorials/blob/main/intermediate_source/pruning_tutorial.ipynb) |
-| ONNX | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/onnx/tutorials/blob/master/tutorials/PytorchOnnxExport.ipynb) |
+| Formula | Description |
+|:--------|:------------|
+| q = round(x/scale) + zp | Quantization |
+| x' = (q - zp) × scale | Dequantization |
+| W' = W ⊙ M | Pruning (mask) |
+| L = α·CE + (1-α)·KL | Distillation loss |
+| p_soft = softmax(z/T) | Temperature softmax |
+
+---
+
+## 📓 Practice
+
+See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 

@@ -1,75 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
-  <rect width="850" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="homoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Homography: Planar Perspective Transform</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Homography: Planar Transformations</text>
   
-  <!-- Source Plane -->
-  <rect x="40" y="80" width="200" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="140" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Source Plane</text>
+  <!-- Source plane -->
+  <g transform="translate(50, 60)">
+    <path d="M20 100 L100 100 L120 20 L40 20 Z" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+    <circle cx="40" cy="40" r="4" fill="#ef4444"/>
+    <circle cx="100" cy="40" r="4" fill="#ef4444"/>
+    <circle cx="100" cy="80" r="4" fill="#ef4444"/>
+    <circle cx="40" cy="80" r="4" fill="#ef4444"/>
+    <text x="70" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">Source Plane</text>
+  </g>
   
-  <!-- Quadrilateral -->
-  <polygon points="70,130 180,135 190,200 60,210" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-  
-  <circle cx="70" cy="130" r="5" fill="#2563eb"/>
-  <circle cx="180" cy="135" r="5" fill="#2563eb"/>
-  <circle cx="190" cy="200" r="5" fill="#2563eb"/>
-  <circle cx="60" cy="210" r="5" fill="#2563eb"/>
-  
-  <text x="55" y="125" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p₁</text>
-  <text x="185" y="130" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p₂</text>
-  <text x="195" y="205" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p₃</text>
-  <text x="45" y="215" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p₄</text>
+  <!-- Homography matrix -->
+  <g transform="translate(200, 55)">
+    <rect width="180" height="130" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#34d399">Homography H</text>
+    
+    <g transform="translate(25, 40)">
+      <text x="65" y="15" text-anchor="middle" font-family="monospace" font-size="11" fill="#94a3b8">┌ h₁₁ h₁₂ h₁₃ ┐</text>
+      <text x="65" y="40" text-anchor="middle" font-family="monospace" font-size="11" fill="#94a3b8">│ h₂₁ h₂₂ h₂₃ │</text>
+      <text x="65" y="65" text-anchor="middle" font-family="monospace" font-size="11" fill="#94a3b8">└ h₃₁ h₃₂ h₃₃ ┘</text>
+    </g>
+    
+    <text x="90" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">3×3, 8 DOF (up to scale)</text>
+  </g>
   
   <!-- Arrow -->
-  <path d="M 245 155 L 315 155" stroke="#2563eb" stroke-width="3" marker-end="url(#arr)"/>
-  <text x="280" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">H</text>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#2563eb"/></marker></defs>
+  <g transform="translate(390, 100)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="#fbbf24" stroke-width="3"/>
+    <polygon points="60,-6 75,0 60,6" fill="#fbbf24"/>
+    <text x="37" y="-10" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fbbf24">x' = Hx</text>
+  </g>
   
-  <!-- Destination Plane -->
-  <rect x="330" y="80" width="200" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="430" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Destination Plane</text>
-  
-  <!-- Rectangle -->
-  <rect x="360" y="130" width="140" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-  
-  <circle cx="360" cy="130" r="5" fill="#2563eb"/>
-  <circle cx="500" cy="130" r="5" fill="#2563eb"/>
-  <circle cx="500" cy="210" r="5" fill="#2563eb"/>
-  <circle cx="360" cy="210" r="5" fill="#2563eb"/>
-  
-  <text x="345" y="125" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p'₁</text>
-  <text x="505" y="125" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p'₂</text>
-  <text x="505" y="215" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p'₃</text>
-  <text x="345" y="215" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">p'₄</text>
-  
-  <!-- Homography Matrix -->
-  <rect x="560" y="80" width="250" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="685" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Homography Matrix</text>
-  
-  <text x="685" y="145" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">H = [h₁₁ h₁₂ h₁₃]</text>
-  <text x="685" y="165" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">    [h₂₁ h₂₂ h₂₃]</text>
-  <text x="685" y="185" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">    [h₃₁ h₃₂  1 ]</text>
-  
-  <text x="685" y="215" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">8 DOF (scale normalized)</text>
-  
-  <!-- Transformation -->
-  <rect x="40" y="250" width="380" height="130" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="230" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Point Transformation</text>
-  
-  <text x="230" y="315" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">[x', y', w']ᵀ = H [x, y, 1]ᵀ</text>
-  <text x="230" y="345" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">x' = (h₁₁x + h₁₂y + h₁₃) / (h₃₁x + h₃₂y + 1)</text>
-  <text x="230" y="365" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">y' = (h₂₁x + h₂₂y + h₂₃) / (h₃₁x + h₃₂y + 1)</text>
+  <!-- Destination plane -->
+  <g transform="translate(480, 60)">
+    <path d="M10 80 L120 100 L130 30 L30 10 Z" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="35" cy="30" r="4" fill="#22c55e"/>
+    <circle cx="110" cy="35" r="4" fill="#22c55e"/>
+    <circle cx="115" cy="85" r="4" fill="#22c55e"/>
+    <circle cx="25" cy="75" r="4" fill="#22c55e"/>
+    <text x="70" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Dest Plane</text>
+  </g>
   
   <!-- Applications -->
-  <rect x="440" y="250" width="370" height="130" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="625" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Applications</text>
+  <g transform="translate(620, 55)">
+    <rect width="150" height="130" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="75" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Applications</text>
+    
+    <text x="15" y="45" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">• Panorama stitching</text>
+    <text x="15" y="65" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">• AR overlays</text>
+    <text x="15" y="85" font-family="Arial, sans-serif" font-size="9" fill="#f59e0b">• Doc scanning</text>
+    <text x="15" y="105" font-family="Arial, sans-serif" font-size="9" fill="#a78bfa">• Image rectification</text>
+    <text x="15" y="125" font-family="Arial, sans-serif" font-size="9" fill="#ec4899">• Sports analysis</text>
+  </g>
   
-  <text x="530" y="310" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Panorama stitching</text>
-  <text x="720" y="310" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Augmented reality</text>
-  <text x="530" y="340" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Document rectification</text>
-  <text x="720" y="340" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Image registration</text>
-  
-  <text x="625" y="370" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Requires 4 point correspondences (DLT algorithm)</text>
+  <!-- Estimation -->
+  <g transform="translate(50, 205)">
+    <rect width="700" height="95" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="350" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Estimation (DLT + RANSAC)</text>
+    
+    <text x="200" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#fbbf24">Need 4+ point correspondences</text>
+    <text x="200" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Each point gives 2 equations</text>
+    
+    <g transform="translate(380, 40)">
+      <rect width="130" height="25" rx="3" fill="#3b82f6" opacity="0.3"/>
+      <text x="65" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">cv2.findHomography()</text>
+    </g>
+    <g transform="translate(530, 40)">
+      <rect width="130" height="25" rx="3" fill="#22c55e" opacity="0.3"/>
+      <text x="65" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">cv2.warpPerspective()</text>
+    </g>
+  </g>
 </svg>
-

@@ -1,64 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
-  <rect width="850" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="signalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Sampling Theory &amp; Aliasing</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Sampling &amp; Aliasing</text>
   
   <!-- Nyquist Theorem -->
-  <rect x="40" y="70" width="380" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="230" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Nyquist-Shannon Theorem</text>
+  <g transform="translate(50, 55)">
+    <rect width="320" height="120" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="160" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">Nyquist-Shannon Theorem</text>
+    
+    <text x="160" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#fbbf24">fₛ ≥ 2 × fₘₐₓ</text>
+    
+    <text x="160" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Sample at least 2× highest frequency</text>
+    <text x="160" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">to perfectly reconstruct signal</text>
+  </g>
   
-  <text x="230" y="140" font-family="Georgia, serif" font-size="16" fill="#1e293b" text-anchor="middle">fₛ ≥ 2 × f_max</text>
+  <!-- Good sampling -->
+  <g transform="translate(400, 55)">
+    <rect width="170" height="120" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="85" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#34d399">Good Sampling</text>
+    
+    <!-- Signal visualization -->
+    <g transform="translate(15, 35)">
+      <rect width="140" height="55" fill="#0f172a" rx="3"/>
+      <path d="M5 30 Q20 10 35 30 T65 30 T95 30 T125 30" stroke="#22c55e" stroke-width="2" fill="none"/>
+      <!-- Sample points -->
+      <circle cx="5" cy="30" r="4" fill="#22c55e"/>
+      <circle cx="20" cy="15" r="4" fill="#22c55e"/>
+      <circle cx="35" cy="30" r="4" fill="#22c55e"/>
+      <circle cx="50" cy="45" r="4" fill="#22c55e"/>
+      <circle cx="65" cy="30" r="4" fill="#22c55e"/>
+      <circle cx="80" cy="15" r="4" fill="#22c55e"/>
+      <circle cx="95" cy="30" r="4" fill="#22c55e"/>
+    </g>
+    <text x="85" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">fₛ &gt; 2fₘₐₓ ✓</text>
+  </g>
   
-  <text x="230" y="175" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Sampling rate must be at least 2× the</text>
-  <text x="230" y="195" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">highest frequency to avoid aliasing</text>
+  <!-- Aliasing -->
+  <g transform="translate(600, 55)">
+    <rect width="170" height="120" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+    <text x="85" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f87171">Aliasing!</text>
+    
+    <!-- Signal visualization -->
+    <g transform="translate(15, 35)">
+      <rect width="140" height="55" fill="#0f172a" rx="3"/>
+      <path d="M5 30 Q20 10 35 30 T65 30 T95 30 T125 30" stroke="#ef4444" stroke-width="2" fill="none"/>
+      <!-- Few sample points -->
+      <circle cx="5" cy="30" r="4" fill="#ef4444"/>
+      <circle cx="45" cy="35" r="4" fill="#ef4444"/>
+      <circle cx="85" cy="30" r="4" fill="#ef4444"/>
+      <circle cx="125" cy="35" r="4" fill="#ef4444"/>
+      <!-- Wrong reconstruction -->
+      <path d="M5 30 L45 35 L85 30 L125 35" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
+    </g>
+    <text x="85" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">fₛ &lt; 2fₘₐₓ ✗</text>
+  </g>
   
-  <!-- Aliasing Visualization -->
-  <rect x="440" y="70" width="370" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="625" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Aliasing Effect</text>
-  
-  <!-- Original signal -->
-  <path d="M 470 150 Q 495 120 520 150 Q 545 180 570 150 Q 595 120 620 150 Q 645 180 670 150 Q 695 120 720 150 Q 745 180 770 150" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <text x="510" y="195" font-family="Arial, sans-serif" font-size="10" fill="#2563eb">Original (high freq)</text>
-  
-  <!-- Aliased signal -->
-  <path d="M 470 150 Q 570 100 670 150 Q 770 200 770 150" fill="none" stroke="#1e293b" stroke-width="2" stroke-dasharray="5,3"/>
-  <text x="670" y="195" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Aliased (false low freq)</text>
-  
-  <!-- Sample points -->
-  <circle cx="470" cy="150" r="4" fill="#1e293b"/>
-  <circle cx="570" cy="150" r="4" fill="#1e293b"/>
-  <circle cx="670" cy="150" r="4" fill="#1e293b"/>
-  <circle cx="770" cy="150" r="4" fill="#1e293b"/>
-  
-  <!-- Image Examples -->
-  <rect x="40" y="230" width="380" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="230" y="260" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Image Aliasing Examples</text>
-  
-  <rect x="70" y="280" width="90" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="115" y="325" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Moiré</text>
-  <text x="115" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">patterns</text>
-  
-  <rect x="180" y="280" width="90" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="225" y="325" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Jagged</text>
-  <text x="225" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">edges</text>
-  
-  <rect x="290" y="280" width="90" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="335" y="325" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Crawling</text>
-  <text x="335" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">artifacts</text>
-  
-  <!-- Anti-Aliasing -->
-  <rect x="440" y="230" width="370" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="625" y="260" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Anti-Aliasing Solutions</text>
-  
-  <text x="530" y="295" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Pre-filtering</text>
-  <text x="530" y="315" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Low-pass before sampling</text>
-  <text x="530" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">(Gaussian blur)</text>
-  
-  <text x="720" y="295" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Oversampling</text>
-  <text x="720" y="315" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Sample at higher rate</text>
-  <text x="720" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">then downsample</text>
-  
-  <text x="625" y="370" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">In CNNs: antialiased pooling (BlurPool) prevents shift-equivariance issues</text>
+  <!-- Image aliasing examples -->
+  <g transform="translate(50, 195)">
+    <rect width="700" height="105" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="350" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Aliasing in Images</text>
+    
+    <g transform="translate(30, 40)">
+      <rect width="130" height="50" rx="4" fill="#ef4444" opacity="0.2"/>
+      <text x="65" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Moiré Patterns</text>
+      <text x="65" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Striped textures</text>
+    </g>
+    <g transform="translate(180, 40)">
+      <rect width="130" height="50" rx="4" fill="#ef4444" opacity="0.2"/>
+      <text x="65" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f87171">Jagged Edges</text>
+      <text x="65" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Stair-stepping</text>
+    </g>
+    <g transform="translate(330, 40)">
+      <rect width="130" height="50" rx="4" fill="#22c55e" opacity="0.2"/>
+      <text x="65" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Anti-aliasing</text>
+      <text x="65" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Low-pass filter</text>
+    </g>
+    <g transform="translate(480, 40)">
+      <rect width="180" height="50" rx="4" fill="#3b82f6" opacity="0.2"/>
+      <text x="90" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">Gaussian Blur → Downsample</text>
+      <text x="90" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Image pyramid</text>
+    </g>
+  </g>
 </svg>
-

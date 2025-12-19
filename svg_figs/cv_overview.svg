@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f87171;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="#0f172a"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <path d="M0 50 H900 M0 100 H900 M0 150 H900 M0 200 H900 M0 250 H900 M0 300 H900 M0 350 H900 M0 400 H900 M0 450 H900" stroke="#94a3b8" stroke-width="1"/>
+    <path d="M50 0 V500 M100 0 V500 M150 0 V500 M200 0 V500 M250 0 V500 M300 0 V500 M350 0 V500 M400 0 V500 M450 0 V500 M500 0 V500 M550 0 V500 M600 0 V500 M650 0 V500 M700 0 V500 M750 0 V500 M800 0 V500 M850 0 V500" stroke="#94a3b8" stroke-width="1"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="450" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#f8fafc">Computer Vision Learning Path</text>
+  
+  <!-- Level 1: Foundations -->
+  <rect x="50" y="80" width="180" height="80" rx="10" fill="url(#grad1)" opacity="0.9"/>
+  <text x="140" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">📐 FOUNDATIONS</text>
+  <text x="140" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dbeafe">Math • Transforms</text>
+  <text x="140" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dbeafe">Image Processing</text>
+  
+  <!-- Arrow 1 -->
+  <path d="M230 120 L270 120" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)"/>
+  <polygon points="270,115 280,120 270,125" fill="#60a5fa"/>
+  
+  <!-- Level 2: Classical -->
+  <rect x="290" y="80" width="180" height="80" rx="10" fill="url(#grad1)" opacity="0.9"/>
+  <text x="380" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">🎯 CLASSICAL CV</text>
+  <text x="380" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dbeafe">Features • Geometry</text>
+  <text x="380" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#dbeafe">ML Basics</text>
+  
+  <!-- Arrow 2 -->
+  <path d="M470 120 L510 120" stroke="#60a5fa" stroke-width="3"/>
+  <polygon points="510,115 520,120 510,125" fill="#60a5fa"/>
+  
+  <!-- Level 3: Deep Learning -->
+  <rect x="530" y="80" width="180" height="80" rx="10" fill="url(#grad2)" opacity="0.9"/>
+  <text x="620" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">🧠 DEEP LEARNING</text>
+  <text x="620" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#d1fae5">CNNs • Transformers</text>
+  <text x="620" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#d1fae5">Vision Tasks</text>
+  
+  <!-- Arrow 3 -->
+  <path d="M710 120 L750 120" stroke="#34d399" stroke-width="3"/>
+  <polygon points="750,115 760,120 750,125" fill="#34d399"/>
+  
+  <!-- Level 4: Advanced -->
+  <rect x="770" y="80" width="110" height="80" rx="10" fill="url(#grad3)" opacity="0.9"/>
+  <text x="825" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">🔬 EXPERT</text>
+  <text x="825" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fecaca">3D • GANs</text>
+  <text x="825" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fecaca">Research</text>
+  
+  <!-- Module Cards Row 1 -->
+  <g transform="translate(50, 190)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">Linear Algebra</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Vectors • Matrices • SVD</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Eigenvalues</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#3b82f6" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">Module 1</text>
+  </g>
+  
+  <g transform="translate(260, 190)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">Image Processing</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Filtering • Edges</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Histograms • Morphology</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#3b82f6" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#60a5fa">Module 4</text>
+  </g>
+  
+  <g transform="translate(470, 190)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399">CNN Architectures</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">LeNet → ResNet</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">→ EfficientNet</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#10b981" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">Module 9</text>
+  </g>
+  
+  <g transform="translate(680, 190)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#34d399">Vision Transformers</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">ViT • Swin • DeiT</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Attention Mechanisms</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#10b981" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#34d399">Module 11</text>
+  </g>
+  
+  <!-- Module Cards Row 2 -->
+  <g transform="translate(50, 300)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f87171">Object Detection</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">YOLO • Faster R-CNN</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">DETR</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#dc2626" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#f87171">Module 10</text>
+  </g>
+  
+  <g transform="translate(260, 300)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f87171">Generative Models</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">VAE • GAN • Diffusion</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Stable Diffusion</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#dc2626" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#f87171">Module 15</text>
+  </g>
+  
+  <g transform="translate(470, 300)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">3D Vision</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">NeRF • Point Clouds</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Gaussian Splatting</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#7c3aed" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#a78bfa">Module 14</text>
+  </g>
+  
+  <g transform="translate(680, 300)">
+    <rect width="190" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#a78bfa">Vision + Language</text>
+    <text x="95" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">CLIP • BLIP</text>
+    <text x="95" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Image Captioning</text>
+    <rect x="60" y="70" width="70" height="14" rx="3" fill="#7c3aed" opacity="0.3"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#a78bfa">Module 16</text>
+  </g>
+  
+  <!-- Stats Bar -->
+  <rect x="50" y="420" width="800" height="60" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  
+  <g transform="translate(130, 450)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#60a5fa">20</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Modules</text>
+  </g>
+  
+  <g transform="translate(310, 450)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#34d399">46</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">SVG Diagrams</text>
+  </g>
+  
+  <g transform="translate(490, 450)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#f87171">100+</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Code Examples</text>
+  </g>
+  
+  <g transform="translate(670, 450)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#a78bfa">16</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Weeks Journey</text>
+  </g>
+  
+  <g transform="translate(800, 450)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#fbbf24">∞</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Learning</text>
+  </g>
+</svg>

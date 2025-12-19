@@ -1,10 +1,12 @@
 <div align="center">
 
-# 🔬 Research Frontiers
+# 🚀 Research Frontiers
 
-### *Foundation Models, World Models, Open-Vocabulary*
+### *Foundation Models, Zero-Shot, World Models, Neuro-Symbolic*
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/facebookresearch/segment-anything/blob/main/notebooks/predictor_example.ipynb)
+| Level | Time | Prerequisites |
+|:-----:|:----:|:-------------:|
+| 🔴 Advanced | 3 hours | Deep Learning, Transformers |
 
 </div>
 
@@ -14,12 +16,24 @@
 
 ---
 
-## 📖 Topics Covered
-- Foundation Models (SAM, DINOv2)
-- Open-Vocabulary Detection
-- World Models
-- Continual Learning
-- Neuro-Symbolic Vision
+## 📖 Table of Contents
+- [Key Concepts](#-key-concepts)
+- [Mathematical Foundations](#-mathematical-foundations)
+- [Emerging Paradigms](#-emerging-paradigms)
+- [Visual Overview](#-visual-overview)
+- [Interview Q&A](#-interview-questions--answers)
+
+---
+
+## 🎯 Key Concepts
+
+| Topic | Description | Examples |
+|:------|:------------|:---------|
+| **Foundation Models** | Large-scale pretrained models | SAM, CLIP, DINOv2 |
+| **Zero-Shot** | Generalize without task-specific training | CLIP, GPT-4V |
+| **Few-Shot** | Learn from few examples | Prototypical Networks |
+| **World Models** | Learn environment dynamics | Dreamer, JEPA |
+| **Neuro-Symbolic** | Combine neural + symbolic AI | CLEVR, VQA |
 
 ---
 
@@ -31,222 +45,475 @@
 
 ---
 
-## 🏛️ Foundation Models
+## 🔢 Mathematical Foundations
 
-### Segment Anything (SAM)
+### 1. Foundation Models
 
-```python
-from segment_anything import sam_model_registry, SamPredictor
-
-sam = sam_model_registry["vit_h"](checkpoint="sam_vit_h.pth")
-predictor = SamPredictor(sam)
-
-predictor.set_image(image)
-
-# Point prompt
-masks, scores, _ = predictor.predict(
-    point_coords=np.array([[500, 375]]),
-    point_labels=np.array([1]),  # 1 = foreground
-    multimask_output=True
-)
-
-# Box prompt
-masks, _, _ = predictor.predict(box=np.array([100, 100, 400, 400]))
+```
+┌─────────────────────────────────────────────────────┐
+│  DEFINITION                                         │
+│                                                     │
+│  Large models trained on broad data that can be     │
+│  adapted to many downstream tasks                   │
+│                                                     │
+│  KEY PROPERTIES                                     │
+│                                                     │
+│  1. Scale: Billions of parameters                   │
+│  2. Generality: Works across tasks                  │
+│  3. Emergence: Capabilities emerge at scale         │
+│  4. Transfer: Pretrain once, adapt many             │
+│                                                     │
+│  VISION FOUNDATION MODELS                           │
+│                                                     │
+│  - SAM: Segment Anything (promptable segmentation)  │
+│  - DINOv2: Self-supervised features                 │
+│  - CLIP: Vision-language alignment                  │
+└─────────────────────────────────────────────────────┘
 ```
 
-### DINOv2
+### 2. Zero-Shot Learning
 
-```python
-import torch
-dinov2 = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitg14')
+```
+┌─────────────────────────────────────────────────────┐
+│  DEFINITION                                         │
+│                                                     │
+│  Classify classes never seen during training        │
+│                                                     │
+│  ATTRIBUTE-BASED                                    │
+│                                                     │
+│  f(x) = argmax_c sim(φ(x), a_c)                    │
+│                                                     │
+│  Where a_c = attribute vector of class c           │
+│  (e.g., "has stripes", "four legs")                │
+│                                                     │
+│  EMBEDDING-BASED (CLIP)                             │
+│                                                     │
+│  f(x) = argmax_c sim(f_img(x), f_txt("a {c}"))     │
+│                                                     │
+│  Use text descriptions as class definitions         │
+└─────────────────────────────────────────────────────┘
+```
 
-# Extract features
-with torch.no_grad():
-    features = dinov2(images)  # (B, 1536)
-    
-# Dense features for segmentation
-features = dinov2.forward_features(images)
-patch_tokens = features['x_norm_patchtokens']  # (B, N, D)
+### 3. Few-Shot Learning
+
+```
+┌─────────────────────────────────────────────────────┐
+│  N-WAY K-SHOT CLASSIFICATION                        │
+│                                                     │
+│  Support set: K examples per N classes              │
+│  Query set: Samples to classify                     │
+│                                                     │
+│  PROTOTYPICAL NETWORKS                              │
+│                                                     │
+│  1. Compute prototype per class:                    │
+│     c_n = (1/K) Σₖ f_θ(x_n,k)                      │
+│                                                     │
+│  2. Classify query by nearest prototype:            │
+│     p(y=n|x) ∝ exp(-d(f_θ(x), c_n))               │
+│                                                     │
+│  MAML (Model-Agnostic Meta-Learning)                │
+│                                                     │
+│  θ* = θ - α∇θ L(D_support)                         │
+│  Meta-update: θ ← θ - β∇θ L(D_query; θ*)           │
+└─────────────────────────────────────────────────────┘
+```
+
+### 4. Segment Anything (SAM)
+
+```
+┌─────────────────────────────────────────────────────┐
+│  PROMPTABLE SEGMENTATION                            │
+│                                                     │
+│  Input: Image I + Prompt P (point, box, text)       │
+│  Output: Segmentation mask M                        │
+│                                                     │
+│  ARCHITECTURE                                       │
+│                                                     │
+│  1. Image Encoder (ViT-H): I → features F          │
+│  2. Prompt Encoder: P → prompt embedding           │
+│  3. Mask Decoder: F + prompt → M                   │
+│                                                     │
+│  TRAINING (SA-1B dataset)                           │
+│                                                     │
+│  - 11M images, 1B+ masks                           │
+│  - Interactive annotation with model in the loop    │
+│  - Focal loss + dice loss for masks                │
+│                                                     │
+│  Loss = λ_focal × L_focal + λ_dice × L_dice        │
+└─────────────────────────────────────────────────────┘
+```
+
+### 5. World Models
+
+```
+┌─────────────────────────────────────────────────────┐
+│  LEARN ENVIRONMENT DYNAMICS                         │
+│                                                     │
+│  Components:                                        │
+│  1. Encoder: o_t → z_t (observation to latent)     │
+│  2. Dynamics: z_t, a_t → z_{t+1} (prediction)      │
+│  3. Decoder: z_t → ô_t (reconstruction)            │
+│                                                     │
+│  DREAMER                                            │
+│                                                     │
+│  Learn in imagination:                              │
+│  - Train world model from real experience           │
+│  - Train policy in imagined rollouts                │
+│                                                     │
+│  JEPA (Joint Embedding Predictive Architecture)     │
+│                                                     │
+│  Predict in embedding space, not pixel space        │
+│  z_{y} = predictor(z_x, Δ)                         │
+│  Loss = ||z_y - z_{y_true}||²                      │
+└─────────────────────────────────────────────────────┘
+```
+
+### 6. Continual Learning
+
+```
+┌─────────────────────────────────────────────────────┐
+│  PROBLEM: Catastrophic Forgetting                   │
+│                                                     │
+│  Learning task B hurts performance on task A        │
+│                                                     │
+│  APPROACHES                                         │
+│                                                     │
+│  1. REPLAY: Store/generate old examples             │
+│     L = L_new + L_replay                           │
+│                                                     │
+│  2. REGULARIZATION (EWC):                           │
+│     L = L_new + λΣᵢ Fᵢ(θᵢ - θ*ᵢ)²                  │
+│     Fᵢ = Fisher information (importance)           │
+│                                                     │
+│  3. ARCHITECTURE:                                   │
+│     Add task-specific modules                       │
+│     Freeze old, add new                             │
+│                                                     │
+│  4. PARAMETER ISOLATION:                            │
+│     Different subsets for different tasks           │
+└─────────────────────────────────────────────────────┘
+```
+
+### 7. Neuro-Symbolic AI
+
+```
+┌─────────────────────────────────────────────────────┐
+│  COMBINE NEURAL + SYMBOLIC                          │
+│                                                     │
+│  Neural: Pattern recognition, learning              │
+│  Symbolic: Reasoning, compositionality              │
+│                                                     │
+│  NEURAL SCENE REPRESENTATIONS                       │
+│                                                     │
+│  Image → Object detector → Scene graph             │
+│  Scene graph + Question → Reasoning → Answer        │
+│                                                     │
+│  PROGRAM SYNTHESIS                                  │
+│                                                     │
+│  Learn to generate programs from data               │
+│  Neural network outputs symbolic program            │
+│                                                     │
+│  DIFFERENTIABLE REASONING                           │
+│                                                     │
+│  Soft logic: ∧ = min, ∨ = max, ¬ = 1-x             │
+│  End-to-end trainable reasoning                     │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🔓 Open-Vocabulary Detection
+## ⚙️ Algorithms
 
-```python
-# OWL-ViT: Open-World Localization
-from transformers import OwlViTProcessor, OwlViTForObjectDetection
+### Algorithm 1: Prototypical Networks (Few-Shot)
 
-processor = OwlViTProcessor.from_pretrained("google/owlvit-base-patch32")
-model = OwlViTForObjectDetection.from_pretrained("google/owlvit-base-patch32")
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Support set S, Query set Q                 │
+│  OUTPUT: Class predictions for Q                   │
+│                                                     │
+│  1. COMPUTE PROTOTYPES (per class c):              │
+│     p_c = (1/|S_c|) Σ f(x)  for x in S_c          │
+│     f = embedding network                         │
+│                                                     │
+│  2. CLASSIFY QUERIES:                              │
+│     FOR each query q:                             │
+│       d_c = ||f(q) - p_c||²  (distance to proto) │
+│       P(y=c|q) = softmax(-d_c)                   │
+│                                                     │
+│  3. TRAIN with episodic learning                   │
+│     Sample N-way K-shot episodes                  │
+│     Minimize cross-entropy on queries             │
+└─────────────────────────────────────────────────────┘
+```
 
-# Detect any object by text
-texts = [["a photo of a cat", "a photo of a dog"]]
-inputs = processor(text=texts, images=image, return_tensors="pt")
-outputs = model(**inputs)
+### Algorithm 2: SAM (Segment Anything)
 
-# Grounding DINO
-from groundingdino.util.inference import predict
-boxes, logits, phrases = predict(
-    model=model,
-    image=image,
-    caption="person . dog . car",  # Any text queries
-    box_threshold=0.35
-)
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image, prompts (points/boxes/text)         │
+│  OUTPUT: Segmentation masks                         │
+│                                                     │
+│  1. IMAGE ENCODER (ViT-H):                         │
+│     image_embedding = MAE_encoder(image)           │
+│     Run once per image                            │
+│                                                     │
+│  2. PROMPT ENCODER:                                │
+│     prompt_embedding = encode(points/boxes/text)  │
+│                                                     │
+│  3. MASK DECODER (lightweight):                    │
+│     masks = decode(image_emb, prompt_emb)         │
+│     Output multiple mask candidates               │
+│                                                     │
+│  Key: Promptable - any type of prompt works       │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 3: CLIP Zero-Shot Classification
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image, class names                         │
+│  OUTPUT: Class prediction                          │
+│                                                     │
+│  1. ENCODE IMAGE:                                  │
+│     z_img = ImageEncoder(image)                   │
+│     z_img = z_img / ||z_img||  (normalize)        │
+│                                                     │
+│  2. ENCODE TEXT (for each class):                  │
+│     text_c = "a photo of a {class_name}"          │
+│     z_text_c = TextEncoder(text_c)                │
+│     z_text_c = z_text_c / ||z_text_c||            │
+│                                                     │
+│  3. COMPUTE SIMILARITY:                            │
+│     sim_c = z_img · z_text_c  (dot product)       │
+│     probs = softmax(sim / temperature)            │
+│                                                     │
+│  No training on target classes needed!            │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🌍 World Models
+## 🌟 Emerging Paradigms
 
-```python
-# World models learn environment dynamics
-# x_{t+1} = f(x_t, a_t) - predict next state given action
+### 1. In-Context Learning
 
-class WorldModel(nn.Module):
-    def __init__(self):
-        self.encoder = ViTEncoder()  # Observation → latent
-        self.dynamics = RSSM()       # Latent dynamics
-        self.decoder = CNNDecoder()  # Latent → observation
-        self.reward = RewardHead()   # Predict rewards
-    
-    def imagine(self, state, actions):
-        """Imagine future states without environment"""
-        imagined_states = [state]
-        for action in actions:
-            state = self.dynamics(state, action)
-            imagined_states.append(state)
-        return imagined_states
-
-# Dreamer: Learn policy in imagination
-# GAIA-1: World model for autonomous driving
+```
+┌─────────────────────────────────────────────────────┐
+│  LEARN FROM EXAMPLES IN PROMPT                      │
+│                                                     │
+│  Prompt: [Example 1] [Example 2] ... [Query]       │
+│                                                     │
+│  No gradient updates, just conditioning             │
+│  Emergent ability at scale                          │
+│                                                     │
+│  Vision: GPT-4V, Gemini with image examples        │
+└─────────────────────────────────────────────────────┘
 ```
 
----
+### 2. Multimodal Reasoning
 
-## 🔄 Continual Learning
-
-```python
-# Elastic Weight Consolidation (EWC)
-class EWC:
-    def __init__(self, model, dataset, importance=1000):
-        self.params = {n: p.clone() for n, p in model.named_parameters()}
-        self.fisher = self._compute_fisher(model, dataset)
-        self.importance = importance
-    
-    def penalty(self, model):
-        loss = 0
-        for n, p in model.named_parameters():
-            loss += (self.fisher[n] * (p - self.params[n])**2).sum()
-        return self.importance * loss
-
-# PackNet: Prune and pack networks for each task
-# LoRA: Efficient adaptation with low-rank updates
+```
+┌─────────────────────────────────────────────────────┐
+│  BEYOND PERCEPTION                                  │
+│                                                     │
+│  - Chain-of-thought for visual reasoning            │
+│  - Tool use (code, search, calculators)             │
+│  - Multi-step problem solving                       │
+│                                                     │
+│  Examples: GPT-4V math, diagram understanding       │
+└─────────────────────────────────────────────────────┘
 ```
 
----
+### 3. 3D Generation from Text/Images
 
-## 🧩 Neuro-Symbolic Vision
-
-```python
-# Combine neural perception with symbolic reasoning
-class NeuroSymbolic(nn.Module):
-    def __init__(self):
-        self.perception = DETR()  # Object detection
-        self.reasoning = LogicModule()  # Symbolic reasoning
-    
-    def forward(self, image, query):
-        # Perceive objects
-        objects = self.perception(image)
-        
-        # Symbolic scene graph
-        scene_graph = self.build_graph(objects)
-        
-        # Reason about query
-        answer = self.reasoning(scene_graph, query)
-        return answer
-
-# Visual Programming: LLM generates code to compose modules
-# VISPROG: "Find the red object to the left of the dog"
 ```
-
----
-
-## 🎯 Zero/Few-Shot Learning
-
-```python
-# In-context learning for vision
-def visual_prompting(model, support_images, support_labels, query_image):
-    """
-    Similar to language prompting but for images
-    """
-    # Create visual prompt: interleave support examples
-    prompt = []
-    for img, label in zip(support_images, support_labels):
-        prompt.append(img)
-        prompt.append(label_token(label))
-    prompt.append(query_image)
-    
-    # Model completes the pattern
-    prediction = model(prompt)
-    return prediction
-
-# Segment Anything: zero-shot segmentation
-# CLIP: zero-shot classification
+┌─────────────────────────────────────────────────────┐
+│  TEXT/IMAGE → 3D                                    │
+│                                                     │
+│  - Score Distillation: Use 2D diffusion for 3D     │
+│  - Multi-view generation + reconstruction          │
+│  - NeRF/3D Gaussian from single image              │
+│                                                     │
+│  Methods: DreamFusion, Zero123, Magic3D            │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## ❓ Interview Questions & Answers
 
-### Q1: What makes SAM a foundation model?
-**Answer:**
-- Trained on 11M images, 1.1B masks
-- Promptable: points, boxes, text
-- Zero-shot generalization
-- Task-agnostic backbone
-- Enables many downstream tasks
+<details>
+<summary><b>Q1: What makes a model a "foundation model"?</b></summary>
 
-### Q2: Open-vocabulary vs closed-set detection?
-| Closed-set | Open-vocabulary |
-|------------|-----------------|
-| Fixed classes | Any text query |
-| Training classes only | Novel classes |
-| Softmax output | CLIP-like matching |
-| Limited flexibility | Flexible |
-
-### Q3: Why are world models important?
 **Answer:**
-- Learn environment dynamics
-- Plan in imagination (sample efficient)
-- Transfer across tasks
-- Key for embodied AI / robotics
-- Examples: Dreamer, GAIA-1
 
-### Q4: What is catastrophic forgetting?
-**Answer:**
-- Neural networks forget old tasks when learning new
-- Weights overwritten for new data
-- Solutions: EWC, PackNet, replay, LoRA
-- Active research area
+**Characteristics:**
+1. **Scale:** Very large (billions of parameters)
+2. **Broad data:** Trained on diverse, large-scale data
+3. **Generality:** Applicable to many downstream tasks
+4. **Emergence:** Capabilities emerge that weren't explicitly trained
 
-### Q5: How does visual prompting work?
+**Examples in Vision:**
+- SAM: Promptable segmentation on any image
+- DINOv2: General visual features
+- CLIP: Vision-language alignment
+
+**Key shift:** From task-specific to general-purpose
+
+</details>
+
+<details>
+<summary><b>Q2: How does zero-shot learning differ from few-shot?</b></summary>
+
 **Answer:**
-- Show examples in input (like language ICL)
-- Model learns pattern from examples
-- No weight updates needed
-- Enables few-shot adaptation
-- Examples: Painter, SegGPT
+
+| Aspect | Zero-Shot | Few-Shot |
+|:-------|:----------|:---------|
+| Training examples | 0 | 1-10 per class |
+| Class definition | Attributes/text | Example images |
+| Generalization | Semantic transfer | Example matching |
+| Example | CLIP text prompts | Prototypical networks |
+
+**Zero-shot** requires semantic knowledge of new classes
+**Few-shot** adapts from small support set
+
+</details>
+
+<details>
+<summary><b>Q3: What is SAM and why is it significant?</b></summary>
+
+**Answer:**
+
+**Segment Anything Model:**
+- Promptable: Point, box, or text input
+- Zero-shot: Works on any image without fine-tuning
+- Dataset: SA-1B (1B+ masks, 11M images)
+
+**Significance:**
+1. Foundation model for segmentation
+2. Enables interactive segmentation
+3. Works across domains (medical, satellite, etc.)
+4. Promptable interface → flexible applications
+
+</details>
+
+<details>
+<summary><b>Q4: Explain the idea of world models.</b></summary>
+
+**Answer:**
+
+**Concept:** Learn a model of environment dynamics
+
+**Components:**
+- Encoder: Observation → latent state
+- Dynamics: Predict next state from action
+- (Optional) Decoder: Latent → observation
+
+**Uses:**
+1. **Planning:** Simulate before acting
+2. **Sample efficiency:** Learn in imagination
+3. **Robustness:** Handle distribution shift
+
+**JEPA innovation:** Predict in latent space (not pixels)
+
+</details>
+
+<details>
+<summary><b>Q5: What is catastrophic forgetting?</b></summary>
+
+**Answer:**
+
+**Problem:** Training on new task degrades old task performance
+
+**Why:** Neural networks overwrite old knowledge with new
+
+**Solutions:**
+
+| Method | Approach |
+|:-------|:---------|
+| Replay | Store/generate old examples |
+| Regularization | Protect important weights (EWC) |
+| Architecture | Task-specific modules |
+| Isolation | Different params per task |
+
+</details>
+
+<details>
+<summary><b>Q6: What is neuro-symbolic AI?</b></summary>
+
+**Answer:**
+
+**Combine:**
+- Neural: Pattern recognition, learning from data
+- Symbolic: Logic, reasoning, compositionality
+
+**Approaches:**
+1. Neural perception → symbolic reasoning
+2. Differentiable logic (soft constraints)
+3. Neural program synthesis
+
+**Advantages:**
+- Interpretable reasoning
+- Data efficient (structure)
+- Compositional generalization
+
+</details>
+
+<details>
+<summary><b>Q7: How does in-context learning work?</b></summary>
+
+**Answer:**
+
+**Mechanism:** Condition on examples in prompt, no weight updates
+
+**Example prompt:**
+```
+Image1: cat → "cat"
+Image2: dog → "dog"  
+Image3: ? → [model predicts]
+```
+
+**Why it works:** Large models learn to pattern match
+
+**Requirements:** Very large model (emergent ability)
+
+**Vision:** GPT-4V can do few-shot classification from examples in prompt
+
+</details>
+
+<details>
+<summary><b>Q8: What are current frontiers in vision research?</b></summary>
+
+**Answer:**
+
+1. **Foundation models:** SAM, DINOv2 for general features
+2. **Multimodal reasoning:** GPT-4V, Gemini for complex tasks
+3. **3D generation:** Text/image to 3D (DreamFusion)
+4. **Video understanding:** Long context, temporal reasoning
+5. **Embodied AI:** Vision for robotics
+6. **Efficient models:** On-device, real-time
+7. **Robust/fair:** Distribution shift, fairness
+
+</details>
 
 ---
 
-## 📓 Colab Notebooks
+## 📚 Key Formulas Reference
 
-| Topic | Link |
-|-------|------|
-| SAM | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/facebookresearch/segment-anything/blob/main/notebooks/predictor_example.ipynb) |
-| DINOv2 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/facebookresearch/dinov2/blob/main/notebooks/depth_estimation.ipynb) |
-| Grounding DINO | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IDEA-Research/GroundingDINO/blob/main/demo/inference_on_a_image.ipynb) |
+| Formula | Description |
+|:--------|:------------|
+| c_n = (1/K)Σf(x_k) | Prototype computation |
+| θ* = θ - α∇L_support | MAML inner loop |
+| L = λ_focal L_focal + λ_dice L_dice | SAM loss |
+| L = L_new + λΣF(θ-θ*)² | EWC regularization |
+| z' = predictor(z, Δ) | JEPA prediction |
+
+---
+
+## 📓 Practice
+
+See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 

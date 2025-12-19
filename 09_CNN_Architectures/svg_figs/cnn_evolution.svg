@@ -1,79 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
-  <rect width="850" height="380" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 350">
+  <defs>
+    <linearGradient id="evoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="50%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">CNN Architecture Evolution</text>
+  <rect width="850" height="350" fill="#0f172a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">CNN Architecture Evolution</text>
   
   <!-- Timeline -->
-  <line x1="60" y1="100" x2="790" y2="100" stroke="#1e293b" stroke-width="3"/>
+  <line x1="50" y1="280" x2="800" y2="280" stroke="url(#evoGrad)" stroke-width="4"/>
   
   <!-- LeNet -->
-  <circle cx="100" cy="100" r="8" fill="#2563eb"/>
-  <text x="100" y="80" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">1998</text>
-  <rect x="60" y="120" width="80" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="100" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">LeNet</text>
-  <text x="100" y="165" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">5 layers</text>
+  <g transform="translate(70, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">LeNet-5</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">1998</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">60K params</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">MNIST digits</text>
+    <circle cx="50" cy="130" r="6" fill="#3b82f6"/>
+  </g>
   
   <!-- AlexNet -->
-  <circle cx="220" cy="100" r="8" fill="#2563eb"/>
-  <text x="220" y="80" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2012</text>
-  <rect x="175" y="120" width="90" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="220" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">AlexNet</text>
-  <text x="220" y="165" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">8 layers, ReLU</text>
+  <g transform="translate(180, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#34d399">AlexNet</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">2012</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">60M params</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">ImageNet winner</text>
+    <circle cx="50" cy="130" r="6" fill="#22c55e"/>
+  </g>
   
   <!-- VGG -->
-  <circle cx="340" cy="100" r="8" fill="#2563eb"/>
-  <text x="340" y="80" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2014</text>
-  <rect x="295" y="120" width="90" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="340" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">VGG</text>
-  <text x="340" y="165" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">16-19 layers</text>
+  <g transform="translate(290, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">VGG-16</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">2014</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">138M params</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">3×3 conv only</text>
+    <circle cx="50" cy="130" r="6" fill="#a78bfa"/>
+  </g>
   
-  <!-- Inception -->
-  <circle cx="460" cy="100" r="8" fill="#2563eb"/>
-  <text x="460" y="80" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2014</text>
-  <rect x="410" y="120" width="100" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="460" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Inception</text>
-  <text x="460" y="165" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Multi-scale</text>
+  <!-- GoogLeNet -->
+  <g transform="translate(400, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fbbf24">Inception</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">2014</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">7M params</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Multi-scale</text>
+    <circle cx="50" cy="130" r="6" fill="#f59e0b"/>
+  </g>
   
   <!-- ResNet -->
-  <circle cx="580" cy="100" r="10" fill="#2563eb"/>
-  <text x="580" y="80" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2015</text>
-  <rect x="530" y="120" width="100" height="60" fill="#2563eb" rx="6"/>
-  <text x="580" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">ResNet</text>
-  <text x="580" y="165" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Skip connections</text>
+  <g transform="translate(510, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f87171">ResNet</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">2015</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">25M (50)</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Skip connections</text>
+    <circle cx="50" cy="130" r="6" fill="#ef4444"/>
+  </g>
   
   <!-- EfficientNet -->
-  <circle cx="700" cy="100" r="8" fill="#2563eb"/>
-  <text x="700" y="80" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2019</text>
-  <rect x="645" y="120" width="110" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="700" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">EfficientNet</text>
-  <text x="700" y="165" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Compound scaling</text>
+  <g transform="translate(620, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#f472b6">EfficientNet</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">2019</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">66M (B7)</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">NAS scaling</text>
+    <circle cx="50" cy="130" r="6" fill="#ec4899"/>
+  </g>
   
-  <!-- Key Innovations Box -->
-  <rect x="40" y="200" width="770" height="160" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="425" y="230" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Key Innovations</text>
+  <!-- ConvNeXt -->
+  <g transform="translate(730, 60)">
+    <rect width="100" height="100" rx="8" fill="#1e293b" stroke="#2dd4bf" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2dd4bf">ConvNeXt</text>
+    <text x="50" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">2022</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">88M</text>
+    <text x="50" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">ViT-inspired</text>
+    <circle cx="50" cy="130" r="6" fill="#2dd4bf"/>
+  </g>
   
-  <!-- Innovation 1 -->
-  <rect x="60" y="250" width="170" height="45" fill="#dbeafe" stroke="#2563eb" rx="4"/>
-  <text x="145" y="270" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">ReLU Activation</text>
-  <text x="145" y="287" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">AlexNet: faster training</text>
+  <!-- Key innovations -->
+  <g transform="translate(50, 185)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">ReLU, Dropout</text>
+  </g>
+  <g transform="translate(290, 185)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="10" fill="#a78bfa">Deeper is better</text>
+  </g>
+  <g transform="translate(510, 185)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="10" fill="#f87171">152 layers!</text>
+  </g>
   
-  <!-- Innovation 2 -->
-  <rect x="250" y="250" width="170" height="45" fill="#dbeafe" stroke="#2563eb" rx="4"/>
-  <text x="335" y="270" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">3×3 Convolutions</text>
-  <text x="335" y="287" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">VGG: smaller filters</text>
-  
-  <!-- Innovation 3 -->
-  <rect x="440" y="250" width="170" height="45" fill="#2563eb" rx="4"/>
-  <text x="525" y="270" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Skip Connections</text>
-  <text x="525" y="287" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">ResNet: deep networks</text>
-  
-  <!-- Innovation 4 -->
-  <rect x="630" y="250" width="170" height="45" fill="#dbeafe" stroke="#2563eb" rx="4"/>
-  <text x="715" y="270" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">Batch Normalization</text>
-  <text x="715" y="287" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Stable training</text>
-  
-  <!-- Depth progression -->
-  <text x="425" y="340" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle">Depth: 5 → 8 → 19 → 22 → 152 → 800+ layers</text>
-  <text x="425" y="355" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">ImageNet Top-5 Error: 26% (2012) → 3.5% (2017) → superhuman</text>
+  <!-- Accuracy trend -->
+  <g transform="translate(50, 300)">
+    <rect width="750" height="40" rx="6" fill="#1e293b" stroke="#334155"/>
+    <text x="375" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f8fafc">ImageNet Top-5 Accuracy</text>
+    <text x="100" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#3b82f6">83%</text>
+    <text x="250" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#22c55e">93%</text>
+    <text x="400" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#f59e0b">96%</text>
+    <text x="550" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#ef4444">97%</text>
+    <text x="700" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2dd4bf">98%</text>
+  </g>
 </svg>

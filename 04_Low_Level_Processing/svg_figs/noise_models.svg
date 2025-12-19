@@ -1,76 +1,89 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  <rect width="800" height="400" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="gaussNoiseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Image Noise Models</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Image Noise Models</text>
   
   <!-- Gaussian Noise -->
-  <rect x="40" y="70" width="170" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="125" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Gaussian</text>
+  <g transform="translate(50, 55)">
+    <rect width="170" height="130" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="85" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#60a5fa">Gaussian</text>
+    
+    <!-- Bell curve -->
+    <g transform="translate(25, 40)">
+      <path d="M10 60 Q30 60 50 30 Q70 0 90 30 Q110 60 130 60" stroke="#3b82f6" stroke-width="2" fill="none"/>
+      <line x1="70" y1="0" x2="70" y2="60" stroke="#64748b" stroke-width="1" stroke-dasharray="3,2"/>
+    </g>
+    
+    <text x="85" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Additive, μ=0</text>
+    <text x="85" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Sensor noise</text>
+  </g>
   
-  <!-- Bell curve -->
-  <path d="M 60 180 Q 90 100 125 100 Q 160 100 190 180" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <line x1="60" y1="180" x2="190" y2="180" stroke="#1e293b" stroke-width="1"/>
+  <!-- Salt & Pepper -->
+  <g transform="translate(240, 55)">
+    <rect width="170" height="130" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="85" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fbbf24">Salt &amp; Pepper</text>
+    
+    <g transform="translate(25, 40)">
+      <rect width="120" height="60" fill="#475569" rx="3"/>
+      <circle cx="20" cy="15" r="4" fill="#fff"/>
+      <circle cx="50" cy="30" r="4" fill="#000"/>
+      <circle cx="80" cy="20" r="4" fill="#fff"/>
+      <circle cx="30" cy="45" r="4" fill="#000"/>
+      <circle cx="100" cy="40" r="4" fill="#fff"/>
+      <circle cx="70" cy="50" r="4" fill="#000"/>
+    </g>
+    
+    <text x="85" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Impulse noise</text>
+    <text x="85" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Dead pixels</text>
+  </g>
   
-  <text x="125" y="200" font-family="Georgia, serif" font-size="10" fill="#1e293b" text-anchor="middle">p(z) = (1/σ√2π)e^(-(z-μ)²/2σ²)</text>
+  <!-- Poisson -->
+  <g transform="translate(430, 55)">
+    <rect width="170" height="130" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="85" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#34d399">Poisson (Shot)</text>
+    
+    <g transform="translate(25, 40)">
+      <path d="M10 60 L30 55 L40 40 L50 20 L60 30 L80 45 L100 55 L130 58" stroke="#22c55e" stroke-width="2" fill="none"/>
+    </g>
+    
+    <text x="85" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Signal-dependent</text>
+    <text x="85" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Photon counting</text>
+  </g>
   
-  <!-- Salt and Pepper -->
-  <rect x="230" y="70" width="170" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="315" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Salt &amp; Pepper</text>
+  <!-- Speckle -->
+  <g transform="translate(620, 55)">
+    <rect width="150" height="130" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+    <text x="75" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a78bfa">Speckle</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="120" height="60" fill="#475569" rx="3"/>
+      <g fill="#a78bfa" opacity="0.6">
+        <circle cx="20" cy="15" r="8"/><circle cx="60" cy="25" r="6"/>
+        <circle cx="100" cy="20" r="7"/><circle cx="40" cy="45" r="9"/>
+        <circle cx="80" cy="50" r="5"/>
+      </g>
+    </g>
+    
+    <text x="75" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Multiplicative</text>
+    <text x="75" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">SAR, ultrasound</text>
+  </g>
   
-  <!-- Impulse visualization -->
-  <line x1="260" y1="180" x2="260" y2="120" stroke="#2563eb" stroke-width="3"/>
-  <line x1="370" y1="180" x2="370" y2="120" stroke="#2563eb" stroke-width="3"/>
-  <line x1="260" y1="180" x2="370" y2="180" stroke="#1e293b" stroke-width="1"/>
-  
-  <text x="260" y="195" font-family="Arial, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">0</text>
-  <text x="370" y="195" font-family="Arial, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">255</text>
-  
-  <!-- Poisson Noise -->
-  <rect x="420" y="70" width="170" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="505" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Poisson</text>
-  
-  <!-- Skewed distribution -->
-  <path d="M 440 180 L 470 180 L 480 140 L 500 120 L 520 135 L 540 160 L 560 175 L 570 180" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <line x1="440" y1="180" x2="570" y2="180" stroke="#1e293b" stroke-width="1"/>
-  
-  <text x="505" y="200" font-family="Georgia, serif" font-size="10" fill="#1e293b" text-anchor="middle">p(k) = λᵏe^(-λ)/k!</text>
-  
-  <!-- Speckle Noise -->
-  <rect x="610" y="70" width="150" height="140" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="685" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Speckle</text>
-  
-  <text x="685" y="135" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Multiplicative</text>
-  <text x="685" y="160" font-family="Georgia, serif" font-size="11" fill="#1e293b" text-anchor="middle">g = f × n</text>
-  
-  <text x="685" y="195" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Common in SAR</text>
-  
-  <!-- Denoising Methods -->
-  <rect x="40" y="230" width="720" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="400" y="260" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Denoising Methods</text>
-  
-  <rect x="70" y="280" width="130" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="135" y="310" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Mean Filter</text>
-  <text x="135" y="330" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Linear averaging</text>
-  <text x="135" y="350" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Blurs edges</text>
-  
-  <rect x="220" y="280" width="130" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="285" y="310" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Median Filter</text>
-  <text x="285" y="330" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Non-linear</text>
-  <text x="285" y="350" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Good for S&amp;P</text>
-  
-  <rect x="370" y="280" width="130" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="435" y="310" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Bilateral</text>
-  <text x="435" y="330" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Edge-preserving</text>
-  <text x="435" y="350" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Spatial + range</text>
-  
-  <rect x="520" y="280" width="130" height="80" fill="#2563eb" rx="6"/>
-  <text x="585" y="310" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">NL-Means</text>
-  <text x="585" y="330" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">Patch-based</text>
-  <text x="585" y="350" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">Non-local similar</text>
-  
-  <rect x="670" y="280" width="70" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="705" y="315" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">BM3D</text>
-  <text x="705" y="340" font-family="Arial, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">SOTA</text>
+  <!-- Noise formula and removal -->
+  <g transform="translate(50, 200)">
+    <rect width="700" height="100" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="350" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Noise Models &amp; Removal</text>
+    
+    <text x="150" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#fbbf24">g(x,y) = f(x,y) + η(x,y)</text>
+    <text x="150" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Additive noise model</text>
+    
+    <text x="400" y="50" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">• Gaussian → Gaussian filter</text>
+    <text x="400" y="68" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">• S&amp;P → Median filter</text>
+    <text x="400" y="86" font-family="Arial, sans-serif" font-size="10" fill="#34d399">• Mixed → Non-local means</text>
+  </g>
 </svg>
-

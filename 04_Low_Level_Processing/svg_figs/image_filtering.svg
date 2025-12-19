@@ -1,106 +1,96 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 420">
-  <rect width="850" height="420" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="kernGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Image Filtering: Convolution &amp; Kernels</text>
+  <rect width="800" height="320" fill="#0f172a"/>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">Image Filtering: Convolution</text>
   
-  <!-- Convolution Operation -->
-  <rect x="40" y="70" width="380" height="160" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="230" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">2D Convolution</text>
+  <!-- Input Image -->
+  <g transform="translate(50, 60)">
+    <rect width="130" height="130" rx="6" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+    <text x="65" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#60a5fa">Input Image</text>
+    
+    <!-- Grid -->
+    <g transform="translate(10, 30)" font-family="monospace" font-size="9" fill="#94a3b8">
+      <text x="0" y="12">100 120 130 80</text>
+      <text x="0" y="32">110 140 150 90</text>
+      <text x="0" y="52">105 130 145 85</text>
+      <text x="0" y="72">95  110 120 75</text>
+    </g>
+    
+    <!-- Highlight region -->
+    <rect x="25" y="35" width="55" height="45" fill="#3b82f6" opacity="0.3" rx="2"/>
+  </g>
   
-  <!-- Input image grid -->
-  <rect x="60" y="115" width="90" height="90" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
-  <line x1="90" y1="115" x2="90" y2="205" stroke="#2563eb" stroke-width="0.5"/>
-  <line x1="120" y1="115" x2="120" y2="205" stroke="#2563eb" stroke-width="0.5"/>
-  <line x1="60" y1="145" x2="150" y2="145" stroke="#2563eb" stroke-width="0.5"/>
-  <line x1="60" y1="175" x2="150" y2="175" stroke="#2563eb" stroke-width="0.5"/>
-  
-  <text x="105" y="165" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Image</text>
-  
-  <!-- Multiplication sign -->
-  <text x="175" y="165" font-family="Arial, sans-serif" font-size="20" fill="#1e293b" text-anchor="middle">*</text>
+  <!-- Convolution symbol -->
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="24" fill="#fbbf24">*</text>
   
   <!-- Kernel -->
-  <rect x="200" y="130" width="60" height="60" fill="#2563eb" stroke="#1e293b" stroke-width="1" rx="2"/>
-  <line x1="220" y1="130" x2="220" y2="190" stroke="#dbeafe" stroke-width="0.5"/>
-  <line x1="240" y1="130" x2="240" y2="190" stroke="#dbeafe" stroke-width="0.5"/>
-  <line x1="200" y1="150" x2="260" y2="150" stroke="#dbeafe" stroke-width="0.5"/>
-  <line x1="200" y1="170" x2="260" y2="170" stroke="#dbeafe" stroke-width="0.5"/>
-  
-  <text x="230" y="165" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Kernel</text>
+  <g transform="translate(230, 70)">
+    <rect width="100" height="100" rx="6" fill="url(#kernGrad)"/>
+    <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">Kernel</text>
+    
+    <g transform="translate(15, 30)" font-family="monospace" font-size="11" fill="#fff">
+      <text x="0" y="15">-1  0  1</text>
+      <text x="0" y="35">-2  0  2</text>
+      <text x="0" y="55">-1  0  1</text>
+    </g>
+    
+    <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fef3c7">Sobel X</text>
+  </g>
   
   <!-- Equals -->
-  <text x="285" y="165" font-family="Arial, sans-serif" font-size="20" fill="#1e293b" text-anchor="middle">=</text>
+  <text x="355" y="130" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8">=</text>
   
   <!-- Output -->
-  <rect x="310" y="115" width="90" height="90" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
-  <text x="355" y="165" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Output</text>
+  <g transform="translate(390, 60)">
+    <rect width="130" height="130" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="65" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">Output</text>
+    
+    <g transform="translate(25, 50)" font-family="monospace" font-size="11" fill="#34d399">
+      <text x="0" y="15">60 40</text>
+      <text x="0" y="35">55 35</text>
+    </g>
+    
+    <text x="65" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Edge response</text>
+  </g>
   
-  <!-- Formula -->
-  <text x="230" y="220" font-family="Georgia, serif" font-size="11" fill="#1e293b" text-anchor="middle">(I * K)(x,y) = ΣᵢΣⱼ I(x-i, y-j) · K(i,j)</text>
+  <!-- Calculation detail -->
+  <g transform="translate(550, 60)">
+    <rect width="200" height="130" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="100" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Calculation</text>
+    
+    <text x="15" y="45" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Σ(pixel × kernel)</text>
+    <text x="15" y="65" font-family="monospace" font-size="8" fill="#60a5fa">100×(-1)+120×0+130×1</text>
+    <text x="15" y="80" font-family="monospace" font-size="8" fill="#60a5fa">+110×(-2)+140×0+150×2</text>
+    <text x="15" y="95" font-family="monospace" font-size="8" fill="#60a5fa">+105×(-1)+130×0+145×1</text>
+    <text x="15" y="115" font-family="Arial, sans-serif" font-size="10" fill="#34d399">= 30+80+40 = 150</text>
+  </g>
   
-  <!-- Common Kernels -->
-  <rect x="440" y="70" width="370" height="160" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="625" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Common Kernels</text>
-  
-  <!-- Box blur -->
-  <rect x="460" y="115" width="80" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="500" y="135" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Box Blur</text>
-  <text x="500" y="150" font-family="Georgia, serif" font-size="8" fill="#64748b" text-anchor="middle">1/9 × [1 1 1]</text>
-  
-  <!-- Gaussian -->
-  <rect x="560" y="115" width="80" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="600" y="135" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Gaussian</text>
-  <text x="600" y="150" font-family="Georgia, serif" font-size="8" fill="#64748b" text-anchor="middle">G(σ) weighted</text>
-  
-  <!-- Sharpen -->
-  <rect x="660" y="115" width="80" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="700" y="135" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Sharpen</text>
-  <text x="700" y="150" font-family="Georgia, serif" font-size="8" fill="#64748b" text-anchor="middle">[0 -1 0; -1 5 -1]</text>
-  
-  <!-- Sobel X -->
-  <rect x="460" y="170" width="80" height="45" fill="#2563eb" rx="4"/>
-  <text x="500" y="190" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">Sobel X</text>
-  <text x="500" y="205" font-family="Georgia, serif" font-size="8" fill="#dbeafe" text-anchor="middle">[-1 0 1]</text>
-  
-  <!-- Sobel Y -->
-  <rect x="560" y="170" width="80" height="45" fill="#2563eb" rx="4"/>
-  <text x="600" y="190" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">Sobel Y</text>
-  <text x="600" y="205" font-family="Georgia, serif" font-size="8" fill="#dbeafe" text-anchor="middle">[-1 0 1]ᵀ</text>
-  
-  <!-- Laplacian -->
-  <rect x="660" y="170" width="80" height="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="700" y="190" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">Laplacian</text>
-  <text x="700" y="205" font-family="Georgia, serif" font-size="8" fill="#64748b" text-anchor="middle">[0 1 0; 1 -4 1]</text>
-  
-  <!-- Spatial vs Frequency -->
-  <rect x="40" y="250" width="380" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="230" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Spatial vs Frequency Domain</text>
-  
-  <text x="130" y="315" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Spatial</text>
-  <text x="130" y="340" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">I' = I * K</text>
-  <text x="130" y="365" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">O(N²K²)</text>
-  
-  <text x="330" y="315" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Frequency (FFT)</text>
-  <text x="330" y="340" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">I' = F⁻¹(F(I) · F(K))</text>
-  <text x="330" y="365" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">O(N²log N)</text>
-  
-  <text x="230" y="390" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Convolution theorem: convolution ↔ multiplication</text>
-  
-  <!-- Edge Handling -->
-  <rect x="440" y="250" width="370" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="625" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Boundary Handling</text>
-  
-  <text x="520" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Zero Padding</text>
-  <text x="520" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Pad with 0s</text>
-  
-  <text x="625" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Replicate</text>
-  <text x="625" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Edge values</text>
-  
-  <text x="730" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Reflect</text>
-  <text x="730" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Mirror edges</text>
-  
-  <text x="625" y="375" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Separable Kernels: K = kₓ × kᵧ → O(NK)</text>
-  <text x="625" y="395" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Gaussian is separable: significant speedup</text>
+  <!-- Padding info -->
+  <g transform="translate(50, 210)">
+    <rect width="700" height="90" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="350" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">Padding Modes</text>
+    
+    <g transform="translate(40, 40)">
+      <rect width="140" height="35" rx="4" fill="#3b82f6" opacity="0.2"/>
+      <text x="70" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">Zero Padding</text>
+    </g>
+    <g transform="translate(200, 40)">
+      <rect width="140" height="35" rx="4" fill="#22c55e" opacity="0.2"/>
+      <text x="70" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Replicate</text>
+    </g>
+    <g transform="translate(360, 40)">
+      <rect width="140" height="35" rx="4" fill="#f59e0b" opacity="0.2"/>
+      <text x="70" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Reflect</text>
+    </g>
+    <g transform="translate(520, 40)">
+      <rect width="140" height="35" rx="4" fill="#a78bfa" opacity="0.2"/>
+      <text x="70" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a78bfa">Circular</text>
+    </g>
+  </g>
 </svg>
-

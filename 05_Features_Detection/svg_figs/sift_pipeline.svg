@@ -1,73 +1,124 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
-  <rect width="850" height="380" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 320">
+  <defs>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Title -->
-  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">SIFT: Scale-Invariant Feature Transform</text>
+  <rect width="850" height="320" fill="#0f172a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">SIFT: Scale-Invariant Feature Transform</text>
   
   <!-- Step 1: Scale Space -->
-  <rect x="30" y="70" width="180" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="120" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">1. Scale Space</text>
-  
-  <rect x="50" y="110" width="60" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
-  <rect x="60" y="120" width="60" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
-  <rect x="70" y="130" width="60" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
-  
-  <text x="120" y="190" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Gaussian pyramid</text>
+  <g transform="translate(30, 60)">
+    <rect width="140" height="130" rx="8" fill="url(#stepGrad)"/>
+    <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">1. Scale Space</text>
+    <g transform="translate(20, 40)">
+      <rect width="100" height="20" rx="2" fill="#1d4ed8" opacity="0.9"/>
+      <rect x="5" y="25" width="90" height="18" rx="2" fill="#2563eb" opacity="0.8"/>
+      <rect x="10" y="48" width="80" height="16" rx="2" fill="#3b82f6" opacity="0.7"/>
+      <rect x="15" y="69" width="70" height="14" rx="2" fill="#60a5fa" opacity="0.6"/>
+    </g>
+    <text x="70" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">Gaussian Pyramid</text>
+  </g>
   
   <!-- Arrow -->
-  <path d="M 215 135 L 255 135" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  <polygon points="175,125 190,120 190,130" fill="#60a5fa"/>
   
   <!-- Step 2: DoG -->
-  <rect x="260" y="70" width="180" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="350" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">2. DoG Keypoints</text>
-  
-  <text x="350" y="125" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">D = G(σ₁) - G(σ₂)</text>
-  
-  <text x="350" y="155" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Difference of Gaussians</text>
-  <text x="350" y="175" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Find local extrema</text>
-  <text x="350" y="195" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">→ Scale + location</text>
-  
-  <!-- Arrow -->
-  <path d="M 445 135 L 485 135" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <!-- Step 3: Orientation -->
-  <rect x="490" y="70" width="160" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="570" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">3. Orientation</text>
-  
-  <text x="570" y="125" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Gradient histogram</text>
-  <text x="570" y="150" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">36 bins (10° each)</text>
-  <text x="570" y="175" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Peak = dominant</text>
-  <text x="570" y="195" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">orientation</text>
+  <g transform="translate(195, 60)">
+    <rect width="140" height="130" rx="8" fill="url(#stepGrad)"/>
+    <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">2. DoG</text>
+    <g transform="translate(20, 40)">
+      <rect width="100" height="18" rx="2" fill="#fbbf24" opacity="0.8"/>
+      <text x="50" y="13" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e293b">G₁ - G₀</text>
+      <rect y="22" width="100" height="18" rx="2" fill="#f59e0b" opacity="0.8"/>
+      <text x="50" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e293b">G₂ - G₁</text>
+      <rect y="44" width="100" height="18" rx="2" fill="#d97706" opacity="0.8"/>
+      <text x="50" y="57" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff">G₃ - G₂</text>
+    </g>
+    <text x="70" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">Difference of Gaussian</text>
+  </g>
   
   <!-- Arrow -->
-  <path d="M 655 135 L 695 135" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <polygon points="340,125 355,120 355,130" fill="#60a5fa"/>
   
-  <!-- Step 4: Descriptor -->
-  <rect x="700" y="70" width="130" height="130" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="765" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">4. Descriptor</text>
+  <!-- Step 3: Keypoints -->
+  <g transform="translate(360, 60)">
+    <rect width="140" height="130" rx="8" fill="url(#stepGrad)"/>
+    <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">3. Keypoints</text>
+    <g transform="translate(20, 40)">
+      <rect width="100" height="70" rx="4" fill="#1e293b"/>
+      <circle cx="25" cy="20" r="6" fill="#22c55e"/>
+      <circle cx="60" cy="35" r="8" fill="#22c55e"/>
+      <circle cx="80" cy="55" r="5" fill="#22c55e"/>
+      <circle cx="40" cy="50" r="7" fill="#22c55e"/>
+    </g>
+    <text x="70" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">Local Extrema</text>
+  </g>
   
-  <text x="765" y="125" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">4×4 cells</text>
-  <text x="765" y="145" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">8 orientations</text>
+  <!-- Arrow -->
+  <polygon points="505,125 520,120 520,130" fill="#60a5fa"/>
   
-  <rect x="720" y="160" width="90" height="25" fill="#2563eb" rx="4"/>
-  <text x="765" y="178" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">128-D vector</text>
+  <!-- Step 4: Orientation -->
+  <g transform="translate(525, 60)">
+    <rect width="140" height="130" rx="8" fill="url(#stepGrad)"/>
+    <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">4. Orientation</text>
+    <g transform="translate(20, 40)">
+      <circle cx="50" cy="35" r="30" fill="none" stroke="#22c55e" stroke-width="2"/>
+      <line x1="50" y1="35" x2="75" y2="20" stroke="#f59e0b" stroke-width="3"/>
+      <polygon points="75,20 70,28 78,25" fill="#f59e0b"/>
+    </g>
+    <text x="70" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#dbeafe">Gradient Histogram</text>
+  </g>
   
-  <!-- Properties Box -->
-  <rect x="30" y="220" width="790" height="140" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="425" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">SIFT Properties</text>
+  <!-- Arrow -->
+  <polygon points="670,125 685,120 685,130" fill="#60a5fa"/>
   
-  <text x="150" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Scale Invariant</text>
-  <text x="150" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Multi-scale detection</text>
+  <!-- Step 5: Descriptor -->
+  <g transform="translate(690, 60)">
+    <rect width="140" height="130" rx="8" fill="#22c55e"/>
+    <text x="70" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">5. Descriptor</text>
+    <g transform="translate(20, 38)">
+      <g fill="#16a34a">
+        <rect width="22" height="22" rx="2"/><rect x="24" width="22" height="22" rx="2"/>
+        <rect x="48" width="22" height="22" rx="2"/><rect x="72" width="22" height="22" rx="2"/>
+        <rect y="24" width="22" height="22" rx="2"/><rect x="24" y="24" width="22" height="22" rx="2"/>
+        <rect x="48" y="24" width="22" height="22" rx="2"/><rect x="72" y="24" width="22" height="22" rx="2"/>
+      </g>
+    </g>
+    <text x="70" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">4×4×8 = 128D</text>
+    <text x="70" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">Feature Vector</text>
+  </g>
   
-  <text x="350" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Rotation Invariant</text>
-  <text x="350" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Orientation normalization</text>
-  
-  <text x="550" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Illumination Robust</text>
-  <text x="550" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Gradient-based features</text>
-  
-  <text x="720" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Distinctive</text>
-  <text x="720" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">High-dim descriptor</text>
-  
-  <text x="425" y="345" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Applications: Image matching, 3D reconstruction, object recognition, panorama stitching</text>
+  <!-- Properties -->
+  <g transform="translate(50, 210)">
+    <rect width="750" height="90" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="375" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f8fafc">SIFT Properties</text>
+    
+    <g transform="translate(40, 40)">
+      <rect width="130" height="35" rx="4" fill="#3b82f6" opacity="0.3"/>
+      <text x="65" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#60a5fa">Scale Invariant</text>
+      <text x="65" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Multi-scale pyramid</text>
+    </g>
+    <g transform="translate(190, 40)">
+      <rect width="130" height="35" rx="4" fill="#22c55e" opacity="0.3"/>
+      <text x="65" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34d399">Rotation Invariant</text>
+      <text x="65" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Dominant orientation</text>
+    </g>
+    <g transform="translate(340, 40)">
+      <rect width="130" height="35" rx="4" fill="#f59e0b" opacity="0.3"/>
+      <text x="65" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fbbf24">Distinctive</text>
+      <text x="65" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">128D descriptor</text>
+    </g>
+    <g transform="translate(490, 40)">
+      <rect width="130" height="35" rx="4" fill="#a78bfa" opacity="0.3"/>
+      <text x="65" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a78bfa">Robust</text>
+      <text x="65" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Lighting, viewpoint</text>
+    </g>
+    <g transform="translate(640, 40)">
+      <rect width="60" height="35" rx="4" fill="#ec4899" opacity="0.3"/>
+      <text x="30" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f472b6">2004</text>
+    </g>
+  </g>
 </svg>

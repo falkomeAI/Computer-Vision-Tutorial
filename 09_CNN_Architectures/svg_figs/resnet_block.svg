@@ -1,59 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 380">
-  <rect width="750" height="380" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350">
+  <defs>
+    <linearGradient id="convGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="skipGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#10b981"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   
-  <!-- Title -->
-  <text x="375" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">ResNet: Residual Block</text>
+  <rect width="700" height="350" fill="#0f172a"/>
+  
+  <text x="350" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">ResNet: Residual Block</text>
+  <text x="350" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Skip Connection enables training of very deep networks</text>
   
   <!-- Input -->
-  <rect x="60" y="100" width="80" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
-  <text x="100" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">x</text>
+  <g transform="translate(80, 100)">
+    <rect width="80" height="60" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+    <text x="40" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">x</text>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Input</text>
+  </g>
   
-  <!-- Arrow to conv -->
-  <path d="M 145 125 L 200 125" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  <!-- Arrow down -->
+  <line x1="120" y1="160" x2="120" y2="190" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="115,190 120,205 125,190" fill="#60a5fa"/>
   
-  <!-- Conv Block 1 -->
-  <rect x="210" y="80" width="100" height="90" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
-  <text x="260" y="105" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Conv 3×3</text>
-  <text x="260" y="125" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">BatchNorm</text>
-  <text x="260" y="145" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">ReLU</text>
+  <!-- Conv 3x3 #1 -->
+  <g transform="translate(70, 210)">
+    <rect width="100" height="45" rx="6" fill="url(#convGrad)" filter="url(#glow)"/>
+    <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">Conv 3×3</text>
+    <text x="50" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe">+ BN + ReLU</text>
+  </g>
   
-  <!-- Arrow to conv 2 -->
-  <path d="M 315 125 L 360 125" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Arrow -->
+  <line x1="120" y1="255" x2="120" y2="275" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="115,275 120,285 125,275" fill="#60a5fa"/>
   
-  <!-- Conv Block 2 -->
-  <rect x="370" y="80" width="100" height="90" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
-  <text x="420" y="105" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Conv 3×3</text>
-  <text x="420" y="125" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">BatchNorm</text>
+  <!-- Conv 3x3 #2 -->
+  <g transform="translate(70, 290)">
+    <rect width="100" height="45" rx="6" fill="url(#convGrad)" filter="url(#glow)"/>
+    <text x="50" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">Conv 3×3</text>
+    <text x="50" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe">+ BN</text>
+  </g>
   
-  <!-- Arrow to add -->
-  <path d="M 475 125 L 520 125" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Skip Connection Path -->
+  <path d="M160 130 Q200 130 200 200 Q200 270 200 312" stroke="url(#skipGrad)" stroke-width="4" fill="none" stroke-dasharray="8,4" filter="url(#glow)"/>
+  <text x="220" y="220" font-family="Arial, sans-serif" font-size="12" fill="#34d399">Identity</text>
+  <text x="220" y="235" font-family="Arial, sans-serif" font-size="12" fill="#34d399">Shortcut</text>
   
-  <!-- Skip Connection (curved line) -->
-  <path d="M 100 155 L 100 200 L 540 200 L 540 155" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="5,3"/>
-  <text x="320" y="220" font-family="Arial, sans-serif" font-size="12" fill="#2563eb" text-anchor="middle" font-weight="bold">Skip Connection (Identity)</text>
+  <!-- Addition -->
+  <g transform="translate(250, 290)">
+    <circle cx="25" cy="22" r="22" fill="#7c3aed" filter="url(#glow)"/>
+    <text x="25" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#fff">+</text>
+  </g>
   
-  <!-- Add circle -->
-  <circle cx="540" cy="125" r="20" fill="#2563eb" stroke="#1e293b" stroke-width="2"/>
-  <text x="540" y="132" font-family="Arial, sans-serif" font-size="20" fill="#ffffff" text-anchor="middle">+</text>
+  <!-- Merge arrows -->
+  <line x1="170" y1="312" x2="228" y2="312" stroke="#60a5fa" stroke-width="2"/>
+  <line x1="200" y1="312" x2="228" y2="312" stroke="#34d399" stroke-width="2"/>
   
-  <!-- Arrow to output -->
-  <path d="M 565 125 L 600 125" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- ReLU after addition -->
+  <g transform="translate(320, 290)">
+    <rect width="60" height="45" rx="6" fill="#f59e0b"/>
+    <text x="30" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">ReLU</text>
+  </g>
   
-  <!-- ReLU -->
-  <rect x="610" y="100" width="60" height="50" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
-  <text x="640" y="130" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">ReLU</text>
+  <!-- Arrow to ReLU -->
+  <line x1="297" y1="312" x2="320" y2="312" stroke="#a78bfa" stroke-width="2"/>
   
   <!-- Output -->
-  <rect x="685" y="100" width="50" height="50" fill="#2563eb" rx="6"/>
-  <text x="710" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">y</text>
+  <g transform="translate(420, 290)">
+    <rect width="80" height="45" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="40" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">y</text>
+  </g>
+  
+  <!-- Arrow to output -->
+  <line x1="380" y1="312" x2="420" y2="312" stroke="#10b981" stroke-width="2"/>
   
   <!-- Formula Box -->
-  <rect x="60" y="260" width="630" height="100" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <g transform="translate(500, 100)">
+    <rect width="170" height="180" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="85" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f8fafc">Key Insight</text>
+    
+    <text x="85" y="65" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#fbbf24">y = F(x) + x</text>
+    
+    <text x="20" y="100" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">• F(x) = residual</text>
+    <text x="20" y="120" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">• x = identity</text>
+    <text x="20" y="145" font-family="Arial, sans-serif" font-size="10" fill="#34d399">✓ Gradient flows</text>
+    <text x="20" y="165" font-family="Arial, sans-serif" font-size="10" fill="#34d399">✓ Easier optimize</text>
+  </g>
   
-  <text x="375" y="295" font-family="Georgia, serif" font-size="18" fill="#1e293b" text-anchor="middle">y = F(x) + x</text>
-  
-  <text x="375" y="325" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">F(x) = learned residual | x = identity shortcut</text>
-  
-  <text x="375" y="345" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Gradient: ∂L/∂x = ∂L/∂y × (1 + ∂F/∂x) — the +1 ensures gradient flow!</text>
+  <!-- Benefits -->
+  <g transform="translate(500, 295)">
+    <rect width="170" height="50" rx="6" fill="#22c55e" opacity="0.2"/>
+    <text x="85" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">152+ layers possible!</text>
+    <text x="85" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Without vanishing gradients</text>
+  </g>
 </svg>

@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="350" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">Neural Network Architecture</text>
+  
+  <!-- Connection lines -->
+  <g stroke="#334155" stroke-width="1" opacity="0.6">
+    <!-- Input to Hidden 1 -->
+    <line x1="120" y1="100" x2="250" y2="80"/>
+    <line x1="120" y1="100" x2="250" y2="140"/>
+    <line x1="120" y1="100" x2="250" y2="200"/>
+    <line x1="120" y1="100" x2="250" y2="260"/>
+    
+    <line x1="120" y1="175" x2="250" y2="80"/>
+    <line x1="120" y1="175" x2="250" y2="140"/>
+    <line x1="120" y1="175" x2="250" y2="200"/>
+    <line x1="120" y1="175" x2="250" y2="260"/>
+    
+    <line x1="120" y1="250" x2="250" y2="80"/>
+    <line x1="120" y1="250" x2="250" y2="140"/>
+    <line x1="120" y1="250" x2="250" y2="200"/>
+    <line x1="120" y1="250" x2="250" y2="260"/>
+    
+    <!-- Hidden 1 to Hidden 2 -->
+    <line x1="290" y1="80" x2="420" y2="100"/>
+    <line x1="290" y1="80" x2="420" y2="175"/>
+    <line x1="290" y1="80" x2="420" y2="250"/>
+    
+    <line x1="290" y1="140" x2="420" y2="100"/>
+    <line x1="290" y1="140" x2="420" y2="175"/>
+    <line x1="290" y1="140" x2="420" y2="250"/>
+    
+    <line x1="290" y1="200" x2="420" y2="100"/>
+    <line x1="290" y1="200" x2="420" y2="175"/>
+    <line x1="290" y1="200" x2="420" y2="250"/>
+    
+    <line x1="290" y1="260" x2="420" y2="100"/>
+    <line x1="290" y1="260" x2="420" y2="175"/>
+    <line x1="290" y1="260" x2="420" y2="250"/>
+    
+    <!-- Hidden 2 to Hidden 3 -->
+    <line x1="460" y1="100" x2="550" y2="120"/>
+    <line x1="460" y1="100" x2="550" y2="175"/>
+    <line x1="460" y1="100" x2="550" y2="230"/>
+    
+    <line x1="460" y1="175" x2="550" y2="120"/>
+    <line x1="460" y1="175" x2="550" y2="175"/>
+    <line x1="460" y1="175" x2="550" y2="230"/>
+    
+    <line x1="460" y1="250" x2="550" y2="120"/>
+    <line x1="460" y1="250" x2="550" y2="175"/>
+    <line x1="460" y1="250" x2="550" y2="230"/>
+    
+    <!-- Hidden 3 to Output -->
+    <line x1="590" y1="120" x2="680" y2="150"/>
+    <line x1="590" y1="120" x2="680" y2="200"/>
+    
+    <line x1="590" y1="175" x2="680" y2="150"/>
+    <line x1="590" y1="175" x2="680" y2="200"/>
+    
+    <line x1="590" y1="230" x2="680" y2="150"/>
+    <line x1="590" y1="230" x2="680" y2="200"/>
+  </g>
+  
+  <!-- Input Layer -->
+  <circle cx="120" cy="100" r="20" fill="url(#nodeGrad)" filter="url(#glow)"/>
+  <circle cx="120" cy="175" r="20" fill="url(#nodeGrad)" filter="url(#glow)"/>
+  <circle cx="120" cy="250" r="20" fill="url(#nodeGrad)" filter="url(#glow)"/>
+  <text x="120" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">x₁</text>
+  <text x="120" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">x₂</text>
+  <text x="120" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">x₃</text>
+  <text x="120" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#60a5fa">Input</text>
+  
+  <!-- Hidden Layer 1 -->
+  <circle cx="270" cy="80" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="270" cy="140" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="270" cy="200" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="270" cy="260" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <text x="270" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">Hidden 1</text>
+  
+  <!-- Hidden Layer 2 -->
+  <circle cx="440" cy="100" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="440" cy="175" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="440" cy="250" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <text x="440" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">Hidden 2</text>
+  
+  <!-- Hidden Layer 3 -->
+  <circle cx="570" cy="120" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="570" cy="175" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <circle cx="570" cy="230" r="18" fill="url(#nodeGrad2)" filter="url(#glow)"/>
+  <text x="570" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">Hidden 3</text>
+  
+  <!-- Output Layer -->
+  <circle cx="700" cy="150" r="20" fill="url(#nodeGrad3)" filter="url(#glow)"/>
+  <circle cx="700" cy="200" r="20" fill="url(#nodeGrad3)" filter="url(#glow)"/>
+  <text x="700" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">ŷ₁</text>
+  <text x="700" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">ŷ₂</text>
+  <text x="700" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#fbbf24">Output</text>
+  
+  <!-- Formula -->
+  <rect x="200" y="315" width="400" height="28" rx="5" fill="#1e293b" stroke="#334155"/>
+  <text x="400" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#f8fafc">y = σ(W₃ · σ(W₂ · σ(W₁ · x + b₁) + b₂) + b₃)</text>
+</svg>

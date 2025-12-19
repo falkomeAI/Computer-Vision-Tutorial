@@ -1,428 +1,384 @@
-# 📐 Mathematical Foundations for Computer Vision
+<div align="center">
 
-> **Level:** 🟢 Beginner | **Prerequisites:** Basic calculus, programming
+# 📐 Mathematical Foundations
 
----
+### *The Language of Computer Vision*
 
-**Navigation:** [🏠 Home](../README.md) | [Transform Methods →](../02_Transform_Methods/)
+<br/>
 
----
+<p>
+<img src="https://img.shields.io/badge/Level-Beginner-green?style=for-the-badge" alt="Level"/>
+<img src="https://img.shields.io/badge/Time-1_week-blue?style=for-the-badge" alt="Time"/>
+</p>
 
+**📓 [Download Notebook](./colab_tutorial.ipynb) → Upload to Colab → Run!**
 
-## 📋 Summary
-
-Mathematical foundations form the backbone of all computer vision algorithms. This module covers **linear algebra** (vectors, matrices, eigendecomposition, SVD), **probability and statistics** (distributions, Bayes' theorem, MLE), **optimization** (gradient descent, convexity), and **signal processing basics** (convolution, sampling). Understanding these concepts is essential for both classical and deep learning approaches.
-
----
-
-## 📊 Key Concepts Table
-
-| Concept | Definition | CV Application |
-|---------|------------|----------------|
-| **Matrix Multiplication** | Linear transformation | Neural network layers |
-| **Eigendecomposition** | A = VΛV⁻¹ | PCA, covariance analysis |
-| **SVD** | A = UΣVᵀ | Image compression, pseudo-inverse |
-| **Gradient** | Vector of partial derivatives | Backpropagation |
-| **Convolution** | Sliding window operation | Filtering, CNNs |
-| **Probability Distribution** | P(x) over outcomes | Uncertainty modeling |
+</div>
 
 ---
 
-## 🔢 Math / Formulas
+[🏠 Home](../README.md) · [Transform Methods →](../02_Transform_Methods/)
 
-### Linear Algebra
+---
 
-**Matrix-Vector Multiplication:**
-$$
-\mathbf{y} = \mathbf{W}\mathbf{x} \quad \text{where} \quad y_i = \sum_j W_{ij} x_j
-$$
+<br/>
 
-**Eigendecomposition (for symmetric matrices):**
-$$
-\mathbf{A} = \mathbf{V}\mathbf{\Lambda}\mathbf{V}^T \quad \text{where} \quad \mathbf{A}\mathbf{v}_i = \lambda_i \mathbf{v}_i
-$$
+## 📖 Overview
 
-**Singular Value Decomposition:**
-$$
-\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T
-$$
+> **Mathematics is the foundation of everything in computer vision.** This module covers the essential math you need—linear algebra, probability, optimization, and convolution—explained visually with runnable code.
+
+<br/>
+
+---
+
+## 🎯 What You'll Learn
+
+<table>
+<tr>
+<td width="50%">
+
+### 📊 **Linear Algebra**
+- Vectors & Matrices
+- Matrix Operations
+- Eigenvalues & SVD
+- Applications in CV
+
+</td>
+<td width="50%">
+
+### 📈 **Probability**
+- Distributions
+- Bayes' Theorem
+- Maximum Likelihood
+- Softmax & Cross-Entropy
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### ⚡ **Optimization**
+- Gradient Descent
+- SGD & Adam
+- Loss Landscapes
+- Convergence
+
+</td>
+<td width="50%">
+
+### 🔄 **Convolution**
+- 1D & 2D Convolution
+- Kernels & Filters
+- CNN Foundation
+- Fourier Connection
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+---
+
+## 📊 Key Concepts
+
+| Concept | Formula | Use in CV |
+|:--------|:--------|:----------|
+| **Matrix Multiply** | `Y = WX` | Neural network layers |
+| **SVD** | `A = UΣVᵀ` | Image compression, PCA |
+| **Gradient** | `∇f = [∂f/∂x₁, ...]` | Backpropagation |
+| **Softmax** | `σ(z)ᵢ = eᶻⁱ/Σeᶻʲ` | Classification output |
+| **Convolution** | `(f*g)[n] = Σf[k]g[n-k]` | Filtering, CNNs |
+
+<br/>
+
+---
+
+## 🔢 Essential Formulas
+
+<table>
+<tr>
+<td>
+
+### Matrix Operations
+
+**Eigendecomposition:**
+```
+A = VΛV⁻¹
+Av = λv
+```
+
+**SVD:**
+```
+A = UΣVᵀ
+```
+
+</td>
+<td>
 
 ### Probability
 
 **Bayes' Theorem:**
-$$
-P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
-$$
+```
+P(A|B) = P(B|A)·P(A) / P(B)
+```
 
-**Gaussian Distribution:**
-$$
-\mathcal{N}(x|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-$$
+**Gaussian:**
+```
+N(x|μ,σ²) = exp(-(x-μ)²/2σ²) / √(2πσ²)
+```
+
+</td>
+</tr>
+<tr>
+<td>
 
 ### Optimization
 
-**Gradient Descent Update:**
-$$
-\theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}(\theta_t)
-$$
-
-### Convolution
-
-**2D Discrete Convolution:**
-$$
-(f * g)[m, n] = \sum_{i}\sum_{j} f[i, j] \cdot g[m-i, n-j]
-$$
-
----
-
-## 🎨 Visual / Diagram
-
-<div align="center">
-<img src="./svg_figs/linear_algebra_overview.svg" alt="Linear Algebra Overview" width="100%"/>
-</div>
-
----
-
-<div align="center">
-<img src="./svg_figs/convolution_operation.svg" alt="Convolution Operation" width="100%"/>
-</div>
-
----
-
-## 💻 Code Practice
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1mathematical_foundations)
-
-```python
-#@title 📐 Mathematical Foundations - Complete Tutorial
-#@markdown Linear Algebra, Probability, Optimization for Computer Vision!
-
-!pip install numpy matplotlib scipy scikit-learn torch -q
-
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import linalg, stats
-from sklearn.decomposition import PCA
-import torch
-import torch.nn as nn
-
-print("✅ Setup complete!")
-
-#@title 1️⃣ Vectors and Matrices
-def vectors_matrices_demo():
-    """Basic vector and matrix operations for CV"""
-    # Vectors represent images, features, etc.
-    image_flat = np.random.randn(784)  # Flattened 28x28 image
-    feature_vector = np.random.randn(128)  # Feature from CNN
-    
-    # Matrices - Linear transformation
-    transformation = np.random.randn(64, 128)  # Linear layer weights
-    
-    # Key operations
-    dot_product = np.dot(feature_vector, feature_vector)  # Similarity
-    matrix_mult = transformation @ feature_vector  # Linear transformation
-    
-    # Norms
-    l1_norm = np.linalg.norm(feature_vector, ord=1)
-    l2_norm = np.linalg.norm(feature_vector, ord=2)
-    
-    print(f"Feature vector shape: {feature_vector.shape}")
-    print(f"After transformation: {matrix_mult.shape}")
-    print(f"L2 norm: {l2_norm:.4f}")
-    
-    # Visualize
-    fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-    
-    axes[0].plot(feature_vector[:50])
-    axes[0].set_title('Feature Vector (first 50 dims)')
-    
-    axes[1].imshow(transformation, cmap='RdBu', aspect='auto')
-    axes[1].set_title(f'Weight Matrix {transformation.shape}')
-    
-    axes[2].bar(['L1', 'L2'], [l1_norm, l2_norm])
-    axes[2].set_title('Vector Norms')
-    
-    plt.tight_layout()
-    plt.show()
-
-vectors_matrices_demo()
-
-#@title 2️⃣ Eigendecomposition & SVD
-def eigen_svd_demo():
-    """SVD for image compression"""
-    from sklearn.datasets import load_sample_image
-    
-    # Create sample data
-    data = np.random.randn(100, 10)
-    cov_matrix = data.T @ data / 100
-    
-    # Eigendecomposition
-    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
-    idx = eigenvalues.argsort()[::-1]
-    eigenvalues = eigenvalues[idx]
-    
-    # SVD
-    U, S, Vt = np.linalg.svd(data, full_matrices=False)
-    
-    # Low-rank approximation
-    k = 3
-    data_approx = U[:, :k] @ np.diag(S[:k]) @ Vt[:k, :]
-    error = np.linalg.norm(data - data_approx, 'fro') / np.linalg.norm(data, 'fro')
-    
-    print(f"Rank-{k} approximation error: {error:.2%}")
-    
-    # Visualize
-    fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-    
-    axes[0].imshow(cov_matrix, cmap='viridis')
-    axes[0].set_title('Covariance Matrix')
-    
-    axes[1].bar(range(len(eigenvalues)), eigenvalues)
-    axes[1].set_title('Eigenvalues (sorted)')
-    
-    cumvar = np.cumsum(eigenvalues) / np.sum(eigenvalues)
-    axes[2].plot(cumvar, 'o-')
-    axes[2].axhline(0.95, color='r', linestyle='--', label='95%')
-    axes[2].set_title('Cumulative Variance')
-    axes[2].legend()
-    
-    plt.tight_layout()
-    plt.show()
-
-eigen_svd_demo()
-
-#@title 3️⃣ Probability Distributions
-def probability_demo():
-    """Common distributions in CV"""
-    fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-    x = np.linspace(-5, 5, 1000)
-    
-    # Gaussian
-    for sigma in [0.5, 1, 2]:
-        y = stats.norm.pdf(x, 0, sigma)
-        axes[0].plot(x, y, label=f'σ={sigma}')
-    axes[0].set_title('Gaussian Distribution')
-    axes[0].legend()
-    
-    # Softmax
-    logits = np.array([2.0, 1.0, 0.1])
-    def softmax(x, T=1):
-        e_x = np.exp(x / T)
-        return e_x / e_x.sum()
-    
-    for T in [0.5, 1.0, 2.0]:
-        probs = softmax(logits, T)
-        offset = [0.5, 1.0, 2.0].index(T) * 0.25
-        axes[1].bar(np.arange(3) + offset, probs, width=0.2, label=f'T={T}')
-    axes[1].set_title('Softmax (Temperature)')
-    axes[1].legend()
-    
-    # Cross-entropy loss
-    p_range = np.linspace(0.01, 0.99, 100)
-    ce_loss = -np.log(p_range)
-    axes[2].plot(p_range, ce_loss)
-    axes[2].set_xlabel('Predicted prob for true class')
-    axes[2].set_ylabel('Loss')
-    axes[2].set_title('Cross-Entropy Loss')
-    
-    plt.tight_layout()
-    plt.show()
-
-probability_demo()
-
-#@title 4️⃣ Gradient Descent
-def optimization_demo():
-    """Gradient descent visualization"""
-    # 2D loss landscape
-    def f(x, y):
-        return (1 - x)**2 + 100*(y - x**2)**2  # Rosenbrock
-    
-    def grad_f(x, y):
-        dx = -2*(1 - x) - 400*x*(y - x**2)
-        dy = 200*(y - x**2)
-        return np.array([dx, dy])
-    
-    # Gradient descent
-    x = np.array([-1.0, 1.0])
-    path = [x.copy()]
-    lr = 0.001
-    
-    for _ in range(1000):
-        grad = grad_f(x[0], x[1])
-        x = x - lr * grad
-        path.append(x.copy())
-    
-    path = np.array(path)
-    
-    # Visualize
-    fig, ax = plt.subplots(figsize=(10, 8))
-    
-    xx = np.linspace(-2, 2, 100)
-    yy = np.linspace(-1, 3, 100)
-    X, Y = np.meshgrid(xx, yy)
-    Z = f(X, Y)
-    
-    ax.contour(X, Y, np.log(Z + 1), levels=30, cmap='viridis')
-    ax.plot(path[:, 0], path[:, 1], 'r.-', markersize=1, label='GD path')
-    ax.scatter(1, 1, c='green', s=100, marker='*', label='Minimum')
-    ax.scatter(-1, 1, c='red', s=100, marker='o', label='Start')
-    ax.set_title('Gradient Descent on Rosenbrock Function')
-    ax.legend()
-    
-    plt.show()
-
-optimization_demo()
-
-#@title 5️⃣ Convolution
-def convolution_demo():
-    """1D and 2D convolution"""
-    # 1D convolution
-    signal = np.array([1, 2, 3, 4, 5, 4, 3, 2, 1])
-    kernel = np.array([1, 0, -1])  # Edge detector
-    conv_result = np.convolve(signal, kernel, mode='same')
-    
-    # 2D convolution
-    from scipy.signal import convolve2d
-    image = np.random.rand(8, 8)
-    kernel_2d = np.array([[-1, -1, -1], [0, 0, 0], [1, 1, 1]])
-    conv_2d = convolve2d(image, kernel_2d, mode='same')
-    
-    # Visualize
-    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
-    
-    axes[0, 0].plot(signal, 'o-', label='Signal')
-    axes[0, 0].set_title('1D Signal')
-    
-    axes[0, 1].bar(range(len(kernel)), kernel)
-    axes[0, 1].set_title('Kernel [1, 0, -1]')
-    
-    axes[0, 2].plot(conv_result, 'o-')
-    axes[0, 2].set_title('Convolution Result')
-    
-    axes[1, 0].imshow(image, cmap='gray')
-    axes[1, 0].set_title('2D Image')
-    
-    axes[1, 1].imshow(kernel_2d, cmap='RdBu')
-    axes[1, 1].set_title('Prewitt Kernel')
-    
-    axes[1, 2].imshow(conv_2d, cmap='RdBu')
-    axes[1, 2].set_title('2D Convolution (edges)')
-    
-    plt.tight_layout()
-    plt.show()
-
-convolution_demo()
-
-print("\n" + "="*50)
-print("✅ Mathematical Foundations Complete!")
-print("="*50)
+**Gradient Descent:**
+```
+θₜ₊₁ = θₜ - η·∇L(θₜ)
 ```
 
----
+</td>
+<td>
 
-## ⚠️ Common Pitfalls / Tips
+### Cross-Entropy Loss
 
-| Pitfall | Solution |
-|---------|----------|
-| Numerical instability in matrix operations | Use SVD instead of inverse; add small ε to denominators |
-| Vanishing gradients | Use proper initialization; batch normalization |
-| Confusing row vs column vectors | Be consistent; PyTorch uses (batch, features) |
-| Forgetting to normalize | Always normalize features for distance-based methods |
-| Wrong axis in NumPy operations | Use explicit `axis=` parameter |
+```
+L = -Σ yᵢ·log(ŷᵢ)
+```
 
----
+</td>
+</tr>
+</table>
 
-## 🛠️ Mini-Project Ideas
-
-### Project 1: PCA Image Compression (Beginner)
-- Implement PCA from scratch using SVD
-- Compress images at different ranks
-- Visualize reconstruction quality vs compression ratio
-
-### Project 2: Gradient Descent Visualizer (Beginner)
-- Implement GD, SGD, Adam from scratch
-- Compare convergence on different loss landscapes
-- Visualize optimization paths
-
-### Project 3: Convolution Calculator (Beginner)
-- Build an interactive convolution demo
-- Support different kernels (blur, sharpen, edge)
-- Compare with NumPy/SciPy implementations
+<br/>
 
 ---
 
-## ❓ Interview Questions & Answers
+## ⚙️ Algorithms
 
-### Q1: What is the difference between eigenvalues and singular values?
+### Algorithm 1: Gradient Descent
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Loss function L(θ), learning rate η        │
+│  OUTPUT: Optimal parameters θ*                     │
+│                                                     │
+│  1. Initialize θ randomly                          │
+│  2. REPEAT until convergence:                      │
+│     a. Compute gradient: g = ∇L(θ)                │
+│     b. Update: θ = θ - η·g                        │
+│                                                     │
+│  Variants:                                          │
+│  - Momentum: v = βv + g; θ = θ - η·v              │
+│  - Adam: Uses adaptive learning rates              │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 2: SVD Computation
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Matrix A (m×n)                             │
+│  OUTPUT: U, Σ, V such that A = UΣVᵀ               │
+│                                                     │
+│  1. Compute AᵀA (n×n symmetric)                   │
+│  2. Find eigenvalues λᵢ and eigenvectors vᵢ       │
+│  3. σᵢ = √λᵢ (singular values)                    │
+│  4. V = [v₁, v₂, ..., vₙ]                         │
+│  5. uᵢ = Avᵢ/σᵢ (left singular vectors)          │
+│  6. U = [u₁, u₂, ..., uₘ]                         │
+│                                                     │
+│  Truncated SVD: Keep top k singular values        │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 3: 2D Convolution
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image I (H×W), Kernel K (kh×kw)           │
+│  OUTPUT: Convolved image O                         │
+│                                                     │
+│  FOR each output position (i, j):                  │
+│    sum = 0                                         │
+│    FOR m = 0 to kh-1:                             │
+│      FOR n = 0 to kw-1:                           │
+│        sum += I[i+m, j+n] × K[m, n]               │
+│    O[i, j] = sum                                  │
+│                                                     │
+│  Output size: (H-kh+1) × (W-kw+1)                 │
+│  With padding P: (H+2P-kh+1) × (W+2P-kw+1)        │
+└─────────────────────────────────────────────────────┘
+```
+
+<br/>
+
+---
+
+## 🎨 Visual Diagrams
+
+<div align="center">
+<img src="./svg_figs/linear_algebra_overview.svg" alt="Linear Algebra" width="90%"/>
+</div>
+
+<br/>
+
+<div align="center">
+<img src="./svg_figs/convolution_operation.svg" alt="Convolution" width="90%"/>
+</div>
+
+<br/>
+
+---
+
+## 📓 Practice
+
+See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
+
+<br/>
+
+---
+
+## ⚠️ Common Pitfalls
+
+| ❌ Pitfall | ✅ Solution |
+|-----------|------------|
+| Numerical overflow in softmax | Subtract max: `softmax(z - max(z))` |
+| Matrix inverse fails | Use SVD pseudo-inverse instead |
+| Vanishing gradients | Proper initialization + batch norm |
+| Wrong axis in NumPy | Always use explicit `axis=` parameter |
+| Forgetting to normalize | Normalize features before distance metrics |
+
+<br/>
+
+---
+
+## 🛠️ Mini Projects
+
+<details>
+<summary><b>Project 1: PCA Image Compression</b></summary>
+
+- Load a grayscale image
+- Apply PCA with different numbers of components (10, 50, 100)
+- Compare quality vs compression ratio
+- Plot reconstruction error vs number of components
+
+</details>
+
+<details>
+<summary><b>Project 2: Optimizer Comparison</b></summary>
+
+- Implement GD, SGD, Momentum, and Adam from scratch
+- Test on different loss surfaces (bowl, saddle, ravine)
+- Visualize convergence paths
+- Compare convergence speed
+
+</details>
+
+<details>
+<summary><b>Project 3: Convolution from Scratch</b></summary>
+
+- Implement 2D convolution without using libraries
+- Apply different kernels (blur, edge detection, sharpen)
+- Compare your implementation with OpenCV/NumPy
+- Measure performance difference
+
+</details>
+
+<br/>
+
+---
+
+## ❓ Interview Q&A
+
+<details>
+<summary><b>Q1: What's the difference between eigenvalues and singular values?</b></summary>
 
 | Eigenvalues | Singular Values |
 |-------------|-----------------|
 | Square matrices only | Any matrix shape |
-| Can be negative/complex | Always non-negative |
-| Av = λv | Av = σu |
-| Used in PCA (on covariance) | Used in SVD (on data) |
+| Can be negative/complex | Always ≥ 0 |
+| `Av = λv` | `Av = σu` |
 
-**Answer:** Eigenvalues exist only for square matrices and satisfy Av = λv. Singular values are always non-negative and come from the SVD decomposition A = UΣVᵀ. For symmetric positive semi-definite matrices, eigenvalues equal singular values.
+For symmetric positive semi-definite matrices, eigenvalues = singular values.
+</details>
 
-### Q2: Why is convolution used in CNNs?
+<details>
+<summary><b>Q2: Why is convolution used in CNNs?</b></summary>
 
-**Answer:**
-1. **Translation equivariance**: If input shifts, output shifts same amount
-2. **Parameter sharing**: Same kernel applied everywhere → fewer parameters
-3. **Local connectivity**: Each output depends on local input region
-4. **Hierarchy**: Stacking layers builds up receptive field
+1. **Translation equivariance** - If input shifts, output shifts same amount
+2. **Parameter sharing** - Same kernel everywhere → fewer parameters
+3. **Local connectivity** - Each output depends on local region
+4. **Hierarchical** - Stacking builds receptive field
+</details>
 
-### Q3: Explain gradient descent vs. stochastic gradient descent.
+<details>
+<summary><b>Q3: GD vs SGD?</b></summary>
 
-| Full-batch GD | Stochastic GD (SGD) |
-|---------------|---------------------|
-| Uses all samples | Uses 1 or mini-batch |
-| Exact gradient | Noisy gradient estimate |
-| Slow per update | Fast per update |
-| May get stuck in local minima | Noise helps escape |
+| Full-batch GD | SGD |
+|---------------|-----|
+| Uses all samples | Uses mini-batch |
+| Exact gradient | Noisy estimate |
+| Slow updates | Fast updates |
+| Can get stuck | Noise helps escape |
+</details>
 
-### Q4: What is the softmax function and when is it used?
+<details>
+<summary><b>Q4: What is softmax?</b></summary>
 
-**Answer:**
-$$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$$
+```
+softmax(zᵢ) = exp(zᵢ) / Σⱼ exp(zⱼ)
+```
 
-- Converts logits to probabilities (sum to 1)
-- Used in multi-class classification output layer
-- Temperature parameter controls "sharpness"
+- Converts logits → probabilities (sum = 1)
+- Used in multi-class classification
+- Temperature `T` controls sharpness
+</details>
 
-### Q5: How does SVD relate to PCA?
+<details>
+<summary><b>Q5: How does SVD relate to PCA?</b></summary>
 
-**Answer:** PCA finds principal components by:
-1. Center data: X̄ = X - mean
-2. Compute covariance: C = X̄ᵀX̄/(n-1)
-3. Eigendecompose C
+PCA on centered data X:
+1. Covariance: `C = XᵀX / (n-1)`
+2. Eigendecompose C
 
-OR equivalently: SVD of centered data X̄ = UΣVᵀ
+OR: SVD on X directly: `X = UΣVᵀ`
 - Principal components = columns of V
-- Eigenvalues = Σ²/(n-1)
+- Variance = Σ²/(n-1)
+</details>
+
+<br/>
 
 ---
 
-## 📚 References / Further Reading
+## 📚 Resources
 
-### Textbooks
-- *Linear Algebra Done Right* - Sheldon Axler
-- *Pattern Recognition and Machine Learning* - Bishop (Ch. 1-2)
-- *Mathematics for Machine Learning* - Deisenroth et al. (free online)
+**Textbooks:**
+- *Mathematics for Machine Learning* - Deisenroth (free PDF)
+- *Linear Algebra Done Right* - Axler
+- *Pattern Recognition and ML* - Bishop (Ch. 1-2)
 
-### Online Resources
-- [3Blue1Brown Linear Algebra](https://www.3blue1brown.com/topics/linear-algebra)
-- [Khan Academy Statistics](https://www.khanacademy.org/math/statistics-probability)
-- [Stanford CS229 Math Review](http://cs229.stanford.edu/section/cs229-linalg.pdf)
+**Videos:**
+- [3Blue1Brown - Linear Algebra](https://www.3blue1brown.com/topics/linear-algebra)
+- [StatQuest - Statistics](https://www.youtube.com/c/joshstarmer)
 
-### Papers
-- "Matrix Cookbook" - Technical reference for matrix calculus
-- "A Tutorial on Principal Component Analysis" - Shlens
+<br/>
 
 ---
 
 <div align="center">
 
-**[🏠 Home](../README.md) | [Transform Methods →](../02_Transform_Methods/)**
+### Next Up
+
+# [Transform Methods →](../02_Transform_Methods/)
+
+*Fourier, Wavelets, DCT & JPEG*
+
+<br/>
+
+[🏠 Back to Home](../README.md)
 
 </div>

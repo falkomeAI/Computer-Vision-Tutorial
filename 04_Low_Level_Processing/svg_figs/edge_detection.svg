@@ -1,71 +1,127 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
-  <rect width="800" height="380" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="sobelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+    <linearGradient id="cannyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
   
-  <!-- Title -->
-  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Edge Detection Methods</text>
+  <rect width="800" height="350" fill="#0f172a"/>
   
-  <!-- Gradient-based -->
-  <rect x="40" y="70" width="230" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="155" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Gradient-Based</text>
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">Edge Detection Methods</text>
   
-  <text x="155" y="130" font-family="Georgia, serif" font-size="13" fill="#1e293b" text-anchor="middle">∇f = [∂f/∂x, ∂f/∂y]</text>
+  <!-- Original Image -->
+  <g transform="translate(40, 60)">
+    <rect width="100" height="100" rx="6" fill="#334155"/>
+    <rect x="30" y="20" width="40" height="60" fill="#64748b"/>
+    <text x="50" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">Original</text>
+  </g>
   
-  <text x="80" y="160" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Sobel:</text>
-  <text x="130" y="160" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3×3 kernels</text>
+  <!-- Arrow -->
+  <path d="M150 110 L180 110" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="180,105 195,110 180,115" fill="#60a5fa"/>
   
-  <text x="80" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Prewitt:</text>
-  <text x="145" y="180" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">simpler weights</text>
+  <!-- Sobel Kernels -->
+  <g transform="translate(210, 55)">
+    <rect width="160" height="120" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+    <text x="80" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f87171">Sobel Operator</text>
+    
+    <!-- Gx kernel -->
+    <g transform="translate(15, 35)">
+      <text x="25" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Gx</text>
+      <rect width="50" height="50" rx="3" fill="url(#sobelGrad)" opacity="0.3"/>
+      <text x="10" y="18" font-family="monospace" font-size="9" fill="#fff">-1 0 1</text>
+      <text x="10" y="32" font-family="monospace" font-size="9" fill="#fff">-2 0 2</text>
+      <text x="10" y="46" font-family="monospace" font-size="9" fill="#fff">-1 0 1</text>
+    </g>
+    
+    <!-- Gy kernel -->
+    <g transform="translate(85, 35)">
+      <text x="25" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Gy</text>
+      <rect width="50" height="50" rx="3" fill="url(#sobelGrad)" opacity="0.3"/>
+      <text x="7" y="18" font-family="monospace" font-size="9" fill="#fff">-1-2-1</text>
+      <text x="10" y="32" font-family="monospace" font-size="9" fill="#fff"> 0 0 0</text>
+      <text x="10" y="46" font-family="monospace" font-size="9" fill="#fff"> 1 2 1</text>
+    </g>
+    
+    <text x="80" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">G = √(Gx² + Gy²)</text>
+  </g>
   
-  <!-- Laplacian -->
-  <rect x="285" y="70" width="230" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="400" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Laplacian</text>
+  <!-- Sobel Result -->
+  <g transform="translate(385, 60)">
+    <rect width="100" height="100" rx="6" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+    <rect x="29" y="19" width="2" height="62" fill="#ef4444" filter="url(#glow)"/>
+    <rect x="69" y="19" width="2" height="62" fill="#ef4444" filter="url(#glow)"/>
+    <text x="50" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#f87171">Sobel Edges</text>
+  </g>
   
-  <text x="400" y="130" font-family="Georgia, serif" font-size="13" fill="#1e293b" text-anchor="middle">∇²f = ∂²f/∂x² + ∂²f/∂y²</text>
+  <!-- Canny Pipeline -->
+  <g transform="translate(40, 200)">
+    <rect width="720" height="120" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="360" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34d399">Canny Edge Detection Pipeline</text>
+    
+    <!-- Steps -->
+    <g transform="translate(30, 45)">
+      <rect width="100" height="50" rx="5" fill="url(#cannyGrad)" opacity="0.8"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">1. Gaussian</text>
+      <text x="50" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">Blur</text>
+    </g>
+    
+    <polygon points="135,70 150,65 150,75" fill="#34d399"/>
+    
+    <g transform="translate(160, 45)">
+      <rect width="100" height="50" rx="5" fill="url(#cannyGrad)" opacity="0.8"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">2. Gradient</text>
+      <text x="50" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">Sobel</text>
+    </g>
+    
+    <polygon points="265,70 280,65 280,75" fill="#34d399"/>
+    
+    <g transform="translate(290, 45)">
+      <rect width="100" height="50" rx="5" fill="url(#cannyGrad)" opacity="0.8"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">3. NMS</text>
+      <text x="50" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">Thin Edges</text>
+    </g>
+    
+    <polygon points="395,70 410,65 410,75" fill="#34d399"/>
+    
+    <g transform="translate(420, 45)">
+      <rect width="120" height="50" rx="5" fill="url(#cannyGrad)" opacity="0.8"/>
+      <text x="60" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">4. Hysteresis</text>
+      <text x="60" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1fae5">T_low, T_high</text>
+    </g>
+    
+    <polygon points="545,70 560,65 560,75" fill="#34d399"/>
+    
+    <g transform="translate(570, 45)">
+      <rect width="100" height="50" rx="5" fill="#0f172a" stroke="#22c55e" stroke-width="2"/>
+      <text x="50" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#34d399">Edges</text>
+      <text x="50" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Binary</text>
+    </g>
+  </g>
   
-  <text x="400" y="160" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Second derivative</text>
-  <text x="400" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Zero-crossing = edge</text>
+  <!-- Canny Result -->
+  <g transform="translate(510, 60)">
+    <rect width="100" height="100" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="2"/>
+    <path d="M30 20 L30 80 M70 20 L70 80" stroke="#22c55e" stroke-width="1" filter="url(#glow)"/>
+    <text x="50" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#34d399">Canny Edges</text>
+  </g>
   
-  <!-- Canny -->
-  <rect x="530" y="70" width="230" height="130" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
-  <text x="645" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Canny (Optimal)</text>
-  
-  <text x="560" y="130" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">1. Gaussian blur</text>
-  <text x="560" y="150" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">2. Gradient magnitude</text>
-  <text x="560" y="170" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3. Non-max suppression</text>
-  <text x="560" y="190" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">4. Hysteresis threshold</text>
-  
-  <!-- Pipeline -->
-  <rect x="40" y="220" width="720" height="140" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
-  <text x="400" y="250" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Canny Edge Detection Pipeline</text>
-  
-  <!-- Steps -->
-  <rect x="70" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="120" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Gaussian</text>
-  <text x="120" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Smoothing</text>
-  
-  <path d="M 175 300 L 210 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
-  
-  <rect x="220" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="270" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Sobel</text>
-  <text x="270" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Gradients</text>
-  
-  <path d="M 325 300 L 360 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="370" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="420" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Non-Max</text>
-  <text x="420" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Suppression</text>
-  
-  <path d="M 475 300 L 510 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="520" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
-  <text x="570" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Double</text>
-  <text x="570" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Threshold</text>
-  
-  <path d="M 625 300 L 660 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
-  
-  <rect x="670" y="275" width="70" height="50" fill="#2563eb" rx="4"/>
-  <text x="705" y="305" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Edges</text>
-  
-  <text x="400" y="350" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Hysteresis: High threshold finds strong edges, low threshold connects weak edges</text>
+  <!-- Comparison -->
+  <g transform="translate(630, 60)">
+    <rect width="130" height="100" rx="6" fill="#1e293b" stroke="#334155"/>
+    <text x="65" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Compare</text>
+    <text x="10" y="45" font-family="Arial, sans-serif" font-size="9" fill="#f87171">• Sobel: Fast</text>
+    <text x="10" y="60" font-family="Arial, sans-serif" font-size="9" fill="#f87171">• Thick edges</text>
+    <text x="10" y="80" font-family="Arial, sans-serif" font-size="9" fill="#34d399">• Canny: Better</text>
+    <text x="10" y="95" font-family="Arial, sans-serif" font-size="9" fill="#34d399">• Thin, clean</text>
+  </g>
 </svg>

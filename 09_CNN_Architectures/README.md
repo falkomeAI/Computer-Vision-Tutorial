@@ -1,448 +1,312 @@
+<div align="center">
+
 # 🧠 CNN Architectures
 
-> **Level:** 🟡 Intermediate | **Prerequisites:** Neural Networks, Linear Algebra
+### *From LeNet to ConvNeXt*
 
----
+<br/>
 
-**Navigation:** [← Neural Networks](../08_Neural_Networks/) | [🏠 Home](../README.md) | [Vision Tasks →](../10_Vision_Tasks/)
+<p>
+<img src="https://img.shields.io/badge/Level-Intermediate-yellow?style=for-the-badge" alt="Level"/>
+<img src="https://img.shields.io/badge/Time-2_weeks-blue?style=for-the-badge" alt="Time"/>
+</p>
 
----
+**📓 [Download Notebook](./colab_tutorial.ipynb) → Upload to Colab → Run!**
 
-
-## 📋 Summary
-
-Convolutional Neural Networks revolutionized computer vision starting with LeNet (1998) and AlexNet (2012). This module covers the evolution of CNN architectures from **LeNet → AlexNet → VGG → ResNet → DenseNet → EfficientNet → ConvNeXt**. You'll learn the key innovations at each stage: ReLU, dropout, skip connections, batch normalization, depthwise separable convolutions, and compound scaling.
-
----
-
-## 📊 Key Concepts Table
-
-| Architecture | Year | Key Innovation | Parameters | Top-1 Acc |
-|--------------|------|----------------|------------|-----------|
-| **LeNet-5** | 1998 | First CNN | 60K | - |
-| **AlexNet** | 2012 | ReLU, Dropout, GPU | 60M | 63.3% |
-| **VGG-16** | 2014 | 3×3 kernels only | 138M | 74.4% |
-| **GoogLeNet** | 2014 | Inception modules | 7M | 74.8% |
-| **ResNet-50** | 2015 | Skip connections | 25M | 76.0% |
-| **DenseNet-121** | 2017 | Dense connections | 8M | 74.9% |
-| **EfficientNet-B0** | 2019 | Compound scaling | 5M | 77.1% |
-| **ConvNeXt-T** | 2022 | Modernized ResNet | 29M | 82.1% |
-
----
-
-## 🔢 Math / Formulas
-
-### Convolution Operation
-$$
-\text{Output}[i,j] = \sum_{m}\sum_{n} \text{Input}[i+m, j+n] \cdot \text{Kernel}[m,n] + \text{bias}
-$$
-
-### Output Size Formula
-$$
-\text{Output Size} = \left\lfloor \frac{W - K + 2P}{S} \right\rfloor + 1
-$$
-where W=input size, K=kernel size, P=padding, S=stride
-
-### Residual Connection (ResNet)
-$$
-\mathbf{y} = \mathcal{F}(\mathbf{x}, \{W_i\}) + \mathbf{x}
-$$
-
-### Dense Connection (DenseNet)
-$$
-\mathbf{x}_\ell = H_\ell([\mathbf{x}_0, \mathbf{x}_1, ..., \mathbf{x}_{\ell-1}])
-$$
-
-### Compound Scaling (EfficientNet)
-$$
-\text{depth: } d = \alpha^\phi, \quad \text{width: } w = \beta^\phi, \quad \text{resolution: } r = \gamma^\phi
-$$
-
----
-
-## 🎨 Visual / Diagram
-
-<div align="center">
-<img src="./svg_figs/cnn_evolution.svg" alt="CNN Evolution" width="100%"/>
 </div>
 
 ---
 
-## 💻 Code Practice
+[← Neural Networks](../08_Neural_Networks/) · [🏠 Home](../README.md) · [Vision Tasks →](../10_Vision_Tasks/)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1cnn_architectures)
+---
 
-```python
-#@title 🧠 CNN Architectures - Complete Implementation
-#@markdown Build LeNet → ResNet → ConvNeXt from scratch!
+<br/>
 
-!pip install torch torchvision matplotlib timm -q
+## 📖 Overview
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torchvision import datasets, transforms
-from torch.utils.data import DataLoader
-import matplotlib.pyplot as plt
-import timm
+> **CNNs revolutionized computer vision.** This module covers the evolution from LeNet (1998) to modern architectures like EfficientNet and ConvNeXt. You'll understand skip connections, batch normalization, and compound scaling.
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print(f"✅ Using device: {device}")
+<br/>
 
-# Load CIFAR-10
-transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize([0.4914, 0.4822, 0.4465], [0.2470, 0.2435, 0.2616])
-])
-trainset = datasets.CIFAR10('./data', train=True, download=True, transform=transform)
-testset = datasets.CIFAR10('./data', train=False, download=True, transform=transform)
-trainloader = DataLoader(trainset, batch_size=128, shuffle=True)
-testloader = DataLoader(testset, batch_size=128)
-print("📦 CIFAR-10 loaded!")
+---
 
-#@title 1️⃣ LeNet-5 (1998) - The Pioneer
-class LeNet5(nn.Module):
-    """LeNet-5: The original CNN architecture"""
-    def __init__(self, num_classes=10):
-        super().__init__()
-        self.conv1 = nn.Conv2d(3, 6, 5)      # 32→28
-        self.pool = nn.AvgPool2d(2)           # 28→14
-        self.conv2 = nn.Conv2d(6, 16, 5)     # 14→10, then pool→5
-        self.fc1 = nn.Linear(16*5*5, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, num_classes)
-    
-    def forward(self, x):
-        x = torch.tanh(self.conv1(x))
-        x = self.pool(x)
-        x = torch.tanh(self.conv2(x))
-        x = self.pool(x)
-        x = x.view(-1, 16*5*5)
-        x = torch.tanh(self.fc1(x))
-        x = torch.tanh(self.fc2(x))
-        return self.fc3(x)
+## 🎯 Key Concepts
 
-lenet = LeNet5().to(device)
-print(f"LeNet-5 parameters: {sum(p.numel() for p in lenet.parameters()):,}")
+| Concept | Description | Used In |
+|:--------|:------------|:--------|
+| **Convolution** | Sliding filter to detect features | All CNNs |
+| **Pooling** | Downsample feature maps | LeNet, VGG |
+| **Skip Connection** | Add input to output (residual) | ResNet, DenseNet |
+| **Batch Normalization** | Normalize activations | ResNet+ |
+| **1×1 Convolution** | Channel reduction/expansion | Inception, ResNet |
+| **Depthwise Separable** | Factorized convolution | MobileNet, EfficientNet |
 
-#@title 2️⃣ VGG Block (2014) - Deeper is Better
-def make_vgg_block(in_channels, out_channels, num_convs):
-    """VGG uses repeated 3×3 conv blocks"""
-    layers = []
-    for _ in range(num_convs):
-        layers.extend([
-            nn.Conv2d(in_channels, out_channels, 3, padding=1),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True)
-        ])
-        in_channels = out_channels
-    layers.append(nn.MaxPool2d(2))
-    return nn.Sequential(*layers)
+<br/>
 
-class VGG11(nn.Module):
-    def __init__(self, num_classes=10):
-        super().__init__()
-        self.features = nn.Sequential(
-            make_vgg_block(3, 64, 1),
-            make_vgg_block(64, 128, 1),
-            make_vgg_block(128, 256, 2),
-            make_vgg_block(256, 512, 2),
-            make_vgg_block(512, 512, 2),
-        )
-        self.classifier = nn.Sequential(
-            nn.Linear(512, 512),
-            nn.ReLU(inplace=True),
-            nn.Dropout(0.5),
-            nn.Linear(512, num_classes)
-        )
-    
-    def forward(self, x):
-        x = self.features(x)
-        x = x.view(x.size(0), -1)
-        return self.classifier(x)
+---
 
-vgg = VGG11().to(device)
-print(f"VGG-11 parameters: {sum(p.numel() for p in vgg.parameters()):,}")
+## 🏗️ Architecture Evolution
 
-#@title 3️⃣ ResNet (2015) - Skip Connections
-class BasicBlock(nn.Module):
-    """ResNet Basic Block with skip connection"""
-    def __init__(self, in_planes, planes, stride=1):
-        super().__init__()
-        self.conv1 = nn.Conv2d(in_planes, planes, 3, stride=stride, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, 3, padding=1, bias=False)
-        self.bn2 = nn.BatchNorm2d(planes)
-        
-        # Shortcut for dimension matching
-        self.shortcut = nn.Sequential()
-        if stride != 1 or in_planes != planes:
-            self.shortcut = nn.Sequential(
-                nn.Conv2d(in_planes, planes, 1, stride=stride, bias=False),
-                nn.BatchNorm2d(planes)
-            )
-    
-    def forward(self, x):
-        out = F.relu(self.bn1(self.conv1(x)))
-        out = self.bn2(self.conv2(out))
-        out += self.shortcut(x)  # ← Skip connection!
-        out = F.relu(out)
-        return out
-
-class ResNet18(nn.Module):
-    def __init__(self, num_classes=10):
-        super().__init__()
-        self.in_planes = 64
-        
-        self.conv1 = nn.Conv2d(3, 64, 3, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(64)
-        
-        self.layer1 = self._make_layer(64, 2, stride=1)
-        self.layer2 = self._make_layer(128, 2, stride=2)
-        self.layer3 = self._make_layer(256, 2, stride=2)
-        self.layer4 = self._make_layer(512, 2, stride=2)
-        
-        self.avgpool = nn.AdaptiveAvgPool2d(1)
-        self.fc = nn.Linear(512, num_classes)
-    
-    def _make_layer(self, planes, num_blocks, stride):
-        strides = [stride] + [1]*(num_blocks-1)
-        layers = []
-        for s in strides:
-            layers.append(BasicBlock(self.in_planes, planes, s))
-            self.in_planes = planes
-        return nn.Sequential(*layers)
-    
-    def forward(self, x):
-        out = F.relu(self.bn1(self.conv1(x)))
-        out = self.layer1(out)
-        out = self.layer2(out)
-        out = self.layer3(out)
-        out = self.layer4(out)
-        out = self.avgpool(out)
-        out = out.view(out.size(0), -1)
-        return self.fc(out)
-
-resnet = ResNet18().to(device)
-print(f"ResNet-18 parameters: {sum(p.numel() for p in resnet.parameters()):,}")
-
-#@title 4️⃣ DenseNet Block (2017) - Dense Connections
-class DenseLayer(nn.Module):
-    def __init__(self, in_channels, growth_rate):
-        super().__init__()
-        self.bn = nn.BatchNorm2d(in_channels)
-        self.conv = nn.Conv2d(in_channels, growth_rate, 3, padding=1, bias=False)
-    
-    def forward(self, x):
-        out = self.conv(F.relu(self.bn(x)))
-        return torch.cat([x, out], dim=1)  # ← Concatenate!
-
-# Demo
-print("\nDenseNet connection demo:")
-print("  Input: 64 channels")
-print("  After 4 layers (growth_rate=32): 64 + 4×32 = 192 channels")
-
-#@title 5️⃣ ConvNeXt Block (2022) - Modern CNN
-class ConvNeXtBlock(nn.Module):
-    """ConvNeXt: CNN modernized with Transformer ideas"""
-    def __init__(self, dim):
-        super().__init__()
-        self.dwconv = nn.Conv2d(dim, dim, 7, padding=3, groups=dim)  # Depthwise
-        self.norm = nn.LayerNorm(dim)
-        self.pwconv1 = nn.Linear(dim, 4*dim)  # Inverted bottleneck
-        self.act = nn.GELU()
-        self.pwconv2 = nn.Linear(4*dim, dim)
-        self.gamma = nn.Parameter(1e-6 * torch.ones(dim))  # Layer scale
-    
-    def forward(self, x):
-        shortcut = x
-        x = self.dwconv(x)
-        x = x.permute(0, 2, 3, 1)  # NCHW → NHWC
-        x = self.norm(x)
-        x = self.pwconv1(x)
-        x = self.act(x)
-        x = self.pwconv2(x)
-        x = self.gamma * x
-        x = x.permute(0, 3, 1, 2)  # NHWC → NCHW
-        return shortcut + x
-
-print("\nConvNeXt modernizations:")
-print("  • 7×7 depthwise convolution")
-print("  • LayerNorm instead of BatchNorm")
-print("  • GELU activation")
-print("  • Inverted bottleneck (expand 4×)")
-print("  • Layer scale initialization")
-
-#@title 6️⃣ Train and Compare
-def train_model(model, name, epochs=3):
-    model.train()
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
-    criterion = nn.CrossEntropyLoss()
-    
-    for epoch in range(epochs):
-        total_loss = 0
-        correct = 0
-        total = 0
-        for inputs, targets in trainloader:
-            inputs, targets = inputs.to(device), targets.to(device)
-            optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = criterion(outputs, targets)
-            loss.backward()
-            optimizer.step()
-            
-            total_loss += loss.item()
-            _, predicted = outputs.max(1)
-            total += targets.size(0)
-            correct += predicted.eq(targets).sum().item()
-        
-        print(f"  {name} Epoch {epoch+1}: Loss={total_loss/len(trainloader):.4f}, Acc={100*correct/total:.1f}%")
-    
-    # Test
-    model.eval()
-    correct = 0
-    total = 0
-    with torch.no_grad():
-        for inputs, targets in testloader:
-            inputs, targets = inputs.to(device), targets.to(device)
-            outputs = model(inputs)
-            _, predicted = outputs.max(1)
-            total += targets.size(0)
-            correct += predicted.eq(targets).sum().item()
-    
-    return 100 * correct / total
-
-print("\n🏋️ Training models (3 epochs each)...")
-results = {}
-for name, model in [("LeNet", LeNet5()), ("ResNet-18", ResNet18())]:
-    model = model.to(device)
-    acc = train_model(model, name)
-    results[name] = acc
-    print(f"  {name} Test Accuracy: {acc:.1f}%\n")
-
-# Visualize
-plt.figure(figsize=(8, 5))
-plt.bar(results.keys(), results.values(), color=['blue', 'orange'])
-plt.ylabel('Test Accuracy (%)')
-plt.title('Architecture Comparison (3 epochs)')
-for i, (name, acc) in enumerate(results.items()):
-    plt.text(i, acc + 1, f'{acc:.1f}%', ha='center')
-plt.show()
-
-#@title 7️⃣ Load Pretrained Models
-print("\n📦 Loading pretrained models from timm:")
-for model_name in ['resnet18', 'efficientnet_b0', 'convnext_tiny']:
-    model = timm.create_model(model_name, pretrained=False)
-    params = sum(p.numel() for p in model.parameters())
-    print(f"  {model_name}: {params/1e6:.1f}M parameters")
-
-print("\n" + "="*50)
-print("✅ CNN Architectures Complete!")
-print("="*50)
+```
+1998        2012        2014        2015        2019        2022
+ │           │           │           │           │           │
+ ▼           ▼           ▼           ▼           ▼           ▼
+LeNet → AlexNet → VGG/GoogLeNet → ResNet → EfficientNet → ConvNeXt
+         │           │              │           │           │
+       ReLU      3×3 only      Skip Conn   Compound    Modern
+       Dropout   Inception               Scaling      Design
 ```
 
----
-
-## ⚠️ Common Pitfalls / Tips
-
-| Pitfall | Solution |
-|---------|----------|
-| Vanishing gradients in deep networks | Use skip connections (ResNet), BatchNorm |
-| Overfitting on small datasets | Dropout, data augmentation, transfer learning |
-| Wrong output size after conv | Use formula: (W-K+2P)/S + 1 |
-| BatchNorm issues at inference | Set model.eval() before testing |
-| GPU memory overflow | Reduce batch size, use gradient checkpointing |
+<br/>
 
 ---
 
-## 🛠️ Mini-Project Ideas
+## 📊 Architecture Comparison
 
-### Project 1: Build Your Own Architecture (Intermediate)
-- Design a custom CNN for CIFAR-10
-- Experiment with kernel sizes, depths, skip connections
-- Target: 85%+ accuracy with <1M parameters
+| Architecture | Year | Key Innovation | Params | Top-1 |
+|:-------------|:----:|:---------------|:------:|:-----:|
+| **LeNet-5** | 1998 | First CNN | 60K | - |
+| **AlexNet** | 2012 | ReLU, Dropout, GPU | 60M | 63% |
+| **VGG-16** | 2014 | 3×3 kernels only | 138M | 74% |
+| **GoogLeNet** | 2014 | Inception modules | 7M | 75% |
+| **ResNet-50** | 2015 | Skip connections | 25M | 76% |
+| **DenseNet** | 2017 | Dense connections | 8M | 75% |
+| **EfficientNet** | 2019 | Compound scaling | 5M | 77% |
+| **ConvNeXt** | 2022 | Modernized ResNet | 29M | 82% |
 
-### Project 2: Architecture Ablation Study (Intermediate)
-- Compare ResNet vs VGG vs DenseNet on same task
-- Measure accuracy, speed, memory usage
-- Visualize feature maps and gradients
-
-### Project 3: Transfer Learning Pipeline (Intermediate)
-- Fine-tune pretrained models on custom dataset
-- Compare different unfreezing strategies
-- Implement learning rate scheduling
+<br/>
 
 ---
 
-## ❓ Interview Questions & Answers
+## 🔢 Key Formulas
 
-### Q1: Why do skip connections help training?
+<table>
+<tr>
+<td>
 
-**Answer:**
-1. **Gradient flow**: Gradients can bypass layers via shortcut
-2. **Identity mapping**: Easy to learn if no transformation needed
-3. **Ensemble effect**: Acts like ensemble of shallow networks
-4. **Prevents degradation**: Accuracy doesn't drop with more layers
+### Convolution
+```
+Output[i,j] = Σ Input[i+m,j+n] × Kernel[m,n]
+```
 
-### Q2: What's the difference between 1×1, 3×3, and 7×7 convolutions?
+### Output Size
+```
+O = ⌊(W - K + 2P) / S⌋ + 1
+```
+W=input, K=kernel, P=pad, S=stride
 
-| Kernel | Use Case |
-|--------|----------|
-| **1×1** | Channel mixing, dimension reduction |
-| **3×3** | Standard spatial feature extraction |
-| **7×7** | Large receptive field, stem layers |
+</td>
+<td>
 
-### Q3: Explain depthwise separable convolution.
+### Residual Block (ResNet)
+```
+y = F(x) + x
+```
+F = conv layers, x = skip connection
 
-**Answer:** Splits standard conv into:
-1. **Depthwise**: One filter per channel (spatial)
-2. **Pointwise**: 1×1 conv (channel mixing)
+### Receptive Field
+```
+RF = RF_prev + (K-1) × stride_product
+```
 
-**Cost reduction**: From O(K²×C_in×C_out) to O(K²×C_in + C_in×C_out)
+</td>
+</tr>
+</table>
 
-### Q4: Why does EfficientNet use compound scaling?
-
-**Answer:** Balances depth/width/resolution together:
-- Deeper: More complex features
-- Wider: More channels per layer
-- Higher resolution: More fine-grained patterns
-
-Scaling one alone gives diminishing returns.
-
-### Q5: VGG vs ResNet - which is better and why?
-
-| VGG | ResNet |
-|-----|--------|
-| Simpler design | Skip connections |
-| 138M params | 25M params |
-| Max 19 layers | 100+ layers |
-| No skip connections | Better gradient flow |
-
-**ResNet is better** because skip connections enable much deeper networks with fewer parameters.
+<br/>
 
 ---
 
-## 📚 References / Further Reading
+## ⚙️ Algorithms
 
-### Original Papers
-- LeNet: "Gradient-Based Learning Applied to Document Recognition" (LeCun 1998)
-- AlexNet: "ImageNet Classification with Deep CNNs" (Krizhevsky 2012)
-- VGG: "Very Deep Convolutional Networks" (Simonyan 2014)
-- ResNet: "Deep Residual Learning" (He 2015)
-- DenseNet: "Densely Connected CNNs" (Huang 2017)
-- EfficientNet: "Rethinking Model Scaling" (Tan 2019)
-- ConvNeXt: "A ConvNet for the 2020s" (Liu 2022)
+### Algorithm 1: Forward Pass in CNN
 
-### Online Resources
-- [PyTorch Vision Models](https://pytorch.org/vision/stable/models.html)
-- [timm (PyTorch Image Models)](https://github.com/huggingface/pytorch-image-models)
-- [Papers With Code - Image Classification](https://paperswithcode.com/task/image-classification)
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Image x (H×W×C)                            │
+│  OUTPUT: Class probabilities                        │
+│                                                     │
+│  FOR each convolutional layer:                     │
+│    1. Convolve: z = x * W + b                     │
+│    2. Batch Norm: z = BN(z)                       │
+│    3. Activation: a = ReLU(z)                     │
+│    4. (Optional) Pool: a = MaxPool(a)             │
+│                                                     │
+│  Flatten to vector                                 │
+│  FOR each fully connected layer:                   │
+│    1. Linear: z = Wa + b                          │
+│    2. Activation: a = ReLU(z)                     │
+│                                                     │
+│  Output: softmax(z_final)                          │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 2: ResNet Residual Block
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: x (feature map)                            │
+│  OUTPUT: y (residual output)                       │
+│                                                     │
+│  1. identity = x                                   │
+│                                                     │
+│  2. F(x) = Conv3x3 → BN → ReLU → Conv3x3 → BN     │
+│                                                     │
+│  3. IF dimensions change:                          │
+│        identity = Conv1x1(x)  # projection        │
+│                                                     │
+│  4. y = ReLU(F(x) + identity)                     │
+│                                                     │
+│  Key: Gradient flows through identity path        │
+└─────────────────────────────────────────────────────┘
+```
+
+### Algorithm 3: Batch Normalization
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Mini-batch B = {x₁, ..., xₘ}              │
+│  OUTPUT: Normalized batch                          │
+│                                                     │
+│  1. μ_B = (1/m) Σ xᵢ           (batch mean)       │
+│  2. σ²_B = (1/m) Σ (xᵢ - μ_B)² (batch variance)   │
+│  3. x̂ᵢ = (xᵢ - μ_B) / √(σ²_B + ε)                │
+│  4. yᵢ = γ x̂ᵢ + β            (scale & shift)     │
+│                                                     │
+│  γ, β are learned parameters                       │
+│  At test time: use running mean/variance          │
+└─────────────────────────────────────────────────────┘
+```
+
+<br/>
+
+---
+
+## 🏗️ Architecture Diagrams
+
+<div align="center">
+<img src="./svg_figs/cnn_evolution.svg" alt="CNN Evolution" width="90%"/>
+</div>
+
+<br/>
+
+<div align="center">
+<img src="./svg_figs/resnet_block.svg" alt="ResNet Block" width="70%"/>
+</div>
+
+<br/>
+
+---
+
+## 💻 Complete Code
+
+> **Copy this entire code block and paste into Google Colab!**
+
+*See Colab notebook for implementation*
+
+<br/>
+
+---
+
+## ⚠️ Common Pitfalls
+
+| ❌ Pitfall | ✅ Solution |
+|-----------|------------|
+| Vanishing gradients in deep nets | Use skip connections (ResNet) |
+| Overfitting on small datasets | Use pretrained models + fine-tune |
+| Wrong input size | Check model's expected resolution |
+| Batch norm issues at test time | Call `model.eval()` during inference |
+| Forgetting to freeze layers | Set `param.requires_grad = False` |
+
+<br/>
+
+---
+
+## ❓ Interview Q&A
+
+<details>
+<summary><b>Q1: Why do skip connections help?</b></summary>
+
+1. **Gradient flow**: Gradients can bypass layers via identity path
+2. **Easier optimization**: Network only needs to learn residual `F(x) = H(x) - x`
+3. **Implicit ensembles**: Creates exponentially many paths through network
+4. **Feature reuse**: Combines low and high-level features
+</details>
+
+<details>
+<summary><b>Q2: VGG vs GoogLeNet - why same accuracy, different params?</b></summary>
+
+| VGG-16 | GoogLeNet |
+|--------|-----------|
+| 138M params | 7M params |
+| Simple 3×3 stacks | Inception modules |
+| Wide layers | Parallel paths (1×1, 3×3, 5×5) |
+| FC layers at end | Global avg pool |
+
+GoogLeNet uses 1×1 convolutions to reduce channels before expensive 3×3/5×5 convolutions.
+</details>
+
+<details>
+<summary><b>Q3: What is compound scaling (EfficientNet)?</b></summary>
+
+Scale all dimensions together:
+- **Width**: More channels per layer
+- **Depth**: More layers
+- **Resolution**: Larger input images
+
+EfficientNet uses a compound coefficient φ:
+```
+depth = α^φ
+width = β^φ  
+resolution = γ^φ
+```
+where α·β²·γ² ≈ 2
+</details>
+
+<details>
+<summary><b>Q4: Receptive field calculation?</b></summary>
+
+*See Colab notebook for implementation*
+
+Example: Three 3×3 conv layers
+- After layer 1: RF = 3
+- After layer 2: RF = 5  
+- After layer 3: RF = 7
+
+Two 3×3 = One 5×5 receptive field, but fewer params!
+</details>
+
+<br/>
+
+---
+
+## 📚 Resources
+
+**Papers:**
+- [AlexNet (2012)](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks)
+- [VGG (2014)](https://arxiv.org/abs/1409.1556)
+- [ResNet (2015)](https://arxiv.org/abs/1512.03385)
+- [EfficientNet (2019)](https://arxiv.org/abs/1905.11946)
+- [ConvNeXt (2022)](https://arxiv.org/abs/2201.03545)
+
+**Videos:**
+- [Stanford CS231n - CNNs](https://www.youtube.com/watch?v=bNb2fEVKeEo)
+
+<br/>
 
 ---
 
 <div align="center">
 
-**[← Neural Networks](../08_Neural_Networks/) | [🏠 Home](../README.md) | [Vision Tasks →](../10_Vision_Tasks/)**
+### Next Up
+
+# [Vision Tasks →](../10_Vision_Tasks/)
+
+*Classification, Detection, Segmentation*
+
+<br/>
+
+[🏠 Back to Home](../README.md)
 
 </div>
