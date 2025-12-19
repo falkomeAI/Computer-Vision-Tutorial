@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="blurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2980b9"/>
+    </linearGradient>
+    <linearGradient id="edgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <linearGradient id="sharpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#229954"/>
+    </linearGradient>
+  </defs>
+  
+  <text x="450" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Image Filtering Operations</text>
+  
+  <!-- Gaussian Blur -->
+  <g>
+    <rect x="30" y="60" width="270" height="200" fill="url(#blurGrad)" rx="10"/>
+    <text x="165" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Gaussian Blur</text>
+    
+    <rect x="45" y="105" width="240" height="140" fill="white" opacity="0.95" rx="5"/>
+    
+    <!-- Kernel visualization -->
+    <text x="100" y="130" font-family="Arial, sans-serif" font-size="10" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Kernel 3x3:</text>
+    <text x="100" y="155" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[1 2 1]</text>
+    <text x="100" y="170" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[2 4 2] /16</text>
+    <text x="100" y="185" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[1 2 1]</text>
+    
+    <text x="210" y="140" font-family="Arial, sans-serif" font-size="10" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Effect:</text>
+    <text x="210" y="160" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Smoothing</text>
+    <text x="210" y="175" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Noise reduction</text>
+    <text x="210" y="190" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Low-pass filter</text>
+    
+    <text x="165" y="225" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">cv2.GaussianBlur(img, (5,5), sigma)</text>
+  </g>
+  
+  <!-- Sobel Edge -->
+  <g>
+    <rect x="315" y="60" width="270" height="200" fill="url(#edgeGrad)" rx="10"/>
+    <text x="450" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Sobel Edge Detection</text>
+    
+    <rect x="330" y="105" width="240" height="140" fill="white" opacity="0.95" rx="5"/>
+    
+    <text x="385" y="130" font-family="Arial, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Sobel X:</text>
+    <text x="385" y="155" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[-1 0 1]</text>
+    <text x="385" y="170" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[-2 0 2]</text>
+    <text x="385" y="185" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[-1 0 1]</text>
+    
+    <text x="500" y="130" font-family="Arial, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Sobel Y:</text>
+    <text x="500" y="155" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[-1 -2 -1]</text>
+    <text x="500" y="170" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[ 0  0  0]</text>
+    <text x="500" y="185" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[ 1  2  1]</text>
+    
+    <text x="450" y="225" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">G = sqrt(Gx² + Gy²)</text>
+  </g>
+  
+  <!-- Sharpening -->
+  <g>
+    <rect x="600" y="60" width="270" height="200" fill="url(#sharpGrad)" rx="10"/>
+    <text x="735" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Sharpening (Unsharp)</text>
+    
+    <rect x="615" y="105" width="240" height="140" fill="white" opacity="0.95" rx="5"/>
+    
+    <text x="680" y="130" font-family="Arial, sans-serif" font-size="10" fill="#229954" text-anchor="middle" dominant-baseline="middle">Kernel:</text>
+    <text x="680" y="155" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[ 0 -1  0]</text>
+    <text x="680" y="170" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[-1  5 -1]</text>
+    <text x="680" y="185" font-family="monospace" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">[ 0 -1  0]</text>
+    
+    <text x="790" y="140" font-family="Arial, sans-serif" font-size="10" fill="#229954" text-anchor="middle" dominant-baseline="middle">Effect:</text>
+    <text x="790" y="160" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Edge enhance</text>
+    <text x="790" y="175" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">High-pass</text>
+    <text x="790" y="190" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Detail boost</text>
+    
+    <text x="735" y="225" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">sharp = img + α(img - blur)</text>
+  </g>
+  
+  <!-- Comparison Table -->
+  <rect x="30" y="290" width="840" height="190" fill="#f8f9fa" stroke="#dee2e6" rx="10"/>
+  <text x="450" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Filter Comparison</text>
+  
+  <!-- Table Header -->
+  <rect x="50" y="340" width="150" height="30" fill="#ecf0f1"/>
+  <rect x="200" y="340" width="200" height="30" fill="#ecf0f1"/>
+  <rect x="400" y="340" width="200" height="30" fill="#ecf0f1"/>
+  <rect x="600" y="340" width="250" height="30" fill="#ecf0f1"/>
+  <text x="125" y="360" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Filter</text>
+  <text x="300" y="360" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Type</text>
+  <text x="500" y="360" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Use Case</text>
+  <text x="725" y="360" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">OpenCV Function</text>
+  
+  <!-- Row 1 -->
+  <text x="125" y="395" font-family="Arial, sans-serif" font-size="10" fill="#3498db" text-anchor="middle" dominant-baseline="middle">Gaussian</text>
+  <text x="300" y="395" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Linear, Low-pass</text>
+  <text x="500" y="395" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Noise removal</text>
+  <text x="725" y="395" font-family="monospace" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">cv2.GaussianBlur()</text>
+  
+  <!-- Row 2 -->
+  <text x="125" y="420" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Median</text>
+  <text x="300" y="420" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Non-linear</text>
+  <text x="500" y="420" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Salt-pepper noise</text>
+  <text x="725" y="420" font-family="monospace" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">cv2.medianBlur()</text>
+  
+  <!-- Row 3 -->
+  <text x="125" y="445" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Bilateral</text>
+  <text x="300" y="445" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Edge-preserving</text>
+  <text x="500" y="445" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Denoise + keep edges</text>
+  <text x="725" y="445" font-family="monospace" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">cv2.bilateralFilter()</text>
+  
+  <!-- Row 4 -->
+  <text x="125" y="470" font-family="Arial, sans-serif" font-size="10" fill="#9b59b6" text-anchor="middle" dominant-baseline="middle">Laplacian</text>
+  <text x="300" y="470" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">2nd derivative</text>
+  <text x="500" y="470" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Edge detection</text>
+  <text x="725" y="470" font-family="monospace" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">cv2.Laplacian()</text>
+</svg>
+

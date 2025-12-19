@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Backpropagation: Gradient Flow</text>
+  
+  <!-- Forward Pass Arrow -->
+  <text x="400" y="65" font-family="Arial, sans-serif" font-size="12" fill="#2563eb" text-anchor="middle">Forward Pass →</text>
+  
+  <!-- Input Layer -->
+  <rect x="60" y="90" width="80" height="120" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Input</text>
+  
+  <circle cx="100" cy="140" r="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="100" cy="175" r="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  
+  <text x="100" y="145" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">x₁</text>
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">x₂</text>
+  
+  <!-- Forward arrows -->
+  <line x1="145" y1="150" x2="205" y2="120" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="145" y1="150" x2="205" y2="150" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="145" y1="150" x2="205" y2="180" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="145" y1="175" x2="205" y2="120" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="145" y1="175" x2="205" y2="150" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="145" y1="175" x2="205" y2="180" stroke="#1e293b" stroke-width="1.5"/>
+  
+  <!-- Hidden Layer -->
+  <rect x="210" y="90" width="100" height="120" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="260" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Hidden</text>
+  
+  <circle cx="260" cy="140" r="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="260" cy="175" r="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  
+  <text x="260" y="145" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">h₁</text>
+  <text x="260" y="180" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">h₂</text>
+  
+  <!-- Forward arrows -->
+  <line x1="315" y1="140" x2="375" y2="155" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="315" y1="175" x2="375" y2="155" stroke="#1e293b" stroke-width="1.5"/>
+  
+  <!-- Output Layer -->
+  <rect x="380" y="105" width="80" height="90" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="420" y="130" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Output</text>
+  
+  <circle cx="420" cy="160" r="12" fill="#2563eb" stroke="#1e293b" stroke-width="2"/>
+  <text x="420" y="165" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">ŷ</text>
+  
+  <!-- Loss -->
+  <path d="M 465 155 L 510 155" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  
+  <rect x="520" y="125" width="80" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="560" y="155" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Loss L</text>
+  <text x="560" y="175" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">(ŷ, y)</text>
+  
+  <!-- Backward Pass Label -->
+  <text x="400" y="230" font-family="Arial, sans-serif" font-size="12" fill="#2563eb" text-anchor="middle">← Backward Pass (Gradients)</text>
+  
+  <!-- Gradient Flow Arrows (dashed, backward) -->
+  <path d="M 515 180 L 465 180" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+  <defs><marker id="arr2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M10,5 L10,0 L0,5 L10,10 z" fill="#2563eb"/></marker></defs>
+  
+  <path d="M 375 180 L 315 180" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+  <path d="M 205 180 L 145 180" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Chain Rule Box -->
+  <rect x="40" y="250" width="720" height="130" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Chain Rule</text>
+  
+  <text x="400" y="315" font-family="Georgia, serif" font-size="16" fill="#1e293b" text-anchor="middle">∂L/∂w = ∂L/∂ŷ · ∂ŷ/∂h · ∂h/∂w</text>
+  
+  <text x="200" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Loss gradient</text>
+  <text x="400" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">× Local gradient</text>
+  <text x="600" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">× Input value</text>
+  
+  <!-- Update Rule -->
+  <text x="680" y="400" font-family="Georgia, serif" font-size="13" fill="#1e293b" text-anchor="end">w ← w - η · ∂L/∂w</text>
+</svg>

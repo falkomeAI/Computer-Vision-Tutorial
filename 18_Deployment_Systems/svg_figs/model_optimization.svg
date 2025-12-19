@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
+  <rect width="850" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Model Optimization Techniques</text>
+  
+  <!-- Quantization -->
+  <rect x="40" y="70" width="190" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="135" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Quantization</text>
+  
+  <rect x="60" y="115" width="70" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="95" y="135" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">FP32</text>
+  
+  <text x="143" y="135" font-family="Arial, sans-serif" font-size="14" fill="#1e293b">→</text>
+  
+  <rect x="155" y="115" width="60" height="30" fill="#2563eb" rx="4"/>
+  <text x="185" y="135" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">INT8</text>
+  
+  <text x="135" y="170" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">4× smaller</text>
+  <text x="135" y="190" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2-4× faster</text>
+  
+  <!-- Pruning -->
+  <rect x="250" y="70" width="190" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="345" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Pruning</text>
+  
+  <!-- Neural network visualization -->
+  <circle cx="290" cy="135" r="6" fill="#2563eb"/>
+  <circle cx="290" cy="160" r="6" fill="#2563eb"/>
+  <circle cx="320" cy="140" r="6" fill="#e5e7eb"/>
+  <circle cx="320" cy="165" r="6" fill="#2563eb"/>
+  <circle cx="350" cy="135" r="6" fill="#2563eb"/>
+  <circle cx="350" cy="160" r="6" fill="#e5e7eb"/>
+  <circle cx="380" cy="150" r="6" fill="#2563eb"/>
+  
+  <line x1="296" y1="135" x2="314" y2="140" stroke="#2563eb" stroke-width="1"/>
+  <line x1="296" y1="160" x2="314" y2="165" stroke="#2563eb" stroke-width="1"/>
+  <line x1="326" y1="165" x2="344" y2="135" stroke="#2563eb" stroke-width="1"/>
+  <line x1="356" y1="135" x2="374" y2="150" stroke="#2563eb" stroke-width="1"/>
+  
+  <text x="345" y="190" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Remove ~90% weights</text>
+  
+  <!-- Distillation -->
+  <rect x="460" y="70" width="190" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="555" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Distillation</text>
+  
+  <rect x="480" y="120" width="60" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="510" y="150" font-family="Arial, sans-serif" font-size="10" fill="#1e293b" text-anchor="middle">Teacher</text>
+  
+  <text x="555" y="150" font-family="Arial, sans-serif" font-size="14" fill="#1e293b">→</text>
+  
+  <rect x="575" y="130" width="55" height="35" fill="#2563eb" rx="4"/>
+  <text x="602" y="152" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Student</text>
+  
+  <text x="555" y="190" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Soft labels transfer</text>
+  
+  <!-- Mixed Precision -->
+  <rect x="670" y="70" width="150" height="140" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="745" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Mixed Precision</text>
+  
+  <text x="745" y="130" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">FP16 compute</text>
+  <text x="745" y="150" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">FP32 accumulate</text>
+  
+  <text x="745" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">2× speedup</text>
+  <text x="745" y="200" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Same accuracy</text>
+  
+  <!-- Deployment Formats -->
+  <rect x="40" y="230" width="780" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="430" y="260" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Deployment Formats</text>
+  
+  <rect x="70" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+  <text x="135" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">ONNX</text>
+  <text x="135" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Cross-framework</text>
+  
+  <rect x="230" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+  <text x="295" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">TensorRT</text>
+  <text x="295" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">NVIDIA optimized</text>
+  
+  <rect x="390" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+  <text x="455" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">TFLite</text>
+  <text x="455" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Mobile/Edge</text>
+  
+  <rect x="550" y="285" width="130" height="70" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+  <text x="615" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">CoreML</text>
+  <text x="615" y="340" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Apple devices</text>
+  
+  <rect x="710" y="285" width="90" height="70" fill="#2563eb" rx="6"/>
+  <text x="755" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Triton</text>
+  <text x="755" y="340" font-family="Arial, sans-serif" font-size="10" fill="#dbeafe" text-anchor="middle">Server</text>
+</svg>

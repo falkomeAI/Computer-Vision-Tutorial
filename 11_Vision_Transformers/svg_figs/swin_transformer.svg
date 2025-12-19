@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
+  <rect width="850" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Swin Transformer: Hierarchical Vision Transformer</text>
+  
+  <!-- Window Attention -->
+  <rect x="30" y="70" width="250" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="155" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Window Attention</text>
+  
+  <!-- Grid visualization -->
+  <rect x="55" y="115" width="80" height="80" fill="#ffffff" stroke="#1e293b" rx="2"/>
+  
+  <!-- Windows -->
+  <rect x="55" y="115" width="40" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="1"/>
+  <rect x="95" y="115" width="40" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="1"/>
+  <rect x="55" y="155" width="40" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="1"/>
+  <rect x="95" y="155" width="40" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="1"/>
+  
+  <text x="155" y="130" font-family="Arial, sans-serif" font-size="11" fill="#64748b">M×M windows</text>
+  <text x="155" y="150" font-family="Arial, sans-serif" font-size="11" fill="#64748b">(M=7 typical)</text>
+  
+  <text x="155" y="200" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Attention within windows</text>
+  <text x="155" y="215" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">O(N) complexity</text>
+  
+  <!-- Shifted Window -->
+  <rect x="300" y="70" width="250" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="425" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Shifted Window</text>
+  
+  <!-- Shifted grid -->
+  <rect x="325" y="115" width="80" height="80" fill="#ffffff" stroke="#1e293b" rx="2"/>
+  
+  <!-- Shifted windows (offset) -->
+  <rect x="305" y="95" width="40" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2" rx="1"/>
+  <rect x="385" y="135" width="40" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2" rx="1"/>
+  
+  <text x="425" y="130" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Shift by M/2</text>
+  
+  <text x="425" y="200" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Cross-window connections</text>
+  <text x="425" y="215" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">in alternating layers</text>
+  
+  <!-- Hierarchical Structure -->
+  <rect x="570" y="70" width="250" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="695" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Hierarchical Design</text>
+  
+  <rect x="590" y="120" width="80" height="20" fill="#2563eb" rx="2"/>
+  <text x="630" y="134" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Stage 1: C=96</text>
+  
+  <rect x="610" y="145" width="60" height="18" fill="#2563eb" rx="2"/>
+  <text x="640" y="158" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Stage 2: 192</text>
+  
+  <rect x="630" y="168" width="50" height="16" fill="#2563eb" rx="2"/>
+  <text x="655" y="179" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Stage 3</text>
+  
+  <rect x="650" y="188" width="40" height="14" fill="#2563eb" rx="2"/>
+  <text x="670" y="198" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Stage 4</text>
+  
+  <text x="695" y="215" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Patch merging: 2× downsample</text>
+  
+  <!-- Comparison Box -->
+  <rect x="30" y="240" width="790" height="140" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="425" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Swin vs ViT</text>
+  
+  <!-- Headers -->
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Property</text>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">ViT</text>
+  <text x="625" y="300" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Swin</text>
+  
+  <!-- Row 1 -->
+  <text x="200" y="325" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Complexity</text>
+  <text x="400" y="325" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">O(N²)</text>
+  <text x="625" y="325" font-family="Arial, sans-serif" font-size="11" fill="#2563eb" text-anchor="middle">O(N) linear</text>
+  
+  <!-- Row 2 -->
+  <text x="200" y="350" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Multi-scale</text>
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Single scale</text>
+  <text x="625" y="350" font-family="Arial, sans-serif" font-size="11" fill="#2563eb" text-anchor="middle">Hierarchical (FPN-like)</text>
+  
+  <!-- Row 3 -->
+  <text x="200" y="375" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Best for</text>
+  <text x="400" y="375" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Classification</text>
+  <text x="625" y="375" font-family="Arial, sans-serif" font-size="11" fill="#2563eb" text-anchor="middle">Detection, Segmentation</text>
+</svg>

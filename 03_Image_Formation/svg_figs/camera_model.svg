@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <rect width="800" height="380" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Pinhole Camera Model</text>
+  
+  <!-- 3D World -->
+  <rect x="40" y="80" width="200" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="140" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">World (3D)</text>
+  
+  <!-- 3D point -->
+  <circle cx="140" cy="160" r="8" fill="#2563eb"/>
+  <text x="140" y="200" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">P = (X, Y, Z)</text>
+  
+  <!-- Arrow -->
+  <path d="M 245 155 L 310 155" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="277" y="145" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Project</text>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  
+  <!-- Camera/Projection -->
+  <rect x="320" y="80" width="200" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="420" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Camera</text>
+  
+  <!-- Pinhole diagram -->
+  <circle cx="420" cy="160" r="5" fill="#1e293b"/>
+  <text x="420" y="140" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Optical center</text>
+  
+  <line x1="380" y1="190" x2="460" y2="190" stroke="#1e293b" stroke-width="2"/>
+  <text x="420" y="210" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Image plane (f)</text>
+  
+  <!-- Arrow -->
+  <path d="M 525 155 L 590 155" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <!-- Image -->
+  <rect x="600" y="80" width="160" height="150" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="680" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Image (2D)</text>
+  
+  <!-- 2D point -->
+  <circle cx="680" cy="160" r="6" fill="#2563eb"/>
+  <text x="680" y="200" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">p = (u, v)</text>
+  
+  <!-- Projection Equation Box -->
+  <rect x="40" y="250" width="720" height="110" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Projection Equation</text>
+  
+  <text x="400" y="315" font-family="Georgia, serif" font-size="16" fill="#1e293b" text-anchor="middle">s [u, v, 1]ᵀ = K [R | t] [X, Y, Z, 1]ᵀ</text>
+  
+  <text x="180" y="345" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">K: intrinsic (f, cx, cy)</text>
+  <text x="400" y="345" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">[R|t]: extrinsic (pose)</text>
+  <text x="620" y="345" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">s: scale factor</text>
+</svg>

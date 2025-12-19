@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
+  <rect width="850" height="380" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">YOLO: You Only Look Once</text>
+  
+  <!-- Input -->
+  <rect x="40" y="80" width="100" height="100" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+  <text x="90" y="135" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle">Input</text>
+  <text x="90" y="155" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">640×640</text>
+  
+  <!-- Arrow -->
+  <path d="M 145 130 L 185 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  
+  <!-- Backbone -->
+  <rect x="195" y="80" width="130" height="100" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
+  <text x="260" y="115" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Backbone</text>
+  <text x="260" y="140" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">CSPDarknet</text>
+  <text x="260" y="160" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Feature extraction</text>
+  
+  <!-- Arrow -->
+  <path d="M 330 130 L 370 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <!-- Neck -->
+  <rect x="380" y="80" width="130" height="100" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
+  <text x="445" y="115" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Neck</text>
+  <text x="445" y="140" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">FPN + PAN</text>
+  <text x="445" y="160" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Multi-scale fusion</text>
+  
+  <!-- Arrow -->
+  <path d="M 515 130 L 555 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <!-- Head -->
+  <rect x="565" y="60" width="130" height="140" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="6"/>
+  <text x="630" y="90" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">Detection Head</text>
+  
+  <rect x="580" y="105" width="100" height="25" fill="#2563eb" rx="3"/>
+  <text x="630" y="122" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">80×80 (small)</text>
+  
+  <rect x="580" y="135" width="100" height="25" fill="#2563eb" rx="3"/>
+  <text x="630" y="152" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">40×40 (medium)</text>
+  
+  <rect x="580" y="165" width="100" height="25" fill="#2563eb" rx="3"/>
+  <text x="630" y="182" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">20×20 (large)</text>
+  
+  <!-- Output -->
+  <rect x="720" y="90" width="100" height="80" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="6"/>
+  <text x="770" y="125" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Boxes</text>
+  <text x="770" y="145" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Classes</text>
+  <text x="770" y="165" font-family="Arial, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">Conf</text>
+  
+  <!-- Arrow to output -->
+  <path d="M 700 130 L 715 130" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <!-- Grid explanation -->
+  <rect x="40" y="210" width="360" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="220" y="240" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Grid-Based Detection</text>
+  
+  <!-- Grid visualization -->
+  <rect x="70" y="260" width="90" height="90" fill="#ffffff" stroke="#1e293b" rx="2"/>
+  <line x1="100" y1="260" x2="100" y2="350" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="130" y1="260" x2="130" y2="350" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="70" y1="290" x2="160" y2="290" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="70" y1="320" x2="160" y2="320" stroke="#1e293b" stroke-width="0.5"/>
+  
+  <!-- Detection in grid -->
+  <rect x="100" y="290" width="30" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="115" cy="305" r="3" fill="#2563eb"/>
+  
+  <text x="280" y="280" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">Each grid cell predicts:</text>
+  <text x="280" y="300" font-family="Arial, sans-serif" font-size="11" fill="#64748b">• B bounding boxes</text>
+  <text x="280" y="320" font-family="Arial, sans-serif" font-size="11" fill="#64748b">• Confidence scores</text>
+  <text x="280" y="340" font-family="Arial, sans-serif" font-size="11" fill="#64748b">• C class probabilities</text>
+  
+  <!-- Output format -->
+  <rect x="420" y="210" width="390" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="615" y="240" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Per-Grid Output</text>
+  
+  <text x="615" y="275" font-family="Georgia, serif" font-size="13" fill="#1e293b" text-anchor="middle">[x, y, w, h, conf, c₁, c₂, ..., c_80]</text>
+  
+  <text x="480" y="310" font-family="Arial, sans-serif" font-size="11" fill="#64748b">x, y: center offset</text>
+  <text x="480" y="330" font-family="Arial, sans-serif" font-size="11" fill="#64748b">w, h: box dimensions</text>
+  <text x="680" y="310" font-family="Arial, sans-serif" font-size="11" fill="#64748b">conf: objectness</text>
+  <text x="680" y="330" font-family="Arial, sans-serif" font-size="11" fill="#64748b">c_i: class probs</text>
+  
+  <text x="615" y="355" font-family="Arial, sans-serif" font-size="11" fill="#2563eb" text-anchor="middle">YOLOv8: Anchor-free design</text>
+</svg>

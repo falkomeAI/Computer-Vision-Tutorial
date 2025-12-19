@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="detectGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2980b9"/>
+    </linearGradient>
+    <linearGradient id="descGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <linearGradient id="matchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#229954"/>
+    </linearGradient>
+  </defs>
+  
+  <text x="450" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Feature Detection &amp; Matching Pipeline</text>
+  
+  <!-- Step 1: Detection -->
+  <g>
+    <rect x="30" y="60" width="260" height="180" fill="url(#detectGrad)" rx="10"/>
+    <text x="160" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">1. Detection</text>
+    
+    <rect x="45" y="105" width="230" height="120" fill="white" opacity="0.95" rx="5"/>
+    
+    <text x="160" y="130" font-family="Arial, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Find keypoints (x, y, scale, angle)</text>
+    
+    <text x="85" y="155" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Corners:</text>
+    <text x="85" y="175" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Harris, FAST</text>
+    
+    <text x="160" y="155" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Blobs:</text>
+    <text x="160" y="175" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">DoG, LoG</text>
+    
+    <text x="230" y="155" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Scale-inv:</text>
+    <text x="230" y="175" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">SIFT, SURF</text>
+    
+    <text x="160" y="210" font-family="Arial, sans-serif" font-size="9" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Output: List of keypoints</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M 300 150 L 370 150" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrPipe)"/>
+  <defs><marker id="arrPipe" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7f8c8d"/></marker></defs>
+  
+  <!-- Step 2: Description -->
+  <g>
+    <rect x="380" y="60" width="260" height="180" fill="url(#descGrad)" rx="10"/>
+    <text x="510" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">2. Description</text>
+    
+    <rect x="395" y="105" width="230" height="120" fill="white" opacity="0.95" rx="5"/>
+    
+    <text x="510" y="130" font-family="Arial, sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Extract feature vector per keypoint</text>
+    
+    <text x="440" y="155" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Float:</text>
+    <text x="440" y="175" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">SIFT (128D)</text>
+    <text x="440" y="190" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">SURF (64D)</text>
+    
+    <text x="580" y="155" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Binary:</text>
+    <text x="580" y="175" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">ORB (256bit)</text>
+    <text x="580" y="190" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">BRIEF, BRISK</text>
+    
+    <text x="510" y="210" font-family="Arial, sans-serif" font-size="9" fill="#c0392b" text-anchor="middle" dominant-baseline="middle">Output: Descriptor matrix (N × D)</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M 650 150 L 720 150" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrPipe)"/>
+  
+  <!-- Step 3: Matching -->
+  <g>
+    <rect x="730" y="60" width="140" height="180" fill="url(#matchGrad)" rx="10"/>
+    <text x="800" y="90" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">3. Matching</text>
+    
+    <rect x="745" y="105" width="110" height="120" fill="white" opacity="0.95" rx="5"/>
+    
+    <text x="800" y="130" font-family="Arial, sans-serif" font-size="10" fill="#229954" text-anchor="middle" dominant-baseline="middle">Find pairs</text>
+    
+    <text x="800" y="155" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">BFMatcher</text>
+    <text x="800" y="170" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">FLANN</text>
+    <text x="800" y="185" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Ratio test</text>
+    <text x="800" y="200" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">RANSAC</text>
+  </g>
+  
+  <!-- Algorithm Comparison -->
+  <rect x="30" y="270" width="840" height="210" fill="#f8f9fa" stroke="#dee2e6" rx="10"/>
+  <text x="450" y="300" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Feature Algorithm Comparison</text>
+  
+  <!-- Table -->
+  <rect x="50" y="320" width="100" height="25" fill="#ecf0f1"/>
+  <rect x="150" y="320" width="120" height="25" fill="#ecf0f1"/>
+  <rect x="270" y="320" width="120" height="25" fill="#ecf0f1"/>
+  <rect x="390" y="320" width="120" height="25" fill="#ecf0f1"/>
+  <rect x="510" y="320" width="120" height="25" fill="#ecf0f1"/>
+  <rect x="630" y="320" width="120" height="25" fill="#ecf0f1"/>
+  <rect x="750" y="320" width="100" height="25" fill="#ecf0f1"/>
+  
+  <text x="100" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Algorithm</text>
+  <text x="210" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Descriptor</text>
+  <text x="330" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Scale Inv.</text>
+  <text x="450" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Rotation Inv.</text>
+  <text x="570" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Speed</text>
+  <text x="690" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Accuracy</text>
+  <text x="800" y="337" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Patent</text>
+  
+  <!-- SIFT row -->
+  <text x="100" y="365" font-family="Arial, sans-serif" font-size="10" fill="#3498db" text-anchor="middle" dominant-baseline="middle">SIFT</text>
+  <text x="210" y="365" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">128D float</text>
+  <text x="330" y="365" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="450" y="365" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="570" y="365" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Slow</text>
+  <text x="690" y="365" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Excellent</text>
+  <text x="800" y="365" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Expired</text>
+  
+  <!-- SURF row -->
+  <text x="100" y="395" font-family="Arial, sans-serif" font-size="10" fill="#9b59b6" text-anchor="middle" dominant-baseline="middle">SURF</text>
+  <text x="210" y="395" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">64D float</text>
+  <text x="330" y="395" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="450" y="395" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="570" y="395" font-family="Arial, sans-serif" font-size="10" fill="#f39c12" text-anchor="middle" dominant-baseline="middle">Medium</text>
+  <text x="690" y="395" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Good</text>
+  <text x="800" y="395" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Patented</text>
+  
+  <!-- ORB row -->
+  <text x="100" y="425" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">ORB</text>
+  <text x="210" y="425" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">256 bit</text>
+  <text x="330" y="425" font-family="Arial, sans-serif" font-size="10" fill="#f39c12" text-anchor="middle" dominant-baseline="middle">Partial</text>
+  <text x="450" y="425" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="570" y="425" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Fast</text>
+  <text x="690" y="425" font-family="Arial, sans-serif" font-size="10" fill="#f39c12" text-anchor="middle" dominant-baseline="middle">Good</text>
+  <text x="800" y="425" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Free</text>
+  
+  <!-- BRISK row -->
+  <text x="100" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">BRISK</text>
+  <text x="210" y="455" font-family="Arial, sans-serif" font-size="10" fill="#34495e" text-anchor="middle" dominant-baseline="middle">512 bit</text>
+  <text x="330" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="450" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Yes</text>
+  <text x="570" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Fast</text>
+  <text x="690" y="455" font-family="Arial, sans-serif" font-size="10" fill="#f39c12" text-anchor="middle" dominant-baseline="middle">Good</text>
+  <text x="800" y="455" font-family="Arial, sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Free</text>
+</svg>
+

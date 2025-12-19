@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <rect width="800" height="380" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Edge Detection Methods</text>
+  
+  <!-- Gradient-based -->
+  <rect x="40" y="70" width="230" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="155" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Gradient-Based</text>
+  
+  <text x="155" y="130" font-family="Georgia, serif" font-size="13" fill="#1e293b" text-anchor="middle">∇f = [∂f/∂x, ∂f/∂y]</text>
+  
+  <text x="80" y="160" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Sobel:</text>
+  <text x="130" y="160" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3×3 kernels</text>
+  
+  <text x="80" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Prewitt:</text>
+  <text x="145" y="180" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">simpler weights</text>
+  
+  <!-- Laplacian -->
+  <rect x="285" y="70" width="230" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Laplacian</text>
+  
+  <text x="400" y="130" font-family="Georgia, serif" font-size="13" fill="#1e293b" text-anchor="middle">∇²f = ∂²f/∂x² + ∂²f/∂y²</text>
+  
+  <text x="400" y="160" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Second derivative</text>
+  <text x="400" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Zero-crossing = edge</text>
+  
+  <!-- Canny -->
+  <rect x="530" y="70" width="230" height="130" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="645" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Canny (Optimal)</text>
+  
+  <text x="560" y="130" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">1. Gaussian blur</text>
+  <text x="560" y="150" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">2. Gradient magnitude</text>
+  <text x="560" y="170" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3. Non-max suppression</text>
+  <text x="560" y="190" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">4. Hysteresis threshold</text>
+  
+  <!-- Pipeline -->
+  <rect x="40" y="220" width="720" height="140" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="250" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Canny Edge Detection Pipeline</text>
+  
+  <!-- Steps -->
+  <rect x="70" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="120" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Gaussian</text>
+  <text x="120" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Smoothing</text>
+  
+  <path d="M 175 300 L 210 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  
+  <rect x="220" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="270" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Sobel</text>
+  <text x="270" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Gradients</text>
+  
+  <path d="M 325 300 L 360 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <rect x="370" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="420" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Non-Max</text>
+  <text x="420" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Suppression</text>
+  
+  <path d="M 475 300 L 510 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <rect x="520" y="275" width="100" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="570" y="300" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Double</text>
+  <text x="570" y="315" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Threshold</text>
+  
+  <path d="M 625 300 L 660 300" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <rect x="670" y="275" width="70" height="50" fill="#2563eb" rx="4"/>
+  <text x="705" y="305" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Edges</text>
+  
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Hysteresis: High threshold finds strong edges, low threshold connects weak edges</text>
+</svg>

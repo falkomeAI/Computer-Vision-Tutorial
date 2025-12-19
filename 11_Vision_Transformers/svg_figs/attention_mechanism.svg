@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Self-Attention Mechanism</text>
+  
+  <!-- Input Section -->
+  <rect x="40" y="60" width="180" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Input</text>
+  
+  <rect x="60" y="100" width="50" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="85" y="123" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" text-anchor="middle">x₁</text>
+  
+  <rect x="120" y="100" width="50" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="145" y="123" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" text-anchor="middle">x₂</text>
+  
+  <text x="130" y="165" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Token embeddings</text>
+  
+  <!-- Arrow -->
+  <path d="M 225 125 L 270 125" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  
+  <!-- QKV Projection -->
+  <rect x="280" y="60" width="200" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="380" y="85" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Linear Projections</text>
+  
+  <rect x="300" y="105" width="50" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="325" y="128" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">Q</text>
+  
+  <rect x="360" y="105" width="50" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="385" y="128" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">K</text>
+  
+  <rect x="420" y="105" width="50" height="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="445" y="128" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">V</text>
+  
+  <text x="380" y="165" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Q=xWq  K=xWk  V=xWv</text>
+  
+  <!-- Arrow -->
+  <path d="M 485 125 L 530 125" stroke="#1e293b" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Attention Computation -->
+  <rect x="540" y="60" width="230" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="655" y="85" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Attention</text>
+  
+  <text x="655" y="115" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle">softmax(QKᵀ / √d) × V</text>
+  
+  <rect x="600" y="130" width="110" height="40" fill="#2563eb" rx="4"/>
+  <text x="655" y="155" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Output</text>
+  
+  <!-- Formula Box -->
+  <rect x="40" y="210" width="720" height="80" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="240" font-family="Georgia, serif" font-size="16" fill="#1e293b" text-anchor="middle">Attention(Q, K, V) = softmax(QKᵀ / √d_k) V</text>
+  <text x="400" y="270" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">√d_k scaling prevents softmax saturation for large dimensions</text>
+  
+  <!-- Multi-Head Section -->
+  <rect x="40" y="310" width="720" height="75" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="335" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Multi-Head: Concat(head₁, head₂, ..., head_h) × W_o</text>
+  <text x="400" y="365" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Each head learns different attention patterns (h=8 or 12 typical)</text>
+</svg>

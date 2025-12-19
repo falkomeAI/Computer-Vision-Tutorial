@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380">
+  <rect width="850" height="380" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">SIFT: Scale-Invariant Feature Transform</text>
+  
+  <!-- Step 1: Scale Space -->
+  <rect x="30" y="70" width="180" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="120" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">1. Scale Space</text>
+  
+  <rect x="50" y="110" width="60" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
+  <rect x="60" y="120" width="60" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
+  <rect x="70" y="130" width="60" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1" rx="2"/>
+  
+  <text x="120" y="190" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Gaussian pyramid</text>
+  
+  <!-- Arrow -->
+  <path d="M 215 135 L 255 135" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#1e293b"/></marker></defs>
+  
+  <!-- Step 2: DoG -->
+  <rect x="260" y="70" width="180" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="350" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">2. DoG Keypoints</text>
+  
+  <text x="350" y="125" font-family="Georgia, serif" font-size="12" fill="#1e293b" text-anchor="middle">D = G(σ₁) - G(σ₂)</text>
+  
+  <text x="350" y="155" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Difference of Gaussians</text>
+  <text x="350" y="175" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Find local extrema</text>
+  <text x="350" y="195" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">→ Scale + location</text>
+  
+  <!-- Arrow -->
+  <path d="M 445 135 L 485 135" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <!-- Step 3: Orientation -->
+  <rect x="490" y="70" width="160" height="130" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="570" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">3. Orientation</text>
+  
+  <text x="570" y="125" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Gradient histogram</text>
+  <text x="570" y="150" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">36 bins (10° each)</text>
+  <text x="570" y="175" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Peak = dominant</text>
+  <text x="570" y="195" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">orientation</text>
+  
+  <!-- Arrow -->
+  <path d="M 655 135 L 695 135" stroke="#1e293b" stroke-width="2" marker-end="url(#arr)"/>
+  
+  <!-- Step 4: Descriptor -->
+  <rect x="700" y="70" width="130" height="130" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="765" y="95" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">4. Descriptor</text>
+  
+  <text x="765" y="125" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">4×4 cells</text>
+  <text x="765" y="145" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">8 orientations</text>
+  
+  <rect x="720" y="160" width="90" height="25" fill="#2563eb" rx="4"/>
+  <text x="765" y="178" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">128-D vector</text>
+  
+  <!-- Properties Box -->
+  <rect x="30" y="220" width="790" height="140" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="425" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">SIFT Properties</text>
+  
+  <text x="150" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Scale Invariant</text>
+  <text x="150" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Multi-scale detection</text>
+  
+  <text x="350" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Rotation Invariant</text>
+  <text x="350" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Orientation normalization</text>
+  
+  <text x="550" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Illumination Robust</text>
+  <text x="550" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Gradient-based features</text>
+  
+  <text x="720" y="285" font-family="Arial, sans-serif" font-size="13" fill="#1e293b" text-anchor="middle" font-weight="bold">Distinctive</text>
+  <text x="720" y="305" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">High-dim descriptor</text>
+  
+  <text x="425" y="345" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Applications: Image matching, 3D reconstruction, object recognition, panorama stitching</text>
+</svg>

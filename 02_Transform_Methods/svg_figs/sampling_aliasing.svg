@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
+  <rect width="850" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="425" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Sampling Theory &amp; Aliasing</text>
+  
+  <!-- Nyquist Theorem -->
+  <rect x="40" y="70" width="380" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="230" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Nyquist-Shannon Theorem</text>
+  
+  <text x="230" y="140" font-family="Georgia, serif" font-size="16" fill="#1e293b" text-anchor="middle">fₛ ≥ 2 × f_max</text>
+  
+  <text x="230" y="175" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Sampling rate must be at least 2× the</text>
+  <text x="230" y="195" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">highest frequency to avoid aliasing</text>
+  
+  <!-- Aliasing Visualization -->
+  <rect x="440" y="70" width="370" height="140" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="625" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Aliasing Effect</text>
+  
+  <!-- Original signal -->
+  <path d="M 470 150 Q 495 120 520 150 Q 545 180 570 150 Q 595 120 620 150 Q 645 180 670 150 Q 695 120 720 150 Q 745 180 770 150" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="510" y="195" font-family="Arial, sans-serif" font-size="10" fill="#2563eb">Original (high freq)</text>
+  
+  <!-- Aliased signal -->
+  <path d="M 470 150 Q 570 100 670 150 Q 770 200 770 150" fill="none" stroke="#1e293b" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="670" y="195" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Aliased (false low freq)</text>
+  
+  <!-- Sample points -->
+  <circle cx="470" cy="150" r="4" fill="#1e293b"/>
+  <circle cx="570" cy="150" r="4" fill="#1e293b"/>
+  <circle cx="670" cy="150" r="4" fill="#1e293b"/>
+  <circle cx="770" cy="150" r="4" fill="#1e293b"/>
+  
+  <!-- Image Examples -->
+  <rect x="40" y="230" width="380" height="150" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="230" y="260" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Image Aliasing Examples</text>
+  
+  <rect x="70" y="280" width="90" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="115" y="325" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Moiré</text>
+  <text x="115" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">patterns</text>
+  
+  <rect x="180" y="280" width="90" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="225" y="325" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Jagged</text>
+  <text x="225" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">edges</text>
+  
+  <rect x="290" y="280" width="90" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="335" y="325" font-family="Arial, sans-serif" font-size="11" fill="#1e293b" text-anchor="middle">Crawling</text>
+  <text x="335" y="345" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">artifacts</text>
+  
+  <!-- Anti-Aliasing -->
+  <rect x="440" y="230" width="370" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="625" y="260" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Anti-Aliasing Solutions</text>
+  
+  <text x="530" y="295" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Pre-filtering</text>
+  <text x="530" y="315" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Low-pass before sampling</text>
+  <text x="530" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">(Gaussian blur)</text>
+  
+  <text x="720" y="295" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Oversampling</text>
+  <text x="720" y="315" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Sample at higher rate</text>
+  <text x="720" y="335" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">then downsample</text>
+  
+  <text x="625" y="370" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">In CNNs: antialiased pooling (BlurPool) prevents shift-equivariance issues</text>
+</svg>
+

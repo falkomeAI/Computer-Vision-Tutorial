@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="inputGrad3d" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2980b9"/>
+    </linearGradient>
+    <linearGradient id="mlpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6"/>
+      <stop offset="100%" style="stop-color:#8e44ad"/>
+    </linearGradient>
+    <linearGradient id="renderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#229954"/>
+    </linearGradient>
+  </defs>
+  
+  <text x="450" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">NeRF: Neural Radiance Fields</text>
+  
+  <!-- Input -->
+  <g>
+    <rect x="30" y="70" width="150" height="150" fill="url(#inputGrad3d)" rx="10"/>
+    <text x="105" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Input</text>
+    
+    <rect x="45" y="115" width="120" height="90" fill="white" opacity="0.95" rx="5"/>
+    <text x="105" y="140" font-family="Arial, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Position (x, y, z)</text>
+    <text x="105" y="165" font-family="Arial, sans-serif" font-size="11" fill="#2980b9" text-anchor="middle" dominant-baseline="middle">Direction (θ, φ)</text>
+    <text x="105" y="190" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">5D input total</text>
+  </g>
+  
+  <!-- Positional Encoding -->
+  <path d="M 190 145 L 230 145" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrNerf)"/>
+  <defs><marker id="arrNerf" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#7f8c8d"/></marker></defs>
+  
+  <g>
+    <rect x="240" y="70" width="150" height="150" fill="#f39c12" rx="10"/>
+    <text x="315" y="100" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Positional Encoding</text>
+    
+    <rect x="255" y="115" width="120" height="90" fill="white" opacity="0.95" rx="5"/>
+    <text x="315" y="140" font-family="Arial, sans-serif" font-size="10" fill="#d68910" text-anchor="middle" dominant-baseline="middle">γ(p) = [sin, cos]</text>
+    <text x="315" y="160" font-family="Arial, sans-serif" font-size="10" fill="#d68910" text-anchor="middle" dominant-baseline="middle">L=10 for position</text>
+    <text x="315" y="180" font-family="Arial, sans-serif" font-size="10" fill="#d68910" text-anchor="middle" dominant-baseline="middle">L=4 for direction</text>
+    <text x="315" y="195" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">60D + 24D output</text>
+  </g>
+  
+  <!-- MLP -->
+  <path d="M 400 145 L 440 145" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrNerf)"/>
+  
+  <g>
+    <rect x="450" y="70" width="180" height="150" fill="url(#mlpGrad)" rx="10"/>
+    <text x="540" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">MLP Network</text>
+    
+    <rect x="465" y="115" width="150" height="90" fill="white" opacity="0.95" rx="5"/>
+    <text x="540" y="138" font-family="Arial, sans-serif" font-size="10" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">8 layers × 256 hidden</text>
+    <text x="540" y="158" font-family="Arial, sans-serif" font-size="10" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">Skip connection @ layer 4</text>
+    <text x="540" y="178" font-family="Arial, sans-serif" font-size="10" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">ReLU activations</text>
+    <text x="540" y="195" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Output: RGB + σ</text>
+  </g>
+  
+  <!-- Output -->
+  <path d="M 640 145 L 680 145" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrNerf)"/>
+  
+  <g>
+    <rect x="690" y="70" width="180" height="150" fill="url(#renderGrad)" rx="10"/>
+    <text x="780" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">Volume Rendering</text>
+    
+    <rect x="705" y="115" width="150" height="90" fill="white" opacity="0.95" rx="5"/>
+    <text x="780" y="140" font-family="Arial, sans-serif" font-size="10" fill="#229954" text-anchor="middle" dominant-baseline="middle">Sample N points</text>
+    <text x="780" y="160" font-family="Arial, sans-serif" font-size="10" fill="#229954" text-anchor="middle" dominant-baseline="middle">Alpha compositing</text>
+    <text x="780" y="180" font-family="Arial, sans-serif" font-size="10" fill="#229954" text-anchor="middle" dominant-baseline="middle">C(r) = Σ T_i α_i c_i</text>
+    <text x="780" y="195" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">Final pixel color</text>
+  </g>
+  
+  <!-- Volume Rendering Equation -->
+  <rect x="30" y="250" width="840" height="100" fill="#f8f9fa" stroke="#dee2e6" rx="10"/>
+  <text x="450" y="280" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Volume Rendering Equation</text>
+  
+  <text x="450" y="315" font-family="monospace" font-size="12" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">C(r) = ∫ T(t) · σ(r(t)) · c(r(t), d) dt    where T(t) = exp(-∫σ(r(s))ds)</text>
+  <text x="450" y="340" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle" dominant-baseline="middle">T(t): accumulated transmittance | σ: density | c: color | r(t) = o + td (ray)</text>
+  
+  <!-- NeRF vs 3DGS Comparison -->
+  <rect x="30" y="370" width="840" height="110" fill="#f8f9fa" stroke="#dee2e6" rx="10"/>
+  <text x="450" y="395" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">NeRF vs 3D Gaussian Splatting</text>
+  
+  <rect x="100" y="415" width="120" height="20" fill="#ecf0f1"/>
+  <rect x="220" y="415" width="250" height="20" fill="#9b59b6" opacity="0.2"/>
+  <rect x="470" y="415" width="250" height="20" fill="#27ae60" opacity="0.2"/>
+  
+  <text x="160" y="428" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2c3e50" text-anchor="middle" dominant-baseline="middle">Aspect</text>
+  <text x="345" y="428" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#8e44ad" text-anchor="middle" dominant-baseline="middle">NeRF</text>
+  <text x="595" y="428" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#229954" text-anchor="middle" dominant-baseline="middle">3D Gaussian Splatting</text>
+  
+  <text x="160" y="453" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Representation</text>
+  <text x="345" y="453" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Implicit (MLP weights)</text>
+  <text x="595" y="453" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Explicit (3D Gaussians)</text>
+  
+  <text x="160" y="470" font-family="Arial, sans-serif" font-size="9" fill="#34495e" text-anchor="middle" dominant-baseline="middle">Rendering</text>
+  <text x="345" y="470" font-family="Arial, sans-serif" font-size="9" fill="#e74c3c" text-anchor="middle" dominant-baseline="middle">Ray marching (slow)</text>
+  <text x="595" y="470" font-family="Arial, sans-serif" font-size="9" fill="#27ae60" text-anchor="middle" dominant-baseline="middle">Rasterization (real-time)</text>
+</svg>
+

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <rect width="800" height="380" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">SVM: Support Vector Machines</text>
+  
+  <!-- Linear SVM -->
+  <rect x="40" y="70" width="220" height="180" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="150" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Linear SVM</text>
+  
+  <!-- Plot area -->
+  <rect x="60" y="110" width="140" height="120" fill="#ffffff" stroke="#1e293b" rx="4"/>
+  
+  <!-- Points - Class 1 -->
+  <circle cx="90" cy="140" r="6" fill="#2563eb"/>
+  <circle cx="100" cy="160" r="6" fill="#2563eb"/>
+  <circle cx="85" cy="180" r="6" fill="#2563eb"/>
+  <circle cx="110" cy="175" r="6" fill="#2563eb"/>
+  
+  <!-- Points - Class 2 -->
+  <circle cx="160" cy="145" r="6" fill="#1e293b"/>
+  <circle cx="175" cy="170" r="6" fill="#1e293b"/>
+  <circle cx="165" cy="195" r="6" fill="#1e293b"/>
+  <circle cx="180" cy="155" r="6" fill="#1e293b"/>
+  
+  <!-- Hyperplane -->
+  <line x1="130" y1="115" x2="130" y2="225" stroke="#2563eb" stroke-width="2"/>
+  
+  <!-- Margin lines -->
+  <line x1="115" y1="115" x2="115" y2="225" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="145" y1="115" x2="145" y2="225" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,2"/>
+  
+  <text x="150" y="240" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Margin = 2/‖w‖</text>
+  
+  <!-- Kernel SVM -->
+  <rect x="290" y="70" width="220" height="180" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Kernel SVM (RBF)</text>
+  
+  <!-- Plot area -->
+  <rect x="310" y="110" width="140" height="120" fill="#ffffff" stroke="#1e293b" rx="4"/>
+  
+  <!-- Points - non-linear pattern -->
+  <circle cx="380" cy="140" r="6" fill="#2563eb"/>
+  <circle cx="380" cy="170" r="6" fill="#2563eb"/>
+  <circle cx="380" cy="200" r="6" fill="#2563eb"/>
+  
+  <circle cx="340" cy="170" r="6" fill="#1e293b"/>
+  <circle cx="420" cy="170" r="6" fill="#1e293b"/>
+  <circle cx="350" cy="140" r="6" fill="#1e293b"/>
+  <circle cx="410" cy="140" r="6" fill="#1e293b"/>
+  <circle cx="350" cy="200" r="6" fill="#1e293b"/>
+  <circle cx="410" cy="200" r="6" fill="#1e293b"/>
+  
+  <!-- Non-linear boundary -->
+  <ellipse cx="380" cy="170" rx="25" ry="45" fill="none" stroke="#2563eb" stroke-width="2"/>
+  
+  <text x="400" y="240" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Non-linear in input space</text>
+  
+  <!-- Kernel Functions -->
+  <rect x="540" y="70" width="220" height="180" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="650" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Kernel Functions</text>
+  
+  <text x="560" y="130" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">Linear:</text>
+  <text x="660" y="130" font-family="Georgia, serif" font-size="11" fill="#64748b">K = xᵀy</text>
+  
+  <text x="560" y="160" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">RBF:</text>
+  <text x="660" y="160" font-family="Georgia, serif" font-size="11" fill="#64748b">K = exp(-γ‖x-y‖²)</text>
+  
+  <text x="560" y="190" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">Poly:</text>
+  <text x="660" y="190" font-family="Georgia, serif" font-size="11" fill="#64748b">K = (xᵀy + c)ᵈ</text>
+  
+  <text x="650" y="230" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Kernel trick: φ(x)ᵀφ(y)</text>
+  <text x="650" y="245" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">without explicit φ</text>
+  
+  <!-- Optimization Box -->
+  <rect x="40" y="270" width="720" height="90" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">SVM Optimization</text>
+  
+  <text x="400" y="330" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">min ½‖w‖² + C Σξᵢ   subject to   yᵢ(wᵀxᵢ + b) ≥ 1 - ξᵢ</text>
+  
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">C controls trade-off: large C = small margin, low error | small C = large margin, more errors</text>
+</svg>

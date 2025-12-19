@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <rect width="800" height="380" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">Fourier Transform in Image Processing</text>
+  
+  <!-- Spatial Domain -->
+  <rect x="40" y="70" width="220" height="180" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="150" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Spatial Domain</text>
+  
+  <!-- Image representation -->
+  <rect x="70" y="120" width="160" height="100" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="150" y="160" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" text-anchor="middle">f(x, y)</text>
+  <text x="150" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Pixel intensities</text>
+  <text x="150" y="200" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Image as 2D function</text>
+  
+  <!-- FFT Arrow -->
+  <path d="M 265 160 L 330 160" stroke="#2563eb" stroke-width="3" marker-end="url(#arr)"/>
+  <text x="297" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">FFT</text>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L0,10 L10,5 z" fill="#2563eb"/></marker></defs>
+  
+  <!-- Frequency Domain -->
+  <rect x="340" y="70" width="220" height="180" fill="#f8fafc" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="450" y="100" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Frequency Domain</text>
+  
+  <rect x="370" y="120" width="160" height="100" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="4"/>
+  <text x="450" y="160" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" text-anchor="middle">F(u, v)</text>
+  <text x="450" y="180" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Magnitude + Phase</text>
+  <text x="450" y="200" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Low freq = center</text>
+  
+  <!-- IFFT Arrow -->
+  <path d="M 330 185 L 265 185" stroke="#2563eb" stroke-width="3" marker-end="url(#arr2)"/>
+  <text x="297" y="205" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">IFFT</text>
+  <defs><marker id="arr2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,10 L10,5 z" fill="#2563eb" transform="rotate(180 5 5)"/></marker></defs>
+  
+  <!-- Applications Box -->
+  <rect x="580" y="70" width="180" height="180" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+  <text x="670" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Applications</text>
+  
+  <text x="600" y="130" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">• Filtering</text>
+  <text x="600" y="155" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">• Compression</text>
+  <text x="600" y="180" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">• Edge detection</text>
+  <text x="600" y="205" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">• Denoising</text>
+  <text x="600" y="230" font-family="Arial, sans-serif" font-size="12" fill="#1e293b">• Pattern analysis</text>
+  
+  <!-- Formula Box -->
+  <rect x="40" y="270" width="720" height="95" fill="#f1f5f9" stroke="#1e293b" stroke-width="2" rx="8"/>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">2D Discrete Fourier Transform</text>
+  
+  <text x="400" y="330" font-family="Georgia, serif" font-size="14" fill="#1e293b" text-anchor="middle">F(u,v) = Σₓ Σᵧ f(x,y) · exp(-j2π(ux/M + vy/N))</text>
+  
+  <text x="400" y="355" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Low frequencies → smooth regions | High frequencies → edges, texture</text>
+</svg>
