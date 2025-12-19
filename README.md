@@ -68,8 +68,8 @@
 
 <div align="center">
 
-<p>
-  <img src="https://img.shields.io/badge/🎯_Perfect_for_Beginners-34D399?style=for-the-badge&logo=graduation-cap&logoColor=white" alt="Beginners"/>
+<p align="center">
+<img src="https://img.shields.io/badge/🎯_Perfect_for_Beginners-34D399?style=for-the-badge&logo=graduation-cap&logoColor=white" alt="Beginners"/>
   <img src="https://img.shields.io/badge/🚀_Ready_to_Code-FBBF24?style=for-the-badge&logo=rocket&logoColor=white" alt="Ready"/>
   <img src="https://img.shields.io/badge/📚_20_Modules-A78BFA?style=for-the-badge&logo=book&logoColor=white" alt="Modules"/>
 </p>
@@ -973,18 +973,18 @@
 <br/>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA&labelColor=0f172a" alt="GitHub stars"/>
+  <img src="https://img.shields.io/github/stars/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA&labelColor=0f172a" alt="GitHub stars"/>
   &nbsp;
-  <img src="https://img.shields.io/github/forks/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=34D399&labelColor=0f172a" alt="GitHub forks"/>
+  <img src="https://img.shields.io/github/forks/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=34D399&labelColor=0f172a" alt="GitHub forks"/>
   &nbsp;
-  <img src="https://img.shields.io/github/issues/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=FBBF24&labelColor=0f172a" alt="GitHub issues"/>
+  <img src="https://img.shields.io/github/issues/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=FBBF24&labelColor=0f172a" alt="GitHub issues"/>
 </p>
 
 <br/>
 
 <p align="center">
-  <a href="https://github.com/falkomeAi">
-    <img src="https://img.shields.io/badge/👨‍💻_Created_by_falkomeAi-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Author"/>
+  <a href="https://github.com/falkomeAI">
+    <img src="https://img.shields.io/badge/👨‍💻_Created_by_falkomeAI-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Author"/>
   </a>
 </p>
 
@@ -995,8 +995,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA" alt="GitHub stars"/>
-  <img src="https://img.shields.io/github/forks/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=34D399" alt="GitHub forks"/>
+  <img src="https://img.shields.io/github/stars/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA" alt="GitHub stars"/>
+  <img src="https://img.shields.io/github/forks/falkomeAI/computer_vision_complete?style=for-the-badge&logo=github&color=34D399" alt="GitHub forks"/>
 </p>
 
 <br/>

@@ -408,7 +408,7 @@ Total Error = Bias² + Variance + Noise
 
 ## 📓 PRACTICE
 
-### 🚀 *Ready to code? Let\'s get started!*
+### 🚀 *Ready to code? Let's get started!*
 
 <br/>
 
@@ -417,7 +417,7 @@ Total Error = Bias² + Variance + Noise
 <br/>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/falkomeAi/computer_vision_complete/blob/main/07_Classical_ML/colab_tutorial.ipynb">
+  <a href="https://colab.research.google.com/github/falkomeAI/computer_vision_complete/blob/main/07_Classical_ML/colab_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
   </a>
 </p>
@@ -453,7 +453,7 @@ Total Error = Bias² + Variance + Noise
 🌙 Part of **[Computer Vision Complete](../README.md)**
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/falkomeAi">falkomeAi</a>
+  Made with ❤️ by <a href="https://github.com/falkomeAI">falkomeAI</a>
 </p>
 
 <p align="center">

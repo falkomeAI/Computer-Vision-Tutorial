@@ -44,7 +44,7 @@
 
 ---
 
-## 🎯 What You\'ll Learn
+## 🎯 What You'll Learn
 
 ### 🎓 *Master these key concepts:*
 
@@ -510,7 +510,7 @@ G(x,y) = G(x) × G(y)
 
 ## 📓 PRACTICE
 
-### 🚀 *Ready to code? Let\'s get started!*
+### 🚀 *Ready to code? Let's get started!*
 
 <br/>
 
@@ -519,7 +519,7 @@ G(x,y) = G(x) × G(y)
 <br/>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/falkomeAi/computer_vision_complete/blob/main/04_Low_Level_Processing/colab_tutorial.ipynb">
+  <a href="https://colab.research.google.com/github/falkomeAI/computer_vision_complete/blob/main/04_Low_Level_Processing/colab_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
   </a>
 </p>
@@ -555,7 +555,7 @@ G(x,y) = G(x) × G(y)
 🌙 Part of **[Computer Vision Complete](../README.md)**
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/falkomeAi">falkomeAi</a>
+  Made with ❤️ by <a href="https://github.com/falkomeAI">falkomeAI</a>
 </p>
 
 <p align="center">

@@ -44,7 +44,7 @@
 
 ---
 
-## 🎯 What You\'ll Learn
+## 🎯 What You'll Learn
 
 ### 🎓 *Master these key concepts:*
 
@@ -385,7 +385,7 @@ OR: SVD on X directly: `X = UΣVᵀ`
 
 ## 📓 PRACTICE
 
-### 🚀 *Ready to code? Let\'s get started!*
+### 🚀 *Ready to code? Let's get started!*
 
 <br/>
 
@@ -394,7 +394,7 @@ OR: SVD on X directly: `X = UΣVᵀ`
 <br/>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/falkomeAi/computer_vision_complete/blob/main/01_Mathematical_Foundations/colab_tutorial.ipynb">
+  <a href="https://colab.research.google.com/github/falkomeAI/computer_vision_complete/blob/main/01_Mathematical_Foundations/colab_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
   </a>
 </p>
@@ -430,7 +430,7 @@ OR: SVD on X directly: `X = UΣVᵀ`
 🌙 Part of **[Computer Vision Complete](../README.md)**
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/falkomeAi">falkomeAi</a>
+  Made with ❤️ by <a href="https://github.com/falkomeAI">falkomeAI</a>
 </p>
 
 <p align="center">
