@@ -377,6 +377,7 @@ min Σᵢⱼ ||xᵢⱼ - π(Pⱼ, Xᵢ)||²
 | E = K'ᵀFK | E from F and intrinsics |
 | l' = Fx | Epipolar line in image 2 |
 
+
 ---
 
 <br/>
@@ -387,23 +388,26 @@ min Σᵢⱼ ||xᵢⱼ - π(Pⱼ, Xᵢ)||²
 
 <br/>
 
-```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+### 🚀 Click to Open Directly in Google Colab
 
 <br/>
 
-<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/06_Geometry_MultiView/colab_tutorial.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
+</a>
+
+<br/><br/>
+
+> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
+
+<br/>
+
+**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
+
 
 
 

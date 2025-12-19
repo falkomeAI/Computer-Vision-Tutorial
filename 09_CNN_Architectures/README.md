@@ -210,11 +210,11 @@ RF = RF_prev + (K-1) × stride_product
 
 ---
 
-## 💻 Complete Code
+## 🎨 Visual Diagrams
 
-> **Copy this entire code block and paste into Google Colab!**
-
-*See Colab notebook for implementation*
+<div align="center">
+<img src="../svg_figs/cnn_architecture.svg" alt="CNN Architecture" width="90%"/>
+</div>
 
 <br/>
 
@@ -229,6 +229,45 @@ RF = RF_prev + (K-1) × stride_product
 | Wrong input size | Check model's expected resolution |
 | Batch norm issues at test time | Call `model.eval()` during inference |
 | Forgetting to freeze layers | Set `param.requires_grad = False` |
+
+<br/>
+
+---
+
+## 🛠️ Mini Projects
+
+<details>
+<summary><b>Project 1: Implement ResNet from Scratch</b></summary>
+
+- Build basic residual block
+- Stack blocks to create ResNet-18/34
+- Train on CIFAR-10
+- Compare with plain CNN (no skip connections)
+- Visualize gradient flow with/without skip connections
+
+</details>
+
+<details>
+<summary><b>Project 2: Architecture Comparison</b></summary>
+
+- Load pretrained: VGG, ResNet, EfficientNet
+- Compare inference speed
+- Compare accuracy on ImageNet subset
+- Measure model size (parameters, FLOPs)
+- Create performance vs efficiency plot
+
+</details>
+
+<details>
+<summary><b>Project 3: Transfer Learning</b></summary>
+
+- Load pretrained ResNet-50
+- Freeze early layers, fine-tune later layers
+- Train on custom dataset (small)
+- Compare with training from scratch
+- Visualize learned features
+
+</details>
 
 <br/>
 
@@ -306,6 +345,7 @@ Two 3×3 = One 5×5 receptive field, but fewer params!
 
 <br/>
 
+
 ---
 
 <br/>
@@ -316,23 +356,26 @@ Two 3×3 = One 5×5 receptive field, but fewer params!
 
 <br/>
 
-```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+### 🚀 Click to Open Directly in Google Colab
 
 <br/>
 
-<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/09_CNN_Architectures/colab_tutorial.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
+</a>
+
+<br/><br/>
+
+> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
+
+<br/>
+
+**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
+
 
 
 

@@ -34,6 +34,63 @@
 
 <br/>
 
+## 📖 Overview
+
+> **Low-level processing forms the foundation of all image analysis.** This module covers filtering, enhancement, noise reduction, edge detection, and morphological operations—the building blocks that prepare images for higher-level tasks.
+
+<br/>
+
+---
+
+## 🎯 What You'll Learn
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔄 **Filtering**
+- Convolution operations
+- Gaussian blur
+- Bilateral filtering
+- Edge-preserving smoothing
+
+</td>
+<td width="50%">
+
+### 📊 **Enhancement**
+- Histogram equalization
+- CLAHE
+- Contrast adjustment
+- Brightness correction
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔍 **Edge Detection**
+- Sobel operators
+- Canny edge detector
+- Laplacian
+- Gradient magnitude
+
+</td>
+<td width="50%">
+
+### 🔲 **Morphology**
+- Erosion & dilation
+- Opening & closing
+- Gradient operations
+- Structuring elements
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+---
+
 ## 🎯 Key Concepts
 
 | Concept | Description | Use Case |
@@ -257,6 +314,69 @@
 
 ---
 
+## 🎨 Visual Diagrams
+
+<div align="center">
+<img src="./svg_figs/image_filtering.svg" alt="Image Filtering" width="90%"/>
+</div>
+
+<br/>
+
+---
+
+## ⚠️ Common Pitfalls
+
+| ❌ Pitfall | ✅ Solution |
+| --- | --- |
+| Using wrong kernel size | Gaussian: k = 6σ+1 (odd), Canny: σ=1-2 |
+| Forgetting edge handling | Use `cv2.BORDER_REFLECT` or `BORDER_CONSTANT` |
+| Over-smoothing edges | Use bilateral filter instead of Gaussian |
+| Wrong histogram bins | Use 256 for 8-bit images, 2^bits otherwise |
+| Morphology on wrong image type | Convert to binary first for morphology |
+
+<br/>
+
+---
+
+## 🛠️ Mini Projects
+
+<details>
+<summary><b>Project 1: Noise Reduction Comparison</b></summary>
+
+- Add Gaussian and salt-and-pepper noise
+- Compare: Gaussian blur, median filter, bilateral filter
+- Measure PSNR/SSIM for each method
+- Visualize results side-by-side
+- Analyze which works best for each noise type
+
+</details>
+
+<details>
+<summary><b>Project 2: Edge Detection Pipeline</b></summary>
+
+- Implement Sobel, Prewitt, Canny from scratch
+- Compare edge maps
+- Tune Canny thresholds interactively
+- Apply to different image types (natural, medical, etc.)
+- Evaluate edge quality metrics
+
+</details>
+
+<details>
+<summary><b>Project 3: Histogram Equalization</b></summary>
+
+- Implement global histogram equalization
+- Implement CLAHE with different tile sizes
+- Compare results on low-contrast images
+- Apply to color images (per channel vs HSV)
+- Measure contrast improvement
+
+</details>
+
+<br/>
+
+---
+
 ## ❓ Interview Questions & Answers
 
 <details>
@@ -353,6 +473,20 @@ G(x,y) = G(x) × G(y)
 
 ---
 
+## 📚 Resources
+
+**Textbooks:**
+- *Digital Image Processing* - Gonzalez & Woods (Ch. 3-5, 9)
+- *Computer Vision: Algorithms and Applications* - Szeliski (Ch. 3)
+
+**Videos:**
+- [OpenCV Filtering Tutorial](https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html)
+- [Canny Edge Detection Explained](https://www.youtube.com/watch?v=sRFM5IEqR6w)
+
+<br/>
+
+---
+
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
@@ -362,6 +496,7 @@ G(x,y) = G(x) × G(y)
 | s = (L-1)·Σp(rⱼ) | Histogram equalization |
 | (A ∘ B) = (A ⊖ B) ⊕ B | Morphological opening |
 | w = spatial × range | Bilateral filter weight |
+
 
 ---
 
@@ -373,23 +508,26 @@ G(x,y) = G(x) × G(y)
 
 <br/>
 
-```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+### 🚀 Click to Open Directly in Google Colab
 
 <br/>
 
-<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/04_Low_Level_Processing/colab_tutorial.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
+</a>
+
+<br/><br/>
+
+> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
+
+<br/>
+
+**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
+
 
 
 

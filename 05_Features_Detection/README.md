@@ -34,6 +34,63 @@
 
 <br/>
 
+## 📖 Overview
+
+> **Feature detection and description enable matching and tracking across images.** This module covers corner detection (Harris), scale-invariant features (SIFT), binary descriptors (ORB), and matching algorithms—essential for panorama stitching, 3D reconstruction, and SLAM.
+
+<br/>
+
+---
+
+## 🎯 What You'll Learn
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔍 **Keypoint Detection**
+- Harris corner detection
+- FAST keypoints
+- Scale-space (SIFT)
+- Blob detection (LoG/DoG)
+
+</td>
+<td width="50%">
+
+### 📝 **Descriptors**
+- SIFT (128-D)
+- ORB (256-bit binary)
+- BRIEF
+- HOG features
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔗 **Matching**
+- Ratio test (Lowe)
+- Hamming distance
+- RANSAC verification
+- Homography estimation
+
+</td>
+<td width="50%">
+
+### 🎯 **Applications**
+- Panorama stitching
+- Object tracking
+- 3D reconstruction
+- Visual SLAM
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+---
+
 ## 🎯 Key Concepts
 
 | Concept | Description | Use Case |
@@ -271,6 +328,71 @@
 
 ---
 
+## 🎨 Visual Diagrams
+
+<div align="center">
+<img src="./svg_figs/sift_pipeline.svg" alt="SIFT Pipeline" width="90%"/>
+</div>
+
+<br/>
+
+---
+
+## ⚠️ Common Pitfalls
+
+| ❌ Pitfall | ✅ Solution |
+| --- | --- |
+| Not using ratio test | Always use ratio test (0.75) to reject ambiguous matches |
+| Wrong distance metric | Use Hamming for binary (ORB), L2 for float (SIFT) |
+| Insufficient RANSAC iterations | Compute N = log(1-p)/log(1-w^n) for confidence |
+| Ignoring scale/rotation | Use scale/rotation invariant descriptors (SIFT, ORB) |
+| Too many keypoints | Use non-maximum suppression and response thresholding |
+
+<br/>
+
+---
+
+## 🛠️ Mini Projects
+
+<details>
+<summary><b>Project 1: Panorama Stitching</b></summary>
+
+- Capture overlapping images
+- Detect keypoints (SIFT/ORB)
+- Match features with ratio test
+- Estimate homography with RANSAC
+- Warp and blend images
+- Create seamless panorama
+
+</details>
+
+<details>
+<summary><b>Project 2: Feature Matching Visualization</b></summary>
+
+- Implement Harris corner detection
+- Extract SIFT descriptors
+- Match features between image pairs
+- Visualize matches with lines
+- Compare SIFT vs ORB matching quality
+- Measure matching accuracy
+
+</details>
+
+<details>
+<summary><b>Project 3: Object Tracking</b></summary>
+
+- Detect keypoints in first frame
+- Track across video using Lucas-Kanade
+- Handle occlusion and re-detection
+- Compare with feature matching approach
+- Evaluate tracking accuracy
+
+</details>
+
+<br/>
+
+---
+
 ## ❓ Interview Questions & Answers
 
 <details>
@@ -377,6 +499,21 @@
 
 ---
 
+## 📚 Resources
+
+**Papers:**
+- [SIFT (2004)](https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf) - Lowe
+- [ORB (2011)](https://ieeexplore.ieee.org/document/6126544) - Rublee et al.
+- [Harris Corner (1988)](https://www.cs.cmu.edu/~16385/s17/Slides/6.1_Harris_Corner_Detector.pdf)
+
+**Videos:**
+- [SIFT Explained](https://www.youtube.com/watch?v=NPcMS49V5hg)
+- [Feature Matching Tutorial](https://docs.opencv.org/master/dc/dc3/tutorial_py_matcher.html)
+
+<br/>
+
+---
+
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
@@ -386,6 +523,7 @@
 | m = √(Ix² + Iy²) | Gradient magnitude |
 | θ = atan2(Iy, Ix) | Gradient orientation |
 | d = popcount(d1 XOR d2) | Hamming distance |
+
 
 ---
 
@@ -397,23 +535,26 @@
 
 <br/>
 
-```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+### 🚀 Click to Open Directly in Google Colab
 
 <br/>
 
-<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/05_Features_Detection/colab_tutorial.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
+</a>
+
+<br/><br/>
+
+> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
+
+<br/>
+
+**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
+
 
 
 

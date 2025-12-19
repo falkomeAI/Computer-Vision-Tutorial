@@ -321,6 +321,49 @@ A **learnable embedding** prepended to patch tokens:
 
 ---
 
+## 🛠️ Mini Projects
+
+<details>
+<summary><b>Project 1: Implement ViT from Scratch</b></summary>
+
+- Split image into patches (16×16)
+- Create patch embeddings
+- Add positional encodings
+- Implement multi-head self-attention
+- Build transformer encoder blocks
+- Add classification head
+- Train on CIFAR-10
+
+</details>
+
+<details>
+<summary><b>Project 2: Compare ViT vs CNN</b></summary>
+
+- Train ViT and ResNet on same dataset
+- Compare training curves
+- Compare inference speed
+- Visualize attention maps
+- Analyze which performs better on small vs large datasets
+- Measure parameter counts
+
+</details>
+
+<details>
+<summary><b>Project 3: Visualize Attention</b></summary>
+
+- Load pretrained ViT
+- Extract attention weights
+- Visualize attention maps for different layers
+- Show which patches attend to which
+- Compare early vs late layer attention
+- Create attention rollout visualization
+
+</details>
+
+<br/>
+
+---
+
 ## 📚 Resources
 
 **Papers:**
@@ -334,6 +377,7 @@ A **learnable embedding** prepended to patch tokens:
 
 <br/>
 
+
 ---
 
 <br/>
@@ -344,23 +388,26 @@ A **learnable embedding** prepended to patch tokens:
 
 <br/>
 
-```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+### 🚀 Click to Open Directly in Google Colab
 
 <br/>
 
-<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/11_Vision_Transformers/colab_tutorial.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
+</a>
+
+<br/><br/>
+
+> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
+
+<br/>
+
+**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
+
 
 
 

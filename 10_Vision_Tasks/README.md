@@ -34,6 +34,63 @@
 
 <br/>
 
+## 📖 Overview
+
+> **Vision tasks define what we want computers to see.** This module covers classification, object detection, segmentation (semantic, instance, panoptic), and tracking—the core problems that deep learning models solve, along with evaluation metrics and architectures.
+
+<br/>
+
+---
+
+## 🎯 What You'll Learn
+
+<table>
+<tr>
+<td width="50%">
+
+### 🏷️ **Classification**
+- Image classification
+- Multi-label classification
+- Top-k accuracy
+- Transfer learning
+
+</td>
+<td width="50%">
+
+### 📦 **Detection**
+- Two-stage (R-CNN family)
+- One-stage (YOLO, SSD)
+- Anchor-based vs anchor-free
+- mAP evaluation
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🎨 **Segmentation**
+- Semantic segmentation (FCN, U-Net)
+- Instance segmentation (Mask R-CNN)
+- Panoptic segmentation
+- mIoU, AP metrics
+
+</td>
+<td width="50%">
+
+### 🎯 **Tracking**
+- Object tracking
+- Multi-object tracking (MOT)
+- Tracking-by-detection
+- Association algorithms
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+---
+
 ## 🎯 Key Concepts
 
 | Task | Input | Output | Metric |
@@ -264,6 +321,63 @@
 
 ---
 
+## ⚠️ Common Pitfalls
+
+| ❌ Pitfall | ✅ Solution |
+| --- | --- |
+| Wrong IoU threshold | Use 0.5 for COCO, 0.5:0.95 for mAP@[0.5:0.95] |
+| Not using NMS | Always apply Non-Maximum Suppression after detection |
+| Confusing mAP vs AP | AP = single class, mAP = average across classes |
+| Wrong anchor sizes | Match anchors to object scales in your dataset |
+| Forgetting to normalize boxes | Normalize coordinates to [0,1] for training |
+| Using wrong loss | Use focal loss for imbalanced, CE for balanced |
+
+<br/>
+
+---
+
+## 🛠️ Mini Projects
+
+<details>
+<summary><b>Project 1: Object Detection Pipeline</b></summary>
+
+- Load pretrained YOLO or Faster R-CNN
+- Run inference on custom images
+- Visualize bounding boxes and scores
+- Filter by confidence threshold
+- Apply NMS to remove duplicates
+- Evaluate on test set
+
+</details>
+
+<details>
+<summary><b>Project 2: Semantic Segmentation</b></summary>
+
+- Implement U-Net architecture
+- Train on Cityscapes or Pascal VOC
+- Visualize segmentation masks
+- Compute mIoU metric
+- Compare with pretrained models
+- Apply to custom images
+
+</details>
+
+<details>
+<summary><b>Project 3: Multi-Object Tracking</b></summary>
+
+- Use detection model (YOLO)
+- Implement tracking algorithm (SORT/DeepSORT)
+- Track objects across video frames
+- Handle occlusions and re-identification
+- Visualize tracks with unique IDs
+- Evaluate tracking accuracy
+
+</details>
+
+<br/>
+
+---
+
 ## ❓ Interview Questions & Answers
 
 <details>
@@ -358,6 +472,27 @@
 
 ---
 
+## 📚 Resources
+
+**Papers:**
+- [R-CNN (2014)](https://arxiv.org/abs/1311.2524) - Girshick et al.
+- [YOLO (2016)](https://arxiv.org/abs/1506.02640) - Redmon et al.
+- [Mask R-CNN (2017)](https://arxiv.org/abs/1703.06870) - He et al.
+- [U-Net (2015)](https://arxiv.org/abs/1505.04597) - Ronneberger et al.
+
+**Datasets:**
+- [COCO](https://cocodataset.org/) - Detection & segmentation
+- [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC/) - Classification & detection
+- [Cityscapes](https://www.cityscapes-dataset.com/) - Semantic segmentation
+
+**Videos:**
+- [Object Detection Explained](https://www.youtube.com/watch?v=nDPWywWRIRo)
+- [YOLO Algorithm](https://www.youtube.com/watch?v=MPU2HistivI)
+
+<br/>
+
+---
+
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
@@ -367,6 +502,7 @@
 | FL = -αₜ(1-pₜ)ᵞlog(pₜ) | Focal Loss |
 | Dice = 2\|X∩Y\|/(\|X\|+\|Y\|) | Dice coefficient |
 | k' = k + (k-1)(r-1) | Dilated conv receptive field |
+
 
 ---
 
@@ -378,23 +514,26 @@
 
 <br/>
 
-```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+### 🚀 Click to Open Directly in Google Colab
 
 <br/>
 
-<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+<a href="https://colab.research.google.com/github/USERNAME/computer_vision_complete/blob/main/10_Vision_Tasks/colab_tutorial.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
+</a>
+
+<br/><br/>
+
+> ⚠️ **First time?** Push this repo to GitHub, then replace `USERNAME` in the link above with your GitHub username.
+
+<br/>
+
+**Or manually:** [📥 Download](./colab_tutorial.ipynb) → [🌐 Colab](https://colab.research.google.com) → Upload
 
 </div>
 
 <br/>
+
 
 
 

@@ -6,7 +6,7 @@
                               COMPUTER VISION COMPLETE
     ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ -->
 
-<img src="svg_figs/cv_overview.svg" alt="Computer Vision Complete" width="100%"/>
+<img src="svg_figs/cv_overview.svg" alt="Computer Vision Complete" width="100%" style="max-width: 1200px; display: block; margin: 0 auto;"/>
 
 <br/>
 <br/>
@@ -24,21 +24,28 @@
                                    STATS CARDS
      ████████████████████████████████████████████████████████████████████████████ -->
 
-<p>
+<p align="center">
 <img src="https://img.shields.io/badge/📚_MODULES-20-60A5FA?style=for-the-badge&labelColor=0f172a" alt="Modules"/>
+&nbsp;
 <img src="https://img.shields.io/badge/📖_TOPICS-200+-34D399?style=for-the-badge&labelColor=0f172a" alt="Topics"/>
+&nbsp;
 <img src="https://img.shields.io/badge/💻_NOTEBOOKS-20-FBBF24?style=for-the-badge&labelColor=0f172a" alt="Notebooks"/>
+&nbsp;
 <img src="https://img.shields.io/badge/🎨_VISUALS-50+-A78BFA?style=for-the-badge&labelColor=0f172a" alt="Visuals"/>
 </p>
 
 <br/>
 
 <!-- Tech Stack -->
-<p>
+<p align="center">
 <img src="https://img.shields.io/badge/Python-0f172a?style=for-the-badge&logo=python&logoColor=60A5FA" alt="Python"/>
+&nbsp;
 <img src="https://img.shields.io/badge/PyTorch-0f172a?style=for-the-badge&logo=pytorch&logoColor=F87171" alt="PyTorch"/>
+&nbsp;
 <img src="https://img.shields.io/badge/OpenCV-0f172a?style=for-the-badge&logo=opencv&logoColor=34D399" alt="OpenCV"/>
+&nbsp;
 <img src="https://img.shields.io/badge/NumPy-0f172a?style=for-the-badge&logo=numpy&logoColor=60A5FA" alt="NumPy"/>
+&nbsp;
 <img src="https://img.shields.io/badge/Jupyter-0f172a?style=for-the-badge&logo=jupyter&logoColor=FBBF24" alt="Jupyter"/>
 </p>
 
@@ -60,6 +67,8 @@
 
 <br/>
 
+<div align="center">
+
 ```
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                                                               ┃
@@ -67,6 +76,8 @@
 ┃                                                                               ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
+
+</div>
 
 </div>
 
@@ -85,6 +96,8 @@
 ## 🗺️ LEARNING PATH
 
 <br/>
+
+<div align="center">
 
 ```
                          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -121,6 +134,8 @@
 
 </div>
 
+</div>
+
 <br/>
 
 ---
@@ -149,9 +164,9 @@
 
 <br/>
 
-<table>
+<table align="center" width="100%">
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -180,7 +195,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -240,7 +255,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -287,9 +302,9 @@
 
 <br/>
 
-<table>
+<table align="center" width="100%">
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -318,7 +333,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -365,9 +380,9 @@
 
 <br/>
 
-<table>
+<table align="center" width="100%">
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -395,7 +410,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -443,9 +458,9 @@
 
 <br/>
 
-<table>
+<table align="center" width="100%">
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -473,7 +488,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -532,7 +547,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -579,9 +594,9 @@
 
 <br/>
 
-<table>
+<table align="center" width="100%">
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -603,7 +618,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -649,7 +664,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -695,7 +710,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -741,7 +756,7 @@
 </div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="padding: 20px;">
 
 <div align="center">
 
@@ -782,28 +797,25 @@
 
 <br/>
 
-<table>
+<table align="center" width="100%">
 <tr>
-<td align="center">
-<img src="svg_figs/neural_network_visual.svg" width="100%"/>
+<td align="center" width="33%" style="padding: 15px;">
+<img src="svg_figs/neural_network_visual.svg" width="100%" style="max-width: 300px;"/>
 <br/>
-
+<br/>
 ![Neural](https://img.shields.io/badge/Neural_Networks-0f172a?style=flat-square&labelColor=1e293b)
-
 </td>
-<td align="center">
-<img src="svg_figs/cnn_architecture.svg" width="100%"/>
+<td align="center" width="33%" style="padding: 15px;">
+<img src="svg_figs/cnn_architecture.svg" width="100%" style="max-width: 300px;"/>
 <br/>
-
+<br/>
 ![CNN](https://img.shields.io/badge/CNN_Architecture-0f172a?style=flat-square&labelColor=1e293b)
-
 </td>
-<td align="center">
-<img src="svg_figs/attention_visual.svg" width="100%"/>
+<td align="center" width="33%" style="padding: 15px;">
+<img src="svg_figs/attention_visual.svg" width="100%" style="max-width: 300px;"/>
 <br/>
-
+<br/>
 ![Attention](https://img.shields.io/badge/Attention-0f172a?style=flat-square&labelColor=1e293b)
-
 </td>
 </tr>
 </table>
@@ -826,6 +838,8 @@
 
 <br/>
 
+<div align="center">
+
 ```
 ┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
 ┃       CONCEPT          ┃              FORMULA                    ┃       USE          ┃
@@ -841,6 +855,8 @@
 ┃  IoU                   ┃  IoU = Area(A∩B) / Area(A∪B)            ┃  Detection         ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┛
 ```
+
+</div>
 
 </div>
 
@@ -869,10 +885,13 @@
 
 <br/>
 
-<p>
+<p align="center">
 <img src="https://img.shields.io/badge/Python-0f172a?style=flat-square&logo=python&logoColor=60A5FA" alt="Python"/>
+&nbsp;
 <img src="https://img.shields.io/badge/PyTorch-0f172a?style=flat-square&logo=pytorch&logoColor=F87171" alt="PyTorch"/>
+&nbsp;
 <img src="https://img.shields.io/badge/OpenCV-0f172a?style=flat-square&logo=opencv&logoColor=34D399" alt="OpenCV"/>
+&nbsp;
 <img src="https://img.shields.io/badge/License-MIT-0f172a?style=flat-square&labelColor=1e293b" alt="License"/>
 </p>
 
