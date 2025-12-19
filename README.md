@@ -13,9 +13,18 @@
 
 # 🌙 COMPUTER VISION COMPLETE
 
+### ✨ *The Ultimate Guide to Computer Vision - From Basics to Advanced*
+
 <br/>
 
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=32&duration=3000&pause=1000&color=60A5FA&background=0F172A00&center=true&vCenter=true&width=700&lines=From+Pixels+to+Intelligence;Master+Every+CV+Concept;200%2B+Topics+%7C+20+Modules;Theory+%2B+Math+%2B+Code" alt="Typing SVG" />
+
+<br/>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/⭐_STAR_THIS_REPO-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Star"/>
+  <img src="https://img.shields.io/badge/🔖_FORK_AND_SHARE-34D399?style=for-the-badge&logo=github&logoColor=white" alt="Fork"/>
+</p>
 
 <br/>
 <br/>
@@ -57,6 +66,22 @@
 
 <br/>
 
+<div align="center">
+
+<p>
+  <img src="https://img.shields.io/badge/🎯_Perfect_for_Beginners-34D399?style=for-the-badge&logo=graduation-cap&logoColor=white" alt="Beginners"/>
+  <img src="https://img.shields.io/badge/🚀_Ready_to_Code-FBBF24?style=for-the-badge&logo=rocket&logoColor=white" alt="Ready"/>
+  <img src="https://img.shields.io/badge/📚_20_Modules-A78BFA?style=for-the-badge&logo=book&logoColor=white" alt="Modules"/>
+</p>
+
+</div>
+
+<br/>
+
+---
+
+<br/>
+
 <!-- ████████████████████████████████████████████████████████████████████████████
                                   QUICK START
      ████████████████████████████████████████████████████████████████████████████ -->
@@ -70,12 +95,26 @@
 <div align="center">
 
 ```
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                               ┃
-┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
-┃                                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║   🚀  GET STARTED IN 3 SIMPLE STEPS                                          ║
+║                                                                               ║
+║   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
 ```
+
+<br/>
+
+<p align="center">
+  <a href="01_Mathematical_Foundations/README.md">
+    <img src="https://img.shields.io/badge/🎯_START_LEARNING-60A5FA?style=for-the-badge&logo=book&logoColor=white" alt="Start Learning"/>
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://colab.research.google.com/">
+    <img src="https://img.shields.io/badge/📓_OPEN_IN_COLAB-FBBF24?style=for-the-badge&logo=googlecolab&logoColor=white" alt="Colab"/>
+  </a>
+</p>
 
 </div>
 
@@ -158,7 +197,7 @@
 
 <div align="center">
 
-### ━━━━━━━━━━━━━━ 🔷 PART 1 · FOUNDATIONS ━━━━━━━━━━━━━━
+### 🎯 🔷 PART 1 · FOUNDATIONS 🔷 🎯
 
 </div>
 
@@ -170,27 +209,35 @@
 
 <div align="center">
 
-[![Module](https://img.shields.io/badge/01-MATHEMATICAL_FOUNDATIONS-60A5FA?style=for-the-badge&labelColor=0f172a)](01_Mathematical_Foundations/README.md)
+<a href="01_Mathematical_Foundations/README.md">
+  <img src="https://img.shields.io/badge/📐_01_MATHEMATICAL_FOUNDATIONS-60A5FA?style=for-the-badge&logo=calculator&logoColor=white" alt="Module 01"/>
+</a>
 
 <br/>
 
-<img src="01_Mathematical_Foundations/svg_figs/linear_algebra_overview.svg" width="100%"/>
+<img src="01_Mathematical_Foundations/svg_figs/linear_algebra_overview.svg" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
 
 <br/>
+
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 10px; color: white;">
 
 ```
 ┌─────────────────────────────────┐
-│  Linear Algebra • Calculus      │
-│  Probability • Optimization     │
+│  📊 Linear Algebra • Calculus   │
+│  📈 Probability • Optimization  │
 └─────────────────────────────────┘
 ```
 
+</div>
+
 <br/>
 
-![Topics](https://img.shields.io/badge/Vectors-0f172a?style=flat-square&labelColor=1e293b)
-![Topics](https://img.shields.io/badge/Matrices-0f172a?style=flat-square&labelColor=1e293b)
-![Topics](https://img.shields.io/badge/SVD-0f172a?style=flat-square&labelColor=1e293b)
-![Topics](https://img.shields.io/badge/Gradients-0f172a?style=flat-square&labelColor=1e293b)
+<p align="center">
+  <img src="https://img.shields.io/badge/🔢_Vectors-60A5FA?style=flat-square" alt="Vectors"/>
+  <img src="https://img.shields.io/badge/📊_Matrices-34D399?style=flat-square" alt="Matrices"/>
+  <img src="https://img.shields.io/badge/🔍_SVD-FBBF24?style=flat-square" alt="SVD"/>
+  <img src="https://img.shields.io/badge/📈_Gradients-A78BFA?style=flat-square" alt="Gradients"/>
+</p>
 
 </div>
 
@@ -296,7 +343,7 @@
 
 <div align="center">
 
-### ━━━━━━━━━━━━━━ 🔶 PART 2 · FEATURES & GEOMETRY ━━━━━━━━━━━━━━
+### 🎯 🔶 PART 2 · FEATURES & GEOMETRY 🔶 🎯
 
 </div>
 
@@ -374,7 +421,7 @@
 
 <div align="center">
 
-### ━━━━━━━━━━━━━━ 🟢 PART 3 · MACHINE LEARNING ━━━━━━━━━━━━━━
+### 🎯 🟢 PART 3 · MACHINE LEARNING 🟢 🎯
 
 </div>
 
@@ -452,7 +499,7 @@
 
 <div align="center">
 
-### ━━━━━━━━━━━━━━ 🟣 PART 4 · DEEP LEARNING ━━━━━━━━━━━━━━
+### 🎯 🟣 PART 4 · DEEP LEARNING 🟣 🎯
 
 </div>
 
@@ -588,7 +635,7 @@
 
 <div align="center">
 
-### ━━━━━━━━━━━━━━ 🔴 PART 5 · ADVANCED TOPICS ━━━━━━━━━━━━━━
+### 🎯 🔴 PART 5 · ADVANCED TOPICS 🔴 🎯
 
 </div>
 
@@ -795,6 +842,8 @@
 
 ## 🎨 VISUAL GALLERY
 
+### ✨ *Interactive Diagrams & Visualizations*
+
 <br/>
 
 <table align="center" width="100%">
@@ -803,19 +852,19 @@
 <img src="svg_figs/neural_network_visual.svg" width="100%" style="max-width: 300px;"/>
 <br/>
 <br/>
-![Neural](https://img.shields.io/badge/Neural_Networks-0f172a?style=flat-square&labelColor=1e293b)
+<img src="https://img.shields.io/badge/🧠_Neural_Networks-60A5FA?style=for-the-badge&logo=brain&logoColor=white" alt="Neural Networks"/>
 </td>
 <td align="center" width="33%" style="padding: 15px;">
 <img src="svg_figs/cnn_architecture.svg" width="100%" style="max-width: 300px;"/>
 <br/>
 <br/>
-![CNN](https://img.shields.io/badge/CNN_Architecture-0f172a?style=flat-square&labelColor=1e293b)
+<img src="https://img.shields.io/badge/🏗️_CNN_Architecture-34D399?style=for-the-badge&logo=network&logoColor=white" alt="CNN"/>
 </td>
 <td align="center" width="33%" style="padding: 15px;">
 <img src="svg_figs/attention_visual.svg" width="100%" style="max-width: 300px;"/>
 <br/>
 <br/>
-![Attention](https://img.shields.io/badge/Attention-0f172a?style=flat-square&labelColor=1e293b)
+<img src="https://img.shields.io/badge/👁️_Attention-FBBF24?style=for-the-badge&logo=eye&logoColor=white" alt="Attention"/>
 </td>
 </tr>
 </table>
@@ -836,24 +885,28 @@
 
 ## 📝 FORMULA REFERENCE
 
+### 🔢 *Essential Formulas at a Glance*
+
 <br/>
 
 <div align="center">
 
 ```
-┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
-┃       CONCEPT          ┃              FORMULA                    ┃       USE          ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
-┃  Convolution           ┃  (f * g)[n] = Σ f[m] · g[n-m]           ┃  CNNs, Filtering   ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
-┃  Softmax               ┃  σ(z)ᵢ = exp(zᵢ) / Σⱼ exp(zⱼ)          ┃  Classification    ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
-┃  Cross-Entropy         ┃  L = -Σ yᵢ log(ŷᵢ)                      ┃  Loss Function     ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
-┃  Attention             ┃  Attn(Q,K,V) = softmax(QKᵀ/√d)V         ┃  Transformers      ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
-┃  IoU                   ┃  IoU = Area(A∩B) / Area(A∪B)            ┃  Detection         ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┛
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    📐 ESSENTIAL FORMULAS REFERENCE 📐                        ║
+╠════════════════════════════╦════════════════════════════════════════╦══════════════════╣
+║       🔑 CONCEPT           ║           📊 FORMULA                  ║      🎯 USE       ║
+╠════════════════════════════╬════════════════════════════════════════╬══════════════════╣
+║  🔄 Convolution            ║  (f * g)[n] = Σ f[m] · g[n-m]         ║  CNNs, Filtering  ║
+╠════════════════════════════╬════════════════════════════════════════╬══════════════════╣
+║  📊 Softmax                ║  σ(z)ᵢ = exp(zᵢ) / Σⱼ exp(zⱼ)          ║  Classification    ║
+╠════════════════════════════╬════════════════════════════════════════╬══════════════════╣
+║  📉 Cross-Entropy          ║  L = -Σ yᵢ log(ŷᵢ)                    ║  Loss Function     ║
+╠════════════════════════════╬════════════════════════════════════════╬══════════════════╣
+║  👁️ Attention              ║  Attn(Q,K,V) = softmax(QKᵀ/√d)V       ║  Transformers      ║
+╠════════════════════════════╬════════════════════════════════════════╬══════════════════╣
+║  📦 IoU                    ║  IoU = Area(A∩B) / Area(A∪B)          ║  Detection         ║
+╚════════════════════════════╩════════════════════════════════════════╩══════════════════╝
 ```
 
 </div>
@@ -876,7 +929,19 @@
 
 <br/>
 
-[![Start](https://img.shields.io/badge/📐_BEGIN_WITH_MATHEMATICAL_FOUNDATIONS-60A5FA?style=for-the-badge&labelColor=0f172a)](01_Mathematical_Foundations/README.md)
+<p align="center">
+  <a href="01_Mathematical_Foundations/README.md">
+    <img src="https://img.shields.io/badge/📐_BEGIN_WITH_MATHEMATICAL_FOUNDATIONS-60A5FA?style=for-the-badge&logo=rocket&logoColor=white" alt="Start"/>
+  </a>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/💡_Perfect_for_Beginners-34D399?style=for-the-badge&logo=lightbulb&logoColor=white" alt="Beginners"/>
+  <img src="https://img.shields.io/badge/🎓_Great_for_Students-FBBF24?style=for-the-badge&logo=graduation-cap&logoColor=white" alt="Students"/>
+  <img src="https://img.shields.io/badge/👨‍💻_Ideal_for_Developers-A78BFA?style=for-the-badge&logo=code&logoColor=white" alt="Developers"/>
+</p>
 
 <br/>
 <br/>
@@ -898,6 +963,41 @@
 <br/>
 
 **🌙 Made with ❤️ for Computer Vision Learners**
+
+<br/>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/⭐_If_you_like_this_project,_give_it_a_star!-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Star"/>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA&labelColor=0f172a" alt="GitHub stars"/>
+  &nbsp;
+  <img src="https://img.shields.io/github/forks/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=34D399&labelColor=0f172a" alt="GitHub forks"/>
+  &nbsp;
+  <img src="https://img.shields.io/github/issues/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=FBBF24&labelColor=0f172a" alt="GitHub issues"/>
+</p>
+
+<br/>
+
+<p align="center">
+  <a href="https://github.com/falkomeAi">
+    <img src="https://img.shields.io/badge/👨‍💻_Created_by_falkomeAi-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Author"/>
+  </a>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/⭐_If_you_like_this_project,_give_it_a_star!-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Star"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=60A5FA" alt="GitHub stars"/>
+  <img src="https://img.shields.io/github/forks/falkomeAi/computer_vision_complete?style=for-the-badge&logo=github&color=34D399" alt="GitHub forks"/>
+</p>
 
 <br/>
 

@@ -36,13 +36,17 @@
 
 ## 📖 Overview
 
+> 💡 *Get ready to dive deep into the world of computer vision!*
+
 > **Feature detection and description enable matching and tracking across images.** This module covers corner detection (Harris), scale-invariant features (SIFT), binary descriptors (ORB), and matching algorithms—essential for panorama stitching, 3D reconstruction, and SLAM.
 
 <br/>
 
 ---
 
-## 🎯 What You'll Learn
+## 🎯 What You\'ll Learn
+
+### 🎓 *Master these key concepts:*
 
 <table align="center" width="100%">
 <tr>
@@ -533,34 +537,28 @@
 
 ## 📓 PRACTICE
 
+### 🚀 *Ready to code? Let\'s get started!*
+
 <br/>
 
 ### 🚀 Open in Google Colab
 
 <br/>
 
-**Option 1: Direct Link (After pushing to GitHub)**
-```
-Replace YOUR_USERNAME with your GitHub username:
-https://colab.research.google.com/github/YOUR_USERNAME/computer_vision_complete/blob/main/05_Features_Detection/colab_tutorial.ipynb
-```
-
-**Option 2: Manual Upload (Works Immediately!)**
-1. [📥 Download this notebook](./colab_tutorial.ipynb)
-2. Go to [Google Colab](https://colab.research.google.com)
-3. Click "Upload" → Select the downloaded `.ipynb` file
-4. Run all cells!
-
-**Option 3: Open from GitHub (if already pushed)**
-- Click the notebook file on GitHub
-- Click "Open in Colab" button (if available)
-- Or copy the GitHub URL and paste it into Colab's "File → Open notebook → GitHub" option
+<p align="center">
+  <a href="https://colab.research.google.com/github/falkomeAi/computer_vision_complete/blob/main/05_Features_Detection/colab_tutorial.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="60"/>
+  </a>
+</p>
 
 <br/>
 
-<a href="https://colab.research.google.com/">
-<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="50"/>
-</a>
+<p align="center">
+  <strong>✨ Click the badge above to open this notebook directly in Google Colab!</strong>
+</p>
+
+<br/>
+
 
 </div>
 
@@ -581,7 +579,15 @@ https://colab.research.google.com/github/YOUR_USERNAME/computer_vision_complete/
 
 ---
 
-🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+🌙 Part of **[Computer Vision Complete](../README.md)**
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/falkomeAi">falkomeAi</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/⭐_Star_this_repo_if_helpful-60A5FA?style=for-the-badge&logo=github&logoColor=white" alt="Star"/>
+</p>
 
 <br/>
 
