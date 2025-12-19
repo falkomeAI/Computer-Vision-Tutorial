@@ -1,35 +1,43 @@
 <div align="center">
 
-# 📐 Geometry & Multi-View Vision
+<br/>
 
-### *Homography, Epipolar Geometry & 3D Reconstruction*
+<a href="../05_Features_Detection/README.md"><img src="https://img.shields.io/badge/◀__Features-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-FBBF24?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../07_Classical_ML/README.md"><img src="https://img.shields.io/badge/Classical ML__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🔴 Advanced | 3 hours | Linear Algebra, Projective Geometry |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🌐 GEOMETRY & MULTI-VIEW
+
+### 🌙 *3D from 2D*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__06/20-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Feature Detection](../05_Features_Detection/) | [🏠 Home](../README.md) | [Classical ML →](../07_Classical_ML/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Concept | Description | Use Case |
-|:--------|:------------|:---------|
+| :--- | :--- | :--- |
 | **Homography** | Plane-to-plane mapping (3×3 matrix) | Panorama, AR |
 | **Fundamental Matrix** | Encodes epipolar geometry (3×3, rank 2) | Stereo matching |
 | **Essential Matrix** | F with calibrated cameras (3×3, rank 2) | Pose estimation |
@@ -56,19 +64,19 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  2D POINT: (x, y) → [x, y, 1]ᵀ                     │
+│  2D POINT: (x, y) → [x, y, 1]ᵀ                      │
 │                                                     │
-│  Scale invariant: [x, y, 1] ~ [kx, ky, k]          │
+│  Scale invariant: [x, y, 1] ~ [kx, ky, k]           │
 │                                                     │
-│  Point at infinity: [x, y, 0]ᵀ                     │
+│  Point at infinity: [x, y, 0]ᵀ                      │
 │                                                     │
-│  Back to Cartesian: [x, y, w]ᵀ → (x/w, y/w)       │
+│  Back to Cartesian: [x, y, w]ᵀ → (x/w, y/w)         │
 │                                                     │
-│  LINE: ax + by + c = 0 → l = [a, b, c]ᵀ           │
+│  LINE: ax + by + c = 0 → l = [a, b, c]ᵀ             │
 │                                                     │
-│  Point on line: lᵀp = 0                            │
-│  Line through 2 points: l = p₁ × p₂                │
-│  Intersection of 2 lines: p = l₁ × l₂              │
+│  Point on line: lᵀp = 0                             │
+│  Line through 2 points: l = p₁ × p₂                 │
+│  Intersection of 2 lines: p = l₁ × l₂               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -76,21 +84,21 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  MAPPING: x' = Hx  (3×3 matrix, 8 DOF)             │
+│  MAPPING: x' = Hx  (3×3 matrix, 8 DOF)              │
 │                                                     │
-│  ┌    ┐   ┌           ┐ ┌   ┐                      │
-│  │ x' │   │ h₁ h₂ h₃ │ │ x │                      │
-│  │ y' │ = │ h₄ h₅ h₆ │ │ y │                      │
-│  │ w' │   │ h₇ h₈ h₉ │ │ 1 │                      │
-│  └    ┘   └           ┘ └   ┘                      │
+│  ┌    ┐   ┌           ┐ ┌   ┐                       │
+│  │ x' │   │ h₁ h₂ h₃ │ │ x │                        │
+│  │ y' │ = │ h₄ h₅ h₆ │ │ y │                        │
+│  │ w' │   │ h₇ h₈ h₉ │ │ 1 │                        │
+│  └    ┘   └           ┘ └   ┘                       │
 │                                                     │
-│  COMPUTING H (Direct Linear Transform):            │
-│  Given 4+ point correspondences:                   │
-│  - Set up linear system Ah = 0                     │
-│  - Solve via SVD (h = last column of V)           │
+│  COMPUTING H (Direct Linear Transform):             │
+│  Given 4+ point correspondences:                    │
+│  - Set up linear system Ah = 0                      │
+│  - Solve via SVD (h = last column of V)             │
 │                                                     │
-│  Preserves: collinearity, cross-ratio              │
-│  Does NOT preserve: distances, angles              │
+│  Preserves: collinearity, cross-ratio               │
+│  Does NOT preserve: distances, angles               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -100,21 +108,21 @@
 ┌─────────────────────────────────────────────────────┐
 │  EPIPOLAR CONSTRAINT                                │
 │                                                     │
-│  x'ᵀ F x = 0                                       │
+│  x'ᵀ F x = 0                                        │
 │                                                     │
-│  F: 3×3 matrix, rank 2, 7 DOF                      │
+│  F: 3×3 matrix, rank 2, 7 DOF                       │
 │                                                     │
 │  Properties:                                        │
-│  - F = [e']ₓ P' P⁺  (from camera matrices)         │
-│  - det(F) = 0                                      │
-│  - Fe = 0, Fᵀe' = 0  (epipoles)                   │
+│  - F = [e']ₓ P' P⁺  (from camera matrices)          │
+│  - det(F) = 0                                       │
+│  - Fe = 0, Fᵀe' = 0  (epipoles)                     │
 │                                                     │
-│  EPIPOLAR LINE in image 2:                         │
-│  l' = Fx    (line where x's match must lie)       │
+│  EPIPOLAR LINE in image 2:                          │
+│  l' = Fx    (line where x's match must lie)         │
 │                                                     │
-│  Computing F (8-point algorithm):                  │
-│  - 8+ correspondences                              │
-│  - SVD, enforce rank-2 constraint                  │
+│  Computing F (8-point algorithm):                   │
+│  - 8+ correspondences                               │
+│  - SVD, enforce rank-2 constraint                   │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -124,22 +132,22 @@
 ┌─────────────────────────────────────────────────────┐
 │  FOR CALIBRATED CAMERAS                             │
 │                                                     │
-│  E = K'ᵀ F K                                       │
+│  E = K'ᵀ F K                                        │
 │                                                     │
 │  x̂'ᵀ E x̂ = 0   (normalized coordinates)           │
 │                                                     │
-│  E = [t]ₓ R  = R[Rᵀt]ₓ                             │
+│  E = [t]ₓ R  = R[Rᵀt]ₓ                              │
 │                                                     │
 │  Properties:                                        │
-│  - 5 DOF (3 rotation + 2 direction of t)          │
-│  - Two equal singular values                       │
-│  - 5-point algorithm for minimal case             │
+│  - 5 DOF (3 rotation + 2 direction of t)            │
+│  - Two equal singular values                        │
+│  - 5-point algorithm for minimal case               │
 │                                                     │
 │  RECOVERING POSE:                                   │
-│  SVD: E = U diag(1,1,0) Vᵀ                         │
-│  R = U Wᵀ Vᵀ  or  U W Vᵀ                          │
-│  t = ±u₃                                           │
-│  (4 solutions, choose by triangulation test)       │
+│  SVD: E = U diag(1,1,0) Vᵀ                          │
+│  R = U Wᵀ Vᵀ  or  U W Vᵀ                            │
+│  t = ±u₃                                            │
+│  (4 solutions, choose by triangulation test)        │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -147,19 +155,19 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  Given: 2D points x, x' and cameras P, P'          │
+│  Given: 2D points x, x' and cameras P, P'           │
 │  Find: 3D point X                                   │
 │                                                     │
 │  LINEAR TRIANGULATION (DLT):                        │
 │                                                     │
-│  x × PX = 0   →   [x]ₓ PX = 0                      │
-│  Stack for both views → AX = 0                     │
+│  x × PX = 0   →   [x]ₓ PX = 0                       │
+│  Stack for both views → AX = 0                      │
 │  Solve via SVD                                      │
 │                                                     │
-│  OPTIMAL (minimize reprojection error):            │
-│  min ||x - π(X)||² + ||x' - π'(X)||²              │
+│  OPTIMAL (minimize reprojection error):             │
+│  min ||x - π(X)||² + ||x' - π'(X)||²                │
 │                                                     │
-│  where π is projection function                    │
+│  where π is projection function                     │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -167,22 +175,22 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INTRINSIC MATRIX K (5 DOF)                        │
+│  INTRINSIC MATRIX K (5 DOF)                         │
 │                                                     │
-│  K = │ fx  s  cx │                                 │
-│      │  0 fy  cy │                                 │
-│      │  0  0   1 │                                 │
+│  K = │ fx  s  cx │                                  │
+│      │  0 fy  cy │                                  │
+│      │  0  0   1 │                                  │
 │                                                     │
-│  fx, fy: focal lengths                             │
-│  cx, cy: principal point                           │
-│  s: skew (usually 0)                               │
+│  fx, fy: focal lengths                              │
+│  cx, cy: principal point                            │
+│  s: skew (usually 0)                                │
 │                                                     │
-│  ZHANG'S METHOD (checkerboard):                    │
-│  1. Detect checkerboard corners                    │
-│  2. Compute homography for each view               │
-│  3. Solve for K using constraints from H           │
-│  4. Estimate radial distortion k₁, k₂             │
-│  5. Refine via bundle adjustment                   │
+│  ZHANG'S METHOD (checkerboard):                     │
+│  1. Detect checkerboard corners                     │
+│  2. Compute homography for each view                │
+│  3. Solve for K using constraints from H            │
+│  4. Estimate radial distortion k₁, k₂               │
+│  5. Refine via bundle adjustment                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -194,20 +202,20 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: 4+ point correspondences (xᵢ, x'ᵢ)         │
+│  INPUT: 4+ point correspondences (xᵢ, x'ᵢ)          │
 │  OUTPUT: Homography H                               │
 │                                                     │
-│  1. NORMALIZE points (improve conditioning):       │
-│     T, T' = normalize(x), normalize(x')            │
+│  1. NORMALIZE points (improve conditioning):        │
+│     T, T' = normalize(x), normalize(x')             │
 │     x̃ = Tx, x̃' = T'x'                             │
 │                                                     │
-│  2. BUILD MATRIX A (2 rows per correspondence):    │
-│     Aᵢ = │ -x̃ᵢᵀ    0ᵀ    x'ᵢx̃ᵢᵀ │               │
-│          │   0ᵀ  -x̃ᵢᵀ   y'ᵢx̃ᵢᵀ │               │
+│  2. BUILD MATRIX A (2 rows per correspondence):     │
+│     Aᵢ = │ -x̃ᵢᵀ    0ᵀ    x'ᵢx̃ᵢᵀ │                 │
+│          │   0ᵀ  -x̃ᵢᵀ   y'ᵢx̃ᵢᵀ │                  │
 │                                                     │
-│  3. SOLVE Ah = 0:                                  │
-│     SVD(A) = UΣVᵀ                                  │
-│     h = last column of V                           │
+│  3. SOLVE Ah = 0:                                   │
+│     SVD(A) = UΣVᵀ                                   │
+│     h = last column of V                            │
 │                                                     │
 │  4. RESHAPE h → H̃ (3×3)                            │
 │                                                     │
@@ -219,25 +227,25 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: 8+ correspondences (xᵢ, x'ᵢ)               │
+│  INPUT: 8+ correspondences (xᵢ, x'ᵢ)                │
 │  OUTPUT: Fundamental matrix F                       │
 │                                                     │
-│  1. NORMALIZE coordinates                          │
+│  1. NORMALIZE coordinates                           │
 │                                                     │
-│  2. BUILD MATRIX A:                                │
-│     Aᵢ = [x'ᵢxᵢ, x'ᵢyᵢ, x'ᵢ, y'ᵢxᵢ, y'ᵢyᵢ, y'ᵢ,  │
-│           xᵢ, yᵢ, 1]                               │
+│  2. BUILD MATRIX A:                                 │
+│     Aᵢ = [x'ᵢxᵢ, x'ᵢyᵢ, x'ᵢ, y'ᵢxᵢ, y'ᵢyᵢ, y'ᵢ,     │
+│           xᵢ, yᵢ, 1]                                │
 │                                                     │
-│  3. SOLVE Af = 0 via SVD                           │
+│  3. SOLVE Af = 0 via SVD                            │
 │                                                     │
 │  4. RESHAPE f → F̃ (3×3)                            │
 │                                                     │
-│  5. ENFORCE RANK 2:                                │
+│  5. ENFORCE RANK 2:                                 │
 │     SVD(F̃) = UΣVᵀ                                  │
-│     Σ' = diag(σ₁, σ₂, 0)                          │
-│     F = UΣ'Vᵀ                                      │
+│     Σ' = diag(σ₁, σ₂, 0)                            │
+│     F = UΣ'Vᵀ                                       │
 │                                                     │
-│  6. DENORMALIZE                                    │
+│  6. DENORMALIZE                                     │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -245,35 +253,31 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Multiple images of same scene              │
-│  OUTPUT: Camera poses + 3D points                  │
+│  INPUT: Multiple images of same scene               │
+│  OUTPUT: Camera poses + 3D points                   │
 │                                                     │
-│  1. FEATURE DETECTION & MATCHING                   │
-│     - Extract SIFT/ORB features                    │
-│     - Match across image pairs                     │
+│  1. FEATURE DETECTION & MATCHING                    │
+│     - Extract SIFT/ORB features                     │
+│     - Match across image pairs                      │
 │                                                     │
-│  2. INITIALIZE with 2 views:                       │
-│     - Compute E from matches                       │
-│     - Decompose E → R, t                           │
-│     - Triangulate initial 3D points               │
+│  2. INITIALIZE with 2 views:                        │
+│     - Compute E from matches                        │
+│     - Decompose E → R, t                            │
+│     - Triangulate initial 3D points                 │
 │                                                     │
-│  3. INCREMENTAL RECONSTRUCTION:                    │
-│     FOR each new image:                            │
-│       - Find 2D-3D correspondences (PnP)          │
-│       - Estimate camera pose                       │
-│       - Triangulate new 3D points                 │
+│  3. INCREMENTAL RECONSTRUCTION:                     │
+│     FOR each new image:                             │
+│       - Find 2D-3D correspondences (PnP)            │
+│       - Estimate camera pose                        │
+│       - Triangulate new 3D points                   │
 │                                                     │
-│  4. BUNDLE ADJUSTMENT:                             │
-│     Minimize Σᵢⱼ ||xᵢⱼ - π(Pⱼ, Xᵢ)||²             │
-│     over all cameras P and points X               │
+│  4. BUNDLE ADJUSTMENT:                              │
+│     Minimize Σᵢⱼ ||xᵢⱼ - π(Pⱼ, Xᵢ)||²               │
+│     over all cameras P and points X                 │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -294,7 +298,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q2: Fundamental vs Essential matrix?</b></summary>
 
 | Fundamental F | Essential E |
-|:--------------|:------------|
+| :--- | :--- |
 | Uncalibrated cameras | Calibrated cameras (K known) |
 | 7 DOF | 5 DOF |
 | x'ᵀFx = 0 | x̂'ᵀEx̂ = 0 (normalized coords) |
@@ -366,7 +370,7 @@ min Σᵢⱼ ||xᵢⱼ - π(Pⱼ, Xᵢ)||²
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | x' = Hx | Homography transformation |
 | x'ᵀFx = 0 | Epipolar constraint |
 | E = [t]ₓR | Essential matrix decomposition |
@@ -375,8 +379,50 @@ min Σᵢⱼ ||xᵢⱼ - π(Pⱼ, Xᵢ)||²
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← Feature Detection](../05_Features_Detection/) | [🏠 Home](../README.md) | [Classical ML →](../07_Classical_ML/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Features](../05_Features_Detection/README.md)** | **[🏠 HOME](../README.md)** | **[Classical ML ▶](../07_Classical_ML/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

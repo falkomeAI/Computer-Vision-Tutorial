@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🤖 Classical Machine Learning for Vision
+<br/>
 
-### *PCA, SVM, K-Means, Decision Trees, Boosting*
+<a href="../06_Geometry_MultiView/README.md"><img src="https://img.shields.io/badge/◀__Geometry-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-A78BFA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../08_Neural_Networks/README.md"><img src="https://img.shields.io/badge/Neural Nets__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟢 Beginner-Intermediate | 2.5 hours | Linear Algebra, Statistics |
+<br/><br/>
+
+---
+
+<br/>
+
+# 📊 CLASSICAL ML
+
+### 🌙 *Before Deep Learning*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__07/20-A78BFA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Geometry & Multi-View](../06_Geometry_MultiView/) | [🏠 Home](../README.md) | [Neural Networks →](../08_Neural_Networks/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Method | Type | Objective | Use Case |
-|:-------|:-----|:----------|:---------|
+| :--- | :--- | :--- | :--- |
 | **PCA** | Unsupervised | max Var(Xw), \|\|w\|\|=1 | Dimensionality reduction |
 | **SVM** | Supervised | min \|\|w\|\|² + CΣξ | Classification |
 | **K-Means** | Unsupervised | min Σ\|\|x-μₖ\|\|² | Clustering |
@@ -57,9 +66,9 @@
 │                                                     │
 │  2. Covariance matrix: C = (1/n)X̄ᵀX̄               │
 │                                                     │
-│  3. Eigendecomposition: C = VΛVᵀ                   │
+│  3. Eigendecomposition: C = VΛVᵀ                    │
 │     - V: eigenvectors (principal components)        │
-│     - Λ: eigenvalues (variance explained)          │
+│     - Λ: eigenvalues (variance explained)           │
 │                                                     │
 │  4. Project: X_pca = X̄V[:,:k]                      │
 │                                                     │
@@ -79,12 +88,12 @@
 │  HARD MARGIN (linearly separable)                   │
 │                                                     │
 │  min  (1/2)||w||²                                   │
-│  s.t. yᵢ(wᵀxᵢ + b) ≥ 1  ∀i                         │
+│  s.t. yᵢ(wᵀxᵢ + b) ≥ 1  ∀i                          │
 │                                                     │
 │  SOFT MARGIN (with slack variables)                 │
 │                                                     │
-│  min  (1/2)||w||² + C Σξᵢ                          │
-│  s.t. yᵢ(wᵀxᵢ + b) ≥ 1 - ξᵢ                        │
+│  min  (1/2)||w||² + C Σξᵢ                           │
+│  s.t. yᵢ(wᵀxᵢ + b) ≥ 1 - ξᵢ                         │
 │       ξᵢ ≥ 0                                        │
 │                                                     │
 │  Margin = 2 / ||w||                                 │
@@ -93,7 +102,7 @@
 
 **Kernel Trick:**
 | Kernel | Formula | Use Case |
-|:-------|:--------|:---------|
+| :--- | :--- | :--- |
 | Linear | K(x,y) = xᵀy | Linearly separable |
 | RBF | K(x,y) = exp(-γ\|\|x-y\|\|²) | Non-linear, default |
 | Polynomial | K(x,y) = (γxᵀy + r)^d | Polynomial boundary |
@@ -102,15 +111,15 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  OBJECTIVE: min Σₖ Σₓ∈Cₖ ||x - μₖ||²               │
+│  OBJECTIVE: min Σₖ Σₓ∈Cₖ ||x - μₖ||²                │
 │                                                     │
 │  Where:                                             │
 │    Cₖ = cluster k                                   │
 │    μₖ = centroid of cluster k                       │
 │                                                     │
 │  Update rules:                                      │
-│    Assignment: cᵢ = argmin_k ||xᵢ - μₖ||²          │
-│    Centroid:   μₖ = (1/|Cₖ|) Σₓ∈Cₖ x               │
+│    Assignment: cᵢ = argmin_k ||xᵢ - μₖ||²           │
+│    Centroid:   μₖ = (1/|Cₖ|) Σₓ∈Cₖ x                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -119,15 +128,15 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │  CLASSIFICATION:                                    │
-│    ŷ = mode({yⱼ : xⱼ ∈ Nₖ(x)})                     │
+│    ŷ = mode({yⱼ : xⱼ ∈ Nₖ(x)})                      │
 │                                                     │
 │  REGRESSION:                                        │
-│    ŷ = (1/k) Σⱼ∈Nₖ(x) yⱼ                           │
+│    ŷ = (1/k) Σⱼ∈Nₖ(x) yⱼ                            │
 │                                                     │
 │  Distance metrics:                                  │
-│    Euclidean: d(x,y) = √(Σ(xᵢ-yᵢ)²)                │
-│    Manhattan: d(x,y) = Σ|xᵢ-yᵢ|                    │
-│    Cosine:    d(x,y) = 1 - (xᵀy)/(||x||||y||)      │
+│    Euclidean: d(x,y) = √(Σ(xᵢ-yᵢ)²)                 │
+│    Manhattan: d(x,y) = Σ|xᵢ-yᵢ|                     │
+│    Cosine:    d(x,y) = 1 - (xᵀy)/(||x||||y||)       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -137,11 +146,11 @@
 ┌─────────────────────────────────────────────────────┐
 │  SPLITTING CRITERIA                                 │
 │                                                     │
-│  Entropy: H(S) = -Σpᵢlog₂(pᵢ)                      │
+│  Entropy: H(S) = -Σpᵢlog₂(pᵢ)                       │
 │                                                     │
-│  Information Gain: IG = H(S) - Σ(|Sᵥ|/|S|)H(Sᵥ)   │
+│  Information Gain: IG = H(S) - Σ(|Sᵥ|/|S|)H(Sᵥ)     │
 │                                                     │
-│  Gini Impurity: G = 1 - Σpᵢ²                       │
+│  Gini Impurity: G = 1 - Σpᵢ²                        │
 │                                                     │
 │  Choose split that maximizes IG or minimizes Gini   │
 └─────────────────────────────────────────────────────┘
@@ -150,7 +159,7 @@
 ### 6. Ensemble Methods
 
 | Method | Technique | Formula |
-|:-------|:----------|:--------|
+| :--- | :--- | :--- |
 | **Bagging** | Bootstrap + Aggregate | ŷ = (1/B)Σfᵦ(x) |
 | **Random Forest** | Bagging + random features | ŷ = mode(tree predictions) |
 | **Boosting** | Sequential weighted | ŷ = Σαₘhₘ(x) |
@@ -167,14 +176,14 @@
 │  INPUT: Data X, number of clusters K                │
 │  OUTPUT: Cluster assignments, centroids             │
 │                                                     │
-│  1. Initialize centroids μ₁,...,μₖ randomly        │
+│  1. Initialize centroids μ₁,...,μₖ randomly         │
 │  2. REPEAT until convergence:                       │
 │     3. Assignment step:                             │
 │        FOR each xᵢ:                                 │
-│          cᵢ = argmin_k ||xᵢ - μₖ||²                │
+│          cᵢ = argmin_k ||xᵢ - μₖ||²                 │
 │     4. Update step:                                 │
 │        FOR each k:                                  │
-│          μₖ = mean({xᵢ : cᵢ = k})                  │
+│          μₖ = mean({xᵢ : cᵢ = k})                   │
 │  5. RETURN clusters, centroids                      │
 │                                                     │
 │  Convergence: centroids don't change                │
@@ -186,12 +195,12 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Data X ∈ ℝⁿˣᵈ, target dimensions k         │
-│  OUTPUT: Projected data X_pca ∈ ℝⁿˣᵏ               │
+│  INPUT: Data X ∈ ℝⁿˣᵈ, target dimensions k          │
+│  OUTPUT: Projected data X_pca ∈ ℝⁿˣᵏ                │
 │                                                     │
 │  1. Center: X̄ = X - mean(X, axis=0)                │
 │  2. Covariance: C = (1/n)X̄ᵀX̄                      │
-│  3. Eigendecomposition: C = VΛVᵀ                   │
+│  3. Eigendecomposition: C = VΛVᵀ                    │
 │  4. Sort eigenvectors by eigenvalue (descending)    │
 │  5. Select top k eigenvectors: Vₖ                   │
 │  6. Project: X_pca = X̄Vₖ                           │
@@ -205,17 +214,17 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Data (xᵢ, yᵢ), kernel K, C                 │
+│  INPUT: Data (xᵢ, yᵢ), kernel K, C                  │
 │  OUTPUT: Support vectors, weights                   │
 │                                                     │
 │  Dual problem:                                      │
-│  max Σαᵢ - (1/2)ΣΣαᵢαⱼyᵢyⱼK(xᵢ,xⱼ)                │
-│  s.t. 0 ≤ αᵢ ≤ C, Σαᵢyᵢ = 0                       │
+│  max Σαᵢ - (1/2)ΣΣαᵢαⱼyᵢyⱼK(xᵢ,xⱼ)                  │
+│  s.t. 0 ≤ αᵢ ≤ C, Σαᵢyᵢ = 0                         │
 │                                                     │
 │  Decision function:                                 │
-│  f(x) = sign(Σαᵢyᵢ K(xᵢ,x) + b)                   │
+│  f(x) = sign(Σαᵢyᵢ K(xᵢ,x) + b)                     │
 │                                                     │
-│  Support vectors: points where 0 < αᵢ ≤ C          │
+│  Support vectors: points where 0 < αᵢ ≤ C           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -288,7 +297,7 @@
 **Answer:**
 
 | Aspect | Single Tree | Random Forest |
-|:-------|:------------|:--------------|
+| :--- | :--- | :--- |
 | Variance | High (overfit) | Low (averaged) |
 | Bias | Low | Low |
 | Interpretability | High | Low |
@@ -312,7 +321,7 @@ Total Error = Bias² + Variance + Noise
 ```
 
 | Model | Bias | Variance | Example |
-|:------|:-----|:---------|:--------|
+| :--- | :--- | :--- | :--- |
 | Simple | High | Low | Linear regression |
 | Complex | Low | High | Deep tree |
 
@@ -366,7 +375,7 @@ Total Error = Bias² + Variance + Noise
 **Answer:**
 
 | Aspect | PCA | LDA |
-|:-------|:----|:----|
+| :--- | :--- | :--- |
 | Type | Unsupervised | Supervised |
 | Goal | Max variance | Max class separation |
 | Uses labels | No | Yes |
@@ -385,7 +394,7 @@ Total Error = Bias² + Variance + Noise
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | C = (1/n)XᵀX | Covariance matrix |
 | K(x,y) = exp(-γ\|\|x-y\|\|²) | RBF kernel |
 | J = Σₖ Σₓ∈Cₖ \|\|x - μₖ\|\|² | K-means objective |
@@ -395,14 +404,50 @@ Total Error = Bias² + Variance + Noise
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Geometry & Multi-View](../06_Geometry_MultiView/) | [🏠 Home](../README.md) | [Neural Networks →](../08_Neural_Networks/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Geometry](../06_Geometry_MultiView/README.md)** | **[🏠 HOME](../README.md)** | **[Neural Nets ▶](../08_Neural_Networks/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

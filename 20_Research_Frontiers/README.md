@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🚀 Research Frontiers
+<br/>
 
-### *Foundation Models, Zero-Shot, World Models, Neuro-Symbolic*
+<a href="../19_Ethics_Safety/README.md"><img src="https://img.shields.io/badge/◀__Ethics-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-A78BFA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/✓__COMPLETE-34D399?style=for-the-badge&labelColor=0f172a" height="35"/>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🔴 Advanced | 3 hours | Deep Learning, Transformers |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🔬 RESEARCH FRONTIERS
+
+### 🌙 *The Cutting Edge*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__20/20-A78BFA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Ethics & Safety](../19_Ethics_Safety/) | [🏠 Home](../README.md)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Emerging Paradigms](#-emerging-paradigms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Topic | Description | Examples |
-|:------|:------------|:---------|
+| :--- | :--- | :--- |
 | **Foundation Models** | Large-scale pretrained models | SAM, CLIP, DINOv2 |
 | **Zero-Shot** | Generalize without task-specific training | CLIP, GPT-4V |
 | **Few-Shot** | Learn from few examples | Prototypical Networks |
@@ -81,14 +90,14 @@
 │                                                     │
 │  ATTRIBUTE-BASED                                    │
 │                                                     │
-│  f(x) = argmax_c sim(φ(x), a_c)                    │
+│  f(x) = argmax_c sim(φ(x), a_c)                     │
 │                                                     │
-│  Where a_c = attribute vector of class c           │
-│  (e.g., "has stripes", "four legs")                │
+│  Where a_c = attribute vector of class c            │
+│  (e.g., "has stripes", "four legs")                 │
 │                                                     │
 │  EMBEDDING-BASED (CLIP)                             │
 │                                                     │
-│  f(x) = argmax_c sim(f_img(x), f_txt("a {c}"))     │
+│  f(x) = argmax_c sim(f_img(x), f_txt("a {c}"))      │
 │                                                     │
 │  Use text descriptions as class definitions         │
 └─────────────────────────────────────────────────────┘
@@ -106,15 +115,15 @@
 │  PROTOTYPICAL NETWORKS                              │
 │                                                     │
 │  1. Compute prototype per class:                    │
-│     c_n = (1/K) Σₖ f_θ(x_n,k)                      │
+│     c_n = (1/K) Σₖ f_θ(x_n,k)                       │
 │                                                     │
 │  2. Classify query by nearest prototype:            │
-│     p(y=n|x) ∝ exp(-d(f_θ(x), c_n))               │
+│     p(y=n|x) ∝ exp(-d(f_θ(x), c_n))                 │
 │                                                     │
 │  MAML (Model-Agnostic Meta-Learning)                │
 │                                                     │
-│  θ* = θ - α∇θ L(D_support)                         │
-│  Meta-update: θ ← θ - β∇θ L(D_query; θ*)           │
+│  θ* = θ - α∇θ L(D_support)                          │
+│  Meta-update: θ ← θ - β∇θ L(D_query; θ*)            │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -129,17 +138,17 @@
 │                                                     │
 │  ARCHITECTURE                                       │
 │                                                     │
-│  1. Image Encoder (ViT-H): I → features F          │
-│  2. Prompt Encoder: P → prompt embedding           │
-│  3. Mask Decoder: F + prompt → M                   │
+│  1. Image Encoder (ViT-H): I → features F           │
+│  2. Prompt Encoder: P → prompt embedding            │
+│  3. Mask Decoder: F + prompt → M                    │
 │                                                     │
 │  TRAINING (SA-1B dataset)                           │
 │                                                     │
-│  - 11M images, 1B+ masks                           │
+│  - 11M images, 1B+ masks                            │
 │  - Interactive annotation with model in the loop    │
-│  - Focal loss + dice loss for masks                │
+│  - Focal loss + dice loss for masks                 │
 │                                                     │
-│  Loss = λ_focal × L_focal + λ_dice × L_dice        │
+│  Loss = λ_focal × L_focal + λ_dice × L_dice         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -150,9 +159,9 @@
 │  LEARN ENVIRONMENT DYNAMICS                         │
 │                                                     │
 │  Components:                                        │
-│  1. Encoder: o_t → z_t (observation to latent)     │
-│  2. Dynamics: z_t, a_t → z_{t+1} (prediction)      │
-│  3. Decoder: z_t → ô_t (reconstruction)            │
+│  1. Encoder: o_t → z_t (observation to latent)      │
+│  2. Dynamics: z_t, a_t → z_{t+1} (prediction)       │
+│  3. Decoder: z_t → ô_t (reconstruction)             │
 │                                                     │
 │  DREAMER                                            │
 │                                                     │
@@ -163,8 +172,8 @@
 │  JEPA (Joint Embedding Predictive Architecture)     │
 │                                                     │
 │  Predict in embedding space, not pixel space        │
-│  z_{y} = predictor(z_x, Δ)                         │
-│  Loss = ||z_y - z_{y_true}||²                      │
+│  z_{y} = predictor(z_x, Δ)                          │
+│  Loss = ||z_y - z_{y_true}||²                       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -179,11 +188,11 @@
 │  APPROACHES                                         │
 │                                                     │
 │  1. REPLAY: Store/generate old examples             │
-│     L = L_new + L_replay                           │
+│     L = L_new + L_replay                            │
 │                                                     │
 │  2. REGULARIZATION (EWC):                           │
-│     L = L_new + λΣᵢ Fᵢ(θᵢ - θ*ᵢ)²                  │
-│     Fᵢ = Fisher information (importance)           │
+│     L = L_new + λΣᵢ Fᵢ(θᵢ - θ*ᵢ)²                   │
+│     Fᵢ = Fisher information (importance)            │
 │                                                     │
 │  3. ARCHITECTURE:                                   │
 │     Add task-specific modules                       │
@@ -205,7 +214,7 @@
 │                                                     │
 │  NEURAL SCENE REPRESENTATIONS                       │
 │                                                     │
-│  Image → Object detector → Scene graph             │
+│  Image → Object detector → Scene graph              │
 │  Scene graph + Question → Reasoning → Answer        │
 │                                                     │
 │  PROGRAM SYNTHESIS                                  │
@@ -215,7 +224,7 @@
 │                                                     │
 │  DIFFERENTIABLE REASONING                           │
 │                                                     │
-│  Soft logic: ∧ = min, ∨ = max, ¬ = 1-x             │
+│  Soft logic: ∧ = min, ∨ = max, ¬ = 1-x              │
 │  End-to-end trainable reasoning                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -228,21 +237,21 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Support set S, Query set Q                 │
-│  OUTPUT: Class predictions for Q                   │
+│  INPUT: Support set S, Query set Q                  │
+│  OUTPUT: Class predictions for Q                    │
 │                                                     │
-│  1. COMPUTE PROTOTYPES (per class c):              │
-│     p_c = (1/|S_c|) Σ f(x)  for x in S_c          │
-│     f = embedding network                         │
+│  1. COMPUTE PROTOTYPES (per class c):               │
+│     p_c = (1/|S_c|) Σ f(x)  for x in S_c            │
+│     f = embedding network                           │
 │                                                     │
-│  2. CLASSIFY QUERIES:                              │
-│     FOR each query q:                             │
-│       d_c = ||f(q) - p_c||²  (distance to proto) │
-│       P(y=c|q) = softmax(-d_c)                   │
+│  2. CLASSIFY QUERIES:                               │
+│     FOR each query q:                               │
+│       d_c = ||f(q) - p_c||²  (distance to proto)    │
+│       P(y=c|q) = softmax(-d_c)                      │
 │                                                     │
-│  3. TRAIN with episodic learning                   │
-│     Sample N-way K-shot episodes                  │
-│     Minimize cross-entropy on queries             │
+│  3. TRAIN with episodic learning                    │
+│     Sample N-way K-shot episodes                    │
+│     Minimize cross-entropy on queries               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -250,21 +259,21 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image, prompts (points/boxes/text)         │
+│  INPUT: Image, prompts (points/boxes/text)          │
 │  OUTPUT: Segmentation masks                         │
 │                                                     │
-│  1. IMAGE ENCODER (ViT-H):                         │
-│     image_embedding = MAE_encoder(image)           │
-│     Run once per image                            │
+│  1. IMAGE ENCODER (ViT-H):                          │
+│     image_embedding = MAE_encoder(image)            │
+│     Run once per image                              │
 │                                                     │
-│  2. PROMPT ENCODER:                                │
-│     prompt_embedding = encode(points/boxes/text)  │
+│  2. PROMPT ENCODER:                                 │
+│     prompt_embedding = encode(points/boxes/text)    │
 │                                                     │
-│  3. MASK DECODER (lightweight):                    │
-│     masks = decode(image_emb, prompt_emb)         │
-│     Output multiple mask candidates               │
+│  3. MASK DECODER (lightweight):                     │
+│     masks = decode(image_emb, prompt_emb)           │
+│     Output multiple mask candidates                 │
 │                                                     │
-│  Key: Promptable - any type of prompt works       │
+│  Key: Promptable - any type of prompt works         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -272,23 +281,23 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image, class names                         │
-│  OUTPUT: Class prediction                          │
+│  INPUT: Image, class names                          │
+│  OUTPUT: Class prediction                           │
 │                                                     │
-│  1. ENCODE IMAGE:                                  │
-│     z_img = ImageEncoder(image)                   │
-│     z_img = z_img / ||z_img||  (normalize)        │
+│  1. ENCODE IMAGE:                                   │
+│     z_img = ImageEncoder(image)                     │
+│     z_img = z_img / ||z_img||  (normalize)          │
 │                                                     │
-│  2. ENCODE TEXT (for each class):                  │
-│     text_c = "a photo of a {class_name}"          │
-│     z_text_c = TextEncoder(text_c)                │
-│     z_text_c = z_text_c / ||z_text_c||            │
+│  2. ENCODE TEXT (for each class):                   │
+│     text_c = "a photo of a {class_name}"            │
+│     z_text_c = TextEncoder(text_c)                  │
+│     z_text_c = z_text_c / ||z_text_c||              │
 │                                                     │
-│  3. COMPUTE SIMILARITY:                            │
-│     sim_c = z_img · z_text_c  (dot product)       │
-│     probs = softmax(sim / temperature)            │
+│  3. COMPUTE SIMILARITY:                             │
+│     sim_c = z_img · z_text_c  (dot product)         │
+│     probs = softmax(sim / temperature)              │
 │                                                     │
-│  No training on target classes needed!            │
+│  No training on target classes needed!              │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -302,12 +311,12 @@
 ┌─────────────────────────────────────────────────────┐
 │  LEARN FROM EXAMPLES IN PROMPT                      │
 │                                                     │
-│  Prompt: [Example 1] [Example 2] ... [Query]       │
+│  Prompt: [Example 1] [Example 2] ... [Query]        │
 │                                                     │
 │  No gradient updates, just conditioning             │
 │  Emergent ability at scale                          │
 │                                                     │
-│  Vision: GPT-4V, Gemini with image examples        │
+│  Vision: GPT-4V, Gemini with image examples         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -331,11 +340,11 @@
 ┌─────────────────────────────────────────────────────┐
 │  TEXT/IMAGE → 3D                                    │
 │                                                     │
-│  - Score Distillation: Use 2D diffusion for 3D     │
-│  - Multi-view generation + reconstruction          │
-│  - NeRF/3D Gaussian from single image              │
+│  - Score Distillation: Use 2D diffusion for 3D      │
+│  - Multi-view generation + reconstruction           │
+│  - NeRF/3D Gaussian from single image               │
 │                                                     │
-│  Methods: DreamFusion, Zero123, Magic3D            │
+│  Methods: DreamFusion, Zero123, Magic3D             │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -369,7 +378,7 @@
 **Answer:**
 
 | Aspect | Zero-Shot | Few-Shot |
-|:-------|:----------|:---------|
+| :--- | :--- | :--- |
 | Training examples | 0 | 1-10 per class |
 | Class definition | Attributes/text | Example images |
 | Generalization | Semantic transfer | Example matching |
@@ -431,7 +440,7 @@
 **Solutions:**
 
 | Method | Approach |
-|:-------|:---------|
+| :--- | :--- |
 | Replay | Store/generate old examples |
 | Regularization | Protect important weights (EWC) |
 | Architecture | Task-specific modules |
@@ -502,7 +511,7 @@ Image3: ? → [model predicts]
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | c_n = (1/K)Σf(x_k) | Prototype computation |
 | θ* = θ - α∇L_support | MAML inner loop |
 | L = λ_focal L_focal + λ_dice L_dice | SAM loss |
@@ -511,14 +520,50 @@ Image3: ? → [model predicts]
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Ethics & Safety](../19_Ethics_Safety/) | [🏠 Home](../README.md)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Ethics](../19_Ethics_Safety/README.md)** | **[🏠 HOME](../README.md)** |  |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

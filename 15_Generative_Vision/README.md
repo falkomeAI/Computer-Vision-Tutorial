@@ -1,35 +1,43 @@
 <div align="center">
 
-# 🎨 Generative Vision Models
+<br/>
 
-### *VAEs, GANs & Diffusion Models*
+<a href="../14_3D_Vision/README.md"><img src="https://img.shields.io/badge/◀__3D Vision-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-34D399?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../16_Vision_Language/README.md"><img src="https://img.shields.io/badge/Vision-Language__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🔴 Advanced | 3 hours | Probability, Deep Learning |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🎭 GENERATIVE MODELS
+
+### 🌙 *Creating Images*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__15/20-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← 3D Vision](../14_3D_Vision/) | [🏠 Home](../README.md) | [Vision-Language →](../16_Vision_Language/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Model | Key Idea | Training | Sampling |
-|:------|:---------|:---------|:---------|
+| :--- | :--- | :--- | :--- |
 | **VAE** | Latent space + reconstruction | ELBO maximization | Decode z ~ N(0,I) |
 | **GAN** | Adversarial game | Min-max | Decode z ~ N(0,I) |
 | **Diffusion** | Iterative denoising | Predict noise | Iterative denoising |
@@ -53,24 +61,24 @@
 ┌─────────────────────────────────────────────────────┐
 │  GENERATIVE MODEL                                   │
 │                                                     │
-│  p(x) = ∫ p(x|z) p(z) dz                           │
+│  p(x) = ∫ p(x|z) p(z) dz                            │
 │                                                     │
-│  p(z) = N(0, I)  (prior)                           │
-│  p(x|z) = decoder (learned)                        │
+│  p(z) = N(0, I)  (prior)                            │
+│  p(x|z) = decoder (learned)                         │
 │                                                     │
 │  INFERENCE MODEL                                    │
 │                                                     │
-│  q(z|x) = N(μ(x), σ²(x))  (encoder output)        │
+│  q(z|x) = N(μ(x), σ²(x))  (encoder output)          │
 │                                                     │
-│  ELBO (Evidence Lower Bound)                       │
+│  ELBO (Evidence Lower Bound)                        │
 │                                                     │
-│  log p(x) ≥ E_q[log p(x|z)] - KL(q(z|x) || p(z)) │
-│           = reconstruction   - regularization      │
+│  log p(x) ≥ E_q[log p(x|z)] - KL(q(z|x) || p(z))    │
+│           = reconstruction   - regularization       │
 │                                                     │
-│  REPARAMETERIZATION TRICK                          │
+│  REPARAMETERIZATION TRICK                           │
 │                                                     │
-│  z = μ + σ ⊙ ε,  ε ~ N(0,I)                       │
-│  (enables gradient through sampling)               │
+│  z = μ + σ ⊙ ε,  ε ~ N(0,I)                         │
+│  (enables gradient through sampling)                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -80,22 +88,22 @@
 ┌─────────────────────────────────────────────────────┐
 │  MIN-MAX GAME                                       │
 │                                                     │
-│  min_G max_D  E_x[log D(x)] + E_z[log(1-D(G(z)))] │
+│  min_G max_D  E_x[log D(x)] + E_z[log(1-D(G(z)))]   │
 │                                                     │
-│  D: Discriminator (real vs fake)                   │
-│  G: Generator (z → image)                          │
+│  D: Discriminator (real vs fake)                    │
+│  G: Generator (z → image)                           │
 │                                                     │
 │  ALTERNATIVE LOSSES                                 │
 │                                                     │
-│  Non-saturating: min_G -E_z[log D(G(z))]          │
-│  (Better gradients when D wins)                   │
+│  Non-saturating: min_G -E_z[log D(G(z))]            │
+│  (Better gradients when D wins)                     │
 │                                                     │
-│  Wasserstein GAN:                                  │
-│  min_G max_D  E_x[D(x)] - E_z[D(G(z))]            │
-│  with Lipschitz constraint on D                   │
+│  Wasserstein GAN:                                   │
+│  min_G max_D  E_x[D(x)] - E_z[D(G(z))]              │
+│  with Lipschitz constraint on D                     │
 │                                                     │
-│  CONDITIONAL GAN: G(z, c), D(x, c)                │
-│  c = class label or other condition               │
+│  CONDITIONAL GAN: G(z, c), D(x, c)                  │
+│  c = class label or other condition                 │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -105,21 +113,21 @@
 ┌─────────────────────────────────────────────────────┐
 │  FORWARD PROCESS (add noise)                        │
 │                                                     │
-│  q(xₜ|xₜ₋₁) = N(xₜ; √(1-βₜ)xₜ₋₁, βₜI)             │
+│  q(xₜ|xₜ₋₁) = N(xₜ; √(1-βₜ)xₜ₋₁, βₜI)               │
 │                                                     │
 │  Closed form:                                       │
-│  q(xₜ|x₀) = N(xₜ; √ᾱₜ x₀, (1-ᾱₜ)I)                │
-│  where ᾱₜ = ∏ᵢ₌₁ᵗ (1-βᵢ)                          │
+│  q(xₜ|x₀) = N(xₜ; √ᾱₜ x₀, (1-ᾱₜ)I)                  │
+│  where ᾱₜ = ∏ᵢ₌₁ᵗ (1-βᵢ)                            │
 │                                                     │
 │  REVERSE PROCESS (denoise)                          │
 │                                                     │
-│  p_θ(xₜ₋₁|xₜ) = N(xₜ₋₁; μ_θ(xₜ,t), σₜ²I)         │
+│  p_θ(xₜ₋₁|xₜ) = N(xₜ₋₁; μ_θ(xₜ,t), σₜ²I)            │
 │                                                     │
 │  TRAINING OBJECTIVE (simplified DDPM)               │
 │                                                     │
-│  L = E_t,x₀,ε [||ε - ε_θ(xₜ, t)||²]               │
+│  L = E_t,x₀,ε [||ε - ε_θ(xₜ, t)||²]                 │
 │                                                     │
-│  Network predicts the noise ε added at step t     │
+│  Network predicts the noise ε added at step t       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -127,24 +135,24 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  KEY INSIGHT: Diffusion in latent space            │
+│  KEY INSIGHT: Diffusion in latent space             │
 │                                                     │
-│  1. ENCODE: z = E(x)  (pretrained VAE encoder)    │
-│  2. DIFFUSE: Apply diffusion to z (smaller!)      │
-│  3. DECODE: x = D(z)  (pretrained VAE decoder)    │
+│  1. ENCODE: z = E(x)  (pretrained VAE encoder)      │
+│  2. DIFFUSE: Apply diffusion to z (smaller!)        │
+│  3. DECODE: x = D(z)  (pretrained VAE decoder)      │
 │                                                     │
 │  CONDITIONING (text-to-image)                       │
 │                                                     │
-│  Cross-attention in U-Net:                         │
-│  Attention(Q, K, V) where:                        │
-│  - Q from image features                          │
-│  - K, V from text embeddings (CLIP)               │
+│  Cross-attention in U-Net:                          │
+│  Attention(Q, K, V) where:                          │
+│  - Q from image features                            │
+│  - K, V from text embeddings (CLIP)                 │
 │                                                     │
-│  CLASSIFIER-FREE GUIDANCE                          │
+│  CLASSIFIER-FREE GUIDANCE                           │
 │                                                     │
-│  ε̃ = ε_θ(z, ∅) + s·(ε_θ(z, c) - ε_θ(z, ∅))       │
+│  ε̃ = ε_θ(z, ∅) + s·(ε_θ(z, c) - ε_θ(z, ∅))         │
 │                                                     │
-│  s > 1: Stronger conditioning                      │
+│  s > 1: Stronger conditioning                       │
 │  (interpolate between conditional and unconditional)│
 └─────────────────────────────────────────────────────┘
 ```
@@ -155,22 +163,22 @@
 ┌─────────────────────────────────────────────────────┐
 │  SCORE FUNCTION                                     │
 │                                                     │
-│  s(x) = ∇_x log p(x)                               │
+│  s(x) = ∇_x log p(x)                                │
 │                                                     │
-│  SCORE MATCHING OBJECTIVE                          │
+│  SCORE MATCHING OBJECTIVE                           │
 │                                                     │
-│  L = E_x [½||s_θ(x) - ∇_x log p(x)||²]            │
+│  L = E_x [½||s_θ(x) - ∇_x log p(x)||²]              │
 │                                                     │
-│  DENOISING SCORE MATCHING                          │
+│  DENOISING SCORE MATCHING                           │
 │                                                     │
-│  L = E_x,ε [||s_θ(x+σε) - (-ε/σ)||²]              │
+│  L = E_x,ε [||s_θ(x+σε) - (-ε/σ)||²]                │
 │                                                     │
-│  Connection to diffusion:                          │
-│  - Score = direction to denoise                   │
-│  - ε_θ(xₜ,t) ∝ -s_θ(xₜ,t)                        │
+│  Connection to diffusion:                           │
+│  - Score = direction to denoise                     │
+│  - ε_θ(xₜ,t) ∝ -s_θ(xₜ,t)                           │
 │                                                     │
-│  LANGEVIN DYNAMICS for sampling:                   │
-│  x_{i+1} = x_i + (η/2)∇_x log p(x) + √η ε        │
+│  LANGEVIN DYNAMICS for sampling:                    │
+│  x_{i+1} = x_i + (η/2)∇_x log p(x) + √η ε           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -182,26 +190,26 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  FOR each batch x:                                 │
+│  FOR each batch x:                                  │
 │                                                     │
 │  1. ENCODE:                                         │
-│     μ, log σ² = Encoder(x)                        │
+│     μ, log σ² = Encoder(x)                          │
 │                                                     │
-│  2. REPARAMETERIZE:                                │
-│     ε ~ N(0, I)                                   │
-│     z = μ + σ ⊙ ε                                 │
+│  2. REPARAMETERIZE:                                 │
+│     ε ~ N(0, I)                                     │
+│     z = μ + σ ⊙ ε                                   │
 │                                                     │
 │  3. DECODE:                                         │
-│     x̂ = Decoder(z)                                │
+│     x̂ = Decoder(z)                                 │
 │                                                     │
 │  4. COMPUTE LOSS:                                   │
-│     L_recon = ||x - x̂||² or BCE(x, x̂)            │
-│     L_KL = -½ Σ(1 + log σ² - μ² - σ²)            │
-│     L = L_recon + β·L_KL                          │
+│     L_recon = ||x - x̂||² or BCE(x, x̂)             │
+│     L_KL = -½ Σ(1 + log σ² - μ² - σ²)               │
+│     L = L_recon + β·L_KL                            │
 │                                                     │
-│  5. BACKPROP and update                            │
+│  5. BACKPROP and update                             │
 │                                                     │
-│  β-VAE: β > 1 for disentangled latents            │
+│  β-VAE: β > 1 for disentangled latents              │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -209,25 +217,25 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  FOR each iteration:                               │
+│  FOR each iteration:                                │
 │                                                     │
-│  1. TRAIN DISCRIMINATOR (k steps):                 │
-│     FOR k steps:                                   │
-│       Sample real x ~ data                        │
-│       Sample fake G(z), z ~ N(0,I)               │
-│       L_D = -[log D(x) + log(1-D(G(z)))]         │
-│       Update D                                    │
+│  1. TRAIN DISCRIMINATOR (k steps):                  │
+│     FOR k steps:                                    │
+│       Sample real x ~ data                          │
+│       Sample fake G(z), z ~ N(0,I)                  │
+│       L_D = -[log D(x) + log(1-D(G(z)))]            │
+│       Update D                                      │
 │                                                     │
-│  2. TRAIN GENERATOR (1 step):                      │
-│     Sample z ~ N(0,I)                             │
-│     L_G = -log D(G(z))   (non-saturating)        │
-│     Update G                                      │
+│  2. TRAIN GENERATOR (1 step):                       │
+│     Sample z ~ N(0,I)                               │
+│     L_G = -log D(G(z))   (non-saturating)           │
+│     Update G                                        │
 │                                                     │
 │  TIPS:                                              │
-│  - Feature matching: match D features             │
-│  - Spectral normalization for D                   │
-│  - Progressive growing (StyleGAN)                 │
-│  - R1 regularization                              │
+│  - Feature matching: match D features               │
+│  - Spectral normalization for D                     │
+│  - Progressive growing (StyleGAN)                   │
+│  - R1 regularization                                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -235,33 +243,29 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  START: x_T ~ N(0, I)                              │
+│  START: x_T ~ N(0, I)                               │
 │                                                     │
-│  FOR t = T, T-1, ..., 1:                          │
+│  FOR t = T, T-1, ..., 1:                            │
 │                                                     │
-│  1. PREDICT NOISE:                                 │
-│     ε̂ = ε_θ(x_t, t)                               │
+│  1. PREDICT NOISE:                                  │
+│     ε̂ = ε_θ(x_t, t)                                │
 │                                                     │
 │  2. COMPUTE MEAN:                                   │
-│     μ = (1/√αₜ)(x_t - (βₜ/√(1-ᾱₜ))ε̂)             │
+│     μ = (1/√αₜ)(x_t - (βₜ/√(1-ᾱₜ))ε̂)               │
 │                                                     │
 │  3. SAMPLE:                                         │
-│     if t > 1: z ~ N(0, I)                         │
-│     else: z = 0                                   │
-│     x_{t-1} = μ + σₜz                             │
+│     if t > 1: z ~ N(0, I)                           │
+│     else: z = 0                                     │
+│     x_{t-1} = μ + σₜz                               │
 │                                                     │
-│  RETURN x_0                                        │
+│  RETURN x_0                                         │
 │                                                     │
-│  DDIM (deterministic, faster):                     │
-│  Skip steps, use deterministic update             │
+│  DDIM (deterministic, faster):                      │
+│  Skip steps, use deterministic update               │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -271,7 +275,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q1: VAE vs GAN - when to use which?</b></summary>
 
 | VAE | GAN |
-|:----|:----|
+| :--- | :--- |
 | Stable training | Training can be tricky |
 | Blurry samples | Sharp samples |
 | Meaningful latent | Latent less interpretable |
@@ -361,7 +365,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | ELBO = E[log p(x\|z)] - KL(q\|\|p) | VAE objective |
 | min_G max_D E[log D] + E[log(1-D(G))] | GAN objective |
 | L = E[\|\|ε - ε_θ(xₜ,t)\|\|²] | DDPM loss |
@@ -370,8 +374,50 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← 3D Vision](../14_3D_Vision/) | [🏠 Home](../README.md) | [Vision-Language →](../16_Vision_Language/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ 3D Vision](../14_3D_Vision/README.md)** | **[🏠 HOME](../README.md)** | **[Vision-Language ▶](../16_Vision_Language/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

@@ -1,35 +1,43 @@
 <div align="center">
 
-# 🔄 Self-Supervised Learning
+<br/>
 
-### *Contrastive Learning, MAE & DINO*
+<a href="../11_Vision_Transformers/README.md"><img src="https://img.shields.io/badge/◀__ViTs-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-60A5FA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../13_Video_Temporal/README.md"><img src="https://img.shields.io/badge/Video__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🔴 Advanced | 2.5 hours | Deep Learning, Vision Transformers |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🔄 SELF-SUPERVISED
+
+### 🌙 *Learning Without Labels*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__12/20-60A5FA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Vision Transformers](../11_Vision_Transformers/) | [🏠 Home](../README.md) | [Video & Temporal →](../13_Video_Temporal/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Method | Key Idea | Architecture |
-|:-------|:---------|:-------------|
+| :--- | :--- | :--- |
 | **SimCLR** | Contrastive + strong augmentation | Dual encoder + projector |
 | **MoCo** | Momentum encoder + queue | Encoder + momentum encoder |
 | **BYOL** | No negatives, EMA target | Online + target network |
@@ -54,20 +62,20 @@
 ┌─────────────────────────────────────────────────────┐
 │  INFONCE LOSS                                       │
 │                                                     │
-│  L = -log [ exp(sim(zᵢ, zⱼ)/τ) ]                   │
+│  L = -log [ exp(sim(zᵢ, zⱼ)/τ) ]                    │
 │           [ ―――――――――――――――――――――― ]                │
-│           [ Σₖ exp(sim(zᵢ, zₖ)/τ) ]                │
+│           [ Σₖ exp(sim(zᵢ, zₖ)/τ) ]                 │
 │                                                     │
-│  zᵢ, zⱼ: positive pair (same image, diff augment)  │
-│  zₖ: negatives (other images in batch)             │
-│  τ: temperature (0.07-0.5 typical)                 │
-│  sim: cosine similarity                            │
+│  zᵢ, zⱼ: positive pair (same image, diff augment)   │
+│  zₖ: negatives (other images in batch)              │
+│  τ: temperature (0.07-0.5 typical)                  │
+│  sim: cosine similarity                             │
 │                                                     │
-│  NT-XENT (SimCLR):                                 │
-│  L = Σᵢ -log [ exp(zᵢ·zⱼ/τ) / Σₖ≠ᵢ exp(zᵢ·zₖ/τ) ] │
+│  NT-XENT (SimCLR):                                  │
+│  L = Σᵢ -log [ exp(zᵢ·zⱼ/τ) / Σₖ≠ᵢ exp(zᵢ·zₖ/τ) ]   │
 │                                                     │
-│  Intuition: Pull positives together,               │
-│             push negatives apart                   │
+│  Intuition: Pull positives together,                │
+│             push negatives apart                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -77,24 +85,24 @@
 ┌─────────────────────────────────────────────────────┐
 │  BYOL ARCHITECTURE                                  │
 │                                                     │
-│  Online: encoder fθ → projector gθ → predictor qθ  │
-│  Target: encoder fξ → projector gξ (EMA of online) │
+│  Online: encoder fθ → projector gθ → predictor qθ   │
+│  Target: encoder fξ → projector gξ (EMA of online)  │
 │                                                     │
-│  LOSS (MSE after normalization):                   │
+│  LOSS (MSE after normalization):                    │
 │                                                     │
-│  L = 2 - 2 · <qθ(zθ), sg(zξ)>                      │
+│  L = 2 - 2 · <qθ(zθ), sg(zξ)>                       │
 │        ―――――――――――――――――――――――                      │
-│        ||qθ(zθ)|| · ||sg(zξ)||                     │
+│        ||qθ(zθ)|| · ||sg(zξ)||                      │
 │                                                     │
-│  where sg = stop gradient                          │
+│  where sg = stop gradient                           │
 │                                                     │
 │  EMA UPDATE:                                        │
-│  ξ ← τξ + (1-τ)θ   (τ = 0.996 → 1.0)              │
+│  ξ ← τξ + (1-τ)θ   (τ = 0.996 → 1.0)                │
 │                                                     │
 │  Why no collapse?                                   │
-│  - Asymmetric architecture (predictor)             │
-│  - EMA target (slowly moving)                      │
-│  - BatchNorm plays role                            │
+│  - Asymmetric architecture (predictor)              │
+│  - EMA target (slowly moving)                       │
+│  - BatchNorm plays role                             │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -104,23 +112,23 @@
 ┌─────────────────────────────────────────────────────┐
 │  MASKING STRATEGY                                   │
 │                                                     │
-│  1. Divide image into patches (16×16)              │
-│  2. Randomly mask 75% of patches                   │
-│  3. Encode ONLY visible patches                    │
+│  1. Divide image into patches (16×16)               │
+│  2. Randomly mask 75% of patches                    │
+│  3. Encode ONLY visible patches                     │
 │                                                     │
-│  RECONSTRUCTION LOSS (MSE on pixels):              │
+│  RECONSTRUCTION LOSS (MSE on pixels):               │
 │                                                     │
-│  L = (1/|M|) Σᵢ∈M ||xᵢ - x̂ᵢ||²                    │
+│  L = (1/|M|) Σᵢ∈M ||xᵢ - x̂ᵢ||²                     │
 │                                                     │
-│  M = set of masked patches                         │
-│  xᵢ = original patch pixels                        │
+│  M = set of masked patches                          │
+│  xᵢ = original patch pixels                         │
 │  x̂ᵢ = reconstructed patch pixels                   │
 │                                                     │
-│  ALTERNATIVE: Predict normalized pixels            │
-│  L = ||norm(x) - norm(x̂)||²                       │
+│  ALTERNATIVE: Predict normalized pixels             │
+│  L = ||norm(x) - norm(x̂)||²                        │
 │                                                     │
-│  Key insight: High masking ratio forces            │
-│  learning meaningful representations               │
+│  Key insight: High masking ratio forces             │
+│  learning meaningful representations                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -130,25 +138,25 @@
 ┌─────────────────────────────────────────────────────┐
 │  STUDENT-TEACHER SETUP                              │
 │                                                     │
-│  Student: gθₛ (trained)                            │
-│  Teacher: gθₜ (EMA of student)                     │
+│  Student: gθₛ (trained)                             │
+│  Teacher: gθₜ (EMA of student)                      │
 │                                                     │
-│  MULTI-CROP STRATEGY:                              │
-│  - 2 global views (224×224)                        │
-│  - 8 local views (96×96)                          │
-│  - Student sees all, teacher sees only global     │
+│  MULTI-CROP STRATEGY:                               │
+│  - 2 global views (224×224)                         │
+│  - 8 local views (96×96)                            │
+│  - Student sees all, teacher sees only global       │
 │                                                     │
-│  CENTERING (prevent collapse):                     │
-│  teacher_out = teacher_out - center               │
-│  center ← m·center + (1-m)·mean(teacher_out)      │
+│  CENTERING (prevent collapse):                      │
+│  teacher_out = teacher_out - center                 │
+│  center ← m·center + (1-m)·mean(teacher_out)        │
 │                                                     │
-│  LOSS (cross-entropy with soft targets):           │
+│  LOSS (cross-entropy with soft targets):            │
 │                                                     │
-│  L = -Σᵥ Pₜ(v) log Pₛ(v)                           │
+│  L = -Σᵥ Pₜ(v) log Pₛ(v)                            │
 │                                                     │
-│  Pₜ = softmax(teacher_out / τₜ)                   │
-│  Pₛ = softmax(student_out / τₛ)                   │
-│  τₜ < τₛ (sharper teacher targets)                │
+│  Pₜ = softmax(teacher_out / τₜ)                     │
+│  Pₛ = softmax(student_out / τₛ)                     │
+│  τₜ < τₛ (sharper teacher targets)                  │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -160,26 +168,26 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  FOR each batch of N images:                       │
+│  FOR each batch of N images:                        │
 │                                                     │
 │  1. AUGMENT:                                        │
-│     x̃₁, x̃₂ = T₁(x), T₂(x) for each image         │
-│     (Crop, flip, color, blur, grayscale)          │
+│     x̃₁, x̃₂ = T₁(x), T₂(x) for each image          │
+│     (Crop, flip, color, blur, grayscale)            │
 │                                                     │
 │  2. ENCODE:                                         │
-│     hᵢ = f(x̃ᵢ)  (backbone)                        │
-│     zᵢ = g(hᵢ)  (projector MLP)                   │
+│     hᵢ = f(x̃ᵢ)  (backbone)                         │
+│     zᵢ = g(hᵢ)  (projector MLP)                     │
 │                                                     │
 │  3. COMPUTE SIMILARITY:                             │
-│     sᵢⱼ = zᵢᵀzⱼ / (||zᵢ|| ||zⱼ|| τ)              │
+│     sᵢⱼ = zᵢᵀzⱼ / (||zᵢ|| ||zⱼ|| τ)                 │
 │                                                     │
 │  4. LOSS:                                           │
-│     L = -(1/2N) Σᵢ [log exp(sᵢ,ᵢ₊ₙ)/Σₖ exp(sᵢ,ₖ)] │
-│     for positive pair (i, i+N)                    │
+│     L = -(1/2N) Σᵢ [log exp(sᵢ,ᵢ₊ₙ)/Σₖ exp(sᵢ,ₖ)]   │
+│     for positive pair (i, i+N)                      │
 │                                                     │
-│  5. UPDATE encoder and projector                   │
+│  5. UPDATE encoder and projector                    │
 │                                                     │
-│  Large batch (4096+) is critical                   │
+│  Large batch (4096+) is critical                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -187,31 +195,31 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INIT: Queue Q of size K (e.g., 65536)             │
-│        Momentum encoder fₖ = copy(f)               │
+│  INIT: Queue Q of size K (e.g., 65536)              │
+│        Momentum encoder fₖ = copy(f)                │
 │                                                     │
 │  FOR each batch:                                    │
 │                                                     │
 │  1. ENCODE:                                         │
-│     q = f(x₁)   (query encoder)                   │
-│     k = fₖ(x₂)  (momentum encoder, no grad)       │
+│     q = f(x₁)   (query encoder)                     │
+│     k = fₖ(x₂)  (momentum encoder, no grad)         │
 │                                                     │
-│  2. POSITIVE: k⁺ = k from same image              │
-│     NEGATIVES: all keys in queue Q                │
+│  2. POSITIVE: k⁺ = k from same image                │
+│     NEGATIVES: all keys in queue Q                  │
 │                                                     │
 │  3. LOSS:                                           │
-│     L = -log [ exp(q·k⁺/τ) ]                      │
+│     L = -log [ exp(q·k⁺/τ) ]                        │
 │              [ ―――――――――――――――― ]                   │
-│              [ exp(q·k⁺/τ) + Σ exp(q·kⁿ/τ) ]      │
+│              [ exp(q·k⁺/τ) + Σ exp(q·kⁿ/τ) ]        │
 │                                                     │
 │  4. UPDATE QUEUE:                                   │
-│     Enqueue current keys                          │
-│     Dequeue oldest keys                           │
+│     Enqueue current keys                            │
+│     Dequeue oldest keys                             │
 │                                                     │
-│  5. MOMENTUM UPDATE:                               │
-│     fₖ ← m·fₖ + (1-m)·f   (m=0.999)              │
+│  5. MOMENTUM UPDATE:                                │
+│     fₖ ← m·fₖ + (1-m)·f   (m=0.999)                 │
 │                                                     │
-│  Advantage: Large negative set without big batch  │
+│  Advantage: Large negative set without big batch    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -222,36 +230,32 @@
 │  FOR each image:                                    │
 │                                                     │
 │  1. PATCHIFY:                                       │
-│     patches = split(image, 16×16)  (N patches)    │
+│     patches = split(image, 16×16)  (N patches)      │
 │                                                     │
 │  2. RANDOM MASKING:                                 │
-│     mask = random_sample(N, ratio=0.75)           │
-│     visible = patches[~mask]                      │
+│     mask = random_sample(N, ratio=0.75)             │
+│     visible = patches[~mask]                        │
 │                                                     │
-│  3. ENCODER (ViT):                                 │
-│     - Add positional embeddings                   │
-│     - Process ONLY visible patches                │
-│     - Output: encoded visible tokens              │
+│  3. ENCODER (ViT):                                  │
+│     - Add positional embeddings                     │
+│     - Process ONLY visible patches                  │
+│     - Output: encoded visible tokens                │
 │                                                     │
 │  4. DECODER:                                        │
-│     - Add mask tokens at masked positions         │
-│     - Add positional embeddings                   │
-│     - Light transformer decoder                   │
-│     - Predict pixel values for masked patches     │
+│     - Add mask tokens at masked positions           │
+│     - Add positional embeddings                     │
+│     - Light transformer decoder                     │
+│     - Predict pixel values for masked patches       │
 │                                                     │
 │  5. LOSS:                                           │
-│     L = MSE(pred_masked, true_masked)             │
-│     Only on masked patches                        │
+│     L = MSE(pred_masked, true_masked)               │
+│     Only on masked patches                          │
 │                                                     │
-│  Key: Encoder never sees mask tokens (efficient)  │
+│  Key: Encoder never sees mask tokens (efficient)    │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -336,7 +340,7 @@ L = -log [ exp(sim(zᵢ,zⱼ)/τ) / Σₖ exp(sim(zᵢ,zₖ)/τ) ]
 <summary><b>Q6: Compare data augmentation requirements.</b></summary>
 
 | Method | Augmentation |
-|:-------|:-------------|
+| :--- | :--- |
 | SimCLR | Strong (crop, color, blur) - critical |
 | MoCo | Moderate |
 | BYOL | Strong (similar to SimCLR) |
@@ -352,7 +356,7 @@ L = -log [ exp(sim(zᵢ,zⱼ)/τ) / Σₖ exp(sim(zᵢ,zₖ)/τ) ]
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | L = -log[exp(s⁺/τ)/Σexp(s/τ)] | InfoNCE/NT-Xent |
 | ξ ← τξ + (1-τ)θ | EMA update |
 | L = \|\|q(z) - sg(z')\|\|² | BYOL loss |
@@ -361,8 +365,50 @@ L = -log [ exp(sim(zᵢ,zⱼ)/τ) / Σₖ exp(sim(zᵢ,zₖ)/τ) ]
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← Vision Transformers](../11_Vision_Transformers/) | [🏠 Home](../README.md) | [Video & Temporal →](../13_Video_Temporal/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ ViTs](../11_Vision_Transformers/README.md)** | **[🏠 HOME](../README.md)** | **[Video ▶](../13_Video_Temporal/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

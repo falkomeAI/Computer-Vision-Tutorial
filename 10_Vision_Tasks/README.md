@@ -1,35 +1,43 @@
 <div align="center">
 
-# 🎯 Vision Tasks
+<br/>
 
-### *Detection, Segmentation & Beyond*
+<a href="../09_CNN_Architectures/README.md"><img src="https://img.shields.io/badge/◀__CNNs-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-F472B6?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../11_Vision_Transformers/README.md"><img src="https://img.shields.io/badge/ViTs__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟡 Intermediate | 3 hours | CNNs, Deep Learning basics |
+<br/><br/>
+
+---
+
+<br/>
+
+# 📋 VISION TASKS
+
+### 🌙 *What Models Do*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__10/20-F472B6?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← CNN Architectures](../09_CNN_Architectures/) | [🏠 Home](../README.md) | [Vision Transformers →](../11_Vision_Transformers/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Task | Input | Output | Metric |
-|:-----|:------|:-------|:-------|
+| :--- | :--- | :--- | :--- |
 | **Classification** | Image | Class label | Accuracy, Top-5 |
 | **Detection** | Image | Boxes + labels | mAP@IoU |
 | **Semantic Seg** | Image | Pixel-wise labels | mIoU |
@@ -52,25 +60,25 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  IoU = |A ∩ B| / |A ∪ B|                           │
+│  IoU = |A ∩ B| / |A ∪ B|                            │
 │                                                     │
 │  For boxes:                                         │
-│  A = (x1, y1, x2, y2)                              │
-│  B = (x1', y1', x2', y2')                          │
+│  A = (x1, y1, x2, y2)                               │
+│  B = (x1', y1', x2', y2')                           │
 │                                                     │
 │  Intersection:                                      │
-│  xi1 = max(x1, x1')                                │
-│  yi1 = max(y1, y1')                                │
-│  xi2 = min(x2, x2')                                │
-│  yi2 = min(y2, y2')                                │
-│  area_i = max(0, xi2-xi1) × max(0, yi2-yi1)       │
+│  xi1 = max(x1, x1')                                 │
+│  yi1 = max(y1, y1')                                 │
+│  xi2 = min(x2, x2')                                 │
+│  yi2 = min(y2, y2')                                 │
+│  area_i = max(0, xi2-xi1) × max(0, yi2-yi1)         │
 │                                                     │
 │  Union:                                             │
-│  area_u = area_A + area_B - area_i                 │
+│  area_u = area_A + area_B - area_i                  │
 │                                                     │
-│  IoU = area_i / area_u                             │
+│  IoU = area_i / area_u                              │
 │                                                     │
-│  Range: [0, 1], higher is better                   │
+│  Range: [0, 1], higher is better                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -80,23 +88,23 @@
 ┌─────────────────────────────────────────────────────┐
 │  PRECISION-RECALL CURVE                             │
 │                                                     │
-│  Precision = TP / (TP + FP)                        │
-│  Recall = TP / (TP + FN)                           │
+│  Precision = TP / (TP + FP)                         │
+│  Recall = TP / (TP + FN)                            │
 │                                                     │
-│  AVERAGE PRECISION (per class)                     │
+│  AVERAGE PRECISION (per class)                      │
 │                                                     │
-│  AP = ∫₀¹ p(r) dr  ≈ Σ (rᵢ - rᵢ₋₁) × pᵢₙₜₑᵣₚ     │
+│  AP = ∫₀¹ p(r) dr  ≈ Σ (rᵢ - rᵢ₋₁) × pᵢₙₜₑᵣₚ        │
 │                                                     │
-│  11-point interpolation (PASCAL VOC):              │
-│  AP = (1/11) Σ max(p(r')) for r' ≥ r              │
-│       r∈{0,0.1,...,1}                              │
+│  11-point interpolation (PASCAL VOC):               │
+│  AP = (1/11) Σ max(p(r')) for r' ≥ r                │
+│       r∈{0,0.1,...,1}                               │
 │                                                     │
-│  MEAN AVERAGE PRECISION                            │
+│  MEAN AVERAGE PRECISION                             │
 │                                                     │
-│  mAP = (1/C) Σ APc                                 │
+│  mAP = (1/C) Σ APc                                  │
 │                                                     │
-│  mAP@0.5: IoU threshold = 0.5                      │
-│  mAP@0.5:0.95: average over IoU thresholds         │
+│  mAP@0.5: IoU threshold = 0.5                       │
+│  mAP@0.5:0.95: average over IoU thresholds          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -104,19 +112,19 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Boxes B, Scores S, IoU threshold τ         │
+│  INPUT: Boxes B, Scores S, IoU threshold τ          │
 │  OUTPUT: Filtered boxes                             │
 │                                                     │
-│  1. Sort boxes by score (descending)               │
-│  2. Select box with highest score → D              │
-│  3. Remove all boxes with IoU(box, D) > τ          │
-│  4. Repeat until no boxes remain                   │
+│  1. Sort boxes by score (descending)                │
+│  2. Select box with highest score → D               │
+│  3. Remove all boxes with IoU(box, D) > τ           │
+│  4. Repeat until no boxes remain                    │
 │                                                     │
-│  SOFT-NMS (alternative):                           │
-│  Instead of hard removal, decay scores:            │
-│  sᵢ = sᵢ × exp(-IoU²/σ)                           │
+│  SOFT-NMS (alternative):                            │
+│  Instead of hard removal, decay scores:             │
+│  sᵢ = sᵢ × exp(-IoU²/σ)                             │
 │                                                     │
-│  Typical τ = 0.5 for detection                     │
+│  Typical τ = 0.5 for detection                      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -126,20 +134,20 @@
 ┌─────────────────────────────────────────────────────┐
 │  CROSS-ENTROPY LOSS                                 │
 │                                                     │
-│  CE(p, y) = -log(pₜ)                               │
-│  where pₜ = p if y=1, else (1-p)                   │
+│  CE(p, y) = -log(pₜ)                                │
+│  where pₜ = p if y=1, else (1-p)                    │
 │                                                     │
 │  FOCAL LOSS                                         │
 │                                                     │
-│  FL(p, y) = -αₜ(1-pₜ)ᵞ log(pₜ)                     │
+│  FL(p, y) = -αₜ(1-pₜ)ᵞ log(pₜ)                      │
 │                                                     │
-│  (1-pₜ)ᵞ: modulating factor                        │
-│  - Easy examples (pₜ → 1): factor → 0              │
-│  - Hard examples (pₜ → 0): factor → 1              │
+│  (1-pₜ)ᵞ: modulating factor                         │
+│  - Easy examples (pₜ → 1): factor → 0               │
+│  - Hard examples (pₜ → 0): factor → 1               │
 │                                                     │
-│  Typical: γ = 2, α = 0.25                          │
+│  Typical: γ = 2, α = 0.25                           │
 │                                                     │
-│  Addresses: foreground-background imbalance        │
+│  Addresses: foreground-background imbalance         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -149,21 +157,21 @@
 ┌─────────────────────────────────────────────────────┐
 │  CROSS-ENTROPY (per pixel)                          │
 │                                                     │
-│  L = -(1/N) Σᵢ Σc yᵢc log(pᵢc)                     │
+│  L = -(1/N) Σᵢ Σc yᵢc log(pᵢc)                      │
 │                                                     │
 │  DICE LOSS                                          │
 │                                                     │
-│  Dice = 2|X ∩ Y| / (|X| + |Y|)                     │
-│  L_dice = 1 - Dice                                 │
+│  Dice = 2|X ∩ Y| / (|X| + |Y|)                      │
+│  L_dice = 1 - Dice                                  │
 │                                                     │
 │  For soft predictions:                              │
-│  L_dice = 1 - (2Σpᵢyᵢ + ε) / (Σpᵢ + Σyᵢ + ε)      │
+│  L_dice = 1 - (2Σpᵢyᵢ + ε) / (Σpᵢ + Σyᵢ + ε)        │
 │                                                     │
 │  IoU LOSS                                           │
 │                                                     │
-│  L_iou = 1 - IoU(pred, target)                     │
+│  L_iou = 1 - IoU(pred, target)                      │
 │                                                     │
-│  Dice good for: imbalanced classes                 │
+│  Dice good for: imbalanced classes                  │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -175,25 +183,25 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  1. BACKBONE: Extract feature maps                 │
-│     - ResNet/VGG → multi-scale features           │
+│  1. BACKBONE: Extract feature maps                  │
+│     - ResNet/VGG → multi-scale features             │
 │                                                     │
-│  2. REGION PROPOSAL NETWORK (RPN):                 │
-│     - Slide 3×3 window over feature map           │
-│     - At each location: k anchors (scales/ratios) │
-│     - Predict: objectness + box regression         │
-│     - Output: ~2000 region proposals               │
+│  2. REGION PROPOSAL NETWORK (RPN):                  │
+│     - Slide 3×3 window over feature map             │
+│     - At each location: k anchors (scales/ratios)   │
+│     - Predict: objectness + box regression          │
+│     - Output: ~2000 region proposals                │
 │                                                     │
-│  3. ROI POOLING/ALIGN:                             │
-│     - Extract fixed-size features from proposals  │
-│     - ROI Align: bilinear interpolation           │
+│  3. ROI POOLING/ALIGN:                              │
+│     - Extract fixed-size features from proposals    │
+│     - ROI Align: bilinear interpolation             │
 │                                                     │
 │  4. DETECTION HEAD:                                 │
-│     - Classification: C+1 classes (+ background)  │
-│     - Bounding box regression: 4C outputs         │
+│     - Classification: C+1 classes (+ background)    │
+│     - Bounding box regression: 4C outputs           │
 │                                                     │
-│  5. POST-PROCESSING:                               │
-│     - Apply NMS per class                         │
+│  5. POST-PROCESSING:                                │
+│     - Apply NMS per class                           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -201,27 +209,27 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  1. BACKBONE + NECK:                               │
-│     - CSPDarknet + PANet (YOLOv4)                 │
-│     - Multi-scale feature pyramids                │
+│  1. BACKBONE + NECK:                                │
+│     - CSPDarknet + PANet (YOLOv4)                   │
+│     - Multi-scale feature pyramids                  │
 │                                                     │
-│  2. DETECTION HEAD (at each scale):                │
-│     - Grid: S×S cells                             │
-│     - Each cell predicts B boxes:                 │
-│       * 4 coordinates (x, y, w, h)                │
-│       * 1 objectness score                        │
-│       * C class probabilities                     │
+│  2. DETECTION HEAD (at each scale):                 │
+│     - Grid: S×S cells                               │
+│     - Each cell predicts B boxes:                   │
+│       * 4 coordinates (x, y, w, h)                  │
+│       * 1 objectness score                          │
+│       * C class probabilities                       │
 │                                                     │
-│  3. OUTPUT ENCODING:                               │
-│     - (x, y): offset from cell corner             │
-│     - (w, h): relative to anchor size             │
+│  3. OUTPUT ENCODING:                                │
+│     - (x, y): offset from cell corner               │
+│     - (w, h): relative to anchor size               │
 │                                                     │
-│  4. LOSS FUNCTION:                                 │
-│     L = λ_coord × L_box                           │
-│       + λ_obj × L_obj                             │
-│       + λ_cls × L_cls                             │
+│  4. LOSS FUNCTION:                                  │
+│     L = λ_coord × L_box                             │
+│       + λ_obj × L_obj                               │
+│       + λ_cls × L_cls                               │
 │                                                     │
-│  5. NMS on all predictions                        │
+│  5. NMS on all predictions                          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -229,34 +237,30 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  1. ENCODER (with dilated/atrous convolutions):    │
-│     - Preserve resolution with dilation           │
-│     - Output stride = 8 or 16                     │
+│  1. ENCODER (with dilated/atrous convolutions):     │
+│     - Preserve resolution with dilation             │
+│     - Output stride = 8 or 16                       │
 │                                                     │
-│  2. ATROUS SPATIAL PYRAMID POOLING (ASPP):         │
-│     - Parallel dilated convs at rates (6,12,18)   │
-│     - 1×1 conv (global features)                  │
-│     - Concatenate all                             │
+│  2. ATROUS SPATIAL PYRAMID POOLING (ASPP):          │
+│     - Parallel dilated convs at rates (6,12,18)     │
+│     - 1×1 conv (global features)                    │
+│     - Concatenate all                               │
 │                                                     │
-│  3. DECODER:                                       │
-│     - Upsample ASPP output                        │
-│     - Concatenate with low-level features         │
-│     - Refine boundaries                           │
+│  3. DECODER:                                        │
+│     - Upsample ASPP output                          │
+│     - Concatenate with low-level features           │
+│     - Refine boundaries                             │
 │                                                     │
-│  4. OUTPUT:                                        │
-│     - 1×1 conv → C channels                       │
-│     - Bilinear upsample to input resolution       │
-│     - Softmax per pixel                           │
+│  4. OUTPUT:                                         │
+│     - 1×1 conv → C channels                         │
+│     - Bilinear upsample to input resolution         │
+│     - Softmax per pixel                             │
 │                                                     │
-│  Key: Dilated convs capture multi-scale context   │
+│  Key: Dilated convs capture multi-scale context     │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -266,7 +270,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q1: One-stage vs two-stage detectors?</b></summary>
 
 | Two-Stage (Faster R-CNN) | One-Stage (YOLO, SSD) |
-|:-------------------------|:----------------------|
+| :--- | :--- |
 | Region proposals first | Direct prediction |
 | Higher accuracy | Faster inference |
 | Slower (~5 FPS) | Real-time (30+ FPS) |
@@ -357,7 +361,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | IoU = \|A∩B\| / \|A∪B\| | Intersection over Union |
 | mAP = (1/C)ΣAPc | Mean Average Precision |
 | FL = -αₜ(1-pₜ)ᵞlog(pₜ) | Focal Loss |
@@ -366,8 +370,50 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← CNN Architectures](../09_CNN_Architectures/) | [🏠 Home](../README.md) | [Vision Transformers →](../11_Vision_Transformers/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ CNNs](../09_CNN_Architectures/README.md)** | **[🏠 HOME](../README.md)** | **[ViTs ▶](../11_Vision_Transformers/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

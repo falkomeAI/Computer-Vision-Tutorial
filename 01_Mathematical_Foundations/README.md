@@ -1,25 +1,36 @@
 <div align="center">
 
-# 📐 Mathematical Foundations
+<br/>
 
-### *The Language of Computer Vision*
+<img src="https://img.shields.io/badge/◀__START-1e293b?style=for-the-badge" height="35"/>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-60A5FA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../02_Transform_Methods/README.md"><img src="https://img.shields.io/badge/Transform Methods__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+
+<br/><br/>
+
+---
 
 <br/>
 
-<p>
-<img src="https://img.shields.io/badge/Level-Beginner-green?style=for-the-badge" alt="Level"/>
-<img src="https://img.shields.io/badge/Time-1_week-blue?style=for-the-badge" alt="Time"/>
-</p>
+# 📐 MATHEMATICAL FOUNDATIONS
 
-**📓 [Download Notebook](./colab_tutorial.ipynb) → Upload to Colab → Run!**
+### 🌙 *The Language of Computer Vision*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__01/20-60A5FA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
-
----
-
-[🏠 Home](../README.md) · [Transform Methods →](../02_Transform_Methods/)
-
----
 
 <br/>
 
@@ -83,7 +94,7 @@
 ## 📊 Key Concepts
 
 | Concept | Formula | Use in CV |
-|:--------|:--------|:----------|
+| :--- | :--- | :--- |
 | **Matrix Multiply** | `Y = WX` | Neural network layers |
 | **SVD** | `A = UΣVᵀ` | Image compression, PCA |
 | **Gradient** | `∇f = [∂f/∂x₁, ...]` | Backpropagation |
@@ -163,17 +174,17 @@ L = -Σ yᵢ·log(ŷᵢ)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Loss function L(θ), learning rate η        │
-│  OUTPUT: Optimal parameters θ*                     │
+│  INPUT: Loss function L(θ), learning rate η         │
+│  OUTPUT: Optimal parameters θ*                      │
 │                                                     │
-│  1. Initialize θ randomly                          │
-│  2. REPEAT until convergence:                      │
-│     a. Compute gradient: g = ∇L(θ)                │
-│     b. Update: θ = θ - η·g                        │
+│  1. Initialize θ randomly                           │
+│  2. REPEAT until convergence:                       │
+│     a. Compute gradient: g = ∇L(θ)                  │
+│     b. Update: θ = θ - η·g                          │
 │                                                     │
 │  Variants:                                          │
-│  - Momentum: v = βv + g; θ = θ - η·v              │
-│  - Adam: Uses adaptive learning rates              │
+│  - Momentum: v = βv + g; θ = θ - η·v                │
+│  - Adam: Uses adaptive learning rates               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -181,17 +192,17 @@ L = -Σ yᵢ·log(ŷᵢ)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Matrix A (m×n)                             │
-│  OUTPUT: U, Σ, V such that A = UΣVᵀ               │
+│  INPUT: Matrix A (m×n)                              │
+│  OUTPUT: U, Σ, V such that A = UΣVᵀ                 │
 │                                                     │
-│  1. Compute AᵀA (n×n symmetric)                   │
-│  2. Find eigenvalues λᵢ and eigenvectors vᵢ       │
-│  3. σᵢ = √λᵢ (singular values)                    │
-│  4. V = [v₁, v₂, ..., vₙ]                         │
-│  5. uᵢ = Avᵢ/σᵢ (left singular vectors)          │
-│  6. U = [u₁, u₂, ..., uₘ]                         │
+│  1. Compute AᵀA (n×n symmetric)                     │
+│  2. Find eigenvalues λᵢ and eigenvectors vᵢ         │
+│  3. σᵢ = √λᵢ (singular values)                      │
+│  4. V = [v₁, v₂, ..., vₙ]                           │
+│  5. uᵢ = Avᵢ/σᵢ (left singular vectors)             │
+│  6. U = [u₁, u₂, ..., uₘ]                           │
 │                                                     │
-│  Truncated SVD: Keep top k singular values        │
+│  Truncated SVD: Keep top k singular values          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -199,18 +210,18 @@ L = -Σ yᵢ·log(ŷᵢ)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image I (H×W), Kernel K (kh×kw)           │
-│  OUTPUT: Convolved image O                         │
+│  INPUT: Image I (H×W), Kernel K (kh×kw)             │
+│  OUTPUT: Convolved image O                          │
 │                                                     │
-│  FOR each output position (i, j):                  │
-│    sum = 0                                         │
-│    FOR m = 0 to kh-1:                             │
-│      FOR n = 0 to kw-1:                           │
-│        sum += I[i+m, j+n] × K[m, n]               │
-│    O[i, j] = sum                                  │
+│  FOR each output position (i, j):                   │
+│    sum = 0                                          │
+│    FOR m = 0 to kh-1:                               │
+│      FOR n = 0 to kw-1:                             │
+│        sum += I[i+m, j+n] × K[m, n]                 │
+│    O[i, j] = sum                                    │
 │                                                     │
-│  Output size: (H-kh+1) × (W-kw+1)                 │
-│  With padding P: (H+2P-kh+1) × (W+2P-kw+1)        │
+│  Output size: (H-kh+1) × (W-kw+1)                   │
+│  With padding P: (H+2P-kh+1) × (W+2P-kw+1)          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -234,18 +245,12 @@ L = -Σ yᵢ·log(ŷᵢ)
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
-<br/>
-
 ---
 
 ## ⚠️ Common Pitfalls
 
 | ❌ Pitfall | ✅ Solution |
-|-----------|------------|
+| --- | --- |
 | Numerical overflow in softmax | Subtract max: `softmax(z - max(z))` |
 | Matrix inverse fails | Use SVD pseudo-inverse instead |
 | Vanishing gradients | Proper initialization + batch norm |
@@ -298,7 +303,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q1: What's the difference between eigenvalues and singular values?</b></summary>
 
 | Eigenvalues | Singular Values |
-|-------------|-----------------|
+| --- | --- |
 | Square matrices only | Any matrix shape |
 | Can be negative/complex | Always ≥ 0 |
 | `Av = λv` | `Av = σu` |
@@ -319,7 +324,7 @@ For symmetric positive semi-definite matrices, eigenvalues = singular values.
 <summary><b>Q3: GD vs SGD?</b></summary>
 
 | Full-batch GD | SGD |
-|---------------|-----|
+| --- | --- |
 | Uses all samples | Uses mini-batch |
 | Exact gradient | Noisy estimate |
 | Slow updates | Fast updates |
@@ -369,16 +374,50 @@ OR: SVD on X directly: `X = UΣVᵀ`
 
 ---
 
+<br/>
+
 <div align="center">
 
-### Next Up
-
-# [Transform Methods →](../02_Transform_Methods/)
-
-*Fourier, Wavelets, DCT & JPEG*
+## 📓 PRACTICE
 
 <br/>
 
-[🏠 Back to Home](../README.md)
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+|  | **[🏠 HOME](../README.md)** | **[Transform Methods ▶](../02_Transform_Methods/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

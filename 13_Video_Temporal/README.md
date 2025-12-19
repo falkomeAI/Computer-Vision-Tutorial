@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🎬 Video & Temporal Vision
+<br/>
 
-### *Optical Flow, Action Recognition, Tracking*
+<a href="../12_Self_Supervised/README.md"><img src="https://img.shields.io/badge/◀__Self-Supervised-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-F87171?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../14_3D_Vision/README.md"><img src="https://img.shields.io/badge/3D Vision__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟠 Intermediate-Advanced | 3 hours | CNNs, Image Processing |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🎬 VIDEO & TEMPORAL
+
+### 🌙 *Understanding Motion*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__13/20-F87171?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Self-Supervised](../12_Self_Supervised/) | [🏠 Home](../README.md) | [3D Vision →](../14_3D_Vision/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Task | Input | Output | Key Methods |
-|:-----|:------|:-------|:------------|
+| :--- | :--- | :--- | :--- |
 | **Optical Flow** | Frame t, Frame t+1 | Motion vectors (u,v) | Lucas-Kanade, RAFT |
 | **Action Recognition** | Video clip | Action class | 3D CNN, Video Transformer |
 | **Object Tracking** | Video + detection | Trajectories | SORT, DeepSORT |
@@ -52,16 +61,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  BRIGHTNESS CONSTANCY ASSUMPTION                    │
 │                                                     │
-│  I(x, y, t) = I(x+u, y+v, t+1)                     │
+│  I(x, y, t) = I(x+u, y+v, t+1)                      │
 │                                                     │
 │  Taylor expansion:                                  │
-│  I(x+u, y+v, t+1) ≈ I + Iₓu + Iᵧv + Iₜ            │
+│  I(x+u, y+v, t+1) ≈ I + Iₓu + Iᵧv + Iₜ              │
 │                                                     │
 │  OPTICAL FLOW EQUATION:                             │
 │                                                     │
-│  Iₓu + Iᵧv + Iₜ = 0                                │
+│  Iₓu + Iᵧv + Iₜ = 0                                 │
 │                                                     │
-│  Or: ∇I · [u,v]ᵀ + Iₜ = 0                          │
+│  Or: ∇I · [u,v]ᵀ + Iₜ = 0                           │
 │                                                     │
 │  Problem: 1 equation, 2 unknowns (aperture problem) │
 └─────────────────────────────────────────────────────┘
@@ -74,18 +83,18 @@
 │  ASSUMPTION: Flow is constant in local window       │
 │                                                     │
 │  For n pixels in window:                            │
-│  [Iₓ₁ Iᵧ₁]   [u]   [-Iₜ₁]                          │
-│  [Iₓ₂ Iᵧ₂]   [v] = [-Iₜ₂]                          │
+│  [Iₓ₁ Iᵧ₁]   [u]   [-Iₜ₁]                           │
+│  [Iₓ₂ Iᵧ₂]   [v] = [-Iₜ₂]                           │
 │  [...  ...]         [...]                           │
-│  [Iₓₙ Iᵧₙ]         [-Iₜₙ]                          │
+│  [Iₓₙ Iᵧₙ]         [-Iₜₙ]                           │
 │                                                     │
 │       A      ·  d  =   b                            │
 │                                                     │
 │  Least squares solution:                            │
-│  d = (AᵀA)⁻¹Aᵀb                                    │
+│  d = (AᵀA)⁻¹Aᵀb                                     │
 │                                                     │
-│  AᵀA = [ΣIₓ²   ΣIₓIᵧ]  = Structure tensor M        │
-│        [ΣIₓIᵧ  ΣIᵧ² ]                              │
+│  AᵀA = [ΣIₓ²   ΣIₓIᵧ]  = Structure tensor M         │
+│        [ΣIₓIᵧ  ΣIᵧ² ]                               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -104,7 +113,7 @@
 │  α controls smoothness vs data fidelity             │
 │  Large α → smoother flow                            │
 │                                                     │
-│  Solved via Euler-Lagrange equations               │
+│  Solved via Euler-Lagrange equations                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -123,16 +132,16 @@
 │  4. Upsample and refine at next level               │
 │  5. Repeat until finest level                       │
 │                                                     │
-│  Level L:  I_L ────→ Flow_L                        │
+│  Level L:  I_L ────→ Flow_L                         │
 │              ↓         ↓                            │
-│  Level L-1: I_{L-1} → Warp → Residual → Flow_{L-1} │
+│  Level L-1: I_{L-1} → Warp → Residual → Flow_{L-1}  │
 └─────────────────────────────────────────────────────┘
 ```
 
 ### 5. Action Recognition Formulations
 
 | Approach | Representation | Formula |
-|:---------|:---------------|:--------|
+| :--- | :--- | :--- |
 | **Two-Stream** | RGB + Flow | P = f_rgb + f_flow |
 | **3D CNN** | Spatio-temporal | y = C3D(V[t-k:t+k]) |
 | **LSTM** | Sequential features | hₜ = LSTM(CNN(Iₜ), hₜ₋₁) |
@@ -144,16 +153,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  KALMAN FILTER (Linear Motion Model)                │
 │                                                     │
-│  State: x = [x, y, w, h, ẋ, ẏ, ẇ, ḣ]ᵀ              │
+│  State: x = [x, y, w, h, ẋ, ẏ, ẇ, ḣ]ᵀ               │
 │                                                     │
 │  Predict:                                           │
 │    x̂ₖ|ₖ₋₁ = Fxₖ₋₁                                  │
-│    Pₖ|ₖ₋₁ = FPₖ₋₁Fᵀ + Q                            │
+│    Pₖ|ₖ₋₁ = FPₖ₋₁Fᵀ + Q                             │
 │                                                     │
 │  Update:                                            │
-│    K = Pₖ|ₖ₋₁Hᵀ(HPₖ|ₖ₋₁Hᵀ + R)⁻¹                  │
-│    x̂ₖ = x̂ₖ|ₖ₋₁ + K(zₖ - Hx̂ₖ|ₖ₋₁)                  │
-│    Pₖ = (I - KH)Pₖ|ₖ₋₁                             │
+│    K = Pₖ|ₖ₋₁Hᵀ(HPₖ|ₖ₋₁Hᵀ + R)⁻¹                    │
+│    x̂ₖ = x̂ₖ|ₖ₋₁ + K(zₖ - Hx̂ₖ|ₖ₋₁)                 │
+│    Pₖ = (I - KH)Pₖ|ₖ₋₁                              │
 │                                                     │
 │  F: motion model, H: observation model              │
 │  Q: process noise, R: measurement noise             │
@@ -166,13 +175,13 @@
 ┌─────────────────────────────────────────────────────┐
 │  COST MATRIX                                        │
 │                                                     │
-│  C[i,j] = distance(track_i, detection_j)           │
+│  C[i,j] = distance(track_i, detection_j)            │
 │                                                     │
 │  Common distances:                                  │
-│  - IoU: 1 - IoU(bbox_track, bbox_det)              │
-│  - Euclidean: ||center_track - center_det||        │
-│  - Mahalanobis: (x-μ)ᵀΣ⁻¹(x-μ) (uses Kalman cov)  │
-│  - Cosine: 1 - cosine(appearance_emb)              │
+│  - IoU: 1 - IoU(bbox_track, bbox_det)               │
+│  - Euclidean: ||center_track - center_det||         │
+│  - Mahalanobis: (x-μ)ᵀΣ⁻¹(x-μ) (uses Kalman cov)    │
+│  - Cosine: 1 - cosine(appearance_emb)               │
 │                                                     │
 │  Hungarian algorithm finds optimal assignment       │
 │  Complexity: O(n³)                                  │
@@ -187,15 +196,15 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image I₁, I₂, window size w                │
-│  OUTPUT: Flow field (u, v)                         │
+│  INPUT: Image I₁, I₂, window size w                 │
+│  OUTPUT: Flow field (u, v)                          │
 │                                                     │
-│  1. Compute gradients: Iₓ, Iᵧ, Iₜ                  │
+│  1. Compute gradients: Iₓ, Iᵧ, Iₜ                   │
 │  2. FOR each pixel (x, y):                          │
 │     3. Extract window W centered at (x,y)           │
-│     4. Build A = [Iₓ, Iᵧ] for pixels in W          │
-│     5. Build b = -Iₜ for pixels in W               │
-│     6. Solve: [u,v]ᵀ = (AᵀA)⁻¹Aᵀb                  │
+│     4. Build A = [Iₓ, Iᵧ] for pixels in W           │
+│     5. Build b = -Iₜ for pixels in W                │
+│     6. Solve: [u,v]ᵀ = (AᵀA)⁻¹Aᵀb                   │
 │     7. Store flow(x,y) = (u, v)                     │
 │  8. RETURN flow field                               │
 │                                                     │
@@ -212,7 +221,7 @@
 │                                                     │
 │  Initialize: tracks = []                            │
 │  FOR each frame:                                    │
-│    1. PREDICT: Kalman predict for all tracks       │
+│    1. PREDICT: Kalman predict for all tracks        │
 │    2. ASSOCIATE:                                    │
 │       - Compute IoU(tracks, detections)             │
 │       - Hungarian algorithm for assignment          │
@@ -233,21 +242,21 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Video frames {I₁, ..., Iₜ}                 │
+│  INPUT: Video frames {I₁, ..., Iₜ}                  │
 │  OUTPUT: Action class prediction                    │
 │                                                     │
 │  SPATIAL STREAM:                                    │
 │  1. Sample single frame Iₜ                          │
-│  2. f_spatial = CNN_rgb(Iₜ)                        │
+│  2. f_spatial = CNN_rgb(Iₜ)                         │
 │                                                     │
 │  TEMPORAL STREAM:                                   │
-│  3. Compute optical flow: {F₁, ..., Fₜ₋₁}          │
+│  3. Compute optical flow: {F₁, ..., Fₜ₋₁}           │
 │  4. Stack L consecutive flows                       │
-│  5. f_temporal = CNN_flow(stack)                   │
+│  5. f_temporal = CNN_flow(stack)                    │
 │                                                     │
 │  FUSION:                                            │
 │  6. Late fusion: P = softmax(f_spatial + f_temporal)│
-│  7. OR Early fusion: concatenate features          │
+│  7. OR Early fusion: concatenate features           │
 │                                                     │
 │  RETURN argmax(P)                                   │
 └─────────────────────────────────────────────────────┘
@@ -281,7 +290,7 @@
 **Answer:**
 
 | Aspect | Lucas-Kanade | Horn-Schunck |
-|:-------|:-------------|:-------------|
+| :--- | :--- | :--- |
 | Type | Local (sparse) | Global (dense) |
 | Constraint | Constant flow in window | Smoothness |
 | Result | Flow at corners | Flow everywhere |
@@ -335,7 +344,7 @@
 **Answer:**
 
 | Aspect | 3D CNN (C3D, I3D) | Two-Stream |
-|:-------|:------------------|:-----------|
+| :--- | :--- | :--- |
 | Motion | Learned implicitly | Explicit (optical flow) |
 | Computation | Higher (3D conv) | 2x models |
 | Pretraining | Kinetics, etc. | ImageNet (2D) |
@@ -352,7 +361,7 @@
 **Answer:**
 
 | Aspect | Detection | Tracking |
-|:-------|:----------|:---------|
+| :--- | :--- | :--- |
 | Input | Single frame | Video |
 | Output | Bounding boxes | Trajectories with IDs |
 | Temporal | No | Yes |
@@ -410,7 +419,7 @@
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | Iₓu + Iᵧv + Iₜ = 0 | Optical flow constraint |
 | d = (AᵀA)⁻¹Aᵀb | Lucas-Kanade solution |
 | E = ∫(Data + αSmooth)dA | Horn-Schunck energy |
@@ -419,14 +428,50 @@
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Self-Supervised](../12_Self_Supervised/) | [🏠 Home](../README.md) | [3D Vision →](../14_3D_Vision/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Self-Supervised](../12_Self_Supervised/README.md)** | **[🏠 HOME](../README.md)** | **[3D Vision ▶](../14_3D_Vision/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

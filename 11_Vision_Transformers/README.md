@@ -1,25 +1,36 @@
 <div align="center">
 
-# ⚡ Vision Transformers
+<br/>
 
-### *Attention Is All You Need (for Images)*
+<a href="../10_Vision_Tasks/README.md"><img src="https://img.shields.io/badge/◀__Tasks-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-60A5FA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../12_Self_Supervised/README.md"><img src="https://img.shields.io/badge/Self-Supervised__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+
+<br/><br/>
+
+---
 
 <br/>
 
-<p>
-<img src="https://img.shields.io/badge/Level-Advanced-orange?style=for-the-badge" alt="Level"/>
-<img src="https://img.shields.io/badge/Time-2_weeks-blue?style=for-the-badge" alt="Time"/>
-</p>
+# 👁️ VISION TRANSFORMERS
 
-**📓 [Download Notebook](./colab_tutorial.ipynb) → Upload to Colab → Run!**
+### 🌙 *Attention is All You Need*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__11/20-60A5FA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
-
----
-
-[← Vision Tasks](../10_Vision_Tasks/) · [🏠 Home](../README.md) · [Self-Supervised →](../12_Self_Supervised/)
-
----
 
 <br/>
 
@@ -34,7 +45,7 @@
 ## 🎯 Key Concepts
 
 | Concept | Description | Used In |
-|:--------|:------------|:--------|
+| :--- | :--- | :--- |
 | **Patch Embedding** | Split image into patches, project to tokens | ViT, DeiT, Swin |
 | **Self-Attention** | Compute pairwise relationships between tokens | All Transformers |
 | **Position Embedding** | Add spatial information (learned or sinusoidal) | All ViTs |
@@ -60,7 +71,7 @@ Image → Patch Split → Linear Projection → + Position → Transformer → C
 ## 📊 Model Comparison
 
 | Model | Year | Key Innovation | ImageNet | Speed |
-|:------|:----:|:---------------|:--------:|:-----:|
+| :--- | :---: | :--- | :---: | :---: |
 | **ViT-B/16** | 2020 | Patch tokens + Transformer | 77.9% | Medium |
 | **DeiT-S** | 2021 | Knowledge distillation | 79.8% | Fast |
 | **Swin-T** | 2021 | Window + shifted attention | 81.3% | Fast |
@@ -128,24 +139,24 @@ x'' = x' + MLP(LayerNorm(x'))
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image x (H×W×3)                            │
+│  INPUT: Image x (H×W×3)                             │
 │  OUTPUT: Class probabilities                        │
 │                                                     │
-│  1. PATCH EMBEDDING:                               │
-│     patches = split(x, 16×16) → N patches          │
-│     tokens = Linear(flatten(patches)) → (N, D)     │
+│  1. PATCH EMBEDDING:                                │
+│     patches = split(x, 16×16) → N patches           │
+│     tokens = Linear(flatten(patches)) → (N, D)      │
 │                                                     │
-│  2. ADD CLS TOKEN + POSITION:                      │
-│     z₀ = [CLS; tokens] + pos_embed → (N+1, D)     │
+│  2. ADD CLS TOKEN + POSITION:                       │
+│     z₀ = [CLS; tokens] + pos_embed → (N+1, D)       │
 │                                                     │
-│  3. TRANSFORMER ENCODER (L layers):                │
-│     FOR l = 1 to L:                               │
-│       z' = z + MSA(LayerNorm(z))                  │
-│       z = z' + MLP(LayerNorm(z'))                 │
+│  3. TRANSFORMER ENCODER (L layers):                 │
+│     FOR l = 1 to L:                                 │
+│       z' = z + MSA(LayerNorm(z))                    │
+│       z = z' + MLP(LayerNorm(z'))                   │
 │                                                     │
-│  4. CLASSIFICATION:                                │
-│     output = MLP_head(z[0])  # CLS token only     │
-│     probs = softmax(output)                       │
+│  4. CLASSIFICATION:                                 │
+│     output = MLP_head(z[0])  # CLS token only       │
+│     probs = softmax(output)                         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -153,25 +164,25 @@ x'' = x' + MLP(LayerNorm(x'))
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Tokens z (N×D)                             │
-│  OUTPUT: Attended tokens (N×D)                     │
+│  INPUT: Tokens z (N×D)                              │
+│  OUTPUT: Attended tokens (N×D)                      │
 │                                                     │
-│  1. PROJECT to Q, K, V:                            │
-│     Q = z @ Wq  (N × d_k)                         │
-│     K = z @ Wk  (N × d_k)                         │
-│     V = z @ Wv  (N × d_v)                         │
+│  1. PROJECT to Q, K, V:                             │
+│     Q = z @ Wq  (N × d_k)                           │
+│     K = z @ Wk  (N × d_k)                           │
+│     V = z @ Wv  (N × d_v)                           │
 │                                                     │
-│  2. COMPUTE ATTENTION:                             │
-│     scores = Q @ K.T / √d_k   (N × N)             │
-│     attn = softmax(scores)                        │
-│     output = attn @ V          (N × d_v)          │
+│  2. COMPUTE ATTENTION:                              │
+│     scores = Q @ K.T / √d_k   (N × N)               │
+│     attn = softmax(scores)                          │
+│     output = attn @ V          (N × d_v)            │
 │                                                     │
-│  3. MULTI-HEAD (h heads):                          │
-│     Split Q,K,V into h heads                      │
-│     Compute attention per head                    │
-│     Concat and project: out @ Wo                  │
+│  3. MULTI-HEAD (h heads):                           │
+│     Split Q,K,V into h heads                        │
+│     Compute attention per head                      │
+│     Concat and project: out @ Wo                    │
 │                                                     │
-│  Complexity: O(N²·D)                              │
+│  Complexity: O(N²·D)                                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -179,25 +190,25 @@ x'' = x' + MLP(LayerNorm(x'))
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Feature map (H×W×C)                        │
+│  INPUT: Feature map (H×W×C)                         │
 │  OUTPUT: Transformed features                       │
 │                                                     │
-│  1. PARTITION into windows:                        │
-│     windows = split_into_windows(x, M×M)          │
-│     # Each window: M×M tokens                     │
+│  1. PARTITION into windows:                         │
+│     windows = split_into_windows(x, M×M)            │
+│     # Each window: M×M tokens                       │
 │                                                     │
-│  2. WINDOW ATTENTION (per window):                 │
-│     Q, K, V = project(window)                     │
-│     attn = softmax(Q @ K.T / √d + bias)          │
-│     out = attn @ V                               │
+│  2. WINDOW ATTENTION (per window):                  │
+│     Q, K, V = project(window)                       │
+│     attn = softmax(Q @ K.T / √d + bias)             │
+│     out = attn @ V                                  │
 │                                                     │
-│  3. MERGE windows back                            │
+│  3. MERGE windows back                              │
 │                                                     │
-│  4. SHIFT (alternate layers):                      │
-│     Shift by (M/2, M/2) before windowing         │
-│     Allows cross-window information               │
+│  4. SHIFT (alternate layers):                       │
+│     Shift by (M/2, M/2) before windowing            │
+│     Allows cross-window information                 │
 │                                                     │
-│  Complexity: O(N·M²) instead of O(N²)             │
+│  Complexity: O(N·M²) instead of O(N²)               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -240,7 +251,7 @@ x'' = x' + MLP(LayerNorm(x'))
 ## ⚠️ Common Pitfalls
 
 | ❌ Pitfall | ✅ Solution |
-|-----------|------------|
+| --- | --- |
 | ViT needs huge data | Use pretrained or DeiT distillation |
 | Wrong image size | ViT-B/16 expects 224×224 |
 | Forgetting CLS token | Classification uses CLS, not avg |
@@ -286,7 +297,7 @@ A **learnable embedding** prepended to patch tokens:
 <summary><b>Q3: How does Swin Transformer reduce complexity?</b></summary>
 
 | Standard ViT | Swin Transformer |
-|--------------|------------------|
+| --- | --- |
 | Global attention | Window attention |
 | O(N²) | O(N) per window |
 | All patches | 7×7 windows |
@@ -299,7 +310,7 @@ A **learnable embedding** prepended to patch tokens:
 <summary><b>Q4: ViT vs CNN - when to use which?</b></summary>
 
 | Use CNN | Use ViT |
-|---------|---------|
+| --- | --- |
 | Small datasets | Large datasets |
 | Need locality | Global context matters |
 | Edge deployment | Server inference |
@@ -325,16 +336,50 @@ A **learnable embedding** prepended to patch tokens:
 
 ---
 
+<br/>
+
 <div align="center">
 
-### Next Up
-
-# [Self-Supervised Learning →](../12_Self_Supervised/)
-
-*SimCLR, DINO, MAE*
+## 📓 PRACTICE
 
 <br/>
 
-[🏠 Back to Home](../README.md)
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Tasks](../10_Vision_Tasks/README.md)** | **[🏠 HOME](../README.md)** | **[Self-Supervised ▶](../12_Self_Supervised/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

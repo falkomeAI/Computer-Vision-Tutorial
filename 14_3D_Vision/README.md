@@ -1,35 +1,43 @@
 <div align="center">
 
-# 🌐 3D Vision & Spatial Understanding
+<br/>
 
-### *Depth, Point Clouds, NeRF & 3D Reconstruction*
+<a href="../13_Video_Temporal/README.md"><img src="https://img.shields.io/badge/◀__Video-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-F87171?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../15_Generative_Vision/README.md"><img src="https://img.shields.io/badge/Generative__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🔴 Advanced | 3 hours | Geometry, Deep Learning |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🎲 3D VISION
+
+### 🌙 *Three Dimensions*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__14/20-F87171?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Video & Temporal](../13_Video_Temporal/) | [🏠 Home](../README.md) | [Generative Vision →](../15_Generative_Vision/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Concept | Description | Application |
-|:--------|:------------|:------------|
+| :--- | :--- | :--- |
 | **Depth Estimation** | Per-pixel distance | AR, robotics |
 | **Stereo Vision** | Depth from disparity | Autonomous driving |
 | **Point Cloud** | 3D point set (x,y,z) | LiDAR processing |
@@ -56,19 +64,19 @@
 │                                                     │
 │  Z = f × B / d                                      │
 │                                                     │
-│  Z: depth                                          │
-│  f: focal length (pixels)                          │
-│  B: baseline (distance between cameras)            │
-│  d: disparity (pixel difference between views)     │
+│  Z: depth                                           │
+│  f: focal length (pixels)                           │
+│  B: baseline (distance between cameras)             │
+│  d: disparity (pixel difference between views)      │
 │                                                     │
 │  TRIANGULATION                                      │
 │                                                     │
-│  d = xₗ - xᵣ  (corresponding points)              │
+│  d = xₗ - xᵣ  (corresponding points)                │
 │                                                     │
-│  Inverse depth relationship:                       │
-│  - Large disparity → close object                 │
-│  - Small disparity → far object                   │
-│  - d=0 → infinity                                 │
+│  Inverse depth relationship:                        │
+│  - Large disparity → close object                   │
+│  - Small disparity → far object                     │
+│  - d=0 → infinity                                   │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -76,24 +84,24 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  POINT CLOUD: P = {(xᵢ, yᵢ, zᵢ)}ᵢ₌₁ᴺ               │
+│  POINT CLOUD: P = {(xᵢ, yᵢ, zᵢ)}ᵢ₌₁ᴺ                │
 │                                                     │
-│  Optional attributes per point:                    │
-│  - Color (RGB)                                     │
-│  - Normal vector (nx, ny, nz)                      │
-│  - Intensity (from LiDAR)                         │
-│  - Semantic label                                  │
+│  Optional attributes per point:                     │
+│  - Color (RGB)                                      │
+│  - Normal vector (nx, ny, nz)                       │
+│  - Intensity (from LiDAR)                           │
+│  - Semantic label                                   │
 │                                                     │
-│  PROCESSING CHALLENGES:                            │
-│  - Unordered: permutation invariant needed        │
-│  - Unstructured: no grid                          │
-│  - Variable size                                   │
+│  PROCESSING CHALLENGES:                             │
+│  - Unordered: permutation invariant needed          │
+│  - Unstructured: no grid                            │
+│  - Variable size                                    │
 │                                                     │
 │  POINTNET:                                          │
-│  f(P) = g(MAX{h(xᵢ)})                              │
-│  - h: per-point MLP                               │
-│  - MAX: symmetric function (permutation invariant)│
-│  - g: output MLP                                  │
+│  f(P) = g(MAX{h(xᵢ)})                               │
+│  - h: per-point MLP                                 │
+│  - MAX: symmetric function (permutation invariant)  │
+│  - g: output MLP                                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -103,21 +111,21 @@
 ┌─────────────────────────────────────────────────────┐
 │  SCENE REPRESENTATION                               │
 │                                                     │
-│  F: (x, y, z, θ, φ) → (c, σ)                       │
+│  F: (x, y, z, θ, φ) → (c, σ)                        │
 │                                                     │
-│  Input: 3D position (x,y,z) + view direction (θ,φ)│
-│  Output: color c = (r,g,b) + density σ            │
+│  Input: 3D position (x,y,z) + view direction (θ,φ)  │
+│  Output: color c = (r,g,b) + density σ              │
 │                                                     │
 │  VOLUME RENDERING                                   │
 │                                                     │
-│  C(r) = ∫ T(t) σ(r(t)) c(r(t), d) dt              │
+│  C(r) = ∫ T(t) σ(r(t)) c(r(t), d) dt                │
 │                                                     │
-│  T(t) = exp(-∫₀ᵗ σ(r(s)) ds)  (transmittance)     │
+│  T(t) = exp(-∫₀ᵗ σ(r(s)) ds)  (transmittance)       │
 │                                                     │
-│  Discrete approximation:                           │
-│  C = Σᵢ Tᵢ (1 - exp(-σᵢδᵢ)) cᵢ                    │
-│  Tᵢ = exp(-Σⱼ₌₁ⁱ⁻¹ σⱼδⱼ)                          │
-│  δᵢ = tᵢ₊₁ - tᵢ  (distance between samples)      │
+│  Discrete approximation:                            │
+│  C = Σᵢ Tᵢ (1 - exp(-σᵢδᵢ)) cᵢ                      │
+│  Tᵢ = exp(-Σⱼ₌₁ⁱ⁻¹ σⱼδⱼ)                            │
+│  δᵢ = tᵢ₊₁ - tᵢ  (distance between samples)         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -125,26 +133,26 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  REPRESENTATION: Set of 3D Gaussians               │
+│  REPRESENTATION: Set of 3D Gaussians                │
 │                                                     │
 │  Each Gaussian:                                     │
-│  - Position μ ∈ R³                                 │
-│  - Covariance Σ (3×3, for shape/orientation)      │
-│  - Color (spherical harmonics for view-dependent) │
-│  - Opacity α                                       │
+│  - Position μ ∈ R³                                  │
+│  - Covariance Σ (3×3, for shape/orientation)        │
+│  - Color (spherical harmonics for view-dependent)   │
+│  - Opacity α                                        │
 │                                                     │
 │  GAUSSIAN FUNCTION:                                 │
 │                                                     │
-│  G(x) = exp(-½(x-μ)ᵀ Σ⁻¹ (x-μ))                   │
+│  G(x) = exp(-½(x-μ)ᵀ Σ⁻¹ (x-μ))                     │
 │                                                     │
-│  RENDERING (differentiable rasterization):         │
+│  RENDERING (differentiable rasterization):          │
 │                                                     │
-│  1. Project 3D Gaussians to 2D                    │
-│  2. Sort by depth                                 │
-│  3. Alpha-blend front-to-back:                    │
-│     C = Σᵢ cᵢ αᵢ Gᵢ(x) ∏ⱼ<ᵢ (1 - αⱼGⱼ(x))        │
+│  1. Project 3D Gaussians to 2D                      │
+│  2. Sort by depth                                   │
+│  3. Alpha-blend front-to-back:                      │
+│     C = Σᵢ cᵢ αᵢ Gᵢ(x) ∏ⱼ<ᵢ (1 - αⱼGⱼ(x))           │
 │                                                     │
-│  Advantage: Real-time rendering (100+ FPS)        │
+│  Advantage: Real-time rendering (100+ FPS)          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -154,21 +162,21 @@
 ┌─────────────────────────────────────────────────────┐
 │  L1/L2 LOSS                                         │
 │                                                     │
-│  L₁ = (1/n) Σᵢ |dᵢ - d̂ᵢ|                          │
-│  L₂ = (1/n) Σᵢ (dᵢ - d̂ᵢ)²                         │
+│  L₁ = (1/n) Σᵢ |dᵢ - d̂ᵢ|                           │
+│  L₂ = (1/n) Σᵢ (dᵢ - d̂ᵢ)²                          │
 │                                                     │
-│  SCALE-INVARIANT LOG LOSS                          │
+│  SCALE-INVARIANT LOG LOSS                           │
 │                                                     │
-│  L = (1/n) Σ(log dᵢ - log d̂ᵢ)²                    │
-│    - (1/n²) (Σ(log dᵢ - log d̂ᵢ))²                │
+│  L = (1/n) Σ(log dᵢ - log d̂ᵢ)²                     │
+│    - (1/n²) (Σ(log dᵢ - log d̂ᵢ))²                  │
 │                                                     │
-│  Handles scale ambiguity in monocular depth       │
+│  Handles scale ambiguity in monocular depth         │
 │                                                     │
 │  GRADIENT MATCHING LOSS                             │
 │                                                     │
-│  L_grad = |∇ₓd - ∇ₓd̂| + |∇ᵧd - ∇ᵧd̂|              │
+│  L_grad = |∇ₓd - ∇ₓd̂| + |∇ᵧd - ∇ᵧd̂|               │
 │                                                     │
-│  Encourages smooth depth with sharp edges         │
+│  Encourages smooth depth with sharp edges           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -182,24 +190,24 @@
 ┌─────────────────────────────────────────────────────┐
 │  SEMI-GLOBAL MATCHING                               │
 │                                                     │
-│  1. COMPUTE COST VOLUME:                           │
-│     C(x,y,d) = matching_cost(Iₗ(x,y), Iᵣ(x-d,y))  │
-│     for all disparities d ∈ [0, D_max]            │
+│  1. COMPUTE COST VOLUME:                            │
+│     C(x,y,d) = matching_cost(Iₗ(x,y), Iᵣ(x-d,y))    │
+│     for all disparities d ∈ [0, D_max]              │
 │                                                     │
-│  2. AGGREGATE ALONG PATHS (8 or 16 directions):    │
-│     Lᵣ(p,d) = C(p,d) + min(                       │
-│       Lᵣ(p-r, d),                                 │
-│       Lᵣ(p-r, d±1) + P₁,                          │
-│       min_i Lᵣ(p-r, i) + P₂                       │
-│     )                                              │
+│  2. AGGREGATE ALONG PATHS (8 or 16 directions):     │
+│     Lᵣ(p,d) = C(p,d) + min(                         │
+│       Lᵣ(p-r, d),                                   │
+│       Lᵣ(p-r, d±1) + P₁,                            │
+│       min_i Lᵣ(p-r, i) + P₂                         │
+│     )                                               │
 │                                                     │
-│  3. SUM ALL DIRECTIONS:                            │
-│     S(p,d) = Σᵣ Lᵣ(p,d)                           │
+│  3. SUM ALL DIRECTIONS:                             │
+│     S(p,d) = Σᵣ Lᵣ(p,d)                             │
 │                                                     │
-│  4. WINNER-TAKE-ALL:                               │
-│     d*(p) = argmin_d S(p,d)                       │
+│  4. WINNER-TAKE-ALL:                                │
+│     d*(p) = argmin_d S(p,d)                         │
 │                                                     │
-│  5. LEFT-RIGHT CONSISTENCY CHECK                   │
+│  5. LEFT-RIGHT CONSISTENCY CHECK                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -207,31 +215,31 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Multi-view images with camera poses        │
-│  OUTPUT: Trained MLP F_θ                           │
+│  INPUT: Multi-view images with camera poses         │
+│  OUTPUT: Trained MLP F_θ                            │
 │                                                     │
-│  FOR each iteration:                               │
+│  FOR each iteration:                                │
 │                                                     │
 │  1. SAMPLE RAY:                                     │
-│     - Pick random image, random pixel             │
-│     - Ray r(t) = o + td through pixel             │
+│     - Pick random image, random pixel               │
+│     - Ray r(t) = o + td through pixel               │
 │                                                     │
-│  2. SAMPLE POINTS ALONG RAY:                       │
-│     - Stratified: divide [near,far] into bins     │
-│     - Uniform random within each bin              │
+│  2. SAMPLE POINTS ALONG RAY:                        │
+│     - Stratified: divide [near,far] into bins       │
+│     - Uniform random within each bin                │
 │                                                     │
 │  3. QUERY NETWORK:                                  │
-│     - Positional encoding: γ(x) = [sin,cos] at   │
-│       multiple frequencies                        │
-│     - (cᵢ, σᵢ) = F_θ(γ(xᵢ), γ(d))                │
+│     - Positional encoding: γ(x) = [sin,cos] at      │
+│       multiple frequencies                          │
+│     - (cᵢ, σᵢ) = F_θ(γ(xᵢ), γ(d))                   │
 │                                                     │
 │  4. VOLUME RENDER:                                  │
-│     Ĉ = Σᵢ Tᵢ (1-exp(-σᵢδᵢ)) cᵢ                  │
+│     Ĉ = Σᵢ Tᵢ (1-exp(-σᵢδᵢ)) cᵢ                     │
 │                                                     │
 │  5. LOSS:                                           │
-│     L = ||Ĉ - C_gt||²                             │
+│     L = ||Ĉ - C_gt||²                               │
 │                                                     │
-│  HIERARCHICAL SAMPLING: Coarse + fine networks    │
+│  HIERARCHICAL SAMPLING: Coarse + fine networks      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -239,33 +247,29 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Point cloud P = {x₁, ..., xₙ}, xᵢ ∈ R³    │
-│  OUTPUT: Class label                               │
+│  INPUT: Point cloud P = {x₁, ..., xₙ}, xᵢ ∈ R³      │
+│  OUTPUT: Class label                                │
 │                                                     │
-│  1. INPUT TRANSFORM (optional T-Net):              │
-│     T = predict_transform(P)  (3×3 matrix)        │
-│     P' = P × T                                    │
+│  1. INPUT TRANSFORM (optional T-Net):               │
+│     T = predict_transform(P)  (3×3 matrix)          │
+│     P' = P × T                                      │
 │                                                     │
-│  2. PER-POINT MLP:                                 │
-│     hᵢ = MLP(xᵢ)  for each point                 │
-│     MLP: 64 → 64 → 64 → 128 → 1024               │
+│  2. PER-POINT MLP:                                  │
+│     hᵢ = MLP(xᵢ)  for each point                    │
+│     MLP: 64 → 64 → 64 → 128 → 1024                  │
 │                                                     │
-│  3. SYMMETRIC AGGREGATION:                         │
-│     g = MAX_POOL({hᵢ})  (permutation invariant)  │
+│  3. SYMMETRIC AGGREGATION:                          │
+│     g = MAX_POOL({hᵢ})  (permutation invariant)     │
 │                                                     │
-│  4. CLASSIFICATION MLP:                            │
-│     output = MLP(g)  → K classes                  │
-│     MLP: 1024 → 512 → 256 → K                    │
+│  4. CLASSIFICATION MLP:                             │
+│     output = MLP(g)  → K classes                    │
+│     MLP: 1024 → 512 → 256 → K                       │
 │                                                     │
-│  Key: MAX_POOL makes it order-invariant           │
+│  Key: MAX_POOL makes it order-invariant             │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -306,7 +310,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q3: Monocular vs stereo depth estimation?</b></summary>
 
 | Monocular | Stereo |
-|:----------|:-------|
+| :--- | :--- |
 | Single image | Two cameras |
 | Learning-based (CNN) | Geometry-based + learning |
 | Scale ambiguous | Metric depth (known baseline) |
@@ -321,7 +325,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q4: How does 3D Gaussian Splatting differ from NeRF?</b></summary>
 
 | NeRF | 3D Gaussian Splatting |
-|:-----|:---------------------|
+| :--- | :--- |
 | Implicit (MLP) | Explicit (point-based) |
 | Ray marching | Rasterization |
 | Slow render (~30s) | Real-time (100+ FPS) |
@@ -368,7 +372,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | Z = fB/d | Stereo depth |
 | C(r) = ∫ T(t)σ(t)c(t)dt | NeRF volume rendering |
 | T(t) = exp(-∫σ(s)ds) | Transmittance |
@@ -377,8 +381,50 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← Video & Temporal](../13_Video_Temporal/) | [🏠 Home](../README.md) | [Generative Vision →](../15_Generative_Vision/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Video](../13_Video_Temporal/README.md)** | **[🏠 HOME](../README.md)** | **[Generative ▶](../15_Generative_Vision/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

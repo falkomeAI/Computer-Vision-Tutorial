@@ -1,34 +1,43 @@
 <div align="center">
 
-# 📸 Computational Photography
+<br/>
 
-### *HDR, Panorama, Deblurring, Image Blending*
+<a href="../16_Vision_Language/README.md"><img src="https://img.shields.io/badge/◀__VL Models-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-FBBF24?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../18_Deployment_Systems/README.md"><img src="https://img.shields.io/badge/Deployment__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟡 Intermediate | 2.5 hours | Image Processing, Linear Algebra |
+<br/><br/>
+
+---
+
+<br/>
+
+# 📸 COMPUTATIONAL PHOTO
+
+### 🌙 *Beyond the Camera*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__17/20-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Vision-Language](../16_Vision_Language/) | [🏠 Home](../README.md) | [Deployment →](../18_Deployment_Systems/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Technique | Problem | Solution | Application |
-|:----------|:--------|:---------|:------------|
+| :--- | :--- | :--- | :--- |
 | **HDR** | Limited dynamic range | Multi-exposure fusion | Landscape, architecture |
 | **Panorama** | Limited field of view | Image stitching | 360° photos |
 | **Deblurring** | Motion/defocus blur | Deconvolution | Action photos |
@@ -53,20 +62,20 @@
 ┌─────────────────────────────────────────────────────┐
 │  CAMERA RESPONSE FUNCTION                           │
 │                                                     │
-│  Pixel value: Z = f(E × Δt)                        │
+│  Pixel value: Z = f(E × Δt)                         │
 │                                                     │
 │  Where:                                             │
-│    E = scene irradiance (what we want)             │
+│    E = scene irradiance (what we want)              │
 │    Δt = exposure time                               │
 │    f = camera response function (non-linear)        │
 │                                                     │
-│  INVERSE: E = f⁻¹(Z) / Δt                          │
+│  INVERSE: E = f⁻¹(Z) / Δt                           │
 │                                                     │
 │  DEBEVEC'S METHOD                                   │
 │                                                     │
-│  g(Z) = ln(f⁻¹(Z)) = ln(E) + ln(Δt)               │
+│  g(Z) = ln(f⁻¹(Z)) = ln(E) + ln(Δt)                 │
 │                                                     │
-│  Solve: min Σᵢⱼ[g(Zᵢⱼ) - ln(Eᵢ) - ln(Δtⱼ)]²       │
+│  Solve: min Σᵢⱼ[g(Zᵢⱼ) - ln(Eᵢ) - ln(Δtⱼ)]²         │
 │            + λ Σ g''(z)²  (smoothness)              │
 └─────────────────────────────────────────────────────┘
 ```
@@ -74,7 +83,7 @@
 ### 2. Tone Mapping Operators
 
 | Operator | Formula | Properties |
-|:---------|:--------|:-----------|
+| :--- | :--- | :--- |
 | **Gamma** | L_out = L_in^(1/γ) | Simple, global |
 | **Reinhard** | L_out = L / (1 + L) | Photographic, global |
 | **Bilateral** | Local contrast preservation | Edge-aware |
@@ -86,7 +95,7 @@
 │                                                     │
 │  L_white = max luminance to map to white            │
 │                                                     │
-│  L_out = L(1 + L/L_white²) / (1 + L)               │
+│  L_out = L(1 + L/L_white²) / (1 + L)                │
 │                                                     │
 │  LOCAL OPERATOR adds spatial adaptation             │
 └─────────────────────────────────────────────────────┘
@@ -106,9 +115,9 @@
 │                                                     │
 │  HOMOGRAPHY (planar scene or rotation only)         │
 │                                                     │
-│  [x']   [h₁ h₂ h₃] [x]                             │
-│  [y'] = [h₄ h₅ h₆] [y]                             │
-│  [1 ]   [h₇ h₈ h₉] [1]                             │
+│  [x']   [h₁ h₂ h₃] [x]                              │
+│  [y'] = [h₄ h₅ h₆] [y]                              │
+│  [1 ]   [h₇ h₈ h₉] [1]                              │
 │                                                     │
 │  8 DOF, need 4 point correspondences minimum        │
 └─────────────────────────────────────────────────────┘
@@ -121,19 +130,19 @@
 │  LAPLACIAN PYRAMID BLENDING                         │
 │                                                     │
 │  1. Build Laplacian pyramid for each image          │
-│     Lᵢ = Gᵢ - expand(Gᵢ₊₁)                         │
+│     Lᵢ = Gᵢ - expand(Gᵢ₊₁)                          │
 │                                                     │
 │  2. Build Gaussian pyramid for mask                 │
-│     Mᵢ = reduce(Mᵢ₋₁)                              │
+│     Mᵢ = reduce(Mᵢ₋₁)                               │
 │                                                     │
 │  3. Blend at each level                             │
-│     Bᵢ = Mᵢ × L1ᵢ + (1-Mᵢ) × L2ᵢ                  │
+│     Bᵢ = Mᵢ × L1ᵢ + (1-Mᵢ) × L2ᵢ                    │
 │                                                     │
 │  4. Reconstruct from blended pyramid                │
 │     Result = collapse(B)                            │
 │                                                     │
 │  POISSON BLENDING (gradient domain)                 │
-│  min ∫∫ |∇f - v|² dΩ, subject to f|∂Ω = f*|∂Ω      │
+│  min ∫∫ |∇f - v|² dΩ, subject to f|∂Ω = f*|∂Ω       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -164,7 +173,7 @@
 ### 6. Super-Resolution
 
 | Type | Method | Key Idea |
-|:-----|:-------|:---------|
+| :--- | :--- | :--- |
 | **Single-image** | SRCNN, ESPCN | Learn upscaling CNN |
 | **Multi-image** | Burst SR | Combine multiple frames |
 | **GAN-based** | SRGAN, Real-ESRGAN | Perceptual loss |
@@ -174,10 +183,10 @@
 ┌─────────────────────────────────────────────────────┐
 │  PERCEPTUAL LOSS (SRGAN)                            │
 │                                                     │
-│  L = L_content + λ_adv L_adversarial               │
+│  L = L_content + λ_adv L_adversarial                │
 │                                                     │
-│  L_content = ||VGG(I_SR) - VGG(I_HR)||²            │
-│  L_adversarial = -log(D(I_SR))                     │
+│  L_content = ||VGG(I_SR) - VGG(I_HR)||²             │
+│  L_adversarial = -log(D(I_SR))                      │
 │                                                     │
 │  Encourages realistic textures, not just PSNR       │
 └─────────────────────────────────────────────────────┘
@@ -191,7 +200,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Images {Zⱼ} with exposure times {Δtⱼ}      │
+│  INPUT: Images {Zⱼ} with exposure times {Δtⱼ}       │
 │  OUTPUT: HDR radiance map E                         │
 │                                                     │
 │  1. Sample pixels across exposure range             │
@@ -199,12 +208,12 @@
 │     - Overconstrained linear system                 │
 │     - Add smoothness constraint                     │
 │  3. Compute radiance:                               │
-│     ln(Eᵢ) = (Σⱼ w(Zᵢⱼ)[g(Zᵢⱼ) - ln(Δtⱼ)]) /      │
-│              (Σⱼ w(Zᵢⱼ))                           │
+│     ln(Eᵢ) = (Σⱼ w(Zᵢⱼ)[g(Zᵢⱼ) - ln(Δtⱼ)]) /        │
+│              (Σⱼ w(Zᵢⱼ))                            │
 │                                                     │
 │  Weight function w(Z):                              │
-│  - Low weight at 0 and 255 (clipped)               │
-│  - High weight in middle (well-exposed)            │
+│  - Low weight at 0 and 255 (clipped)                │
+│  - High weight in middle (well-exposed)             │
 │                                                     │
 │  4. Apply tone mapping for display                  │
 └─────────────────────────────────────────────────────┘
@@ -214,12 +223,12 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Images I₁, I₂, ...                         │
+│  INPUT: Images I₁, I₂, ...                          │
 │  OUTPUT: Panorama                                   │
 │                                                     │
 │  1. Detect features (SIFT/ORB) in all images        │
 │  2. Match features between adjacent pairs           │
-│  3. FOR each pair (Iₐ, Iᵦ):                        │
+│  3. FOR each pair (Iₐ, Iᵦ):                         │
 │     4. RANSAC to find homography H:                 │
 │        a. Sample 4 random matches                   │
 │        b. Compute H from 4 points                   │
@@ -240,15 +249,15 @@
 │  INPUT: Source region S, target image T, mask M     │
 │  OUTPUT: Seamlessly blended result                  │
 │                                                     │
-│  1. Compute gradient field of source: v = ∇S       │
+│  1. Compute gradient field of source: v = ∇S        │
 │  2. Set up Poisson equation:                        │
-│     ∇²f = div(v) inside region                     │
+│     ∇²f = div(v) inside region                      │
 │     f = T on boundary                               │
 │  3. Discretize as linear system:                    │
 │     For each pixel p inside M:                      │
-│     4f(p) - Σ_q∈N(p) f(q) = Σ_q∈N(p) vₚ_q          │
+│     4f(p) - Σ_q∈N(p) f(q) = Σ_q∈N(p) vₚ_q           │
 │  4. Solve sparse linear system (conjugate gradient) │
-│  5. Composite: result = blend(T, f, M)             │
+│  5. Composite: result = blend(T, f, M)              │
 │                                                     │
 │  Result: Gradients from source, colors from target  │
 └─────────────────────────────────────────────────────┘
@@ -286,7 +295,7 @@
 **Answer:**
 
 | Aspect | Global | Local |
-|:-------|:-------|:------|
+| :--- | :--- | :--- |
 | Operation | Same function for all pixels | Spatially varying |
 | Detail | May lose local contrast | Preserves local contrast |
 | Speed | Fast | Slower |
@@ -360,7 +369,7 @@
 **Answer:**
 
 | Aspect | Interpolation | Super-Resolution |
-|:-------|:--------------|:-----------------|
+| :--- | :--- | :--- |
 | Method | Mathematical (bilinear, bicubic) | Learning-based |
 | Detail | No new information | Hallucinates details |
 | Quality | Blurry at high upscale | Sharper, more realistic |
@@ -392,7 +401,7 @@
 **Answer:**
 
 | Aspect | HDR + Tone Mapping | Exposure Fusion |
-|:-------|:-------------------|:----------------|
+| :--- | :--- | :--- |
 | Creates HDR | Yes | No |
 | Needs response curve | Yes | No |
 | Quality measures | Exposure, contrast, saturation | Same |
@@ -408,7 +417,7 @@
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | g(Z) = ln(E) + ln(Δt) | Camera response |
 | L_out = L/(1+L) | Reinhard tone mapping |
 | H: x' = Hx | Homography transformation |
@@ -417,14 +426,50 @@
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Vision-Language](../16_Vision_Language/) | [🏠 Home](../README.md) | [Deployment →](../18_Deployment_Systems/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ VL Models](../16_Vision_Language/README.md)** | **[🏠 HOME](../README.md)** | **[Deployment ▶](../18_Deployment_Systems/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

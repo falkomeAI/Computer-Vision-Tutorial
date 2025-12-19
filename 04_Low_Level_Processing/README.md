@@ -1,35 +1,43 @@
 <div align="center">
 
-# 🖼️ Low-Level Image Processing
+<br/>
 
-### *Filtering, Enhancement & Restoration*
+<a href="../03_Image_Formation/README.md"><img src="https://img.shields.io/badge/◀__Formation-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-34D399?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../05_Features_Detection/README.md"><img src="https://img.shields.io/badge/Features__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟢 Beginner | 2 hours | Signal Processing basics |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🎨 LOW-LEVEL PROCESSING
+
+### 🌙 *Pixels & Filters*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__04/20-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Image Formation](../03_Image_Formation/) | [🏠 Home](../README.md) | [Feature Detection →](../05_Features_Detection/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Concept | Description | Use Case |
-|:--------|:------------|:---------|
+| :--- | :--- | :--- |
 | **Convolution** | Sliding kernel operation | Filtering, blur, edge |
 | **Histogram** | Intensity distribution | Contrast, exposure analysis |
 | **Noise** | Unwanted signal variations | Denoising required |
@@ -54,16 +62,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  DISCRETE CONVOLUTION                               │
 │                                                     │
-│  (f * k)[i,j] = ΣΣ f[i-m, j-n] · k[m,n]           │
+│  (f * k)[i,j] = ΣΣ f[i-m, j-n] · k[m,n]             │
 │                 m  n                                │
 │                                                     │
 │  Properties:                                        │
-│  - Commutative: f * k = k * f                      │
-│  - Associative: (f * k₁) * k₂ = f * (k₁ * k₂)     │
-│  - Distributive: f * (k₁ + k₂) = f*k₁ + f*k₂      │
+│  - Commutative: f * k = k * f                       │
+│  - Associative: (f * k₁) * k₂ = f * (k₁ * k₂)       │
+│  - Distributive: f * (k₁ + k₂) = f*k₁ + f*k₂        │
 │                                                     │
 │  Boundary handling:                                 │
-│  - Zero padding, replicate, reflect, wrap          │
+│  - Zero padding, replicate, reflect, wrap           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -71,23 +79,23 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  BOX BLUR (3×3)         GAUSSIAN (3×3, σ≈0.85)     │
+│  BOX BLUR (3×3)         GAUSSIAN (3×3, σ≈0.85)      │
 │                                                     │
-│  1/9 [1 1 1]            1/16 [1 2 1]               │
-│      [1 1 1]                 [2 4 2]               │
-│      [1 1 1]                 [1 2 1]               │
+│  1/9 [1 1 1]            1/16 [1 2 1]                │
+│      [1 1 1]                 [2 4 2]                │
+│      [1 1 1]                 [1 2 1]                │
 │                                                     │
-│  SOBEL Gx               SOBEL Gy                   │
+│  SOBEL Gx               SOBEL Gy                    │
 │                                                     │
-│  [-1 0 1]               [-1 -2 -1]                 │
-│  [-2 0 2]               [ 0  0  0]                 │
-│  [-1 0 1]               [ 1  2  1]                 │
+│  [-1 0 1]               [-1 -2 -1]                  │
+│  [-2 0 2]               [ 0  0  0]                  │
+│  [-1 0 1]               [ 1  2  1]                  │
 │                                                     │
-│  LAPLACIAN              SHARPEN                    │
+│  LAPLACIAN              SHARPEN                     │
 │                                                     │
-│  [0  1  0]              [ 0 -1  0]                 │
-│  [1 -4  1]              [-1  5 -1]                 │
-│  [0  1  0]              [ 0 -1  0]                 │
+│  [0  1  0]              [ 0 -1  0]                  │
+│  [1 -4  1]              [-1  5 -1]                  │
+│  [0  1  0]              [ 0 -1  0]                  │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -96,18 +104,18 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │  HISTOGRAM h(r):                                    │
-│  h(rₖ) = nₖ  (number of pixels with value rₖ)      │
+│  h(rₖ) = nₖ  (number of pixels with value rₖ)       │
 │                                                     │
 │  HISTOGRAM EQUALIZATION                             │
-│  s = T(r) = (L-1) · Σⱼ₌₀ʳ p(rⱼ)                    │
+│  s = T(r) = (L-1) · Σⱼ₌₀ʳ p(rⱼ)                     │
 │                                                     │
-│  where p(r) = h(r) / (M×N)  (normalized histogram) │
+│  where p(r) = h(r) / (M×N)  (normalized histogram)  │
 │                                                     │
-│  CLAHE (Contrast Limited AHE):                     │
-│  1. Divide image into tiles                        │
-│  2. Equalize each tile separately                  │
-│  3. Clip histogram at limit, redistribute          │
-│  4. Bilinear interpolate at tile boundaries        │
+│  CLAHE (Contrast Limited AHE):                      │
+│  1. Divide image into tiles                         │
+│  2. Equalize each tile separately                   │
+│  3. Clip histogram at limit, redistribute           │
+│  4. Bilinear interpolate at tile boundaries         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -116,16 +124,16 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │  GAUSSIAN NOISE                                     │
-│  p(z) = (1/√2πσ) exp(-(z-μ)²/2σ²)                 │
+│  p(z) = (1/√2πσ) exp(-(z-μ)²/2σ²)                   │
 │                                                     │
-│  SALT & PEPPER NOISE                               │
-│  p(z) = Pₐ if z=a (pepper), Pᵦ if z=b (salt)      │
+│  SALT & PEPPER NOISE                                │
+│  p(z) = Pₐ if z=a (pepper), Pᵦ if z=b (salt)        │
 │                                                     │
-│  POISSON (SHOT) NOISE                              │
-│  p(k) = λᵏe⁻λ / k!                                 │
-│  Signal-dependent (common in low light)            │
+│  POISSON (SHOT) NOISE                               │
+│  p(k) = λᵏe⁻λ / k!                                  │
+│  Signal-dependent (common in low light)             │
 │                                                     │
-│  SNR = 10 log₁₀(signal_power / noise_power) dB    │
+│  SNR = 10 log₁₀(signal_power / noise_power) dB      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -135,18 +143,18 @@
 ┌─────────────────────────────────────────────────────┐
 │  GRADIENT MAGNITUDE & DIRECTION                     │
 │                                                     │
-│  G = √(Gx² + Gy²)                                  │
-│  θ = atan2(Gy, Gx)                                 │
+│  G = √(Gx² + Gy²)                                   │
+│  θ = atan2(Gy, Gx)                                  │
 │                                                     │
-│  CANNY EDGE DETECTION:                             │
-│  1. Gaussian smoothing                             │
-│  2. Compute gradient (Sobel)                       │
-│  3. Non-maximum suppression                        │
-│  4. Double thresholding + hysteresis               │
+│  CANNY EDGE DETECTION:                              │
+│  1. Gaussian smoothing                              │
+│  2. Compute gradient (Sobel)                        │
+│  3. Non-maximum suppression                         │
+│  4. Double thresholding + hysteresis                │
 │                                                     │
-│  LAPLACIAN (2nd derivative):                       │
-│  ∇²f = ∂²f/∂x² + ∂²f/∂y²                          │
-│  Zero-crossings indicate edges                     │
+│  LAPLACIAN (2nd derivative):                        │
+│  ∇²f = ∂²f/∂x² + ∂²f/∂y²                            │
+│  Zero-crossings indicate edges                      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -154,20 +162,20 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  DILATION:  (A ⊕ B) = {z | (B̂)ᵤ ∩ A ≠ ∅}          │
-│  Expands foreground                                │
+│  DILATION:  (A ⊕ B) = {z | (B̂)ᵤ ∩ A ≠ ∅}           │
+│  Expands foreground                                 │
 │                                                     │
-│  EROSION:   (A ⊖ B) = {z | (B)ᵤ ⊆ A}               │
-│  Shrinks foreground                                │
+│  EROSION:   (A ⊖ B) = {z | (B)ᵤ ⊆ A}                │
+│  Shrinks foreground                                 │
 │                                                     │
-│  OPENING:   A ∘ B = (A ⊖ B) ⊕ B                    │
-│  Removes small bright regions                      │
+│  OPENING:   A ∘ B = (A ⊖ B) ⊕ B                     │
+│  Removes small bright regions                       │
 │                                                     │
-│  CLOSING:   A • B = (A ⊕ B) ⊖ B                    │
-│  Fills small dark regions                          │
+│  CLOSING:   A • B = (A ⊕ B) ⊖ B                     │
+│  Fills small dark regions                           │
 │                                                     │
-│  GRADIENT:  (A ⊕ B) - (A ⊖ B)                      │
-│  Edge detection for binary images                  │
+│  GRADIENT:  (A ⊕ B) - (A ⊖ B)                       │
+│  Edge detection for binary images                   │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -179,19 +187,19 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image I, sigma σ                           │
+│  INPUT: Image I, sigma σ                            │
 │  OUTPUT: Blurred image                              │
 │                                                     │
-│  1. Compute kernel size: k = ceil(6σ) | 1         │
-│  2. Create 2D Gaussian kernel:                     │
-│     G[x,y] = exp(-(x²+y²)/(2σ²)) / (2πσ²)         │
-│  3. Normalize kernel: K = G / sum(G)               │
-│  4. Convolve: output = I * K                       │
+│  1. Compute kernel size: k = ceil(6σ) | 1           │
+│  2. Create 2D Gaussian kernel:                      │
+│     G[x,y] = exp(-(x²+y²)/(2σ²)) / (2πσ²)           │
+│  3. Normalize kernel: K = G / sum(G)                │
+│  4. Convolve: output = I * K                        │
 │                                                     │
-│  SEPARABLE (faster):                               │
-│  1. Create 1D kernel: g[x] = exp(-x²/(2σ²))       │
-│  2. Convolve rows: temp = convolve_1d(I, g)       │
-│  3. Convolve cols: output = convolve_1d(temp.T, g)│
+│  SEPARABLE (faster):                                │
+│  1. Create 1D kernel: g[x] = exp(-x²/(2σ²))         │
+│  2. Convolve rows: temp = convolve_1d(I, g)         │
+│  3. Convolve cols: output = convolve_1d(temp.T, g)  │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -199,21 +207,21 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image I, spatial σₛ, range σᵣ              │
-│  OUTPUT: Edge-preserving smoothed image            │
+│  INPUT: Image I, spatial σₛ, range σᵣ               │
+│  OUTPUT: Edge-preserving smoothed image             │
 │                                                     │
-│  FOR each pixel p:                                 │
-│    Wₚ = 0                                          │
-│    Iₚ' = 0                                         │
-│    FOR each neighbor q in window:                  │
-│      spatial = exp(-||p-q||² / (2σₛ²))            │
-│      range = exp(-(I[p]-I[q])² / (2σᵣ²))          │
-│      w = spatial × range                           │
-│      Wₚ += w                                       │
-│      Iₚ' += w × I[q]                               │
-│    output[p] = Iₚ' / Wₚ                            │
+│  FOR each pixel p:                                  │
+│    Wₚ = 0                                           │
+│    Iₚ' = 0                                          │
+│    FOR each neighbor q in window:                   │
+│      spatial = exp(-||p-q||² / (2σₛ²))              │
+│      range = exp(-(I[p]-I[q])² / (2σᵣ²))            │
+│      w = spatial × range                            │
+│      Wₚ += w                                        │
+│      Iₚ' += w × I[q]                                │
+│    output[p] = Iₚ' / Wₚ                             │
 │                                                     │
-│  Key: Range term preserves edges                   │
+│  Key: Range term preserves edges                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -221,35 +229,31 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image I, σ, low_thresh, high_thresh        │
-│  OUTPUT: Edge map (binary)                         │
+│  INPUT: Image I, σ, low_thresh, high_thresh         │
+│  OUTPUT: Edge map (binary)                          │
 │                                                     │
-│  1. SMOOTH: G = GaussianBlur(I, σ)                │
+│  1. SMOOTH: G = GaussianBlur(I, σ)                  │
 │                                                     │
 │  2. GRADIENT:                                       │
-│     Gx = Sobel_x(G)                               │
-│     Gy = Sobel_y(G)                               │
-│     mag = √(Gx² + Gy²)                            │
-│     dir = atan2(Gy, Gx)                           │
+│     Gx = Sobel_x(G)                                 │
+│     Gy = Sobel_y(G)                                 │
+│     mag = √(Gx² + Gy²)                              │
+│     dir = atan2(Gy, Gx)                             │
 │                                                     │
-│  3. NON-MAX SUPPRESSION:                           │
-│     Thin edges by keeping only local maxima       │
-│     along gradient direction                       │
+│  3. NON-MAX SUPPRESSION:                            │
+│     Thin edges by keeping only local maxima         │
+│     along gradient direction                        │
 │                                                     │
-│  4. DOUBLE THRESHOLD:                              │
-│     strong = mag > high_thresh                    │
-│     weak = low_thresh < mag < high_thresh         │
+│  4. DOUBLE THRESHOLD:                               │
+│     strong = mag > high_thresh                      │
+│     weak = low_thresh < mag < high_thresh           │
 │                                                     │
-│  5. HYSTERESIS:                                    │
-│     Keep weak edges connected to strong edges     │
+│  5. HYSTERESIS:                                     │
+│     Keep weak edges connected to strong edges       │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -352,7 +356,7 @@ G(x,y) = G(x) × G(y)
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | (f * k)[i,j] = ΣΣ f[i-m,j-n]·k[m,n] | 2D Convolution |
 | G = √(Gx² + Gy²) | Gradient magnitude |
 | s = (L-1)·Σp(rⱼ) | Histogram equalization |
@@ -361,8 +365,50 @@ G(x,y) = G(x) × G(y)
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← Image Formation](../03_Image_Formation/) | [🏠 Home](../README.md) | [Feature Detection →](../05_Features_Detection/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Formation](../03_Image_Formation/README.md)** | **[🏠 HOME](../README.md)** | **[Features ▶](../05_Features_Detection/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

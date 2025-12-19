@@ -1,35 +1,43 @@
 <div align="center">
 
-# 🎯 Feature Detection & Description
+<br/>
 
-### *SIFT, ORB, HOG & Feature Matching*
+<a href="../04_Low_Level_Processing/README.md"><img src="https://img.shields.io/badge/◀__Processing-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-FBBF24?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../06_Geometry_MultiView/README.md"><img src="https://img.shields.io/badge/Geometry__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟡 Intermediate | 2 hours | Image Processing, Linear Algebra |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🎯 FEATURE DETECTION
+
+### 🌙 *Finding What Matters*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__05/20-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Low-Level Processing](../04_Low_Level_Processing/) | [🏠 Home](../README.md) | [Geometry & Multi-View →](../06_Geometry_MultiView/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Practice](#-practice)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Concept | Description | Use Case |
-|:--------|:------------|:---------|
+| :--- | :--- | :--- |
 | **Corner** | Point with strong gradients in 2 directions | Tracking, matching |
 | **Blob** | Region different from surroundings | Object detection |
 | **Keypoint** | Interesting point with location, scale, orientation | Feature matching |
@@ -52,23 +60,23 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  STRUCTURE TENSOR (Second Moment Matrix)           │
+│  STRUCTURE TENSOR (Second Moment Matrix)            │
 │                                                     │
 │       ┌                    ┐                        │
-│  M =  │  Σ Ix²    Σ IxIy  │  weighted by Gaussian  │
-│       │  Σ IxIy   Σ Iy²   │                        │
+│  M =  │  Σ Ix²    Σ IxIy  │  weighted by Gaussian   │
+│       │  Σ IxIy   Σ Iy²   │                         │
 │       └                    ┘                        │
 │                                                     │
 │  CORNER RESPONSE                                    │
 │                                                     │
-│  R = det(M) - k·trace(M)²                          │
-│  R = λ₁λ₂ - k(λ₁ + λ₂)²                            │
+│  R = det(M) - k·trace(M)²                           │
+│  R = λ₁λ₂ - k(λ₁ + λ₂)²                             │
 │                                                     │
-│  k ≈ 0.04 - 0.06 (empirical)                       │
+│  k ≈ 0.04 - 0.06 (empirical)                        │
 │                                                     │
-│  R > threshold → CORNER                            │
-│  R < 0 → EDGE                                      │
-│  |R| small → FLAT                                  │
+│  R > threshold → CORNER                             │
+│  R < 0 → EDGE                                       │
+│  |R| small → FLAT                                   │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -78,16 +86,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  LAPLACIAN OF GAUSSIAN (LoG)                        │
 │                                                     │
-│  LoG(x,y,σ) = ∂²G/∂x² + ∂²G/∂y²                   │
+│  LoG(x,y,σ) = ∂²G/∂x² + ∂²G/∂y²                     │
 │                                                     │
-│  Scale-normalized: σ² · LoG                        │
+│  Scale-normalized: σ² · LoG                         │
 │                                                     │
-│  DIFFERENCE OF GAUSSIAN (DoG) - Approximation      │
+│  DIFFERENCE OF GAUSSIAN (DoG) - Approximation       │
 │                                                     │
-│  DoG ≈ (k-1)σ² ∇²G                                 │
-│  DoG(x,y,σ) = G(x,y,kσ) - G(x,y,σ)                │
+│  DoG ≈ (k-1)σ² ∇²G                                  │
+│  DoG(x,y,σ) = G(x,y,kσ) - G(x,y,σ)                  │
 │                                                     │
-│  Used in SIFT: k = √2                              │
+│  Used in SIFT: k = √2                               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -97,19 +105,19 @@
 ┌─────────────────────────────────────────────────────┐
 │  SIFT DESCRIPTOR (128-D)                            │
 │                                                     │
-│  1. Take 16×16 patch around keypoint               │
-│  2. Divide into 4×4 grid of cells                  │
-│  3. Compute 8-bin gradient histogram per cell      │
-│  4. Concatenate: 4×4×8 = 128 dimensions           │
-│  5. Normalize to unit length                       │
+│  1. Take 16×16 patch around keypoint                │
+│  2. Divide into 4×4 grid of cells                   │
+│  3. Compute 8-bin gradient histogram per cell       │
+│  4. Concatenate: 4×4×8 = 128 dimensions             │
+│  5. Normalize to unit length                        │
 │                                                     │
-│  Gradient magnitude: m = √(Lx² + Ly²)              │
-│  Gradient orientation: θ = atan2(Ly, Lx)           │
+│  Gradient magnitude: m = √(Lx² + Ly²)               │
+│  Gradient orientation: θ = atan2(Ly, Lx)            │
 │                                                     │
 │  Properties:                                        │
-│  - Scale invariant (normalized to keypoint scale)  │
-│  - Rotation invariant (aligned to dominant orient) │
-│  - Illumination robust (normalized descriptor)     │
+│  - Scale invariant (normalized to keypoint scale)   │
+│  - Rotation invariant (aligned to dominant orient)  │
+│  - Illumination robust (normalized descriptor)      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -119,22 +127,22 @@
 ┌─────────────────────────────────────────────────────┐
 │  FAST Keypoint Detection                            │
 │                                                     │
-│  - Check 16 pixels on circle of radius 3           │
-│  - If N contiguous pixels brighter/darker than     │
-│    center by threshold → corner                    │
-│  - Very fast: uses decision tree                   │
+│  - Check 16 pixels on circle of radius 3            │
+│  - If N contiguous pixels brighter/darker than      │
+│    center by threshold → corner                     │
+│  - Very fast: uses decision tree                    │
 │                                                     │
 │  BRIEF Descriptor (Binary)                          │
 │                                                     │
-│  - 256 pairs of pixel locations                    │
-│  - Compare intensities: τ(p,q) = 1 if I(p) < I(q) │
-│  - Result: 256-bit binary string                   │
+│  - 256 pairs of pixel locations                     │
+│  - Compare intensities: τ(p,q) = 1 if I(p) < I(q)   │
+│  - Result: 256-bit binary string                    │
 │                                                     │
 │  ORB adds:                                          │
-│  - Orientation from intensity centroid             │
-│  - Steered BRIEF for rotation invariance           │
+│  - Orientation from intensity centroid              │
+│  - Steered BRIEF for rotation invariance            │
 │                                                     │
-│  Matching: Hamming distance (XOR + popcount)       │
+│  Matching: Hamming distance (XOR + popcount)        │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -144,19 +152,19 @@
 ┌─────────────────────────────────────────────────────┐
 │  HOG FEATURE COMPUTATION                            │
 │                                                     │
-│  1. Divide image into cells (8×8 pixels)           │
-│  2. Compute gradient magnitude & orientation       │
-│  3. Create 9-bin histogram per cell                │
-│  4. Group cells into blocks (2×2 cells)            │
-│  5. L2-normalize each block                        │
+│  1. Divide image into cells (8×8 pixels)            │
+│  2. Compute gradient magnitude & orientation        │
+│  3. Create 9-bin histogram per cell                 │
+│  4. Group cells into blocks (2×2 cells)             │
+│  5. L2-normalize each block                         │
 │                                                     │
-│  For 64×128 detection window:                      │
-│  - 8×16 cells                                      │
-│  - 7×15 blocks (overlapping)                       │
-│  - 7×15×4×9 = 3780 dimensions                      │
+│  For 64×128 detection window:                       │
+│  - 8×16 cells                                       │
+│  - 7×15 blocks (overlapping)                        │
+│  - 7×15×4×9 = 3780 dimensions                       │
 │                                                     │
 │  Bin interpolation:                                 │
-│  - Trilinear: spatial (x,y) + orientation (θ)     │
+│  - Trilinear: spatial (x,y) + orientation (θ)       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -171,15 +179,15 @@
 │  INPUT: Image I, k, threshold                       │
 │  OUTPUT: Corner locations                           │
 │                                                     │
-│  1. Compute gradients: Ix = ∂I/∂x, Iy = ∂I/∂y     │
-│  2. Compute products: Ix², Iy², IxIy               │
-│  3. Apply Gaussian window w to each product        │
-│  4. For each pixel (x,y):                          │
-│     a. M = [Σw·Ix²  Σw·IxIy]                       │
-│            [Σw·IxIy Σw·Iy² ]                       │
-│     b. R = det(M) - k·trace(M)²                    │
-│  5. Non-maximum suppression on R                   │
-│  6. Return pixels where R > threshold              │
+│  1. Compute gradients: Ix = ∂I/∂x, Iy = ∂I/∂y       │
+│  2. Compute products: Ix², Iy², IxIy                │
+│  3. Apply Gaussian window w to each product         │
+│  4. For each pixel (x,y):                           │
+│     a. M = [Σw·Ix²  Σw·IxIy]                        │
+│            [Σw·IxIy Σw·Iy² ]                        │
+│     b. R = det(M) - k·trace(M)²                     │
+│  5. Non-maximum suppression on R                    │
+│  6. Return pixels where R > threshold               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -188,26 +196,26 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │  INPUT: Image I                                     │
-│  OUTPUT: Keypoints with (x, y, scale, orientation) │
+│  OUTPUT: Keypoints with (x, y, scale, orientation)  │
 │                                                     │
-│  1. BUILD SCALE SPACE:                             │
-│     - Multiple octaves (each half resolution)      │
-│     - 5 scales per octave (σ, kσ, k²σ, ...)       │
+│  1. BUILD SCALE SPACE:                              │
+│     - Multiple octaves (each half resolution)       │
+│     - 5 scales per octave (σ, kσ, k²σ, ...)         │
 │                                                     │
 │  2. COMPUTE DoG:                                    │
-│     - DoG = G(kσ) - G(σ) between adjacent scales  │
+│     - DoG = G(kσ) - G(σ) between adjacent scales    │
 │                                                     │
 │  3. FIND EXTREMA:                                   │
-│     - Compare each pixel to 26 neighbors           │
-│       (8 spatial + 9 above + 9 below)              │
+│     - Compare each pixel to 26 neighbors            │
+│       (8 spatial + 9 above + 9 below)               │
 │                                                     │
-│  4. REFINE LOCATION:                               │
-│     - Sub-pixel via Taylor expansion               │
-│     - Reject low contrast & edge responses         │
+│  4. REFINE LOCATION:                                │
+│     - Sub-pixel via Taylor expansion                │
+│     - Reject low contrast & edge responses          │
 │                                                     │
 │  5. ASSIGN ORIENTATION:                             │
-│     - 36-bin histogram in local region             │
-│     - Dominant peak(s) → keypoint orientation(s)   │
+│     - 36-bin histogram in local region              │
+│     - Dominant peak(s) → keypoint orientation(s)    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -218,19 +226,19 @@
 │  INPUT: Descriptors D1, D2                          │
 │  OUTPUT: Matched pairs                              │
 │                                                     │
-│  FOR each descriptor d1 in D1:                     │
-│    1. Compute distance to all d2 in D2             │
-│    2. Find nearest (dist1) and 2nd nearest (dist2) │
-│    3. IF dist1/dist2 < ratio (0.75):              │
-│         Accept match (d1, nearest d2)              │
+│  FOR each descriptor d1 in D1:                      │
+│    1. Compute distance to all d2 in D2              │
+│    2. Find nearest (dist1) and 2nd nearest (dist2)  │
+│    3. IF dist1/dist2 < ratio (0.75):                │
+│         Accept match (d1, nearest d2)               │
 │       ELSE:                                         │
-│         Reject as ambiguous                        │
+│         Reject as ambiguous                         │
 │                                                     │
-│  For binary descriptors (ORB):                     │
-│    - Distance = Hamming = popcount(d1 XOR d2)      │
+│  For binary descriptors (ORB):                      │
+│    - Distance = Hamming = popcount(d1 XOR d2)       │
 │                                                     │
-│  For float descriptors (SIFT):                     │
-│    - Distance = L2 = ||d1 - d2||                   │
+│  For float descriptors (SIFT):                      │
+│    - Distance = L2 = ||d1 - d2||                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -238,32 +246,28 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Matched points, threshold, iterations      │
-│  OUTPUT: Homography H, inlier mask                 │
+│  INPUT: Matched points, threshold, iterations       │
+│  OUTPUT: Homography H, inlier mask                  │
 │                                                     │
 │  best_H = None                                      │
 │  best_inliers = 0                                   │
 │                                                     │
-│  FOR i = 1 to iterations:                          │
-│    1. Random sample 4 point pairs                  │
-│    2. Compute H from 4 correspondences (DLT)       │
-│    3. FOR each match:                              │
-│         error = ||p2 - H·p1||                      │
-│         IF error < threshold: count as inlier     │
-│    4. IF inliers > best_inliers:                   │
+│  FOR i = 1 to iterations:                           │
+│    1. Random sample 4 point pairs                   │
+│    2. Compute H from 4 correspondences (DLT)        │
+│    3. FOR each match:                               │
+│         error = ||p2 - H·p1||                       │
+│         IF error < threshold: count as inlier       │
+│    4. IF inliers > best_inliers:                    │
 │         best_H = H                                  │
-│         best_inliers = inliers                     │
+│         best_inliers = inliers                      │
 │                                                     │
-│  Refine best_H using all inliers                   │
-│  RETURN best_H, inlier_mask                        │
+│  Refine best_H using all inliers                    │
+│  RETURN best_H, inlier_mask                         │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -273,7 +277,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 <summary><b>Q1: SIFT vs ORB - when to use which?</b></summary>
 
 | SIFT | ORB |
-|:-----|:----|
+| :--- | :--- |
 | 128D float descriptor | 256-bit binary |
 | Scale + rotation invariant | Rotation invariant only |
 | Slower (~10 ms/image) | ~100x faster (~0.1 ms) |
@@ -376,7 +380,7 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | R = det(M) - k·trace(M)² | Harris corner response |
 | DoG ≈ G(kσ) - G(σ) | Difference of Gaussian |
 | m = √(Ix² + Iy²) | Gradient magnitude |
@@ -385,8 +389,50 @@ See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tut
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← Low-Level Processing](../04_Low_Level_Processing/) | [🏠 Home](../README.md) | [Geometry & Multi-View →](../06_Geometry_MultiView/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Processing](../04_Low_Level_Processing/README.md)** | **[🏠 HOME](../README.md)** | **[Geometry ▶](../06_Geometry_MultiView/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

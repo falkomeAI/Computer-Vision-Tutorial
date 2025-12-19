@@ -1,26 +1,48 @@
 <div align="center">
 
-# 👁️ Computer Vision Mastery
+<br/>
 
-### 🎯 From Pixels to Intelligence
+<!-- ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                              COMPUTER VISION COMPLETE
+    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ -->
+
+<img src="svg_figs/cv_overview.svg" alt="Computer Vision Complete" width="100%"/>
+
+<br/>
+<br/>
+
+# 🌙 COMPUTER VISION COMPLETE
 
 <br/>
 
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=32&duration=3000&pause=1000&color=60A5FA&background=0F172A00&center=true&vCenter=true&width=700&lines=From+Pixels+to+Intelligence;Master+Every+CV+Concept;200%2B+Topics+%7C+20+Modules;Theory+%2B+Math+%2B+Code" alt="Typing SVG" />
+
+<br/>
+<br/>
+
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                   STATS CARDS
+     ████████████████████████████████████████████████████████████████████████████ -->
+
 <p>
-<img src="https://img.shields.io/badge/Modules-20-blue?style=for-the-badge" alt="Modules"/>
-<img src="https://img.shields.io/badge/Diagrams-46-green?style=for-the-badge" alt="Diagrams"/>
-<img src="https://img.shields.io/badge/Code-Python-yellow?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-<img src="https://img.shields.io/badge/Framework-PyTorch-red?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch"/>
+<img src="https://img.shields.io/badge/📚_MODULES-20-60A5FA?style=for-the-badge&labelColor=0f172a" alt="Modules"/>
+<img src="https://img.shields.io/badge/📖_TOPICS-200+-34D399?style=for-the-badge&labelColor=0f172a" alt="Topics"/>
+<img src="https://img.shields.io/badge/💻_NOTEBOOKS-20-FBBF24?style=for-the-badge&labelColor=0f172a" alt="Notebooks"/>
+<img src="https://img.shields.io/badge/🎨_VISUALS-50+-A78BFA?style=for-the-badge&labelColor=0f172a" alt="Visuals"/>
 </p>
 
 <br/>
 
-**The Complete Guide to Computer Vision**  
-*Math • Classical CV • Deep Learning • Transformers • 3D Vision • GANs*
+<!-- Tech Stack -->
+<p>
+<img src="https://img.shields.io/badge/Python-0f172a?style=for-the-badge&logo=python&logoColor=60A5FA" alt="Python"/>
+<img src="https://img.shields.io/badge/PyTorch-0f172a?style=for-the-badge&logo=pytorch&logoColor=F87171" alt="PyTorch"/>
+<img src="https://img.shields.io/badge/OpenCV-0f172a?style=for-the-badge&logo=opencv&logoColor=34D399" alt="OpenCV"/>
+<img src="https://img.shields.io/badge/NumPy-0f172a?style=for-the-badge&logo=numpy&logoColor=60A5FA" alt="NumPy"/>
+<img src="https://img.shields.io/badge/Jupyter-0f172a?style=for-the-badge&logo=jupyter&logoColor=FBBF24" alt="Jupyter"/>
+</p>
 
 <br/>
-
-[🚀 Get Started](#-quick-start) · [📚 Modules](#-modules) · [🗺️ Roadmap](#%EF%B8%8F-learning-roadmap)
 
 ---
 
@@ -28,26 +50,222 @@
 
 <br/>
 
-## ✨ What Makes This Special
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                  QUICK START
+     ████████████████████████████████████████████████████████████████████████████ -->
+
+<div align="center">
+
+## ⚡ QUICK START
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+</div>
+
+<br/>
+
+---
+
+<br/>
+
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                 LEARNING PATH
+     ████████████████████████████████████████████████████████████████████████████ -->
+
+<div align="center">
+
+## 🗺️ LEARNING PATH
+
+<br/>
+
+```
+                         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                         ┃     🌙 COMPUTER VISION MASTERY     ┃
+                         ┗━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┛
+                                           ┃
+            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+            ┃                              ┃                              ┃
+            ▼                              ▼                              ▼
+     ┏━━━━━━━━━━━━━┓              ┏━━━━━━━━━━━━━┓              ┏━━━━━━━━━━━━━┓
+     ┃   📐 MATH   ┃              ┃  🖼️ IMAGE   ┃              ┃ 🔍 FEATURES ┃
+     ┃   [01-02]   ┃              ┃   [03-04]   ┃              ┃   [05-06]   ┃
+     ┗━━━━━━┳━━━━━━┛              ┗━━━━━━┳━━━━━━┛              ┗━━━━━━┳━━━━━━┛
+            ┃                            ┃                            ┃
+            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                                         ┃
+                         ┏━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━┓
+                         ┃   🧠 MACHINE LEARNING [07-08]   ┃
+                         ┗━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┛
+                                          ┃
+            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+            ┃                              ┃                              ┃
+            ▼                              ▼                              ▼
+     ┏━━━━━━━━━━━━━┓              ┏━━━━━━━━━━━━━┓              ┏━━━━━━━━━━━━━┓
+     ┃  🏗️ CNNs    ┃              ┃  📋 TASKS   ┃              ┃  👁️ ViTs    ┃
+     ┃    [09]     ┃              ┃    [10]     ┃              ┃   [11-12]   ┃
+     ┗━━━━━━━━━━━━━┛              ┗━━━━━━━━━━━━━┛              ┗━━━━━━━━━━━━━┛
+                                          ┃
+                         ┏━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━┓
+                         ┃      🚀 ADVANCED [13-20]        ┃
+                         ┃  Video│3D│Gen│VLM│Photo│Deploy  ┃
+                         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+</div>
+
+<br/>
+
+---
+
+<br/>
+
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                COURSE MODULES
+     ████████████████████████████████████████████████████████████████████████████ -->
+
+<div align="center">
+
+## 📚 COURSE MODULES
+
+</div>
+
+<br/>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━ PART 1: FOUNDATIONS ━━━━━━━━━━━━━━━━━━━━━ -->
+
+<div align="center">
+
+### ━━━━━━━━━━━━━━ 🔷 PART 1 · FOUNDATIONS ━━━━━━━━━━━━━━
+
+</div>
+
+<br/>
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
-### 📖 **Comprehensive**
-20 modules covering everything from linear algebra to foundation models
+<div align="center">
 
-### 🎨 **Visual**
-46 hand-crafted SVG diagrams for complex concepts
+[![Module](https://img.shields.io/badge/01-MATHEMATICAL_FOUNDATIONS-60A5FA?style=for-the-badge&labelColor=0f172a)](01_Mathematical_Foundations/README.md)
+
+<br/>
+
+<img src="01_Mathematical_Foundations/svg_figs/linear_algebra_overview.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Linear Algebra • Calculus      │
+│  Probability • Optimization     │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Vectors-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Matrices-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/SVD-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Gradients-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
-### 💻 **Practical**
-Copy-paste ready code for Google Colab
+<div align="center">
 
-### 🎯 **Structured**
-Clear learning path from beginner to expert
+[![Module](https://img.shields.io/badge/02-TRANSFORM_METHODS-60A5FA?style=for-the-badge&labelColor=0f172a)](02_Transform_Methods/README.md)
+
+<br/>
+
+<img src="02_Transform_Methods/svg_figs/fourier_transform.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Fourier • DCT • Wavelets       │
+│  Frequency Domain Analysis      │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/DFT-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/FFT-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/JPEG-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Haar-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/03-IMAGE_FORMATION-34D399?style=for-the-badge&labelColor=0f172a)](03_Image_Formation/README.md)
+
+<br/>
+
+<img src="03_Image_Formation/svg_figs/camera_model.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Cameras • Sensors • Optics     │
+│  Radiometry • Color Science     │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Pinhole-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Lens-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/CCD-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/CMOS-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/04-LOW_LEVEL_PROCESSING-34D399?style=for-the-badge&labelColor=0f172a)](04_Low_Level_Processing/README.md)
+
+<br/>
+
+<img src="04_Low_Level_Processing/svg_figs/image_filtering.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Filtering • Enhancement        │
+│  Restoration • Color Spaces     │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Gaussian-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Bilateral-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Histogram-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
 
 </td>
 </tr>
@@ -57,188 +275,75 @@ Clear learning path from beginner to expert
 
 ---
 
-## 🚀 Quick Start
-
-```
-1️⃣  Pick your level below
-2️⃣  Click a module link
-3️⃣  Copy code to Google Colab
-4️⃣  Learn by doing!
-```
-
 <br/>
 
----
+<!-- ━━━━━━━━━━━━━━━━━━━━━ PART 2: FEATURES & GEOMETRY ━━━━━━━━━━━━━━━━━━━━━ -->
 
-## 📚 Modules
+<div align="center">
 
-<br/>
+### ━━━━━━━━━━━━━━ 🔶 PART 2 · FEATURES & GEOMETRY ━━━━━━━━━━━━━━
 
-<details open>
-<summary><h3>🟢 Foundations — Start Here!</h3></summary>
-
-<br/>
-
-| | Module | Topics | Est. Time |
-|:--:|--------|--------|:---------:|
-| 📐 | [**Mathematical Foundations**](./01_Mathematical_Foundations/) | Linear Algebra, Probability, Calculus, Optimization | 1 week |
-| 🌊 | [**Transform Methods**](./02_Transform_Methods/) | Fourier, Wavelets, DCT, JPEG Compression | 1 week |
-| 📷 | [**Image Formation**](./03_Image_Formation/) | Cameras, Sensors, Color Science, Optics | 1 week |
-| 🔧 | [**Image Processing**](./04_Low_Level_Processing/) | Filtering, Histograms, Edge Detection, Morphology | 1 week |
-
-</details>
+</div>
 
 <br/>
-
-<details open>
-<summary><h3>🟡 Classical Computer Vision</h3></summary>
-
-<br/>
-
-| | Module | Topics | Est. Time |
-|:--:|--------|--------|:---------:|
-| 🎯 | [**Feature Detection**](./05_Features_Detection/) | SIFT, SURF, ORB, Harris, HOG | 1 week |
-| 📐 | [**Multi-View Geometry**](./06_Geometry_MultiView/) | Homography, Epipolar, Stereo, SfM | 2 weeks |
-| 🤖 | [**Classical ML**](./07_Classical_ML/) | PCA, SVM, k-Means, Random Forest | 1 week |
-| 🧠 | [**Neural Networks**](./08_Neural_Networks/) | MLP, Backprop, Optimization, Regularization | 1 week |
-
-</details>
-
-<br/>
-
-<details open>
-<summary><h3>🟠 Deep Learning for Vision</h3></summary>
-
-<br/>
-
-| | Module | Topics | Est. Time |
-|:--:|--------|--------|:---------:|
-| 🏗️ | [**CNN Architectures**](./09_CNN_Architectures/) | LeNet → AlexNet → ResNet → EfficientNet | 2 weeks |
-| 🎯 | [**Vision Tasks**](./10_Vision_Tasks/) | Classification, Detection, Segmentation | 2 weeks |
-| ⚡ | [**Vision Transformers**](./11_Vision_Transformers/) | ViT, DeiT, Swin, Attention Mechanisms | 2 weeks |
-| 🔄 | [**Self-Supervised Learning**](./12_Self_Supervised/) | SimCLR, MoCo, BYOL, DINO, MAE | 1 week |
-
-</details>
-
-<br/>
-
-<details open>
-<summary><h3>🔴 Advanced Topics</h3></summary>
-
-<br/>
-
-| | Module | Topics | Est. Time |
-|:--:|--------|--------|:---------:|
-| 🎬 | [**Video & Temporal**](./13_Video_Temporal/) | Optical Flow, Action Recognition, Tracking | 1 week |
-| 🌐 | [**3D Vision**](./14_3D_Vision/) | Depth, NeRF, Point Clouds, SLAM | 2 weeks |
-| 🎨 | [**Generative Models**](./15_Generative_Vision/) | VAE, GAN, Diffusion, Stable Diffusion | 2 weeks |
-| 💬 | [**Vision + Language**](./16_Vision_Language/) | CLIP, BLIP, Captioning, VQA | 1 week |
-
-</details>
-
-<br/>
-
-<details open>
-<summary><h3>⚫ Production & Research</h3></summary>
-
-<br/>
-
-| | Module | Topics | Est. Time |
-|:--:|--------|--------|:---------:|
-| 📸 | [**Computational Photography**](./17_Computational_Photography/) | HDR, Super-Resolution, Deblurring | 1 week |
-| 🚀 | [**Deployment & Systems**](./18_Deployment_Systems/) | Quantization, ONNX, TensorRT, Edge AI | 1 week |
-| 🛡️ | [**Ethics & Safety**](./19_Ethics_Safety/) | Adversarial Attacks, Fairness, Robustness | 1 week |
-| 🔬 | [**Research Frontiers**](./20_Research_Frontiers/) | SAM, Foundation Models, World Models | 1 week |
-
-</details>
-
-<br/>
-
----
-
-## 🗺️ Learning Roadmap
-
-```
-                           ┌─────────────────────────────────────┐
-                           │         YOUR CV JOURNEY             │
-                           └─────────────────────────────────────┘
-                                           │
-         ┌─────────────────────────────────┼─────────────────────────────────┐
-         │                                 │                                 │
-         ▼                                 ▼                                 ▼
-┌─────────────────┐             ┌─────────────────┐             ┌─────────────────┐
-│   🟢 BEGINNER   │             │  🟡 CLASSICAL   │             │    🟠 DEEP      │
-│                 │             │                 │             │                 │
-│  📐 Math        │────────────▶│  🎯 Features    │────────────▶│  🏗️ CNNs       │
-│  🌊 Transforms  │             │  📐 Geometry    │             │  🎯 Tasks       │
-│  📷 Images      │             │  🤖 ML          │             │  ⚡ ViTs        │
-│  🔧 Processing  │             │  🧠 Networks    │             │  🔄 SSL         │
-│                 │             │                 │             │                 │
-│   ~4 weeks      │             │   ~5 weeks      │             │   ~7 weeks      │
-└─────────────────┘             └─────────────────┘             └─────────────────┘
-                                                                         │
-                    ┌────────────────────────────────────────────────────┘
-                    │
-                    ▼
-         ┌─────────────────┐             ┌─────────────────┐
-         │   🔴 ADVANCED   │             │   ⚫ EXPERT     │
-         │                 │             │                 │
-         │  🎬 Video       │────────────▶│  📸 Photo       │
-         │  🌐 3D Vision   │             │  🚀 Deploy      │
-         │  🎨 Genertic    │             │  🛡️ Ethics      │
-         │  💬 VL Models   │             │  🔬 Research    │
-         │                 │             │                 │
-         │   ~6 weeks      │             │   ~4 weeks      │
-         └─────────────────┘             └─────────────────┘
-```
-
-<br/>
-
----
-
-## 📂 Repository Structure
-
-```
-computer_vision_complete/
-│
-├── README.md                      ← You are here!
-│
-├── 01_Mathematical_Foundations/
-│   ├── README.md                  ← Theory + Code + Q&A
-│   ├── svg_figs/                  ← Visual diagrams
-│   └── Linear_Algebra.md          ← Deep-dive topics
-│
-├── 02_Transform_Methods/
-│   └── ...
-│
-└── ... (20 modules total)
-```
-
-<br/>
-
----
-
-## 💡 How to Use This Repo
 
 <table>
 <tr>
-<td>
+<td width="50%" valign="top">
 
-### 📖 **Reading**
-Each module README has:
-- Summary & key concepts
-- Math formulas explained
-- Visual SVG diagrams
-- Interview Q&A
+<div align="center">
+
+[![Module](https://img.shields.io/badge/05-FEATURE_DETECTION-FBBF24?style=for-the-badge&labelColor=0f172a)](05_Features_Detection/README.md)
+
+<br/>
+
+<img src="05_Features_Detection/svg_figs/sift_pipeline.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Edges • Corners • Blobs        │
+│  Descriptors • Matching         │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Harris-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/SIFT-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/ORB-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/RANSAC-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
 
 </td>
-<td>
+<td width="50%" valign="top">
 
-### 💻 **Coding**
-Copy the Python code and:
-1. Go to [colab.google](https://colab.research.google.com)
-2. Create new notebook
-3. Paste and run!
+<div align="center">
+
+[![Module](https://img.shields.io/badge/06-GEOMETRY_&_MULTIVIEW-FBBF24?style=for-the-badge&labelColor=0f172a)](06_Geometry_MultiView/README.md)
+
+<br/>
+
+<img src="06_Geometry_MultiView/svg_figs/epipolar_geometry.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Homography • Stereo Vision     │
+│  Structure from Motion          │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Epipolar-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Essential-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Bundle-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
 
 </td>
 </tr>
@@ -248,76 +353,75 @@ Copy the Python code and:
 
 ---
 
-## 🎨 Visual Learning
+<br/>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━ PART 3: MACHINE LEARNING ━━━━━━━━━━━━━━━━━━━━━ -->
 
 <div align="center">
-<img src="./svg_figs/cv_overview.svg" alt="Computer Vision Overview" width="100%"/>
+
+### ━━━━━━━━━━━━━━ 🟢 PART 3 · MACHINE LEARNING ━━━━━━━━━━━━━━
+
 </div>
 
 <br/>
-
-### Neural Networks
-
-<div align="center">
-<img src="./svg_figs/neural_network_visual.svg" alt="Neural Network" width="90%"/>
-</div>
-
-<br/>
-
-### CNN Architecture
-
-<div align="center">
-<img src="./svg_figs/cnn_architecture.svg" alt="CNN Architecture" width="100%"/>
-</div>
-
-<br/>
-
-### Attention Mechanism
-
-<div align="center">
-<img src="./svg_figs/attention_visual.svg" alt="Attention Mechanism" width="90%"/>
-</div>
-
-<br/>
-
----
-
-## ⚡ Key Formulas Quick Reference
 
 <table>
 <tr>
-<td>
+<td width="50%" valign="top">
 
-**Convolution**
+<div align="center">
+
+[![Module](https://img.shields.io/badge/07-CLASSICAL_ML-A78BFA?style=for-the-badge&labelColor=0f172a)](07_Classical_ML/README.md)
+
+<br/>
+
+<img src="07_Classical_ML/svg_figs/svm_kernel.svg" width="100%"/>
+
+<br/>
+
 ```
-(I * K)[i,j] = ΣΣ I[i+m, j+n] · K[m,n]
+┌─────────────────────────────────┐
+│  PCA • SVM • Clustering         │
+│  Decision Trees • Ensemble      │
+└─────────────────────────────────┘
 ```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/K--Means-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/GMM-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Random_Forest-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
 
 </td>
-<td>
+<td width="50%" valign="top">
 
-**Softmax**
+<div align="center">
+
+[![Module](https://img.shields.io/badge/08-NEURAL_NETWORKS-A78BFA?style=for-the-badge&labelColor=0f172a)](08_Neural_Networks/README.md)
+
+<br/>
+
+<img src="08_Neural_Networks/svg_figs/backpropagation.svg" width="100%"/>
+
+<br/>
+
 ```
-σ(z)ᵢ = exp(zᵢ) / Σⱼ exp(zⱼ)
+┌─────────────────────────────────┐
+│  Perceptron • MLP • Backprop    │
+│  Optimization • Regularize      │
+└─────────────────────────────────┘
 ```
 
-</td>
-</tr>
-<tr>
-<td>
+<br/>
 
-**Attention**
-```
-Attn(Q,K,V) = softmax(QKᵀ/√d) · V
-```
+![Topics](https://img.shields.io/badge/ReLU-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/SGD-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Adam-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/BatchNorm-0f172a?style=flat-square&labelColor=1e293b)
 
-</td>
-<td>
-
-**Cross-Entropy**
-```
-L = -Σᵢ yᵢ · log(ŷᵢ)
-```
+</div>
 
 </td>
 </tr>
@@ -327,25 +431,455 @@ L = -Σᵢ yᵢ · log(ŷᵢ)
 
 ---
 
+<br/>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━ PART 4: DEEP LEARNING ━━━━━━━━━━━━━━━━━━━━━ -->
+
 <div align="center">
 
-## 🚀 Ready to Start?
+### ━━━━━━━━━━━━━━ 🟣 PART 4 · DEEP LEARNING ━━━━━━━━━━━━━━
+
+</div>
 
 <br/>
 
-### [👉 Begin with Mathematical Foundations](./01_Mathematical_Foundations/)
+<table>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/09-CNN_ARCHITECTURES-F472B6?style=for-the-badge&labelColor=0f172a)](09_CNN_Architectures/README.md)
+
+<br/>
+
+<img src="svg_figs/cnn_architecture.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  LeNet → VGG → ResNet           │
+│  Inception → EfficientNet       │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Convolution-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Pooling-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Skip-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/10-VISION_TASKS-F472B6?style=for-the-badge&labelColor=0f172a)](10_Vision_Tasks/README.md)
+
+<br/>
+
+<img src="10_Vision_Tasks/svg_figs/yolo_architecture.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Detection • Segmentation       │
+│  Tracking • Recognition         │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/YOLO-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/R--CNN-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/U--Net-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Mask-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/11-VISION_TRANSFORMERS-60A5FA?style=for-the-badge&labelColor=0f172a)](11_Vision_Transformers/README.md)
+
+<br/>
+
+<img src="11_Vision_Transformers/svg_figs/attention_mechanism.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  ViT • Swin • DeiT              │
+│  Attention Mechanisms           │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/Patches-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Self--Attention-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/Window-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/12-SELF_SUPERVISED-60A5FA?style=for-the-badge&labelColor=0f172a)](12_Self_Supervised/README.md)
+
+<br/>
+
+<img src="12_Self_Supervised/svg_figs/contrastive_learning.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Contrastive Learning           │
+│  MAE • DINO • BYOL              │
+└─────────────────────────────────┘
+```
+
+<br/>
+
+![Topics](https://img.shields.io/badge/SimCLR-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/MoCo-0f172a?style=flat-square&labelColor=1e293b)
+![Topics](https://img.shields.io/badge/SwAV-0f172a?style=flat-square&labelColor=1e293b)
+
+</div>
+
+</td>
+</tr>
+</table>
 
 <br/>
 
 ---
 
-<p>
-<sub>Made with ❤️ for the Computer Vision community</sub>
-</p>
+<br/>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━ PART 5: ADVANCED ━━━━━━━━━━━━━━━━━━━━━ -->
+
+<div align="center">
+
+### ━━━━━━━━━━━━━━ 🔴 PART 5 · ADVANCED TOPICS ━━━━━━━━━━━━━━
+
+</div>
+
+<br/>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/13-VIDEO_&_TEMPORAL-F87171?style=for-the-badge&labelColor=0f172a)](13_Video_Temporal/README.md)
+
+<br/>
+
+<img src="13_Video_Temporal/svg_figs/optical_flow.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Optical Flow • Action Recog.   │
+│  Video Understanding            │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/14-3D_VISION-F87171?style=for-the-badge&labelColor=0f172a)](14_3D_Vision/README.md)
+
+<br/>
+
+<img src="14_3D_Vision/svg_figs/nerf_overview.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Depth • Point Clouds           │
+│  NeRF • SLAM                    │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/15-GENERATIVE_MODELS-34D399?style=for-the-badge&labelColor=0f172a)](15_Generative_Vision/README.md)
+
+<br/>
+
+<img src="15_Generative_Vision/svg_figs/diffusion_process.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  VAE • GAN • Diffusion          │
+│  Image Synthesis                │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/16-VISION_LANGUAGE-34D399?style=for-the-badge&labelColor=0f172a)](16_Vision_Language/README.md)
+
+<br/>
+
+<img src="16_Vision_Language/svg_figs/clip_architecture.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  CLIP • Captioning • VQA        │
+│  Multimodal Learning            │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/17-COMPUTATIONAL_PHOTO-FBBF24?style=for-the-badge&labelColor=0f172a)](17_Computational_Photography/README.md)
+
+<br/>
+
+<img src="17_Computational_Photography/svg_figs/hdr_pipeline.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  HDR • Deblur • Super-Res       │
+│  Image Enhancement              │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/18-DEPLOYMENT-FBBF24?style=for-the-badge&labelColor=0f172a)](18_Deployment_Systems/README.md)
+
+<br/>
+
+<img src="18_Deployment_Systems/svg_figs/model_optimization.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Quantization • Pruning         │
+│  ONNX • TensorRT                │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/19-ETHICS_&_SAFETY-A78BFA?style=for-the-badge&labelColor=0f172a)](19_Ethics_Safety/README.md)
+
+<br/>
+
+<img src="19_Ethics_Safety/svg_figs/adversarial_attacks.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Adversarial • Fairness         │
+│  Privacy • Explainability       │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+[![Module](https://img.shields.io/badge/20-RESEARCH_FRONTIERS-A78BFA?style=for-the-badge&labelColor=0f172a)](20_Research_Frontiers/README.md)
+
+<br/>
+
+<img src="20_Research_Frontiers/svg_figs/foundation_models.svg" width="100%"/>
+
+<br/>
+
+```
+┌─────────────────────────────────┐
+│  Foundation Models              │
+│  World Models • Agents          │
+└─────────────────────────────────┘
+```
+
+</div>
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+---
+
+<br/>
+
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                 VISUAL GALLERY
+     ████████████████████████████████████████████████████████████████████████████ -->
+
+<div align="center">
+
+## 🎨 VISUAL GALLERY
+
+<br/>
+
+<table>
+<tr>
+<td align="center">
+<img src="svg_figs/neural_network_visual.svg" width="100%"/>
+<br/>
+
+![Neural](https://img.shields.io/badge/Neural_Networks-0f172a?style=flat-square&labelColor=1e293b)
+
+</td>
+<td align="center">
+<img src="svg_figs/cnn_architecture.svg" width="100%"/>
+<br/>
+
+![CNN](https://img.shields.io/badge/CNN_Architecture-0f172a?style=flat-square&labelColor=1e293b)
+
+</td>
+<td align="center">
+<img src="svg_figs/attention_visual.svg" width="100%"/>
+<br/>
+
+![Attention](https://img.shields.io/badge/Attention-0f172a?style=flat-square&labelColor=1e293b)
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<br/>
+
+---
+
+<br/>
+
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                FORMULA REFERENCE
+     ████████████████████████████████████████████████████████████████████████████ -->
+
+<div align="center">
+
+## 📝 FORMULA REFERENCE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
+┃       CONCEPT          ┃              FORMULA                    ┃       USE          ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
+┃  Convolution           ┃  (f * g)[n] = Σ f[m] · g[n-m]           ┃  CNNs, Filtering   ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
+┃  Softmax               ┃  σ(z)ᵢ = exp(zᵢ) / Σⱼ exp(zⱼ)          ┃  Classification    ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
+┃  Cross-Entropy         ┃  L = -Σ yᵢ log(ŷᵢ)                      ┃  Loss Function     ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
+┃  Attention             ┃  Attn(Q,K,V) = softmax(QKᵀ/√d)V         ┃  Transformers      ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
+┃  IoU                   ┃  IoU = Area(A∩B) / Area(A∪B)            ┃  Detection         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┛
+```
+
+</div>
+
+<br/>
+
+---
+
+<br/>
+
+<!-- ████████████████████████████████████████████████████████████████████████████
+                                    FOOTER
+     ████████████████████████████████████████████████████████████████████████████ -->
+
+<div align="center">
+
+## 🚀 START YOUR JOURNEY
+
+<br/>
+
+[![Start](https://img.shields.io/badge/📐_BEGIN_WITH_MATHEMATICAL_FOUNDATIONS-60A5FA?style=for-the-badge&labelColor=0f172a)](01_Mathematical_Foundations/README.md)
+
+<br/>
+<br/>
+
+---
+
+<br/>
 
 <p>
-<img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License"/>
-<img src="https://img.shields.io/badge/PRs-Welcome-green?style=flat-square" alt="PRs"/>
+<img src="https://img.shields.io/badge/Python-0f172a?style=flat-square&logo=python&logoColor=60A5FA" alt="Python"/>
+<img src="https://img.shields.io/badge/PyTorch-0f172a?style=flat-square&logo=pytorch&logoColor=F87171" alt="PyTorch"/>
+<img src="https://img.shields.io/badge/OpenCV-0f172a?style=flat-square&logo=opencv&logoColor=34D399" alt="OpenCV"/>
+<img src="https://img.shields.io/badge/License-MIT-0f172a?style=flat-square&labelColor=1e293b" alt="License"/>
 </p>
+
+<br/>
+
+**🌙 Made with ❤️ for Computer Vision Learners**
+
+<br/>
 
 </div>

@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🛡️ Ethics, Safety & Robustness
+<br/>
 
-### *Adversarial Attacks, Fairness, Explainability, Privacy*
+<a href="../18_Deployment_Systems/README.md"><img src="https://img.shields.io/badge/◀__Deploy-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-A78BFA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../20_Research_Frontiers/README.md"><img src="https://img.shields.io/badge/Research__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟠 Intermediate-Advanced | 2.5 hours | Deep Learning |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🛡️ ETHICS & SAFETY
+
+### 🌙 *Responsible AI*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__19/20-A78BFA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Deployment](../18_Deployment_Systems/) | [🏠 Home](../README.md) | [Research Frontiers →](../20_Research_Frontiers/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Topic | Issue | Mitigation |
-|:------|:------|:-----------|
+| :--- | :--- | :--- |
 | **Adversarial** | Small perturbations fool models | Adversarial training |
 | **Bias** | Unfair performance across groups | Dataset balancing |
 | **Privacy** | Models memorize data | Differential privacy |
@@ -53,16 +62,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  DEFINITION                                         │
 │                                                     │
-│  x_adv = x + δ                                     │
+│  x_adv = x + δ                                      │
 │                                                     │
 │  Such that:                                         │
-│  - ||δ|| ≤ ε (imperceptible)                       │
-│  - f(x_adv) ≠ f(x) (misclassification)             │
+│  - ||δ|| ≤ ε (imperceptible)                        │
+│  - f(x_adv) ≠ f(x) (misclassification)              │
 │                                                     │
 │  ATTACK TYPES                                       │
 │                                                     │
-│  Untargeted: f(x_adv) ≠ y_true                     │
-│  Targeted:   f(x_adv) = y_target                   │
+│  Untargeted: f(x_adv) ≠ y_true                      │
+│  Targeted:   f(x_adv) = y_target                    │
 │  White-box:  Attacker knows model                   │
 │  Black-box:  Attacker queries model                 │
 └─────────────────────────────────────────────────────┘
@@ -74,16 +83,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  ATTACK                                             │
 │                                                     │
-│  x_adv = x + ε · sign(∇ₓ L(θ, x, y))               │
+│  x_adv = x + ε · sign(∇ₓ L(θ, x, y))                │
 │                                                     │
 │  - One step, fast                                   │
 │  - Uses gradient direction to maximize loss         │
-│  - ε controls perturbation magnitude               │
+│  - ε controls perturbation magnitude                │
 │                                                     │
 │  INTUITION                                          │
 │                                                     │
 │  Move in direction that increases loss most         │
-│  (steepest ascent in L∞ ball)                      │
+│  (steepest ascent in L∞ ball)                       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -93,16 +102,16 @@
 ┌─────────────────────────────────────────────────────┐
 │  ITERATIVE ATTACK                                   │
 │                                                     │
-│  x₀ = x + noise  (random start)                    │
+│  x₀ = x + noise  (random start)                     │
 │                                                     │
 │  FOR t = 1 to T:                                    │
-│    xₜ = xₜ₋₁ + α · sign(∇ₓ L(θ, xₜ₋₁, y))         │
-│    xₜ = Π_Bε(x)(xₜ)  (project back to ε-ball)      │
+│    xₜ = xₜ₋₁ + α · sign(∇ₓ L(θ, xₜ₋₁, y))           │
+│    xₜ = Π_Bε(x)(xₜ)  (project back to ε-ball)       │
 │                                                     │
 │  Stronger than FGSM but slower                      │
 │                                                     │
 │  PROJECTION (L∞ ball)                               │
-│  Π(x') = clip(x', x-ε, x+ε)                        │
+│  Π(x') = clip(x', x-ε, x+ε)                         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -112,7 +121,7 @@
 ┌─────────────────────────────────────────────────────┐
 │  ROBUST OPTIMIZATION                                │
 │                                                     │
-│  min_θ E[(x,y)~D] [max_{||δ||≤ε} L(θ, x+δ, y)]     │
+│  min_θ E[(x,y)~D] [max_{||δ||≤ε} L(θ, x+δ, y)]      │
 │                                                     │
 │  Inner max: Find worst-case perturbation (PGD)      │
 │  Outer min: Minimize loss on adversarial examples   │
@@ -134,19 +143,19 @@
 ┌─────────────────────────────────────────────────────┐
 │  DEMOGRAPHIC PARITY                                 │
 │                                                     │
-│  P(ŷ = 1 | A = 0) = P(ŷ = 1 | A = 1)               │
+│  P(ŷ = 1 | A = 0) = P(ŷ = 1 | A = 1)                │
 │                                                     │
 │  Prediction rate same across groups                 │
 │                                                     │
 │  EQUALIZED ODDS                                     │
 │                                                     │
-│  P(ŷ = 1 | Y = y, A = 0) = P(ŷ = 1 | Y = y, A = 1)│
+│  P(ŷ = 1 | Y = y, A = 0) = P(ŷ = 1 | Y = y, A = 1)  │
 │                                                     │
 │  TPR and FPR same across groups                     │
 │                                                     │
 │  CALIBRATION                                        │
 │                                                     │
-│  P(Y = 1 | ŷ = p, A = a) = p  ∀a                   │
+│  P(Y = 1 | ŷ = p, A = a) = p  ∀a                    │
 │                                                     │
 │  Probability estimates are accurate per group       │
 └─────────────────────────────────────────────────────┘
@@ -155,7 +164,7 @@
 ### 6. Explainability Methods
 
 | Method | Type | Output |
-|:-------|:-----|:-------|
+| :--- | :--- | :--- |
 | **Gradient** | White-box | ∂f/∂x (pixel importance) |
 | **Grad-CAM** | White-box | Class activation map |
 | **LIME** | Black-box | Local linear model |
@@ -167,9 +176,9 @@
 │  GRAD-CAM                                           │
 │                                                     │
 │  1. Get feature maps Aᵏ from last conv layer        │
-│  2. Compute gradients: ∂yᶜ/∂Aᵏ                     │
-│  3. Global average pool: αₖᶜ = GAP(∂yᶜ/∂Aᵏ)        │
-│  4. Weighted combination: L = ReLU(Σₖ αₖᶜ Aᵏ)      │
+│  2. Compute gradients: ∂yᶜ/∂Aᵏ                      │
+│  3. Global average pool: αₖᶜ = GAP(∂yᶜ/∂Aᵏ)         │
+│  4. Weighted combination: L = ReLU(Σₖ αₖᶜ Aᵏ)       │
 │                                                     │
 │  Result: Heatmap of important regions               │
 └─────────────────────────────────────────────────────┘
@@ -182,9 +191,9 @@
 │  (ε, δ)-DIFFERENTIAL PRIVACY                        │
 │                                                     │
 │  For neighboring datasets D, D':                    │
-│  P(M(D) ∈ S) ≤ eᵋ P(M(D') ∈ S) + δ                 │
+│  P(M(D) ∈ S) ≤ eᵋ P(M(D') ∈ S) + δ                  │
 │                                                     │
-│  ε: Privacy budget (lower = more private)          │
+│  ε: Privacy budget (lower = more private)           │
 │  δ: Probability of failure                          │
 │                                                     │
 │  DP-SGD                                             │
@@ -205,18 +214,18 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Model f, image x, label y, epsilon ε       │
-│  OUTPUT: Adversarial image x_adv                   │
+│  INPUT: Model f, image x, label y, epsilon ε        │
+│  OUTPUT: Adversarial image x_adv                    │
 │                                                     │
 │  1. x.requires_grad = True                          │
 │  2. output = f(x)                                   │
-│  3. loss = CrossEntropy(output, y)                 │
+│  3. loss = CrossEntropy(output, y)                  │
 │  4. loss.backward()                                 │
-│  5. perturbation = ε × sign(x.grad)                │
-│  6. x_adv = clip(x + perturbation, 0, 1)           │
+│  5. perturbation = ε × sign(x.grad)                 │
+│  6. x_adv = clip(x + perturbation, 0, 1)            │
 │  7. RETURN x_adv                                    │
 │                                                     │
-│  Note: For targeted attack, use -gradient          │
+│  Note: For targeted attack, use -gradient           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -224,20 +233,20 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Model f, image x, label y, ε, α, T        │
-│  OUTPUT: Adversarial image x_adv                   │
+│  INPUT: Model f, image x, label y, ε, α, T          │
+│  OUTPUT: Adversarial image x_adv                    │
 │                                                     │
-│  1. x_adv = x + uniform(-ε, ε)  (random start)     │
+│  1. x_adv = x + uniform(-ε, ε)  (random start)      │
 │  2. FOR t = 1 to T:                                 │
 │     3. x_adv.requires_grad = True                   │
-│     4. loss = CrossEntropy(f(x_adv), y)            │
+│     4. loss = CrossEntropy(f(x_adv), y)             │
 │     5. loss.backward()                              │
-│     6. x_adv = x_adv + α × sign(x_adv.grad)        │
-│     7. x_adv = clip(x_adv, x-ε, x+ε)  (project)    │
-│     8. x_adv = clip(x_adv, 0, 1)      (valid)      │
+│     6. x_adv = x_adv + α × sign(x_adv.grad)         │
+│     7. x_adv = clip(x_adv, x-ε, x+ε)  (project)     │
+│     8. x_adv = clip(x_adv, 0, 1)      (valid)       │
 │  9. RETURN x_adv                                    │
 │                                                     │
-│  Typical: T=20, α=ε/T × 2.5                        │
+│  Typical: T=20, α=ε/T × 2.5                         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -245,19 +254,19 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Dataset D, model f, epochs, ε              │
+│  INPUT: Dataset D, model f, epochs, ε               │
 │  OUTPUT: Robust model f                             │
 │                                                     │
 │  FOR epoch = 1 to epochs:                           │
 │    FOR batch (x, y) in D:                           │
-│      1. Generate x_adv = PGD(f, x, y, ε)           │
-│      2. Compute loss = L(f(x_adv), y)              │
+│      1. Generate x_adv = PGD(f, x, y, ε)            │
+│      2. Compute loss = L(f(x_adv), y)               │
 │      3. Optionally add clean loss:                  │
-│         loss += λ × L(f(x), y)                     │
+│         loss += λ × L(f(x), y)                      │
 │      4. Backprop and update f                       │
 │                                                     │
 │  TRADES (improved):                                 │
-│  L = CE(f(x), y) + β × KL(f(x), f(x_adv))          │
+│  L = CE(f(x), y) + β × KL(f(x), f(x_adv))           │
 │                                                     │
 │  Balances clean and robust accuracy                 │
 └─────────────────────────────────────────────────────┘
@@ -267,20 +276,20 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Model f, image x, num_samples N            │
+│  INPUT: Model f, image x, num_samples N             │
 │  OUTPUT: Feature importance weights                 │
 │                                                     │
-│  1. Segment image into superpixels S = {s₁,...,sₖ} │
+│  1. Segment image into superpixels S = {s₁,...,sₖ}  │
 │  2. FOR i = 1 to N:                                 │
-│     3. z'ᵢ = random binary vector (turn off parts) │
-│     4. xᵢ = apply z'ᵢ mask to x (gray out)         │
-│     5. yᵢ = f(xᵢ) (model prediction)              │
-│     6. wᵢ = exp(-d(x, xᵢ)²/σ²) (locality weight)  │
+│     3. z'ᵢ = random binary vector (turn off parts)  │
+│     4. xᵢ = apply z'ᵢ mask to x (gray out)          │
+│     5. yᵢ = f(xᵢ) (model prediction)                │
+│     6. wᵢ = exp(-d(x, xᵢ)²/σ²) (locality weight)    │
 │  3. Fit weighted linear model:                      │
-│     g = argmin_g Σᵢ wᵢ(f(xᵢ) - g(z'ᵢ))²          │
-│  4. RETURN coefficients of g as importance         │
+│     g = argmin_g Σᵢ wᵢ(f(xᵢ) - g(z'ᵢ))²             │
+│  4. RETURN coefficients of g as importance          │
 │                                                     │
-│  Linear model g explains f locally around x        │
+│  Linear model g explains f locally around x         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -310,7 +319,7 @@
 **Answer:**
 
 | Aspect | FGSM | PGD |
-|:-------|:-----|:----|
+| :--- | :--- | :--- |
 | Steps | 1 | Multiple (T) |
 | Strength | Weaker | Stronger |
 | Speed | Fast | Slower |
@@ -346,7 +355,7 @@
 **Answer:**
 
 | Type | Definition | Issue |
-|:-----|:-----------|:------|
+| :--- | :--- | :--- |
 | **Demographic Parity** | Equal positive rate | May violate if base rates differ |
 | **Equalized Odds** | Equal TPR and FPR | Harder to achieve |
 | **Predictive Parity** | Equal precision | Can conflict with others |
@@ -421,7 +430,7 @@
 **Answer:**
 
 | Aspect | LIME | SHAP |
-|:-------|:-----|:-----|
+| :--- | :--- | :--- |
 | Basis | Local linear model | Shapley values |
 | Consistency | May vary with sampling | Mathematically consistent |
 | Speed | Fast | Can be slow |
@@ -437,7 +446,7 @@
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | x_adv = x + ε·sign(∇L) | FGSM attack |
 | xₜ = Π(xₜ₋₁ + α·sign(∇L)) | PGD step |
 | L = ReLU(Σ αₖAᵏ) | Grad-CAM |
@@ -445,14 +454,50 @@
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Deployment](../18_Deployment_Systems/) | [🏠 Home](../README.md) | [Research Frontiers →](../20_Research_Frontiers/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Deploy](../18_Deployment_Systems/README.md)** | **[🏠 HOME](../README.md)** | **[Research ▶](../20_Research_Frontiers/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

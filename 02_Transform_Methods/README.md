@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🌊 Transform Domain Methods
+<br/>
 
-### *Fourier, Wavelets, DCT & Beyond*
+<a href="../01_Mathematical_Foundations/README.md"><img src="https://img.shields.io/badge/◀__Math-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-60A5FA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../03_Image_Formation/README.md"><img src="https://img.shields.io/badge/Image Formation__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟡 Intermediate | 2.5 hours | Linear Algebra, Calculus |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🌊 TRANSFORM METHODS
+
+### 🌙 *Frequency Domain Magic*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__02/20-60A5FA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Mathematical Foundations](../01_Mathematical_Foundations/) | [🏠 Home](../README.md) | [Image Formation →](../03_Image_Formation/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Transform | Formula | Use Case |
-|:----------|:--------|:---------|
+| :--- | :--- | :--- |
 | **DFT** | F(u) = Σ f(x)e^(-j2πux/N) | Frequency analysis |
 | **DCT** | C(u) = α(u)Σ f(x)cos[π(2x+1)u/2N] | JPEG compression |
 | **Wavelet** | W(a,b) = ∫f(t)ψ*((t-b)/a)dt | Multi-resolution |
@@ -56,18 +65,18 @@
 ┌─────────────────────────────────────────────────────┐
 │  CONTINUOUS FOURIER TRANSFORM                       │
 │                                                     │
-│  F(ω) = ∫_{-∞}^{∞} f(t) e^{-jωt} dt               │
+│  F(ω) = ∫_{-∞}^{∞} f(t) e^{-jωt} dt                 │
 │                                                     │
-│  Inverse: f(t) = (1/2π) ∫ F(ω) e^{jωt} dω         │
+│  Inverse: f(t) = (1/2π) ∫ F(ω) e^{jωt} dω           │
 │                                                     │
 │  2D FOURIER TRANSFORM                               │
 │                                                     │
-│  F(u,v) = ΣΣ f(x,y) e^{-j2π(ux/M + vy/N)}         │
+│  F(u,v) = ΣΣ f(x,y) e^{-j2π(ux/M + vy/N)}           │
 │                                                     │
 │  Properties:                                        │
-│  - Linearity: F{af + bg} = aF{f} + bF{g}           │
-│  - Convolution: F{f * g} = F{f} · F{g}             │
-│  - Shift: F{f(x-a)} = F{f} · e^{-j2πua}           │
+│  - Linearity: F{af + bg} = aF{f} + bF{g}            │
+│  - Convolution: F{f * g} = F{f} · F{g}              │
+│  - Shift: F{f(x-a)} = F{f} · e^{-j2πua}             │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -77,15 +86,15 @@
 ┌─────────────────────────────────────────────────────┐
 │  COMPLEX REPRESENTATION                             │
 │                                                     │
-│  F(u,v) = |F(u,v)| e^{jφ(u,v)}                     │
+│  F(u,v) = |F(u,v)| e^{jφ(u,v)}                      │
 │                                                     │
-│  Magnitude: |F(u,v)| = √(Re² + Im²)                │
-│  Phase:     φ(u,v) = arctan(Im/Re)                 │
+│  Magnitude: |F(u,v)| = √(Re² + Im²)                 │
+│  Phase:     φ(u,v) = arctan(Im/Re)                  │
 │                                                     │
 │  KEY INSIGHT:                                       │
-│  - Magnitude: frequency strength (energy)          │
-│  - Phase: frequency location (structure)           │
-│  - Phase carries more perceptual information!      │
+│  - Magnitude: frequency strength (energy)           │
+│  - Phase: frequency location (structure)            │
+│  - Phase carries more perceptual information!       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -95,17 +104,17 @@
 ┌─────────────────────────────────────────────────────┐
 │  DCT-II (JPEG uses this)                            │
 │                                                     │
-│  C(u) = α(u) Σ_{x=0}^{N-1} f(x) cos[π(2x+1)u/2N]  │
+│  C(u) = α(u) Σ_{x=0}^{N-1} f(x) cos[π(2x+1)u/2N]    │
 │                                                     │
-│  Where α(u) = √(1/N) if u=0, √(2/N) otherwise      │
+│  Where α(u) = √(1/N) if u=0, √(2/N) otherwise       │
 │                                                     │
 │  2D DCT:                                            │
-│  C(u,v) = α(u)α(v) ΣΣ f(x,y) cos[...] cos[...]    │
+│  C(u,v) = α(u)α(v) ΣΣ f(x,y) cos[...] cos[...]      │
 │                                                     │
 │  Properties:                                        │
-│  - Real-valued (unlike FFT)                        │
-│  - Energy compaction (most info in low freq)       │
-│  - Basis functions are cosines                     │
+│  - Real-valued (unlike FFT)                         │
+│  - Energy compaction (most info in low freq)        │
+│  - Basis functions are cosines                      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -115,20 +124,20 @@
 ┌─────────────────────────────────────────────────────┐
 │  CONTINUOUS WAVELET TRANSFORM                       │
 │                                                     │
-│  W(a,b) = (1/√a) ∫ f(t) ψ*((t-b)/a) dt            │
+│  W(a,b) = (1/√a) ∫ f(t) ψ*((t-b)/a) dt              │
 │                                                     │
-│  a = scale (dilation)                              │
+│  a = scale (dilation)                               │
 │  b = translation (position)                         │
 │  ψ = mother wavelet                                 │
 │                                                     │
 │  DISCRETE WAVELET TRANSFORM (DWT)                   │
 │                                                     │
 │  Uses filter banks:                                 │
-│  - Low-pass (approximation): cA = h * f            │
-│  - High-pass (detail): cD = g * f                  │
-│  - Downsample by 2 after filtering                 │
+│  - Low-pass (approximation): cA = h * f             │
+│  - High-pass (detail): cD = g * f                   │
+│  - Downsample by 2 after filtering                  │
 │                                                     │
-│  Multi-level: repeat on approximation              │
+│  Multi-level: repeat on approximation               │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -140,17 +149,17 @@
 │                                                     │
 │  To perfectly reconstruct signal:                   │
 │                                                     │
-│  f_s > 2 · f_max  (Nyquist rate)                   │
+│  f_s > 2 · f_max  (Nyquist rate)                    │
 │                                                     │
 │  ALIASING                                           │
 │                                                     │
-│  If f_s < 2·f_max:                                 │
-│  - High frequencies fold into low frequencies      │
-│  - Creates artifacts (jaggies, moiré)             │
+│  If f_s < 2·f_max:                                  │
+│  - High frequencies fold into low frequencies       │
+│  - Creates artifacts (jaggies, moiré)               │
 │                                                     │
 │  ANTI-ALIASING                                      │
-│  - Low-pass filter before sampling                 │
-│  - Remove frequencies > f_s/2                      │
+│  - Low-pass filter before sampling                  │
+│  - Remove frequencies > f_s/2                       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -162,19 +171,19 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image f(x,y) of size M×N                   │
-│  OUTPUT: Frequency domain F(u,v)                   │
+│  INPUT: Image f(x,y) of size M×N                    │
+│  OUTPUT: Frequency domain F(u,v)                    │
 │                                                     │
 │  1. Apply 1D FFT to each row                        │
-│  2. Apply 1D FFT to each column of result          │
-│  3. Shift zero frequency to center (fftshift)      │
+│  2. Apply 1D FFT to each column of result           │
+│  3. Shift zero frequency to center (fftshift)       │
 │                                                     │
-│  Complexity: O(MN log(MN))                         │
+│  Complexity: O(MN log(MN))                          │
 │                                                     │
 │  INVERSE:                                           │
-│  1. ifftshift to undo centering                    │
-│  2. Apply 1D IFFT to each column                   │
-│  3. Apply 1D IFFT to each row                      │
+│  1. ifftshift to undo centering                     │
+│  2. Apply 1D IFFT to each column                    │
+│  3. Apply 1D IFFT to each row                       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -186,15 +195,15 @@
 │  OUTPUT: Filtered image g                           │
 │                                                     │
 │  1. F = FFT(f)                                      │
-│  2. F_shifted = fftshift(F)                        │
-│  3. G = F_shifted × H  (element-wise)              │
-│  4. G_shifted = ifftshift(G)                       │
-│  5. g = real(IFFT(G))                              │
+│  2. F_shifted = fftshift(F)                         │
+│  3. G = F_shifted × H  (element-wise)               │
+│  4. G_shifted = ifftshift(G)                        │
+│  5. g = real(IFFT(G))                               │
 │                                                     │
 │  COMMON FILTERS:                                    │
-│  Low-pass:  H(u,v) = exp(-(u²+v²)/(2σ²))          │
-│  High-pass: H(u,v) = 1 - exp(-(u²+v²)/(2σ²))      │
-│  Band-pass: H_low - H_high                         │
+│  Low-pass:  H(u,v) = exp(-(u²+v²)/(2σ²))            │
+│  High-pass: H(u,v) = 1 - exp(-(u²+v²)/(2σ²))        │
+│  Band-pass: H_low - H_high                          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -204,19 +213,19 @@
 ┌─────────────────────────────────────────────────────┐
 │  ENCODING:                                          │
 │                                                     │
-│  1. Convert RGB → YCbCr                            │
-│  2. Downsample chroma (4:2:0)                      │
-│  3. Split into 8×8 blocks                          │
+│  1. Convert RGB → YCbCr                             │
+│  2. Downsample chroma (4:2:0)                       │
+│  3. Split into 8×8 blocks                           │
 │  4. FOR each block:                                 │
-│     a. Subtract 128 (center around 0)              │
+│     a. Subtract 128 (center around 0)               │
 │     b. Apply 2D DCT                                 │
-│     c. Quantize: Q_coeff = round(DCT / Q_table)   │
-│  5. Zigzag scan (low→high frequency)               │
-│  6. Run-length encode zeros                        │
+│     c. Quantize: Q_coeff = round(DCT / Q_table)     │
+│  5. Zigzag scan (low→high frequency)                │
+│  6. Run-length encode zeros                         │
 │  7. Huffman encode                                  │
 │                                                     │
-│  DECODING: Reverse all steps                       │
-│  Lossy step: Quantization (information lost)       │
+│  DECODING: Reverse all steps                        │
+│  Lossy step: Quantization (information lost)        │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -224,21 +233,21 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Signal/Image, wavelet type, levels L       │
-│  OUTPUT: Approximation + Detail coefficients       │
+│  INPUT: Signal/Image, wavelet type, levels L        │
+│  OUTPUT: Approximation + Detail coefficients        │
 │                                                     │
-│  2D DWT (one level):                               │
+│  2D DWT (one level):                                │
 │                                                     │
-│  1. Apply low-pass h and high-pass g to rows       │
-│  2. Downsample by 2                                │
-│  3. Apply h and g to columns of both results       │
-│  4. Downsample by 2                                │
+│  1. Apply low-pass h and high-pass g to rows        │
+│  2. Downsample by 2                                 │
+│  3. Apply h and g to columns of both results        │
+│  4. Downsample by 2                                 │
 │                                                     │
-│  Result: LL (approx), LH, HL, HH (details)         │
+│  Result: LL (approx), LH, HL, HH (details)          │
 │                                                     │
-│  Multi-level: Repeat on LL for L levels            │
+│  Multi-level: Repeat on LL for L levels             │
 │                                                     │
-│  Common wavelets: Haar, Daubechies, Symlets       │
+│  Common wavelets: Haar, Daubechies, Symlets         │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -264,7 +273,7 @@
 **Answer:**
 
 | Fourier | Wavelet |
-|:--------|:--------|
+| :--- | :--- |
 | Global frequency info | Local time-frequency info |
 | Stationary signals | Non-stationary signals |
 | Periodic patterns | Transients, edges |
@@ -331,7 +340,7 @@
 **Answer:**
 
 | DFT | DCT |
-|:----|:----|
+| :--- | :--- |
 | Complex output | Real output |
 | Uses complex exponentials | Uses only cosines |
 | Assumes periodic signal | Assumes even-symmetric signal |
@@ -381,7 +390,7 @@
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | F(u,v) = ΣΣ f(x,y) e^{-j2π(ux/M + vy/N)} | 2D DFT |
 | f_s > 2·f_max | Nyquist criterion |
 | W(a,b) = ∫f(t)ψ*((t-b)/a)dt | Wavelet transform |
@@ -390,14 +399,50 @@
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Mathematical Foundations](../01_Mathematical_Foundations/) | [🏠 Home](../README.md) | [Image Formation →](../03_Image_Formation/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Math](../01_Mathematical_Foundations/README.md)** | **[🏠 HOME](../README.md)** | **[Image Formation ▶](../03_Image_Formation/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

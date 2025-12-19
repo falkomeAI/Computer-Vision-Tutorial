@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🧠 Neural Network Foundations
+<br/>
 
-### *Perceptron, MLP, Backpropagation, Optimization*
+<a href="../07_Classical_ML/README.md"><img src="https://img.shields.io/badge/◀__Classical ML-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-A78BFA?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../09_CNN_Architectures/README.md"><img src="https://img.shields.io/badge/CNNs__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟡 Intermediate | 3 hours | Linear Algebra, Calculus |
+<br/><br/>
+
+---
+
+<br/>
+
+# 🧠 NEURAL NETWORKS
+
+### 🌙 *Deep Learning Foundations*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__08/20-A78BFA?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Classical ML](../07_Classical_ML/) | [🏠 Home](../README.md) | [CNN Architectures →](../09_CNN_Architectures/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Concept | Formula | Description |
-|:--------|:--------|:------------|
+| :--- | :--- | :--- |
 | **Perceptron** | y = σ(wᵀx + b) | Single neuron, linear classifier |
 | **Forward Pass** | aˡ = σ(Wˡaˡ⁻¹ + bˡ) | Layer-by-layer computation |
 | **Loss Function** | L = -Σylog(ŷ) | Cross-entropy for classification |
@@ -53,18 +62,18 @@
 ┌─────────────────────────────────────────────────────┐
 │  PERCEPTRON                                         │
 │                                                     │
-│  z = Σᵢ wᵢxᵢ + b = wᵀx + b                         │
+│  z = Σᵢ wᵢxᵢ + b = wᵀx + b                          │
 │                                                     │
 │  y = σ(z)  where σ is activation function           │
 │                                                     │
-│  Decision boundary: wᵀx + b = 0 (hyperplane)       │
+│  Decision boundary: wᵀx + b = 0 (hyperplane)        │
 └─────────────────────────────────────────────────────┘
 ```
 
 ### 2. Activation Functions
 
 | Function | Formula | Derivative | Properties |
-|:---------|:--------|:-----------|:-----------|
+| :--- | :--- | :--- | :--- |
 | **Sigmoid** | σ(x) = 1/(1+e⁻ˣ) | σ(x)(1-σ(x)) | Range [0,1], vanishing gradient |
 | **Tanh** | tanh(x) = (eˣ-e⁻ˣ)/(eˣ+e⁻ˣ) | 1-tanh²(x) | Range [-1,1], zero-centered |
 | **ReLU** | max(0,x) | 0 if x<0, 1 if x>0 | No vanishing gradient, sparse |
@@ -79,20 +88,20 @@
 │  FORWARD PROPAGATION                                │
 │                                                     │
 │  Layer l:                                           │
-│    zˡ = Wˡaˡ⁻¹ + bˡ                                │
+│    zˡ = Wˡaˡ⁻¹ + bˡ                                 │
 │    aˡ = σ(zˡ)                                       │
 │                                                     │
 │  Where:                                             │
-│    Wˡ ∈ ℝⁿˡ×ⁿˡ⁻¹  (weight matrix)                  │
-│    bˡ ∈ ℝⁿˡ       (bias vector)                    │
-│    aˡ ∈ ℝⁿˡ       (activations)                    │
+│    Wˡ ∈ ℝⁿˡ×ⁿˡ⁻¹  (weight matrix)                   │
+│    bˡ ∈ ℝⁿˡ       (bias vector)                     │
+│    aˡ ∈ ℝⁿˡ       (activations)                     │
 └─────────────────────────────────────────────────────┘
 ```
 
 ### 4. Loss Functions
 
 | Loss | Formula | Use Case |
-|:-----|:--------|:---------|
+| :--- | :--- | :--- |
 | **MSE** | L = (1/n)Σ(y-ŷ)² | Regression |
 | **Cross-Entropy** | L = -Σylog(ŷ) | Classification |
 | **Binary CE** | L = -[ylog(ŷ) + (1-y)log(1-ŷ)] | Binary classification |
@@ -105,23 +114,23 @@
 │  BACKWARD PROPAGATION                               │
 │                                                     │
 │  Output layer L:                                    │
-│    δᴸ = ∂L/∂aᴸ ⊙ σ'(zᴸ)                            │
+│    δᴸ = ∂L/∂aᴸ ⊙ σ'(zᴸ)                             │
 │                                                     │
 │  Hidden layer l:                                    │
-│    δˡ = (Wˡ⁺¹)ᵀδˡ⁺¹ ⊙ σ'(zˡ)                       │
+│    δˡ = (Wˡ⁺¹)ᵀδˡ⁺¹ ⊙ σ'(zˡ)                        │
 │                                                     │
 │  Gradients:                                         │
-│    ∂L/∂Wˡ = δˡ(aˡ⁻¹)ᵀ                              │
+│    ∂L/∂Wˡ = δˡ(aˡ⁻¹)ᵀ                               │
 │    ∂L/∂bˡ = δˡ                                      │
 │                                                     │
-│  ⊙ = element-wise multiplication                   │
+│  ⊙ = element-wise multiplication                    │
 └─────────────────────────────────────────────────────┘
 ```
 
 ### 6. Optimization Algorithms
 
 | Optimizer | Update Rule | Properties |
-|:----------|:------------|:-----------|
+| :--- | :--- | :--- |
 | **SGD** | W ← W - η∇L | Simple, may oscillate |
 | **Momentum** | v ← βv + ∇L, W ← W - ηv | Accelerates in consistent direction |
 | **RMSprop** | s ← ρs + (1-ρ)(∇L)², W ← W - η∇L/√(s+ε) | Adaptive learning rate |
@@ -137,7 +146,7 @@ Default: β₁=0.9, β₂=0.999, ε=10⁻⁸
 ### 7. Weight Initialization
 
 | Method | Formula | Best For |
-|:-------|:--------|:---------|
+| :--- | :--- | :--- |
 | **Xavier/Glorot** | W ~ U[-√(6/(nᵢₙ+nₒᵤₜ)), √(6/(nᵢₙ+nₒᵤₜ))] | Sigmoid, Tanh |
 | **He/Kaiming** | W ~ N(0, 2/nᵢₙ) | ReLU |
 | **LeCun** | W ~ N(0, 1/nᵢₙ) | SELU |
@@ -147,7 +156,7 @@ Default: β₁=0.9, β₂=0.999, ε=10⁻⁸
 ### 8. Regularization Techniques
 
 | Technique | Effect | Formula/Method |
-|:----------|:-------|:---------------|
+| :--- | :--- | :--- |
 | **L2 (Weight Decay)** | Penalize large weights | L' = L + λΣw² |
 | **L1 (Lasso)** | Encourage sparsity | L' = L + λΣ\|w\| |
 | **Dropout** | Random neuron dropping | p(keep) = 1-p, scale by 1/(1-p) |
@@ -170,10 +179,10 @@ Default: β₁=0.9, β₂=0.999, ε=10⁻⁸
 │     3. Shuffle training data                        │
 │     4. FOR each mini-batch B:                       │
 │        5. Forward: ŷ = f(x; W, b)                   │
-│        6. Compute loss: L = Loss(ŷ, y)             │
-│        7. Backward: compute ∂L/∂W, ∂L/∂b           │
-│        8. Update: W ← W - η·∂L/∂W                  │
-│                   b ← b - η·∂L/∂b                  │
+│        6. Compute loss: L = Loss(ŷ, y)              │
+│        7. Backward: compute ∂L/∂W, ∂L/∂b            │
+│        8. Update: W ← W - η·∂L/∂W                   │
+│                   b ← b - η·∂L/∂b                   │
 │  9. RETURN W, b                                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -183,22 +192,22 @@ Default: β₁=0.9, β₂=0.999, ε=10⁻⁸
 ```
 ┌─────────────────────────────────────────────────────┐
 │  INPUT: Network with L layers, input x, target y    │
-│  OUTPUT: Gradients ∂L/∂Wˡ, ∂L/∂bˡ for all l        │
+│  OUTPUT: Gradients ∂L/∂Wˡ, ∂L/∂bˡ for all l         │
 │                                                     │
 │  FORWARD PASS:                                      │
 │  1. a⁰ = x                                          │
 │  2. FOR l = 1 to L:                                 │
-│     3. zˡ = Wˡaˡ⁻¹ + bˡ                            │
+│     3. zˡ = Wˡaˡ⁻¹ + bˡ                             │
 │     4. aˡ = σ(zˡ)                                   │
 │                                                     │
 │  BACKWARD PASS:                                     │
-│  5. δᴸ = ∇ₐL(aᴸ, y) ⊙ σ'(zᴸ)                       │
+│  5. δᴸ = ∇ₐL(aᴸ, y) ⊙ σ'(zᴸ)                        │
 │  6. FOR l = L-1 to 1:                               │
-│     7. δˡ = (Wˡ⁺¹)ᵀδˡ⁺¹ ⊙ σ'(zˡ)                   │
+│     7. δˡ = (Wˡ⁺¹)ᵀδˡ⁺¹ ⊙ σ'(zˡ)                    │
 │                                                     │
 │  COMPUTE GRADIENTS:                                 │
 │  8. FOR l = 1 to L:                                 │
-│     9. ∂L/∂Wˡ = δˡ(aˡ⁻¹)ᵀ                          │
+│     9. ∂L/∂Wˡ = δˡ(aˡ⁻¹)ᵀ                           │
 │    10. ∂L/∂bˡ = δˡ                                  │
 │                                                     │
 │  RETURN all gradients                               │
@@ -213,9 +222,9 @@ Default: β₁=0.9, β₂=0.999, ε=10⁻⁸
 │  OUTPUT: Masked activation                          │
 │                                                     │
 │  TRAINING:                                          │
-│  1. m ~ Bernoulli(1-p)  (mask of 0s and 1s)        │
-│  2. ã = a ⊙ m           (apply mask)               │
-│  3. ã = ã / (1-p)       (scale to maintain E[a])   │
+│  1. m ~ Bernoulli(1-p)  (mask of 0s and 1s)         │
+│  2. ã = a ⊙ m           (apply mask)                │
+│  3. ã = ã / (1-p)       (scale to maintain E[a])    │
 │                                                     │
 │  INFERENCE:                                         │
 │  1. Use all neurons (no dropout)                    │
@@ -252,7 +261,7 @@ In deep networks, gradients become exponentially small as they backpropagate:
 **Answer:**
 
 | Aspect | ReLU | Sigmoid |
-|:-------|:-----|:--------|
+| :--- | :--- | :--- |
 | Gradient | 0 or 1 (no saturation for x>0) | 0-0.25 (saturates) |
 | Computation | max(0,x) - fast | exp() - slow |
 | Sparsity | ~50% neurons inactive | All active |
@@ -290,7 +299,7 @@ In deep networks, gradients become exponentially small as they backpropagate:
 **Answer:**
 
 | Optimizer | Pros | Cons | When to Use |
-|:----------|:-----|:-----|:------------|
+| :--- | :--- | :--- | :--- |
 | **SGD** | Simple, good generalization | Slow, oscillates | Fine-tuning |
 | **SGD+Momentum** | Faster, reduces oscillation | Still needs LR tuning | Most cases |
 | **Adam** | Adaptive LR, works out-of-box | May generalize worse | Prototyping |
@@ -352,7 +361,7 @@ Var(W) = 2 / n_in
 **Answer:**
 
 | Aspect | L1 (Lasso) | L2 (Ridge) |
-|:-------|:-----------|:-----------|
+| :--- | :--- | :--- |
 | Penalty | λΣ\|w\| | λΣw² |
 | Gradient | ±λ (constant) | 2λw (proportional) |
 | Effect | Sparse weights (some = 0) | Small weights (none = 0) |
@@ -387,7 +396,7 @@ Var(W) = 2 / n_in
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | y = σ(Wx + b) | Neuron output |
 | L = -Σylog(ŷ) | Cross-entropy loss |
 | ∂L/∂W = δ·aᵀ | Weight gradient |
@@ -398,14 +407,50 @@ Var(W) = 2 / n_in
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Classical ML](../07_Classical_ML/) | [🏠 Home](../README.md) | [CNN Architectures →](../09_CNN_Architectures/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Classical ML](../07_Classical_ML/README.md)** | **[🏠 HOME](../README.md)** | **[CNNs ▶](../09_CNN_Architectures/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

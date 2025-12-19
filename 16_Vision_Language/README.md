@@ -1,34 +1,43 @@
 <div align="center">
 
-# 🗣️ Vision-Language Models
+<br/>
 
-### *CLIP, Image Captioning, VQA, Multimodal Transformers*
+<a href="../15_Generative_Vision/README.md"><img src="https://img.shields.io/badge/◀__Generative-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-34D399?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../17_Computational_Photography/README.md"><img src="https://img.shields.io/badge/Photo__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🔴 Advanced | 3 hours | Transformers, CNNs |
+<br/><br/>
+
+---
+
+<br/>
+
+# 💬 VISION-LANGUAGE
+
+### 🌙 *Images Meet Words*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__16/20-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Generative Vision](../15_Generative_Vision/) | [🏠 Home](../README.md) | [Computational Photography →](../17_Computational_Photography/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Algorithms](#-algorithms)
-- [Visual Overview](#-visual-overview)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Model | Task | Architecture | Training |
-|:------|:-----|:-------------|:---------|
+| :--- | :--- | :--- | :--- |
 | **CLIP** | Zero-shot classification | Dual encoder | Contrastive |
 | **BLIP** | Captioning, VQA | Encoder-decoder | Unified |
 | **Flamingo** | Few-shot multimodal | Cross-attention | Interleaved |
@@ -53,18 +62,18 @@
 ┌─────────────────────────────────────────────────────┐
 │  ARCHITECTURE                                       │
 │                                                     │
-│  Image Encoder: f_img(I) → z_img ∈ ℝᵈ              │
-│  Text Encoder:  f_txt(T) → z_txt ∈ ℝᵈ              │
+│  Image Encoder: f_img(I) → z_img ∈ ℝᵈ               │
+│  Text Encoder:  f_txt(T) → z_txt ∈ ℝᵈ               │
 │                                                     │
 │  CONTRASTIVE LOSS (InfoNCE)                         │
 │                                                     │
-│  L = -log[exp(sim(I,T)/τ) / Σⱼexp(sim(I,Tⱼ)/τ)]   │
+│  L = -log[exp(sim(I,T)/τ) / Σⱼexp(sim(I,Tⱼ)/τ)]     │
 │                                                     │
 │  Where:                                             │
-│    sim(I,T) = z_imgᵀ z_txt / (||z_img|| ||z_txt||) │
+│    sim(I,T) = z_imgᵀ z_txt / (||z_img|| ||z_txt||)  │
 │    τ = temperature (learned or fixed ~0.07)         │
 │                                                     │
-│  Symmetrized: L = (L_img→txt + L_txt→img) / 2      │
+│  Symmetrized: L = (L_img→txt + L_txt→img) / 2       │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -74,19 +83,19 @@
 ┌─────────────────────────────────────────────────────┐
 │  INFERENCE (No training on target classes!)         │
 │                                                     │
-│  1. Encode image: z_img = f_img(I)                 │
+│  1. Encode image: z_img = f_img(I)                  │
 │                                                     │
-│  2. Create text prompts: "a photo of a {class}"   │
-│     T₁ = "a photo of a cat"                        │
-│     T₂ = "a photo of a dog"                        │
+│  2. Create text prompts: "a photo of a {class}"     │
+│     T₁ = "a photo of a cat"                         │
+│     T₂ = "a photo of a dog"                         │
 │     ...                                             │
 │                                                     │
-│  3. Encode texts: z_tₖ = f_txt(Tₖ)                 │
+│  3. Encode texts: z_tₖ = f_txt(Tₖ)                  │
 │                                                     │
 │  4. Compute similarities:                           │
-│     sₖ = cosine(z_img, z_tₖ)                       │
+│     sₖ = cosine(z_img, z_tₖ)                        │
 │                                                     │
-│  5. Predict: ŷ = argmax softmax(s/τ)               │
+│  5. Predict: ŷ = argmax softmax(s/τ)                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -97,16 +106,16 @@
 │  ENCODER-DECODER ARCHITECTURE                       │
 │                                                     │
 │  Encoder: Extract visual features                   │
-│    V = CNN(I) or ViT(I)  → [v₁, ..., vₙ]           │
+│    V = CNN(I) or ViT(I)  → [v₁, ..., vₙ]            │
 │                                                     │
 │  Decoder: Generate caption autoregressively         │
-│    P(wₜ|w₁:ₜ₋₁, V) = Decoder(w₁:ₜ₋₁, V)           │
+│    P(wₜ|w₁:ₜ₋₁, V) = Decoder(w₁:ₜ₋₁, V)             │
 │                                                     │
 │  Cross-attention:                                   │
-│    Attn(Q, K, V) where Q=text, K,V=image           │
+│    Attn(Q, K, V) where Q=text, K,V=image            │
 │                                                     │
 │  Training loss (cross-entropy):                     │
-│    L = -Σₜ log P(wₜ|w₁:ₜ₋₁, V)                     │
+│    L = -Σₜ log P(wₜ|w₁:ₜ₋₁, V)                      │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -120,17 +129,17 @@
 │  APPROACHES:                                        │
 │                                                     │
 │  1. Classification (closed-set):                    │
-│     A = argmax P(a|I, Q)                           │
-│     where a ∈ {yes, no, color, number, ...}        │
+│     A = argmax P(a|I, Q)                            │
+│     where a ∈ {yes, no, color, number, ...}         │
 │                                                     │
 │  2. Generation (open-set):                          │
-│     A = Decoder(I, Q)                              │
+│     A = Decoder(I, Q)                               │
 │     Autoregressive text generation                  │
 │                                                     │
 │  FUSION METHODS:                                    │
 │     - Early: concat features                        │
 │     - Attention: cross-attention                    │
-│     - Late: separate encoders, merge               │
+│     - Late: separate encoders, merge                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -144,12 +153,12 @@
 │  K = W_k × image_tokens                             │
 │  V = W_v × image_tokens                             │
 │                                                     │
-│  Attn(Q, K, V) = softmax(QKᵀ/√d) V                 │
+│  Attn(Q, K, V) = softmax(QKᵀ/√d) V                  │
 │                                                     │
 │  Allows text to attend to relevant image regions    │
 │                                                     │
 │  GATED CROSS-ATTENTION (Flamingo):                  │
-│  output = text + tanh(α) × CrossAttn(text, image)  │
+│  output = text + tanh(α) × CrossAttn(text, image)   │
 │  α = learnable gate (initialized to 0)              │
 └─────────────────────────────────────────────────────┘
 ```
@@ -160,12 +169,12 @@
 ┌─────────────────────────────────────────────────────┐
 │  ARCHITECTURE                                       │
 │                                                     │
-│  1. Visual Encoder: CLIP ViT → image features      │
+│  1. Visual Encoder: CLIP ViT → image features       │
 │  2. Projection: Linear layer to LLM dimension       │
 │  3. LLM: Process [image tokens, text tokens]        │
 │                                                     │
 │  INPUT FORMAT:                                      │
-│  "<image> [img_tokens] </image> User: {question}   │
+│  "<image> [img_tokens] </image> User: {question}    │
 │   Assistant: {answer}"                              │
 │                                                     │
 │  TRAINING STAGES:                                   │
@@ -183,18 +192,18 @@
 ```
 ┌─────────────────────────────────────────────────────┐
 │  INPUT: Image-text pairs (I, T)                     │
-│  OUTPUT: Trained encoders f_img, f_txt             │
+│  OUTPUT: Trained encoders f_img, f_txt              │
 │                                                     │
 │  FOR each mini-batch of N pairs:                    │
-│    1. Encode: z_img = f_img(I), z_txt = f_txt(T)   │
+│    1. Encode: z_img = f_img(I), z_txt = f_txt(T)    │
 │    2. L2 normalize embeddings                       │
 │    3. Compute NxN similarity matrix:                │
-│       S[i,j] = z_img[i]ᵀ z_txt[j] / τ              │
-│    4. Labels: y = [0, 1, ..., N-1] (diagonal)      │
+│       S[i,j] = z_img[i]ᵀ z_txt[j] / τ               │
+│    4. Labels: y = [0, 1, ..., N-1] (diagonal)       │
 │    5. Loss (symmetric):                             │
-│       L_i2t = CrossEntropy(S, y)    (rows)         │
-│       L_t2i = CrossEntropy(Sᵀ, y)   (columns)      │
-│       L = (L_i2t + L_t2i) / 2                      │
+│       L_i2t = CrossEntropy(S, y)    (rows)          │
+│       L_t2i = CrossEntropy(Sᵀ, y)   (columns)       │
+│       L = (L_i2t + L_t2i) / 2                       │
 │    6. Backprop and update                           │
 │                                                     │
 │  Key: Diagonal elements are positive pairs          │
@@ -209,16 +218,16 @@
 │  INPUT: Image features V, beam width k              │
 │  OUTPUT: Best caption                               │
 │                                                     │
-│  1. Initialize: beams = {("<start>", 0)}           │
+│  1. Initialize: beams = {("<start>", 0)}            │
 │  2. FOR t = 1 to max_length:                        │
 │     3. candidates = []                              │
 │     4. FOR each (seq, score) in beams:              │
-│        5. Get P(w|seq, V) for all words w          │
+│        5. Get P(w|seq, V) for all words w           │
 │        6. FOR top-k words w:                        │
-│           7. new_score = score + log P(w|seq, V)   │
-│           8. candidates.add((seq + w, new_score))  │
+│           7. new_score = score + log P(w|seq, V)    │
+│           8. candidates.add((seq + w, new_score))   │
 │     9. beams = top-k candidates by score            │
-│    10. IF all beams end with "<end>": break        │
+│    10. IF all beams end with "<end>": break         │
 │  11. RETURN beam with highest score                 │
 │                                                     │
 │  Beam search balances quality vs diversity          │
@@ -229,20 +238,20 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image I, class names [c₁, ..., cₙ]         │
+│  INPUT: Image I, class names [c₁, ..., cₙ]          │
 │  OUTPUT: Predicted class                            │
 │                                                     │
-│  1. Encode image: z_img = normalize(f_img(I))      │
+│  1. Encode image: z_img = normalize(f_img(I))       │
 │  2. FOR each class c:                               │
-│     3. Create prompt: T = "a photo of a {c}"       │
-│     4. Encode: z_txt = normalize(f_txt(T))         │
-│  3. Compute similarities: s = z_img @ Z_txtᵀ       │
-│  4. Probabilities: P = softmax(s / τ)              │
-│  5. Predict: ŷ = argmax(P)                         │
+│     3. Create prompt: T = "a photo of a {c}"        │
+│     4. Encode: z_txt = normalize(f_txt(T))          │
+│  3. Compute similarities: s = z_img @ Z_txtᵀ        │
+│  4. Probabilities: P = softmax(s / τ)               │
+│  5. Predict: ŷ = argmax(P)                          │
 │                                                     │
 │  PROMPT ENGINEERING (improves accuracy):            │
-│  - "a photo of a {c}"                              │
-│  - "a {c} in the wild"                             │
+│  - "a photo of a {c}"                               │
+│  - "a {c} in the wild"                              │
 │  - Ensemble multiple prompts                        │
 └─────────────────────────────────────────────────────┘
 ```
@@ -277,7 +286,7 @@
 **Answer:**
 
 | Aspect | CLIP | BLIP |
-|:-------|:-----|:-----|
+| :--- | :--- | :--- |
 | Training | Contrastive only | Contrastive + Generative |
 | Architecture | Dual encoder | Unified encoder-decoder |
 | Tasks | Classification, retrieval | + Captioning, VQA |
@@ -415,7 +424,7 @@ L = -log[exp(sim(I,T)/τ) / Σⱼexp(sim(I,Tⱼ)/τ)]
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | L = -log[exp(s⁺/τ) / Σexp(sⱼ/τ)] | InfoNCE loss |
 | sim(I,T) = (z_I · z_T) / (\|\|z_I\|\| \|\|z_T\|\|) | Cosine similarity |
 | Attn(Q,K,V) = softmax(QKᵀ/√d)V | Cross-attention |
@@ -423,14 +432,50 @@ L = -log[exp(sim(I,T)/τ) / Σⱼexp(sim(I,Tⱼ)/τ)]
 
 ---
 
-## 📓 Practice
-
-See the Colab notebook: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
-
----
+<br/>
 
 <div align="center">
 
-**[← Generative Vision](../15_Generative_Vision/) | [🏠 Home](../README.md) | [Computational Photography →](../17_Computational_Photography/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Generative](../15_Generative_Vision/README.md)** | **[🏠 HOME](../README.md)** | **[Photo ▶](../17_Computational_Photography/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

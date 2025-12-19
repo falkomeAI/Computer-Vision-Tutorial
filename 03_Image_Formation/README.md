@@ -1,36 +1,43 @@
 <div align="center">
 
-# 📷 Image Formation & Physics
+<br/>
 
-### *Camera Models, Optics, Sensors & Illumination*
+<a href="../02_Transform_Methods/README.md"><img src="https://img.shields.io/badge/◀__Transforms-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-34D399?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../04_Low_Level_Processing/README.md"><img src="https://img.shields.io/badge/Processing__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
 
-**💻 Copy code below → Paste in [Google Colab](https://colab.research.google.com/) → Run!**
+<br/><br/>
 
-| Level | Time | Prerequisites |
-|:-----:|:----:|:-------------:|
-| 🟡 Intermediate | 2 hours | Linear Algebra, Basic Optics |
+---
+
+<br/>
+
+# 📷 IMAGE FORMATION
+
+### 🌙 *How Cameras See*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__03/20-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
 
----
-
-**Navigation:** [← Transform Methods](../02_Transform_Methods/) | [🏠 Home](../README.md) | [Low-Level Processing →](../04_Low_Level_Processing/)
-
----
-
-## 📖 Table of Contents
-- [Key Concepts](#-key-concepts)
-- [Mathematical Foundations](#-mathematical-foundations)
-- [Pinhole Camera Model](#-pinhole-camera-model)
-- [Complete Colab Code](#-complete-colab-code)
-- [Interview Q&A](#-interview-questions--answers)
-
----
+<br/>
 
 ## 🎯 Key Concepts
 
 | Concept | Formula | Description |
-|:--------|:--------|:------------|
+| :--- | :--- | :--- |
 | **Pinhole Projection** | `p = K[R\|t]P` | 3D world → 2D image |
 | **Intrinsic Matrix** | `K = [f 0 cx; 0 f cy; 0 0 1]` | Camera internal params |
 | **Radial Distortion** | `r' = r(1 + k₁r² + k₂r⁴)` | Lens aberration |
@@ -57,10 +64,10 @@ The **pinhole model** projects 3D world points to 2D image:
 ┌─────────────────────────────────────────────────────┐
 │  PROJECTION EQUATION                                │
 │                                                     │
-│  ┌ u ┐   ┌ fx  0  cx ┐ ┌ r11 r12 r13 tx ┐ ┌ X ┐   │
-│  │ v │ = │ 0  fy  cy │ │ r21 r22 r23 ty │ │ Y │   │
-│  └ 1 ┘   └ 0   0   1 ┘ │ r31 r32 r33 tz │ │ Z │   │
-│                        └────────────────┘ └ 1 ┘    │
+│  ┌ u ┐   ┌ fx  0  cx ┐ ┌ r11 r12 r13 tx ┐ ┌ X ┐     │
+│  │ v │ = │ 0  fy  cy │ │ r21 r22 r23 ty │ │ Y │     │
+│  └ 1 ┘   └ 0   0   1 ┘ │ r31 r32 r33 tz │ │ Z │     │
+│                        └────────────────┘ └ 1 ┘     │
 │           K                   [R|t]         P       │
 │      (Intrinsic)           (Extrinsic)    (World)   │
 └─────────────────────────────────────────────────────┘
@@ -80,15 +87,15 @@ Real lenses introduce distortion:
 ┌─────────────────────────────────────────────────────┐
 │  RADIAL DISTORTION                                  │
 │                                                     │
-│  x_distorted = x(1 + k₁r² + k₂r⁴ + k₃r⁶)           │
-│  y_distorted = y(1 + k₁r² + k₂r⁴ + k₃r⁶)           │
+│  x_distorted = x(1 + k₁r² + k₂r⁴ + k₃r⁶)            │
+│  y_distorted = y(1 + k₁r² + k₂r⁴ + k₃r⁶)            │
 │                                                     │
 │  where r² = x² + y²                                 │
 │                                                     │
 │  TANGENTIAL DISTORTION                              │
 │                                                     │
-│  x_distorted += 2p₁xy + p₂(r² + 2x²)               │
-│  y_distorted += p₁(r² + 2y²) + 2p₂xy               │
+│  x_distorted += 2p₁xy + p₂(r² + 2x²)                │
+│  y_distorted += p₁(r² + 2y²) + 2p₂xy                │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -104,10 +111,10 @@ Real lenses introduce distortion:
 │                                                     │
 │  1. Capture N images of checkerboard                │
 │  2. Detect corner points in each image              │
-│  3. Set up homography equations: H = K[r₁ r₂ t]    │
+│  3. Set up homography equations: H = K[r₁ r₂ t]     │
 │  4. Solve for K using constraints:                  │
-│     h₁ᵀK⁻ᵀK⁻¹h₂ = 0                                │
-│     h₁ᵀK⁻ᵀK⁻¹h₁ = h₂ᵀK⁻ᵀK⁻¹h₂                      │
+│     h₁ᵀK⁻ᵀK⁻¹h₂ = 0                                 │
+│     h₁ᵀK⁻ᵀK⁻¹h₁ = h₂ᵀK⁻ᵀK⁻¹h₂                       │
 │  5. Compute R, t from each H                        │
 │  6. Refine with Levenberg-Marquardt                 │
 └─────────────────────────────────────────────────────┘
@@ -116,7 +123,7 @@ Real lenses introduce distortion:
 ### CCD vs CMOS Sensors
 
 | Feature | CCD | CMOS |
-|:--------|:----|:-----|
+| :--- | :--- | :--- |
 | **Readout** | Sequential (charge transfer) | Parallel (active pixels) |
 | **Noise** | Lower (global shutter) | Higher (rolling shutter) |
 | **Power** | Higher | Lower |
@@ -131,7 +138,7 @@ Real lenses introduce distortion:
 ### Color Space Transformations
 
 | From | To | Use Case |
-|:-----|:---|:---------|
+| :--- | :--- | :--- |
 | RGB | HSV | Color-based segmentation |
 | RGB | LAB | Perceptually uniform color differences |
 | RGB | YCbCr | JPEG compression (separate luminance) |
@@ -140,17 +147,13 @@ Real lenses introduce distortion:
 ### Illumination Models
 
 | Model | Formula | Properties |
-|:------|:--------|:-----------|
+| :--- | :--- | :--- |
 | **Lambertian** | `I = kd × (N·L)` | Diffuse, view-independent |
 | **Phong** | `I = ka + kd(N·L) + ks(R·V)ⁿ` | Adds specular highlight |
 | **Blinn-Phong** | `I = ka + kd(N·L) + ks(N·H)ⁿ` | Faster, uses halfway vector |
 | **Cook-Torrance** | Microfacet BRDF | Physically-based |
 
 ---
-
-## 📓 Practice
-
-See the Colab notebook for hands-on coding: [`colab_tutorial.ipynb`](./colab_tutorial.ipynb)
 
 ---
 
@@ -197,7 +200,7 @@ The pinhole model projects 3D points to 2D: **p = K[R|t]P**
 
 **Answer:**
 | Use Case | Sensor | Reason |
-|----------|--------|--------|
+| --- | --- | --- |
 | Astronomy | CCD | Lower noise, global shutter |
 | Smartphone | CMOS | Low power, cheap, fast |
 | Industrial | Both | Depends on speed vs accuracy |
@@ -240,7 +243,7 @@ Standard: sRGB uses γ ≈ 2.2
 ## 📚 Key Formulas Reference
 
 | Formula | Description |
-|:--------|:------------|
+| :--- | :--- |
 | `p = K[R\|t]P` | Full projection equation |
 | `1/f = 1/do + 1/di` | Thin lens equation |
 | `r' = r(1 + k₁r² + k₂r⁴)` | Radial distortion |
@@ -249,8 +252,50 @@ Standard: sRGB uses γ ≈ 2.2
 
 ---
 
+<br/>
+
 <div align="center">
 
-**[← Transform Methods](../02_Transform_Methods/) | [🏠 Home](../README.md) | [Low-Level Processing →](../04_Low_Level_Processing/)**
+## 📓 PRACTICE
+
+<br/>
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Transforms](../02_Transform_Methods/README.md)** | **[🏠 HOME](../README.md)** | **[Processing ▶](../04_Low_Level_Processing/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>

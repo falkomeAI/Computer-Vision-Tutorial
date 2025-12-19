@@ -1,25 +1,36 @@
 <div align="center">
 
-# 🧠 CNN Architectures
+<br/>
 
-### *From LeNet to ConvNeXt*
+<a href="../08_Neural_Networks/README.md"><img src="https://img.shields.io/badge/◀__Neural Nets-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../README.md"><img src="https://img.shields.io/badge/🏠__HOME-F472B6?style=for-the-badge&labelColor=0f172a" height="35"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../10_Vision_Tasks/README.md"><img src="https://img.shields.io/badge/Vision Tasks__▶-0f172a?style=for-the-badge&labelColor=1e293b" height="35"/></a>
+
+<br/><br/>
+
+---
 
 <br/>
 
-<p>
-<img src="https://img.shields.io/badge/Level-Intermediate-yellow?style=for-the-badge" alt="Level"/>
-<img src="https://img.shields.io/badge/Time-2_weeks-blue?style=for-the-badge" alt="Time"/>
-</p>
+# 🏗️ CNN ARCHITECTURES
 
-**📓 [Download Notebook](./colab_tutorial.ipynb) → Upload to Colab → Run!**
+### 🌙 *Convolutional Networks*
+
+<br/>
+
+<img src="https://img.shields.io/badge/📚__MODULE__09/20-F472B6?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/⏱️__2_HOURS-FBBF24?style=for-the-badge&labelColor=0f172a" height="40"/>
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/📓__NOTEBOOK_READY-34D399?style=for-the-badge&labelColor=0f172a" height="40"/>
+
+<br/><br/>
+
+---
 
 </div>
-
----
-
-[← Neural Networks](../08_Neural_Networks/) · [🏠 Home](../README.md) · [Vision Tasks →](../10_Vision_Tasks/)
-
----
 
 <br/>
 
@@ -34,7 +45,7 @@
 ## 🎯 Key Concepts
 
 | Concept | Description | Used In |
-|:--------|:------------|:--------|
+| :--- | :--- | :--- |
 | **Convolution** | Sliding filter to detect features | All CNNs |
 | **Pooling** | Downsample feature maps | LeNet, VGG |
 | **Skip Connection** | Add input to output (residual) | ResNet, DenseNet |
@@ -65,7 +76,7 @@ LeNet → AlexNet → VGG/GoogLeNet → ResNet → EfficientNet → ConvNeXt
 ## 📊 Architecture Comparison
 
 | Architecture | Year | Key Innovation | Params | Top-1 |
-|:-------------|:----:|:---------------|:------:|:-----:|
+| :--- | :---: | :--- | :---: | :---: |
 | **LeNet-5** | 1998 | First CNN | 60K | - |
 | **AlexNet** | 2012 | ReLU, Dropout, GPU | 60M | 63% |
 | **VGG-16** | 2014 | 3×3 kernels only | 138M | 74% |
@@ -124,21 +135,21 @@ RF = RF_prev + (K-1) × stride_product
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Image x (H×W×C)                            │
+│  INPUT: Image x (H×W×C)                             │
 │  OUTPUT: Class probabilities                        │
 │                                                     │
-│  FOR each convolutional layer:                     │
-│    1. Convolve: z = x * W + b                     │
-│    2. Batch Norm: z = BN(z)                       │
-│    3. Activation: a = ReLU(z)                     │
-│    4. (Optional) Pool: a = MaxPool(a)             │
+│  FOR each convolutional layer:                      │
+│    1. Convolve: z = x * W + b                       │
+│    2. Batch Norm: z = BN(z)                         │
+│    3. Activation: a = ReLU(z)                       │
+│    4. (Optional) Pool: a = MaxPool(a)               │
 │                                                     │
-│  Flatten to vector                                 │
-│  FOR each fully connected layer:                   │
-│    1. Linear: z = Wa + b                          │
-│    2. Activation: a = ReLU(z)                     │
+│  Flatten to vector                                  │
+│  FOR each fully connected layer:                    │
+│    1. Linear: z = Wa + b                            │
+│    2. Activation: a = ReLU(z)                       │
 │                                                     │
-│  Output: softmax(z_final)                          │
+│  Output: softmax(z_final)                           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -146,19 +157,19 @@ RF = RF_prev + (K-1) × stride_product
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: x (feature map)                            │
-│  OUTPUT: y (residual output)                       │
+│  INPUT: x (feature map)                             │
+│  OUTPUT: y (residual output)                        │
 │                                                     │
-│  1. identity = x                                   │
+│  1. identity = x                                    │
 │                                                     │
-│  2. F(x) = Conv3x3 → BN → ReLU → Conv3x3 → BN     │
+│  2. F(x) = Conv3x3 → BN → ReLU → Conv3x3 → BN       │
 │                                                     │
-│  3. IF dimensions change:                          │
-│        identity = Conv1x1(x)  # projection        │
+│  3. IF dimensions change:                           │
+│        identity = Conv1x1(x)  # projection          │
 │                                                     │
-│  4. y = ReLU(F(x) + identity)                     │
+│  4. y = ReLU(F(x) + identity)                       │
 │                                                     │
-│  Key: Gradient flows through identity path        │
+│  Key: Gradient flows through identity path          │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -166,16 +177,16 @@ RF = RF_prev + (K-1) × stride_product
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  INPUT: Mini-batch B = {x₁, ..., xₘ}              │
-│  OUTPUT: Normalized batch                          │
+│  INPUT: Mini-batch B = {x₁, ..., xₘ}                │
+│  OUTPUT: Normalized batch                           │
 │                                                     │
-│  1. μ_B = (1/m) Σ xᵢ           (batch mean)       │
-│  2. σ²_B = (1/m) Σ (xᵢ - μ_B)² (batch variance)   │
-│  3. x̂ᵢ = (xᵢ - μ_B) / √(σ²_B + ε)                │
-│  4. yᵢ = γ x̂ᵢ + β            (scale & shift)     │
+│  1. μ_B = (1/m) Σ xᵢ           (batch mean)         │
+│  2. σ²_B = (1/m) Σ (xᵢ - μ_B)² (batch variance)     │
+│  3. x̂ᵢ = (xᵢ - μ_B) / √(σ²_B + ε)                  │
+│  4. yᵢ = γ x̂ᵢ + β            (scale & shift)       │
 │                                                     │
-│  γ, β are learned parameters                       │
-│  At test time: use running mean/variance          │
+│  γ, β are learned parameters                        │
+│  At test time: use running mean/variance            │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -212,7 +223,7 @@ RF = RF_prev + (K-1) × stride_product
 ## ⚠️ Common Pitfalls
 
 | ❌ Pitfall | ✅ Solution |
-|-----------|------------|
+| --- | --- |
 | Vanishing gradients in deep nets | Use skip connections (ResNet) |
 | Overfitting on small datasets | Use pretrained models + fine-tune |
 | Wrong input size | Check model's expected resolution |
@@ -238,7 +249,7 @@ RF = RF_prev + (K-1) × stride_product
 <summary><b>Q2: VGG vs GoogLeNet - why same accuracy, different params?</b></summary>
 
 | VGG-16 | GoogLeNet |
-|--------|-----------|
+| --- | --- |
 | 138M params | 7M params |
 | Simple 3×3 stacks | Inception modules |
 | Wide layers | Parallel paths (1×1, 3×3, 5×5) |
@@ -297,16 +308,50 @@ Two 3×3 = One 5×5 receptive field, but fewer params!
 
 ---
 
+<br/>
+
 <div align="center">
 
-### Next Up
-
-# [Vision Tasks →](../10_Vision_Tasks/)
-
-*Classification, Detection, Segmentation*
+## 📓 PRACTICE
 
 <br/>
 
-[🏠 Back to Home](../README.md)
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                               ┃
+┃   📥 Download .ipynb  →  🌐 Open colab.google  →  📤 Upload  →  ▶️ Run All   ┃
+┃                                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+<br/>
+
+<a href="./colab_tutorial.ipynb"><img src="https://img.shields.io/badge/📥__DOWNLOAD_NOTEBOOK-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://colab.research.google.com"><img src="https://img.shields.io/badge/🌐__OPEN_COLAB-0f172a?style=for-the-badge&labelColor=1e293b" height="40"/></a>
+
+</div>
+
+<br/>
+
+
+
+---
+
+<br/>
+
+<div align="center">
+
+| | | |
+|:---|:---:|---:|
+| **[◀ Neural Nets](../08_Neural_Networks/README.md)** | **[🏠 HOME](../README.md)** | **[Vision Tasks ▶](../10_Vision_Tasks/README.md)** |
+
+<br/>
+
+---
+
+🌙 Part of **[Computer Vision Complete](../README.md)** · Made with ❤️
+
+<br/>
 
 </div>
